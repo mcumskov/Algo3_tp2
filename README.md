@@ -7,7 +7,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 ## Grupo {N}
 
 * **Integrante 1** - [integrante1](https://github.com/integrante1)
-* **Integrante 2** - [integrante2](https://github.com/integrante2)
+* **Integrante 2** - [Cumskov Maximiliano](https://github.com/mcumskov)
 * **Integrante 3** - **Nicolas Porcel** <nporcel@fi.uba.ar> - 106244
 * **Integrante 4** - **Galo Ojeda** <gojeda@fi.uba.ar> - 109423
 * **Integrante 5** - **Tomás Abraham** <tabraham@fi.uba.ar> - 100770 
