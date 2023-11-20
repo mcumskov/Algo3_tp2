@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.equipamiento;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
-public class SinEquipamiento extends Equipable{
+public class Desnudo extends Equipable{
 
-    public SinEquipamiento(){
+    public Desnudo(){
 
         this.proteccion = 0;
 

@@ -5,19 +5,15 @@ import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 public class Equipamiento{
 
     private int numeroMejoras ;
-    private Gladiador gladiador ;
-
     private Equipable equipable ;
-    public Equipamiento(Gladiador gladiador)
+    public Equipamiento()
     {
-        this.gladiador = gladiador ;
-
-        this.equipable = new SinEquipamiento();
+        this.equipable = new Desnudo();
 
         numeroMejoras = 0 ;
     }
 
-    public void mitigarDanio(int danioRecibido){
+    public void mitigarDanio(Gladiador gladiador, int danioRecibido){
 
         gladiador.cambiarEnergia(this.equipable.mitigarDanio(danioRecibido));
 
@@ -51,9 +47,9 @@ public class Equipamiento{
 
     }
 
-    public void abrirCasaPompeya(){
+    public void abrirCasaPompeya(Gladiador gladiador){
 
-        this.equipable.abrirCasaPompeya(this.gladiador);
+        this.equipable.abrirCasaPompeya(gladiador);
 
     }
 

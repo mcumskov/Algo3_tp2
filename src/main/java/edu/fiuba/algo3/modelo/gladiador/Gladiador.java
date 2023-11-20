@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.gladiador;
 
-import edu.fiuba.algo3.modelo.equipamiento.SinEquipamiento;
 import edu.fiuba.algo3.modelo.equipamiento.Equipamiento;
 import edu.fiuba.algo3.modelo.seniority.Novato;
 import edu.fiuba.algo3.modelo.seniority.Seniority;
@@ -18,7 +17,7 @@ public class Gladiador {
     public Gladiador(Casilla casillaInicial){
         this.casilla = casillaInicial;
         this.energia = 20 ;
-        this.equipamiento = new Equipamiento(this);
+        this.equipamiento = new Equipamiento();
         this.estado = new GladiadorSano(this);
         this.seniority = new Novato(this);
         this.ganador = false;
@@ -44,7 +43,7 @@ public class Gladiador {
         seniority.obtenerEnergia();
     }
     public void recibirDanio(int danioRecibido){
-        equipamiento.mitigarDanio(danioRecibido);
+        equipamiento.mitigarDanio(this,danioRecibido);
     }
 
 
@@ -57,7 +56,7 @@ public class Gladiador {
     }
 
     public void abrirCasaPompeya(){
-        equipamiento.abrirCasaPompeya();
+        equipamiento.abrirCasaPompeya(this);
     }
     public void victoria(){
         this.ganador = true;

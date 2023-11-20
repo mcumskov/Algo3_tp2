@@ -48,8 +48,8 @@ public class EventoUnitTests {
 
         gladiadorQueSiSeMueve.avanzar(1);
 
-        gladiadorQueSiSeMueve.recibirDanio(10);
-        gladiadorQueNoSeMueve.recibirDanio(10);
+        gladiadorQueSiSeMueve.recibirDanio(-10);
+        gladiadorQueNoSeMueve.recibirDanio(-10);
 
         assertTrue(gladiadorQueNoSeMueve.getEnergia() != gladiadorQueSiSeMueve.getEnergia());
     }
