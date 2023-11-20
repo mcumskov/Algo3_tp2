@@ -93,23 +93,26 @@ public class GladiadorUnitTests {
 
 
     @Test
-    public void test04GladiadorDesnudoGanaCascoEnelEventoCorrespondiente(){
+    public void test04GladiadorSinEquipamientoGanaCascoEnelEventoCorrespondienteYLoVerificoComparandoEnergias(){
 
         EventoEquipamiento eventoEquipo = new EventoEquipamiento();
         EventoNulo eventoAburrido = new EventoNulo();
 
         Casilla ultimaCasilla = new Casilla(null, eventoEquipo);
-        Casilla primerCasilla = new Casilla(ultimaCasilla, eventoAburrido);
+        Casilla primeraCasilla = new Casilla(ultimaCasilla, eventoAburrido);
 
-        Gladiador gladiadorLoco = new Gladiador(primerCasilla);
+        Gladiador gladiadorSinEquipamiento = new Gladiador(primeraCasilla);
+        Gladiador gladiadorQueSeMueveYObtieneUnCasco = new Gladiador(primeraCasilla);
 
-        Equipamiento equipoPreEvento = gladiadorLoco.getEquipamiento();
+        gladiadorQueSeMueveYObtieneUnCasco.avanzar(1);
 
-        gladiadorLoco.avanzar(1);
+        gladiadorSinEquipamiento.recibirDanio(-10);
+        gladiadorQueSeMueveYObtieneUnCasco.recibirDanio(-10);
 
-        Equipamiento equipoPostEvento = gladiadorLoco.getEquipamiento();
+        int diferenciaDeDanios = gladiadorQueSeMueveYObtieneUnCasco.getEnergia() - gladiadorSinEquipamiento.getEnergia();
 
-        assertTrue(equipoPostEvento != equipoPreEvento);
+
+        assertTrue(diferenciaDeDanios == 5);
     }
 
     @Test

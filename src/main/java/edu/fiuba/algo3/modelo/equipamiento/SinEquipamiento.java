@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.modelo.equipamiento;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
+public class SinEquipamiento extends Equipable{
 
-public class Armadura extends Equipable{
+    public SinEquipamiento(){
 
-    public Armadura(int mitigacionAcumulada){
+        this.proteccion = 0;
 
-        this.proteccion = 5 + mitigacionAcumulada;
     }
 
     @Override
