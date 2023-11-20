@@ -307,6 +307,7 @@ public class GladiadorUnitTests {
         gladiadorLoco.avanzar(1);
 
         Seniority senioritySemiSenior = gladiadorLoco.getSeniority();
+
         assertNotSame(seniorityNovato, senioritySemiSenior);
 
         gladiadorLoco.avanzar(1);
