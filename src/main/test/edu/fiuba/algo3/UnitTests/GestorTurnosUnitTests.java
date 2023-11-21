@@ -96,6 +96,7 @@ public class GestorTurnosUnitTests {
         Jugador jugadorMock = mock(Jugador.class);
         GestorTurnos gestorTurnos = new GestorTurnos(5, jugadores);
         gestorTurnos.agregarTurno(jugadorMock);
+        gestorTurnos.determinarPrimerJugador();
         gestorTurnos.siguienteTurno();
         verify(jugadorMock, times(1)).jugar();
     }
@@ -106,6 +107,7 @@ public class GestorTurnosUnitTests {
         Jugador jugadorMock = mock(Jugador.class);
         GestorTurnos gestorTurnos = new GestorTurnos(5, jugadores);
         gestorTurnos.agregarTurno(jugadorMock);
+        gestorTurnos.determinarPrimerJugador();
         gestorTurnos.siguienteTurno();
         gestorTurnos.siguienteTurno();
         verify(jugadorMock, times(2)).jugar();
