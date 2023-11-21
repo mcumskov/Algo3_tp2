@@ -5,17 +5,16 @@ import java.util.Random;
 public class Dado {
 
     private final Random random;
+    private int caras;
 
-    public Dado()
-    {
-
+    public Dado(int caras) {
+        this.caras = caras;
         this.random = new Random();
-
     }
 
     public int lanzar()
     {
-        return this.random.nextInt(6) + 1 ;
+        return this.random.nextInt(caras) + 1 ;
     }
 
 }

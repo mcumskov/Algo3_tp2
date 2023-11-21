@@ -9,7 +9,7 @@ public class DadoUnitTests {
     @Test
     public void test01LanzoUnDadoYElResultadoEstaEntre1y6(){
 
-        Dado dado = new Dado();
+        Dado dado = new Dado(6);
 
         int resultado = dado.lanzar();
 
@@ -22,7 +22,7 @@ public class DadoUnitTests {
 
         int resultado ;
 
-        Dado dado = new Dado();
+        Dado dado = new Dado(6);
 
         for(int i = 0 ; i < 10000 ; i++)
         {
@@ -44,7 +44,7 @@ public class DadoUnitTests {
 
         boolean pruebaFallida = false ;
 
-        Dado dado = new Dado();
+        Dado dado = new Dado(6);
 
         for(int i = 0 ; i < 10000 ; i++)
         {

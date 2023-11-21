@@ -23,7 +23,7 @@ public class Juego {
         return instancia;
     }
 
-    public void finalizar(){
+    public void finalizarSinGanador(){
         throw new SinGanadorException("Finalizó sin ganador");
     }
 

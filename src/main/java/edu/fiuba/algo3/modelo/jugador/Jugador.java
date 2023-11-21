@@ -4,4 +4,8 @@ public class Jugador {
     public Jugador(){
 
     }
+
+    public void jugar(){
+
+    }
 }
