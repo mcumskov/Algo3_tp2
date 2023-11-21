@@ -9,9 +9,6 @@ import edu.fiuba.algo3.modelo.evento.EventoPompeya;
 import edu.fiuba.algo3.modelo.evento.EventoLesion;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.seniority.Seniority;
-import edu.fiuba.algo3.modelo.seniority.Novato;
-import edu.fiuba.algo3.modelo.seniority.SemiSenior;
-import edu.fiuba.algo3.modelo.seniority.Senior;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 
 
@@ -95,23 +92,29 @@ public class GladiadorUnitTests {
 
 
     @Test
-    public void test04GladiadorDesnudoGanaCascoEnelEventoCorrespondiente(){
+    public void test04GladiadorDesnudoGanaCascoEnelEventoCorrespondienteYPuedeAvanzarLuegoDeLuchaAlContrarioDelGladiadorQueNoPuedePorqueNoRecibioCasco(){
 
+        EventoFiera eventoFiera = new EventoFiera();
         EventoEquipamiento eventoEquipo = new EventoEquipamiento();
         EventoNulo eventoAburrido = new EventoNulo();
 
-        Casilla ultimaCasilla = new Casilla(null, eventoEquipo);
-        Casilla primerCasilla = new Casilla(ultimaCasilla, eventoAburrido);
+        Casilla cuartaCasilla = new Casilla(null, eventoAburrido);
+        Casilla terceraCasilla = new Casilla(cuartaCasilla, eventoFiera);
+        Casilla segundaCasilla = new Casilla(terceraCasilla, eventoEquipo);
+        Casilla primeraCasilla = new Casilla(segundaCasilla, eventoAburrido);
 
-        Gladiador gladiadorLoco = new Gladiador(primerCasilla);
+        Gladiador gladiadorRecontraMamadisimo = new Gladiador(primeraCasilla);
+        Gladiador gladiadorDesnudo = new Gladiador(primeraCasilla);
 
-        Equipamiento equipoPreEvento = gladiadorLoco.getEquipamiento();
+        gladiadorRecontraMamadisimo.avanzar(1); // recibe casco
+        gladiadorRecontraMamadisimo.avanzar(1); // pelea
 
-        gladiadorLoco.avanzar(1);
+        gladiadorDesnudo.avanzar(2); // pelea
 
-        Equipamiento equipoPostEvento = gladiadorLoco.getEquipamiento();
+        gladiadorRecontraMamadisimo.avanzar(1);// puede avanzar
+        gladiadorDesnudo.avanzar(1); // no puede avnazar
 
-        assertTrue(equipoPostEvento != equipoPreEvento);
+        assertTrue(gladiadorRecontraMamadisimo.getCasilla() != gladiadorDesnudo.getCasilla() );
     }
 
     @Test
@@ -323,7 +326,7 @@ public class GladiadorUnitTests {
 
         Mapa mapa = Mapa.getMapa();
 
-        Gladiador gladiadorLoco = new Gladiador(mapa.getPrimerCasilla());
+        Gladiador gladiadorLoco = new Gladiador(mapa.getPrimeraCasilla());
 
         gladiadorLoco.avanzar(1);
         gladiadorLoco.avanzar(1);
@@ -335,7 +338,7 @@ public class GladiadorUnitTests {
         gladiadorLoco.avanzar(1);
         gladiadorLoco.avanzar(1);
 
-        assertSame(gladiadorLoco.getCasilla(), mapa.mitadDeCamino());
+        assertSame(gladiadorLoco.getCasilla(), mapa.getMitadDeCamino());
 
     }
 

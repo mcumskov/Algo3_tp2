@@ -9,7 +9,7 @@ public class DadoUnitTests {
     @Test
     public void test01LanzoUnDadoYElResultadoEstaEntre1y6(){
 
-        Dado dado = new Dado(6);
+        Dado dado = new Dado();
 
         int resultado = dado.lanzar();
 
@@ -22,7 +22,7 @@ public class DadoUnitTests {
 
         int resultado ;
 
-        Dado dado = new Dado(6);
+        Dado dado = new Dado();
 
         for(int i = 0 ; i < 10000 ; i++)
         {
@@ -44,7 +44,7 @@ public class DadoUnitTests {
 
         boolean pruebaFallida = false ;
 
-        Dado dado = new Dado(6);
+        Dado dado = new Dado();
 
         for(int i = 0 ; i < 10000 ; i++)
         {
@@ -76,6 +76,21 @@ public class DadoUnitTests {
         }
 
         assertTrue(cantidad1 >= 1000 && cantidad2 >= 1000 && cantidad3 >= 1000 && cantidad4 >= 1000 && cantidad5 >= 1000 && cantidad6 >= 1000 && (!pruebaFallida));
+    }
+
+    @Test
+    public void test02LanzoDiezMilVecesunDadoDe4CarasYVerifcoQueTodasLasVecesElResultadoEsteEntre1Y4(){
+
+        int resultado ;
+
+        Dado dado = new Dado(4);
+
+        for(int i = 0 ; i < 10000 ; i++)
+        {
+            resultado = dado.lanzar();
+
+            assertTrue(resultado >= 1 && resultado <= 4 );
+        }
     }
 
 }

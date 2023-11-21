@@ -25,6 +25,19 @@ public class Gladiador {
         this.ganador = false;
     }
 
+    public Gladiador(){
+
+        Mapa mapa = Mapa.getMapa();
+
+        this.casilla = mapa.getPrimeraCasilla();
+        this.energia = 20 ;
+        this.equipamiento = new Desnudo(this);
+        this.estado = new GladiadorSano(this);
+        this.seniority = new Novato(this);
+        this.ganador = false;
+    }
+
+
 
 
     public void cambiarEstado(Estado estado_nuevo){
@@ -62,7 +75,7 @@ public class Gladiador {
     }
     public  void irAMitadDelMapa(){
         Mapa mapa = Mapa.getMapa();
-        this.casilla = mapa.mitadDeCamino();
+        this.casilla = mapa.getMitadDeCamino();
     }
     public void victoria(){
         this.ganador = true;

@@ -37,21 +37,24 @@ public class EventoUnitTests {
     @Test
     public void test02EventoEquipamientoCambiaElEquipoDelGladiador(){
 
+        EventoFiera eventoFiera = new EventoFiera();
         EventoEquipamiento eventoEquipo = new EventoEquipamiento();
         EventoNulo eventoAburrido = new EventoNulo();
 
-        Casilla ultimaCasilla = new Casilla(null, eventoEquipo);
-        Casilla primerCasilla = new Casilla(ultimaCasilla, eventoAburrido);
+        Casilla terceraCasilla =  new Casilla(null, eventoFiera);
+        Casilla segundaCasilla = new Casilla(terceraCasilla, eventoEquipo);
+        Casilla primeraCasilla = new Casilla(segundaCasilla, eventoAburrido);
 
-        Gladiador dummy = new Gladiador(primerCasilla);
+        Gladiador dummyEquipado = new Gladiador(primeraCasilla);
+        Gladiador dummyDesnudo =  new Gladiador(primeraCasilla);
 
-        Equipamiento equipoPreEvento = dummy.getEquipamiento();
+        dummyEquipado.avanzar(1);
+        dummyEquipado.avanzar(1);
 
-        dummy.avanzar(1);
+        dummyDesnudo.avanzar(2);
 
-        Equipamiento equipoPostEvento = dummy.getEquipamiento();
+        assertTrue(dummyEquipado.getEnergia() != dummyDesnudo.getEnergia());
 
-        assertTrue(equipoPostEvento != equipoPreEvento);
     }
     @Test
     public void test03EventoFieraQuitaEnergiaAlGladiador(){

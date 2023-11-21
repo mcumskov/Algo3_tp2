@@ -2,17 +2,21 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.casilla.Casilla;
 import edu.fiuba.algo3.modelo.evento.*;
+import edu.fiuba.algo3.modelo.excepciones.SinGanadorException;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
+import edu.fiuba.algo3.modelo.juego.Juego;
+import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
+import edu.fiuba.algo3.modelo.turnos.GestorTurnos;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.equipamiento.Equipamiento;
-import edu.fiuba.algo3.modelo.seniority.Seniority;
-import edu.fiuba.algo3.modelo.seniority.Novato;
-import edu.fiuba.algo3.modelo.seniority.SemiSenior;
-import edu.fiuba.algo3.modelo.seniority.Senior;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import static org.mockito.Mockito.mock;
 
 public class Entrega1Tests {
 
@@ -29,28 +33,22 @@ public class Entrega1Tests {
 
         Gladiador gladiadorcito = new Gladiador(primerCasilla);
 
-         assertEquals(20, gladiadorcito.getEnergia());
+        assertEquals(20, gladiadorcito.getEnergia());
 
-         gladiadorcito.avanzar(1);
+        gladiadorcito.avanzar(1);
 
-        // si el gladiador desp del combate tiene 0 energia es pq tenia el equipamiento
-        // "desnudo" que es con el que ese debe incializar
         assertEquals(0, gladiadorcito.getEnergia());
     }
+
     @Test
     public void test02JugadorComienzaEnLaCasillaInicial(){
 
-        EventoNulo eventoAburrido = new EventoNulo();
-        EventoFiera eventoCombate = new EventoFiera();
+        Mapa mapa = Mapa.getMapa();
 
-        Casilla ultimaCasilla = new Casilla(null, eventoAburrido);
-        Casilla tercerCasilla = new Casilla(ultimaCasilla, eventoAburrido);
-        Casilla segundaCasilla = new Casilla(tercerCasilla,eventoCombate);
-        Casilla primerCasilla = new Casilla(segundaCasilla, eventoAburrido);
+        Gladiador gladiadorcito = new Gladiador();
 
-        Gladiador gladiadorcito = new Gladiador(primerCasilla);
+        assertSame(mapa.getPrimeraCasilla(), gladiadorcito.getCasilla());
 
-        assertSame(primerCasilla, gladiadorcito.getCasilla());
     }
     @Test
     public void test03GladiadorSinEnergiaNoCambiaDeCasilla(){
@@ -164,7 +162,6 @@ public class Entrega1Tests {
         Casilla primerCasilla = new Casilla(segundaCasilla, eventoAburrido);
 
         Gladiador gladiadorcito = new Gladiador(primerCasilla);
-        Seniority seniorityNovato = gladiadorcito.getSeniority();
 
         gladiadorcito.avanzar(1);
         gladiadorcito.avanzar(1);
@@ -175,14 +172,15 @@ public class Entrega1Tests {
         gladiadorcito.avanzar(1);
         gladiadorcito.avanzar(1);
 
-        Seniority senioritySemiSenior = gladiadorcito.getSeniority();
-
-        assertNotSame(seniorityNovato, senioritySemiSenior);
+        int energiaAntesDeAscenderASemiSenior = gladiadorcito.getEnergia();
 
         gladiadorcito.avanzar(1);
-        int energiaPostAscenso = gladiadorcito.getEnergia();
 
-        assertEquals(25, energiaPostAscenso);
+        int energiaDespuesDeAscenderASemiSenior = gladiadorcito.getEnergia();
+
+        int diferenciaDeEnergia = energiaDespuesDeAscenderASemiSenior - energiaAntesDeAscenderASemiSenior;
+
+        assertEquals(5, diferenciaDeEnergia);
     }
 
     @Test
@@ -190,7 +188,7 @@ public class Entrega1Tests {
 
         Mapa mapa = Mapa.getMapa();
 
-        Gladiador gladiadorcito = new Gladiador(mapa.getPrimerCasilla());
+        Gladiador gladiadorcito = new Gladiador(mapa.getPrimeraCasilla());
 
         gladiadorcito.avanzar(1);
         gladiadorcito.avanzar(1);
@@ -202,7 +200,7 @@ public class Entrega1Tests {
         gladiadorcito.avanzar(1);
         gladiadorcito.avanzar(1);
 
-        assertSame(gladiadorcito.getCasilla(), mapa.mitadDeCamino());
+        assertSame(gladiadorcito.getCasilla(), mapa.getMitadDeCamino());
 
     }
 
@@ -235,28 +233,61 @@ public class Entrega1Tests {
     @Test
     public void test11GladiadorConLlaveRecibePremioPeroNoCambiaNada(){
 
+        EventoFiera eventoFiera = new EventoFiera();
         EventoEquipamiento eventoEquipo = new EventoEquipamiento();
         EventoNulo eventoAburrido = new EventoNulo();
 
-        Casilla ultimaCasilla = new Casilla(null, eventoEquipo);
-        Casilla quintaCasilla = new Casilla(ultimaCasilla, eventoEquipo);
+        Casilla septimaCasilla = new Casilla(null, eventoFiera);
+        Casilla sextaCasilla = new Casilla(septimaCasilla, eventoEquipo);
+        Casilla quintaCasilla = new Casilla(sextaCasilla, eventoEquipo);
         Casilla cuartaCasilla = new Casilla(quintaCasilla, eventoEquipo);
         Casilla tercerCasilla = new Casilla(cuartaCasilla, eventoEquipo);
         Casilla segundaCasilla = new Casilla(tercerCasilla, eventoEquipo);
         Casilla primerCasilla = new Casilla(segundaCasilla, eventoAburrido);
 
-        Gladiador gladiadorcito = new Gladiador(primerCasilla);
+        Gladiador gladiadorcito1 = new Gladiador(primerCasilla);
+        Gladiador gladiadorcito2 = new Gladiador(primerCasilla);
 
-        gladiadorcito.avanzar(1);
-        gladiadorcito.avanzar(1);
-        gladiadorcito.avanzar(1);
-        gladiadorcito.avanzar(1);
-        Equipamiento equipoPrePelea = gladiadorcito.getEquipamiento();
-        gladiadorcito.avanzar(1);
+        for (int i = 0; i < 4; i++) {
 
-        Equipamiento equipoPostPelea = gladiadorcito.getEquipamiento();
+            gladiadorcito1.avanzar(1);
+            gladiadorcito2.avanzar(1);
 
-        assertSame(equipoPrePelea, equipoPostPelea);
+        }
+
+        gladiadorcito1.avanzar(1); // recibe un evento equipamiento más que gladiadorcito2
+        gladiadorcito1.avanzar(1); // pelea
+
+        gladiadorcito2.avanzar(2); // pelea
+
+        assertSame(gladiadorcito1.getEnergia(), gladiadorcito2.getEnergia());
+    }
+
+    @Test
+    public void test12SeJuegan30TurnosYElJuegoTerminaSinGanador(){
+
+        Juego juego = Juego.getJuego();
+
+        Jugador jugadorMock1 = mock(Jugador.class);
+        Jugador jugadorMock2 = mock(Jugador.class);
+
+        ArrayList<Jugador> jugadores = new ArrayList<>();
+        jugadores.add(jugadorMock1);
+        jugadores.add(jugadorMock2);
+
+        GestorTurnos gestorTurnos = new GestorTurnos(30, jugadores);
+
+        for (int i = 0; i < 60; i++) {
+
+            gestorTurnos.siguienteTurno();
+
+        }
+
+        assertThrows(SinGanadorException.class, () -> {
+
+            gestorTurnos.siguienteTurno();
+
+        });
     }
 }
 

@@ -1,18 +1,9 @@
 package edu.fiuba.algo3.modelo.mapa;
 
 import edu.fiuba.algo3.modelo.casilla.Casilla;
-import edu.fiuba.algo3.modelo.equipamiento.Equipamiento;
 import edu.fiuba.algo3.modelo.evento.EventoEquipamiento;
-import edu.fiuba.algo3.modelo.evento.EventoFiera;
 import edu.fiuba.algo3.modelo.evento.EventoNulo;
 import edu.fiuba.algo3.modelo.evento.EventoPompeya;
-import edu.fiuba.algo3.modelo.evento.EventoLesion;
-import edu.fiuba.algo3.modelo.juego.Juego;
-import edu.fiuba.algo3.modelo.seniority.Seniority;
-import edu.fiuba.algo3.modelo.seniority.Novato;
-import edu.fiuba.algo3.modelo.seniority.SemiSenior;
-import edu.fiuba.algo3.modelo.seniority.Senior;
-import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 
 public class Mapa {
     private static Mapa instancia;
@@ -48,10 +39,11 @@ public class Mapa {
         return instancia;
     }
 
-    public Casilla mitadDeCamino(){
+
+    public Casilla getMitadDeCamino(){
         return this.casillaMedio;
     }
-    public Casilla getPrimerCasilla(){
+    public Casilla getPrimeraCasilla(){
         return this.primerCasilla;
     }
 }

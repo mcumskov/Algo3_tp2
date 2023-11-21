@@ -2,6 +2,8 @@ package edu.fiuba.algo3.UnitTests;
 
 import edu.fiuba.algo3.modelo.casilla.Casilla;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CasillaUnitTests {
@@ -13,9 +15,9 @@ public class CasillaUnitTests {
 
         Casilla segundaCasilla = new Casilla(ultimaCasilla, null);
 
-        Casilla primerCasilla = new Casilla(segundaCasilla, null);
+        Casilla primeraCasilla = new Casilla(segundaCasilla, null);
 
-        Casilla casillaObtenida = primerCasilla.obtenerSiguiente(1);
+        Casilla casillaObtenida = primeraCasilla.obtenerSiguiente(1);
 
         assertTrue(casillaObtenida == segundaCasilla);
     }
@@ -31,7 +33,7 @@ public class CasillaUnitTests {
 
         Casilla casillaObtenida = ultimaCasilla.obtenerSiguiente(1);
 
-        assertTrue(casillaObtenida == ultimaCasilla);
+        assertEquals(casillaObtenida , ultimaCasilla);
 
     }
 
