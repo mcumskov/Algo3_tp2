@@ -1,10 +1,12 @@
 package edu.fiuba.algo3.UnitTests;
-
 import edu.fiuba.algo3.modelo.seniority.Seniority;
 import edu.fiuba.algo3.modelo.seniority.Novato;
 import edu.fiuba.algo3.modelo.seniority.SemiSenior;
 import edu.fiuba.algo3.modelo.seniority.Senior;
+import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SeniorityUnitTests {
 
@@ -31,19 +33,21 @@ public class SeniorityUnitTests {
     @Test
     public void test03Novatotoma7TurnosNoAsciendeYAlTomarUnTurnoMasAsciende(){
 
-        Seniority noob = new Novato(null);
+        Gladiador gladi =  new Gladiador(null);
+        Seniority noob = new Novato(gladi);
         Seniority noob2 = null;
         for(int i=0; i<7; i++) {
             noob2 = noob.actualizar();
         }
         noob2 = noob.actualizar();
-        assertTrue(noob2 != noob);
+        assertNotSame(noob2, noob);
     }
 
     @Test
     public void test04NovatoAciendeASemiSeniorYDespSemiSeniorAsciendeASenior(){
 
-        Seniority noob = new Novato(null);
+        Gladiador gladi =  new Gladiador(null);
+        Seniority noob = new Novato(gladi);
         Seniority noob2 = null;
         for(int i=0; i<8; i++) {
             noob2 = noob.actualizar();

@@ -12,7 +12,9 @@ public class Senior extends Seniority{
     }
 
     public Seniority actualizar(){
+
         return this;
+
     }
 
 }

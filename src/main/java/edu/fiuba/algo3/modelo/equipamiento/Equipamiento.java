@@ -17,7 +17,7 @@ public abstract class Equipamiento{
     }
 
     public void abrirCasaPompeya(){
-        // hace nada
+        gladiador.irAMitadDelMapa();
     }
 
     public abstract void mejorarEquipamiento();

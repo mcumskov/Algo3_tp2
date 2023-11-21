@@ -7,11 +7,13 @@ import edu.fiuba.algo3.modelo.evento.EventoFiera;
 import edu.fiuba.algo3.modelo.evento.EventoNulo;
 import edu.fiuba.algo3.modelo.evento.EventoPompeya;
 import edu.fiuba.algo3.modelo.evento.EventoLesion;
+import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.seniority.Seniority;
 import edu.fiuba.algo3.modelo.seniority.Novato;
 import edu.fiuba.algo3.modelo.seniority.SemiSenior;
 import edu.fiuba.algo3.modelo.seniority.Senior;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
+
 
 import org.junit.jupiter.api.Test;
 
@@ -314,6 +316,27 @@ public class GladiadorUnitTests {
         int energiaPostAscenso = gladiadorLoco.getEnergia();
 
         assertEquals(25, energiaPostAscenso);
+    }
+
+    @Test
+    public void test13GladiadorConEscudoEspadaNoAbrePompeyaYvaALaMitadDelMapa(){
+
+        Mapa mapa = Mapa.getMapa();
+
+        Gladiador gladiadorLoco = new Gladiador(mapa.getPrimerCasilla());
+
+        gladiadorLoco.avanzar(1);
+        gladiadorLoco.avanzar(1);
+        gladiadorLoco.avanzar(1);
+        gladiadorLoco.avanzar(1);
+        gladiadorLoco.avanzar(1);
+        gladiadorLoco.avanzar(1);
+        gladiadorLoco.avanzar(1);
+        gladiadorLoco.avanzar(1);
+        gladiadorLoco.avanzar(1);
+
+        assertSame(gladiadorLoco.getCasilla(), mapa.mitadDeCamino());
+
     }
 
 }

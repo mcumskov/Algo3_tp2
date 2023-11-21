@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.gladiador;
 
 import edu.fiuba.algo3.modelo.equipamiento.Desnudo;
 import edu.fiuba.algo3.modelo.equipamiento.Equipamiento;
+import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.seniority.Novato;
 import edu.fiuba.algo3.modelo.seniority.Seniority;
 import edu.fiuba.algo3.modelo.casilla.Casilla;
@@ -59,13 +60,17 @@ public class Gladiador {
     public void abrirCasaPompeya(){
         equipamiento.abrirCasaPompeya();
     }
+    public  void irAMitadDelMapa(){
+        Mapa mapa = Mapa.getMapa();
+        this.casilla = mapa.mitadDeCamino();
+    }
     public void victoria(){
         this.ganador = true;
     }
 
     public void cambiarPosicion( int pasos ){
         this.obtenerEnergia();
-        this.seniority = seniority.actualizar();
+        seniority.actualizar();
         casilla = casilla.obtenerSiguiente(pasos);
         casilla.afectarConEvento(this);
     }

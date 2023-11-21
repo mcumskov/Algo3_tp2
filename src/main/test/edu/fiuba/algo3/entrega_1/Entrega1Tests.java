@@ -3,6 +3,7 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.casilla.Casilla;
 import edu.fiuba.algo3.modelo.evento.*;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
+import edu.fiuba.algo3.modelo.mapa.Mapa;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.equipamiento.Equipamiento;
@@ -183,6 +184,28 @@ public class Entrega1Tests {
 
         assertEquals(25, energiaPostAscenso);
     }
+
+    @Test
+    public void test09GladiadorConEscudoEspadaNoAbrePompeyaYvaALaMitadDelMapa(){
+
+        Mapa mapa = Mapa.getMapa();
+
+        Gladiador gladiadorcito = new Gladiador(mapa.getPrimerCasilla());
+
+        gladiadorcito.avanzar(1);
+        gladiadorcito.avanzar(1);
+        gladiadorcito.avanzar(1);
+        gladiadorcito.avanzar(1);
+        gladiadorcito.avanzar(1);
+        gladiadorcito.avanzar(1);
+        gladiadorcito.avanzar(1);
+        gladiadorcito.avanzar(1);
+        gladiadorcito.avanzar(1);
+
+        assertSame(gladiadorcito.getCasilla(), mapa.mitadDeCamino());
+
+    }
+
     @Test
     public void test10GladiadorConTodoElEquipamientoNoRecibeDanioDeLaFiera(){
 
