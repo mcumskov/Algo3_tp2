@@ -1,0 +1,11 @@
+@startuml
+skinparam linetype ortho
+
+class Juego {
+  - Juego():
+  - instancia: Juego
+  + finalizarSinGanador(): void
+  + getJuego(): Juego
+}
+
+@enduml
