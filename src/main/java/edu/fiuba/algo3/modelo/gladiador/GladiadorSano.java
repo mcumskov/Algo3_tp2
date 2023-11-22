@@ -8,11 +8,7 @@ public class GladiadorSano implements Estado{
         this.gladiador = gladiadorRecibido;
     }
 
-    public void avanzar(int pasos, int energia){
-        if(energia <= 0){
-            gladiador.cambiarEstado(new GladiadorSinEnergia(gladiador));
-            return;
-        }
+    public void avanzar(int pasos){
         gladiador.cambiarPosicion(pasos);
     }
 }

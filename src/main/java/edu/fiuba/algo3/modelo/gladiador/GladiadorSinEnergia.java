@@ -8,10 +8,8 @@ public class GladiadorSinEnergia implements Estado{
         this.gladiador = gladiadorRecibido;
     }
 
-    public void avanzar(int pasos, int energia){
-
+    public void avanzar(int pasos){
         gladiador.cambiarEnergia(5);
         gladiador.cambiarEstado(new GladiadorSano(gladiador));
-
     }
 }

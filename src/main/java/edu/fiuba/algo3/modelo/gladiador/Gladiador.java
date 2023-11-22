@@ -52,7 +52,7 @@ public class Gladiador {
 
 
     public void avanzar(int pasos){
-        estado.avanzar(pasos, energia);
+        estado.avanzar(pasos);
     }
     public void obtenerEnergia(){
         seniority.obtenerEnergia();
@@ -64,6 +64,9 @@ public class Gladiador {
 
     public void cambiarEnergia(int variacionDeEnergia){
         this.energia = energia + variacionDeEnergia;
+        if(this.energia <= 0){
+            this.cambiarEstado(new GladiadorSinEnergia(this));
+        }
     }
 
     public void mejorarEquipamiento(){
@@ -95,14 +98,9 @@ public class Gladiador {
    public Casilla getCasilla(){
         return this.casilla;
    }
-   public Estado getEstado(){
-        return this.estado;
-   }
+
    public Seniority getSeniority(){
         return this.seniority;
-   }
-   public Equipamiento getEquipamiento(){
-        return this.equipamiento;
    }
     public boolean getGanador(){
         return this.ganador;
