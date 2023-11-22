@@ -10,6 +10,5 @@ public class GladiadorSinEnergia implements Estado{
 
     public void avanzar(int pasos){
         gladiador.cambiarEnergia(5);
-        gladiador.cambiarEstado(new GladiadorSano(gladiador));
     }
 }
