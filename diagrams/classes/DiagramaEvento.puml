@@ -1,0 +1,65 @@
+@startuml
+
+skinparam linetype ortho
+
+interface Evento << interface >> {
+  + afectar(Gladiador): void
+}
+class EventoBacanal {
+  + EventoBacanal():
+  + afectar(Gladiador): void
+}
+class EventoComida {
+  + EventoComida():
+  - incrementoDeEnergia: int
+  + afectar(Gladiador): void
+}
+class EventoEquipamiento {
+  + EventoEquipamiento():
+  + afectar(Gladiador): void
+}
+class EventoFiera {
+  + EventoFiera():
+  - danioDeFiera: int
+  + afectar(Gladiador): void
+}
+class EventoLesion {
+  + EventoLesion():
+  + afectar(Gladiador): void
+}
+class EventoNulo {
+  + EventoNulo():
+  + afectar(Gladiador): void
+}
+class EventoPompeya {
+  + EventoPompeya():
+  + afectar(Gladiador): void
+}
+
+class GladiadorLesionado {
+}
+
+class Gladiador{
+}
+
+EventoBacanal       .--^  Evento
+EventoComida        .-^  Evento
+EventoEquipamiento  .--^  Evento
+EventoFiera         .-^  Evento
+EventoLesion        .--^  Evento
+EventoNulo          .-^  Evento
+EventoPompeya       .--^  Evento
+
+EventoLesion        .-^  GladiadorLesionado: "«create»"
+
+Gladiador <-- EventoBacanal
+Gladiador <-- EventoComida
+Gladiador <-- EventoEquipamiento
+Gladiador <-- EventoFiera
+Gladiador <-- EventoLesion
+Gladiador <-- EventoNulo
+Gladiador <-- EventoPompeya
+
+
+
+@enduml

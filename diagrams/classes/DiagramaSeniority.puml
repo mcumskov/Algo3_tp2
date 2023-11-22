@@ -1,0 +1,39 @@
+@startuml
+
+skinparam linetype ortho
+
+class Novato {
+  + Novato(Gladiador):
+  + actualizar(): Seniority
+}
+class SemiSenior {
+  + SemiSenior(Gladiador):
+  + actualizar(): Seniority
+}
+class Senior {
+  + Senior(Gladiador):
+  + actualizar(): Seniority
+}
+abstract class Seniority {
+  + Seniority():
+  + gladiador: Gladiador
+  + recuperacionEnergia: int
+  + turnosParaAscender: int
+  + turnos: int
+  + limiteAsencion: int
+  + obtenerEnergia(): void
+  + actualizar(): Seniority
+}
+
+Novato      .->  SemiSenior : "«create»"
+Novato      .--^  Seniority
+SemiSenior  .-->  Senior     : "«create»"
+SemiSenior  .--^  Seniority
+Senior      .--^  Seniority
+
+Gladiador <-- Novato
+Gladiador <-- SemiSenior
+Gladiador <-- Senior
+
+
+@enduml
