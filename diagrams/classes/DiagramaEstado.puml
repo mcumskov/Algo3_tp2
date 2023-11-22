@@ -26,10 +26,9 @@ Gladiador <-- GladiadorLesionado
 Gladiador <-- GladiadorSano
 Gladiador <-- GladiadorSinEnergia
 
-GladiadorSano.->GladiadorSinEnergia : "«create»"
 GladiadorLesionado .-> GladiadorSano : "«create»"
 GladiadorSinEnergia .-> GladiadorSano : "«create»"
-
+Gladiador .-> GladiadorSinEnergia : "«create»"
 
 GladiadorLesionado   .--^  Estado
 GladiadorSano        .--^  Estado
