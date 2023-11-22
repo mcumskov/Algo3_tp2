@@ -11,10 +11,7 @@ public class Senior extends Seniority{
         this.limiteAsencion = 0;
     }
 
-    public Seniority actualizar(){
-
-        return this;
-
+    public void actualizar(){
     }
 
 }
