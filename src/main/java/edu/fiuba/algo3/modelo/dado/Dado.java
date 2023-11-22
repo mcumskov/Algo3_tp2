@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.dado;
 
 import java.util.Random;
 
@@ -17,11 +17,8 @@ public class Dado {
         this.random = new Random();
     }
 
-
-
     public int lanzar()
     {
         return this.random.nextInt(caras) + 1 ;
     }
-
 }

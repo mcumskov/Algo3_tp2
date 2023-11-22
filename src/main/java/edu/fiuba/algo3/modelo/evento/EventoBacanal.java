@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.evento;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
-import edu.fiuba.algo3.modelo.Dado;
+import edu.fiuba.algo3.modelo.dado.Dado;
 public  class EventoBacanal implements Evento{
 
     public void afectar(Gladiador gladiador){
