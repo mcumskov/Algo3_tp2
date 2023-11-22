@@ -67,6 +67,9 @@ public class Gladiador {
         if(this.energia <= 0){
             this.cambiarEstado(new GladiadorSinEnergia(this));
         }
+        else{
+            this.cambiarEstado(new GladiadorSano(this));
+        }
     }
 
     public void mejorarEquipamiento(){
