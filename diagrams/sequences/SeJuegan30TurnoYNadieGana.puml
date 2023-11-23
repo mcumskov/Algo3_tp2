@@ -29,11 +29,10 @@ activate gestor #B2FFFF
     gestor -> juego : finalizarSinGanador()
     activate juego #B2FFFF
         juego -> SinGanadorException ** : throw new
+        activate SinGanadorException
         SinGanadorException --> Actor
-    return
-    gestor -> jugador : jugar()
-    activate jugador #B2FFFF
-    return
-return
+        deactivate SinGanadorException
+    deactivate juego
+deactivate gestor
 footer Pagina %page% de %lastpage%
 @enduml
