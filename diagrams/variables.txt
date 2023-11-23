@@ -2,3 +2,4 @@
 !$tituloCasoDeUso7 = "test07SePeleaConFieraConCascoYSePierdeLaEnergiaCorrespondiente"
 !$tituloCasoDeUso8 = "test08LuegoDe8TurnosElGladiadorPasaDeNovatoASemiSeniorYrecuperaEnergiaEnElSiguienteMovimiento"
 !$tituloCasoDeUso9 = "test09GladiadorConEscudoEspadaNoAbrePompeyaYvaALaMitadDelMapa"
+!$tituloDiagramaSecuenciaEvolucionLlave = "GladiadorSaludableNovatoTieneLlaveAvanzaACasillaConPremioYNoCambiaNada"

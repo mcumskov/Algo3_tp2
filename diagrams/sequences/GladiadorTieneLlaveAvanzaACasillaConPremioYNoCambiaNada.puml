@@ -1,0 +1,53 @@
+@startuml
+!include ../variables.txt
+skinparam Style strictuml
+skinparam sequenceMessageAlign center
+title $tituloDiagramaSecuenciaEvolucionLlave\n
+
+actor Actor
+participant ":Gladiador" as gladiador
+participant "estado:GladiadorSaludable" as estado
+participant "seniority:Novato" as seniority
+participant "casilla:Casilla" as casilla
+participant "siguiente:Casilla" as siguiente
+participant "evento:EventoEquipamiento" as evento
+participant "equipamiento:Llave" as equipamiento
+
+Actor -> gladiador : avanzar(1)
+activate gladiador #B2FFFF
+gladiador -> estado : avanzar(1)
+activate estado #B2FFFF
+estado -> gladiador : cambiarPosicion(1)
+activate gladiador #B2FFFF
+gladiador -> gladiador : recuperarEnergia()
+activate gladiador #B2FFFF
+gladiador -> seniority : recuperarEnergia()
+activate seniority #B2FFFF
+seniority -> gladiador : cambiarEnergia(recuperacionEnergia)
+gladiador --> seniority
+return
+return
+gladiador -> seniority : actualizar()
+activate seniority #B2FFFF
+return
+gladiador -> casilla : obtenerSiguiente(1)
+activate casilla #B2FFFF
+return casilla = siguiente
+gladiador -> siguiente : afectarConEvento(gladiador = this)
+activate siguiente #B2FFFF
+siguiente -> evento : afectar(gladiador)
+activate evento #B2FFFF
+evento -> gladiador : mejorarEquipamiento()
+activate gladiador #B2FFFF
+gladiador -> equipamiento : mejorarEquipamiento()
+activate equipamiento #B2FFFF
+return
+return
+return
+return
+return
+return
+return
+
+footer Pagina %page% de %lastpage%
+@enduml
