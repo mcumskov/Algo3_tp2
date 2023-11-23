@@ -1,1 +1,2 @@
 !$MiVar = "<valor variable 'MiVar'>"
+!$tituloCasoDeUso7 = "GladiadorPeleaConFieraConCascoDebePerderLaEnergiaCorrespondiente"

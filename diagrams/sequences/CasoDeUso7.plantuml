@@ -1,0 +1,102 @@
+@startuml
+!include ../variables.txt
+skinparam Style strictuml
+skinparam sequenceMessageAlign center
+title $tituloCasoDeUso7\n
+
+actor Actor
+participant ":Gladiador"
+participant "estado:GladiadorSaludable"
+participant "seniority:Novato"
+participant "casilla:Casilla"
+participant "evento:EventoEquipamiento"
+participant "equipamiento:Equipamiento"
+participant "evento:EventoFiera"
+
+Actor -> ":Gladiador" : avanzar(1)
+activate ":Gladiador" #B2FFFF
+":Gladiador" -> "estado:GladiadorSaludable" : avanzar(1)
+activate "estado:GladiadorSaludable" #B2FFFF
+"estado:GladiadorSaludable" -> ":Gladiador" : cambiarPosicion(1)
+activate ":Gladiador" #B2FFFF
+":Gladiador" -> ":Gladiador" : recuperarEnergia()
+activate ":Gladiador" #B2FFFF
+":Gladiador" -> "seniority:Novato" : recuperarEnergia()
+activate "seniority:Novato" #B2FFFF
+"seniority:Novato" -> ":Gladiador" : cambiarEnergia(recuperacionEnergia)
+":Gladiador" --> "seniority:Novato"
+return
+return
+":Gladiador" -> "seniority:Novato" : actualizar()
+activate "seniority:Novato" #B2FFFF
+return
+":Gladiador" -> "casilla:Casilla" : obtenerSiguiente(1)
+activate "casilla:Casilla" #B2FFFF
+return casilla = siguiente
+":Gladiador" -> "casilla:Casilla" : afectarConEvento(gladiador = this)
+activate "casilla:Casilla" #B2FFFF
+"casilla:Casilla" -> "evento:EventoEquipamiento" : afectar(gladiador)
+activate "evento:EventoEquipamiento" #B2FFFF
+"evento:EventoEquipamiento" -> ":Gladiador" : mejorarEquipamiento()
+activate ":Gladiador" #B2FFFF
+":Gladiador" -> "equipamiento:Equipamiento" : mejorarEquipamiento()
+activate "equipamiento:Equipamiento" #B2FFFF
+create ":Casco"
+"equipamiento:Equipamiento" -> ":Casco"
+"equipamiento:Equipamiento" -> ":Gladiador" : cambiarEquipamiento(Casco)
+":Gladiador" --> "equipamiento:Equipamiento"
+return
+return
+return
+return
+return
+return
+return
+
+footer Page %page% of %lastpage%
+
+newpage
+
+skinparam sequenceMessageAlign center
+
+Actor -> ":Gladiador" : avanzar(1)
+activate ":Gladiador" #B2FFFF
+":Gladiador" -> "estado:GladiadorSaludable" : avanzar(1)
+activate "estado:GladiadorSaludable" #B2FFFF
+"estado:GladiadorSaludable" -> ":Gladiador" : cambiarPosicion(1)
+activate ":Gladiador" #B2FFFF
+":Gladiador" -> ":Gladiador" : recuperarEnergia()
+activate ":Gladiador" #B2FFFF
+":Gladiador" -> "seniority:Novato" : recuperarEnergia()
+activate "seniority:Novato" #B2FFFF
+"seniority:Novato" -> ":Gladiador" : cambiarEnergia(recuperacionEnergia)
+":Gladiador" --> "seniority:Novato"
+return
+return
+":Gladiador" -> "seniority:Novato" : actualizar()
+activate "seniority:Novato" #B2FFFF
+return
+":Gladiador" -> "casilla:Casilla" : obtenerSiguiente(1)
+activate "casilla:Casilla" #B2FFFF
+return casilla = siguiente
+":Gladiador" -> "casilla:Casilla" : afectarConEvento(gladiador = this)
+activate "casilla:Casilla" #B2FFFF
+"casilla:Casilla" -> "evento:EventoFiera" : afectar(gladiador)
+activate "evento:EventoFiera" #B2FFFF
+"evento:EventoFiera" -> ":Gladiador" : recibirDanio(danio)
+activate ":Gladiador" #B2FFFF
+":Gladiador" -> "equipamiento:Equipamiento" : mitigarDanio(danio)
+activate "equipamiento:Equipamiento" #B2FFFF
+"equipamiento:Equipamiento" -> ":Gladiador" : cambiarEnergia(danioMitigado)
+":Gladiador" --> "equipamiento:Equipamiento"
+return
+return
+return
+return
+return
+return
+return
+
+footer Page %page% of %lastpage%
+
+@enduml
