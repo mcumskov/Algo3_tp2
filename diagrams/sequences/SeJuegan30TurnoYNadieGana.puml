@@ -29,8 +29,7 @@ activate gestor #B2FFFF
     gestor -> juego : finalizarSinGanador()
     activate juego #B2FFFF
         juego -> SinGanadorException ** : throw new
-        activate SinGanadorException #B2FFFF
-        return
+        SinGanadorException --> Actor
     return
     gestor -> jugador : jugar()
     activate jugador #B2FFFF

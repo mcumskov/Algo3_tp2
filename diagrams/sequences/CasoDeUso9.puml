@@ -2,7 +2,7 @@
 !include ../variables.txt
 skinparam Style strictuml
 skinparam sequenceMessageAlign center
-title $tituloCasoDeUso8\n
+title $tituloCasoDeUso9\n
 
 actor test09
 

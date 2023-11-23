@@ -43,7 +43,7 @@ public class GestorTurnos {
     public void siguienteTurno(){
         if (contador >= (this.colaTurnos.size() * cantidadRondas)){
             Juego juego = Juego.getJuego();
-            juego.finalizarSinGanador();
+            juego. finalizarSinGanador();
         }
 
         Jugador actual = this.colaTurnos.remove();

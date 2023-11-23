@@ -20,9 +20,7 @@ public class Mapa {
         Casilla octavaCasilla = new Casilla(novenaCasilla, eventoAburrido);
         Casilla septimaCasilla = new Casilla(octavaCasilla, eventoAburrido);
         Casilla sextaCasilla = new Casilla(septimaCasilla, eventoAburrido);
-
         Casilla quintaCasilla = new Casilla(sextaCasilla, eventoAburrido);
-
         Casilla cuartaCasilla = new Casilla(quintaCasilla, eventoEquipo);
         Casilla tercerCasilla = new Casilla(cuartaCasilla, eventoEquipo);
         Casilla segundaCasilla = new Casilla(tercerCasilla,eventoEquipo);
