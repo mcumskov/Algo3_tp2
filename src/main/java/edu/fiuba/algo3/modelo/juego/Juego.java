@@ -7,13 +7,8 @@ import edu.fiuba.algo3.modelo.jugador.Jugador;
 public class Juego {
 
     private static Juego instancia;
-    public Mapa mapa;
-    public boolean juegoTerminado;
 
     private Juego (){
-        // instanciar un juego
-        juegoTerminado = false;
-
     }
 
     public static Juego getJuego(){

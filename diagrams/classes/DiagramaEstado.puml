@@ -7,15 +7,15 @@ class Gladiador {
 
 class GladiadorSano {
     + GladiadorSano(Gladiador):
-    gladiador: Gladiador+ avanzar(int, int): void
+    gladiador: Gladiador+ avanzar(int): void
 }
 class GladiadorLesionado {
     + GladiadorLesionado(Gladiador):
-    gladiador: Gladiador+ avanzar(int, int): void
+    gladiador: Gladiador+ avanzar(int): void
 }
 class GladiadorSinEnergia {
     + GladiadorSinEnergia(Gladiador):
-    gladiador: Gladiador+ avanzar(int, int): void
+    gladiador: Gladiador+ avanzar(int): void
 }
 
 interface Estado << interface >> {
@@ -27,7 +27,7 @@ Gladiador <-- GladiadorSano
 Gladiador <-- GladiadorSinEnergia
 
 GladiadorLesionado .-> GladiadorSano : "«create»"
-GladiadorSinEnergia .-> GladiadorSano : "«create»"
+Gladiador .-> GladiadorSano : "«create»"
 Gladiador .-> GladiadorSinEnergia : "«create»"
 
 GladiadorLesionado   .--^  Estado

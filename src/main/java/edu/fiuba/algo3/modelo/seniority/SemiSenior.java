@@ -10,13 +10,11 @@ public class SemiSenior extends Seniority{
         this.limiteAsencion = 4;
     }
 
-    public Seniority actualizar(){
+    public void actualizar(){
         turnos++;
         if(turnos >= limiteAsencion){
             Seniority ascencion = new Senior(gladiador);
             gladiador.cambiarSeniority(ascencion);
-            return ascencion;
         }
-        return this;
     }
 }

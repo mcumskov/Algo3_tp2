@@ -9,13 +9,11 @@ public class Novato extends Seniority{
         this.limiteAsencion = 8;
     }
 
-    public Seniority actualizar(){
+    public void actualizar(){
         turnos++;
         if(turnos >= limiteAsencion){
             Seniority ascencion = new SemiSenior(gladiador);
             gladiador.cambiarSeniority(ascencion);
-            return ascencion;
         }
-        return this;
     }
 }

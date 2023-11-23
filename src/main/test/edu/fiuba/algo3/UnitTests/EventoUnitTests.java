@@ -2,12 +2,7 @@ package edu.fiuba.algo3.UnitTests;
 
 import edu.fiuba.algo3.modelo.casilla.Casilla;
 import edu.fiuba.algo3.modelo.equipamiento.Equipamiento;
-import edu.fiuba.algo3.modelo.evento.EventoEquipamiento;
-import edu.fiuba.algo3.modelo.evento.EventoFiera;
-import edu.fiuba.algo3.modelo.evento.EventoNulo;
-import edu.fiuba.algo3.modelo.evento.EventoPompeya;
-import edu.fiuba.algo3.modelo.evento.EventoLesion;
-import edu.fiuba.algo3.modelo.evento.EventoComida;
+import edu.fiuba.algo3.modelo.evento.*;
 import edu.fiuba.algo3.modelo.evento.EventoLesion;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 import edu.fiuba.algo3.modelo.seniority.Seniority;
@@ -98,5 +93,22 @@ public class EventoUnitTests {
         Casilla casillaPostRecuperacion = dummy.getCasilla();
 
         assertSame(ultimaCasilla, casillaPostRecuperacion);
+    }
+    @Test
+    public void test05EventoBacanalRestaEnergia(){
+
+        EventoBacanal eventoBacanal = new EventoBacanal();
+        EventoNulo eventoAburrido = new EventoNulo();
+
+        Casilla ultimaCasilla = new Casilla(null, eventoAburrido);
+        Casilla segundaCasilla = new Casilla(ultimaCasilla, eventoBacanal);
+        Casilla primerCasilla = new Casilla(segundaCasilla, eventoAburrido);
+
+        Gladiador dummy = new Gladiador(primerCasilla);
+        int energiaPreBorrachera = dummy.getEnergia();
+        dummy.avanzar(1);
+        int energiaPostBorrachera = dummy.getEnergia();
+
+        assertTrue(energiaPreBorrachera > energiaPostBorrachera);
     }
 }

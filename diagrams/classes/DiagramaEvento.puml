@@ -39,6 +39,10 @@ class EventoPompeya {
 class GladiadorLesionado {
 }
 
+class Dado {
+
+}
+
 class Gladiador{
 }
 
@@ -49,6 +53,9 @@ EventoFiera         .-^  Evento
 EventoLesion        .--^  Evento
 EventoNulo          .-^  Evento
 EventoPompeya       .--^  Evento
+EventoBacanal       .-^   Dado: "«create»"
+
+
 
 EventoLesion        .-^  GladiadorLesionado: "«create»"
 
