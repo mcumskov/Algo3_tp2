@@ -57,8 +57,8 @@ public class Gladiador {
         estado.avanzar(pasos);
     }
 
-    public void obtenerEnergia(){
-        seniority.obtenerEnergia();
+    public void recuperarEnergia(){
+        seniority.recuperarEnergia();
     }
 
     public void recibirDanio(int danioRecibido){
@@ -93,7 +93,7 @@ public class Gladiador {
     }
 
     public void cambiarPosicion( int pasos ){
-        this.obtenerEnergia();
+        this.recuperarEnergia();
         seniority.actualizar();
         casilla = casilla.obtenerSiguiente(pasos);
         casilla.afectarConEvento(this);

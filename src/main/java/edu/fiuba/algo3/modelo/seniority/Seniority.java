@@ -10,7 +10,7 @@ public abstract class Seniority{
 
     public abstract void actualizar();
 
-    public void obtenerEnergia(){
+    public void recuperarEnergia(){
         gladiador.cambiarEnergia(recuperacionEnergia);
     }
 }
