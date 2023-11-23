@@ -1,0 +1,76 @@
+@startuml GladiadorSinEnergiaNoCambiaDeCasilla
+
+skinparam guillemet none
+autoactivate on
+
+actor test03
+
+participant Gladiador as g << g : >>
+participant Novato as novato << seniority : >>
+participant GladiadorSano as sano << estadoSano : >>
+participant GladiadorSano as sanoNuevo << nuevoEstadoSano : >>
+participant GladiadorSinEnergia as sinEnergia << estadoSinEnergia : >>
+participant Desnudo as d << equipamiento : >>
+
+participant Casilla as c1 << casillaInicial : >>
+participant Casilla as c2 << casillaSiguiente : >>
+participant EventoNulo as eAburrido << eventoAburrido : >>
+participant EventoFiera as eCombate << eventoCombate : >>
+
+test03++
+test03 -> g : getEnergia()
+return energia
+
+test03 -> g ++: avanzar(pasos)
+g -> sano : avanzar(pasos)
+sano -> g --: cambiarPosicion(pasos)
+g++
+g -> g : obtenerEnergia()
+g -> novato --: obtenerEnergia()
+novato++
+novato -> g --: cambiarEnergia(recuperacionEnergia)
+g++
+g -> sanoNuevo ** : new GladiadorSano(this)
+g -> g ++: cambiarEstado(nuevoEstadoSano)
+g--
+g--
+g -> novato: actualizar()
+novato--
+g -> c1 : obtenerSiguiente(pasos)
+c1 -> c2 : obtenerSiguiente(pasos - 1)
+return this
+c1 --> g : casilla = casillaSiguiente
+g -> c2 --: afectarConEvento(this)
+c2++
+c2 -> eCombate --: afectar(g)
+eCombate++
+eCombate -> g --: recibirDanio(danioFiera)
+g++
+g -> d --: mitigarDanio(danioFiera)
+d++
+d -> g --: cambiarEnergia(danioFinal)
+g++
+g -> sinEnergia ** : new GladiadorSinEnergia(this)
+g -> g : cambiarEstado(estadoSinEnergia)
+g--
+g--
+g--
+
+test03 -> g : getCasilla()
+g --> test03 : casillaEnLaQuePierdeEnergia = casillaSiguiente
+
+test03 -> g : avanzar(pasos)
+
+g -> sinEnergia : avanzar(pasos)
+sinEnergia -> g --: cambiarenergia(aumentoEnergiaPorTurno)
+g++
+g -> sanoNuevo ** : new GladiadorSano(this)
+g -> g : cambiarEstado(nuevoEstadoSano)
+g--
+g--
+g--
+
+test03 -> g : getCasilla()
+g --> test03 : casillaSiguiente
+
+@enduml

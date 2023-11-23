@@ -1,0 +1,96 @@
+@startuml SeRecibePremioPorPrimeraVezYGladiadorRecibeCasco
+
+skinparam guillemet none
+autoactivate on
+
+actor test05
+
+participant EventoNulo as eAburrido << eventoAburrido : >>
+participant EventoEquipamiento as eEquipo << eventoEquipo : >>
+participant EventoCombate as eCombate << eventoCombate : >>
+participant Casilla as c1 << casillaInicial : >>
+participant Casilla as c2 << casillaMedia : >>
+participant Casilla as c3 << casillaFinal : >>
+
+participant Gladiador as g << g : >>
+participant Novato as novato << seniority : >>
+participant GladiadorSano as sano << estado : >>
+participant GladiadorSano as sanoNuevo << nuevoEstado : >>
+participant Desnudo as desnudo << desnudo : >>
+participant Casco as casco << casco : >>
+
+test05++
+test05 -> g : avanzar(pasos)
+
+g -> sano : avanzar(pasos)
+sano -> g --: cambiarPosicion(pasos)
+g++
+g -> g : obtenerEnergia()
+g -> novato --: obtenerEnergia()
+novato++
+novato -> g --: cambiarEnergia(recuperacionEnergia)
+g++
+g -> sanoNuevo ** : new GladiadorSano(this)
+g -> g : cambiarEstado(nuevoEstado)
+g--
+g--
+g -> novato : actualizar()
+novato--
+g -> c1 : obtenerSiguiente(pasos)
+c1 -> c2 : obtenerSiguiente(pasos - 1)
+return this
+c1 --> g : casilla = casillaMedia
+g -> c2 --: afectarConEvento(this)
+c2++
+c2 -> eEquipo --: afectar(g)
+eEquipo++
+eEquipo -> g --: mejorarEquipamiento()
+g++
+g -> desnudo : mejorarEquipamiento()
+desnudo -> casco ** : new Casco(g, reduccionDeDanio)
+desnudo -> g --: cambiarEquipamiento(casco)
+
+g--
+g--
+g--
+
+test05 -> g ++: avanzar(pasos)
+g -> sano : avanzar(pasos)
+sano -> g --: cambiarPosicion(pasos)
+g++
+g -> g : obtenerEnergia()
+g -> novato --: obtenerEnergia()
+novato++
+novato -> g --: cambiarEnergia(recuperacionEnergia)
+g++
+g -> sanoNuevo ** : new GladiadorSano(this)
+g -> g : cambiarEstado(nuevoEstado)
+g--
+g--
+g -> novato : actualizar()
+novato--
+g -> c2 : obtenerSiguiente(pasos)
+c2 -> c3 : obtenerSiguiente(pasos - 1)
+return this
+c2 --> g : casilla = casillaFinal
+g -> c3 --: afectarConEvento(this)
+c3++
+c3 -> eCombate --: afectar(g)
+eCombate++
+eCombate -> g --: recibirDanio(danioFiera)
+g++
+g -> casco --: mitigarDanio(danioFiera)
+casco++
+casco -> g --: cambiarEnergia(danioFinal)
+g++
+g -> sanoNuevo ** : new GladiadorSano(this)
+g -> g : cambiarEstado(nuevoEstadoSano)
+
+g--
+g--
+g--
+
+test05 -> g : getEnergia()
+g --> test05 : energia
+
+@enduml

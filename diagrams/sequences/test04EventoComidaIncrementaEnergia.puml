@@ -1,0 +1,53 @@
+@startuml EventoComidaIncrementaEnergia
+
+skinparam guillemet none
+autoactivate on
+
+actor test04
+
+participant Gladiador as g << g : >>
+participant Novato as novato << seniority : >>
+participant GladiadorSano as sano << estado : >>
+participant GladiadorSano as sanoNuevo << nuevoEstado : >>
+participant Desnudo as desnudo << equipamiento : >>
+
+participant EventoNulo as eAburrido << eventoAburrido : >>
+participant EventoComida as eComida << eventoComida : >>
+participant Casilla as c1 << casillaInicial : >>
+participant Casilla as c2 << casillaFinal : >>
+
+test04++
+test04 -> g ++: avanzar(pasos)
+g -> sano : avanzar(pasos)
+sano -> g --: cambiarPosicion(pasos)
+g++
+g -> g : obtenerEnergia()
+g -> novato --: obtenerEnergia()
+novato++
+novato -> g --: cambiarEnergia(recuperacionEnergia)
+g++
+g -> sanoNuevo ** : new GladiadorSano(this)
+g -> g : cambiarEstado(nuevoEstado)
+g--
+g--
+g -> novato : actualizar()
+novato--
+g -> c1 : obtenerSiguiente(pasos)
+c1 -> c2 : obtenerSiguiente(pasos - 1)
+return this
+c1 --> g : casilla = casillaFinal
+g -> c2 --: afectarConEvento(this)
+c2++
+c2 -> eComida --: afectar(g)
+eComida++
+eComida -> g --: cambiarEnergia(incrementoDeEnergia)
+g++
+g -> sanoNuevo ** : new GladiadorSano(this)
+g -> g : cambiarEstado(nuevoEstado)
+g--
+g--
+g--
+test04 -> g : getEnergia()
+g --> test04 : energia
+
+@enduml
