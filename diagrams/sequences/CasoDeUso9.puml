@@ -1,0 +1,187 @@
+@startuml
+!include ../variables.txt
+skinparam Style strictuml
+skinparam sequenceMessageAlign center
+title $tituloCasoDeUso8\n
+
+actor test09
+
+participant ":Mapa" as mapa
+participant ":Gladiador" as gladiador
+participant "estado:GladiadorSaludable" as estado
+participant "seniority:Novato" as seniority
+participant "casilla:Casilla" as casilla
+participant "evento:EventoEquipamiento" as evento
+participant "equipamiento:Equipamiento" as equipamiento
+participant ":EventoNulo" as eventoNulo
+participant ":EventoPompeya" as pompeya
+
+test09 -> mapa ** : new
+test09 -> mapa : getPrimeraCasilla()
+mapa --> test09 : casilla
+test09 -> gladiador ** : new Gladiador(casilla)
+
+loop 3 Iteraciones
+    test09 -> gladiador : avanzar(1)
+    note right : 3 iteraciones donde evoluciona el equipo por ser 3 casillas con premio consecutivas\npor lo que termina con Escudo y espada.
+    activate gladiador #B2FFFF
+    gladiador -> estado : avanzar(1)
+    activate estado #B2FFFF
+    estado -> gladiador : cambiarPosicion(1)
+    activate gladiador #B2FFFF
+    gladiador -> gladiador : recuperarEnergia()
+    activate gladiador #B2FFFF
+    gladiador -> seniority : recuperarEnergia()
+    activate seniority #B2FFFF
+    seniority -> gladiador : cambiarEnergia(recuperacionEnergia)
+    gladiador --> seniority
+    return
+    return
+    gladiador -> seniority : actualizar()
+    activate seniority #B2FFFF
+    return
+    gladiador -> casilla : obtenerSiguiente(1)
+    activate casilla #B2FFFF
+    return casilla = siguiente
+    gladiador -> casilla : afectarConEvento(gladiador = this)
+    activate casilla #B2FFFF
+    casilla -> evento : afectar(gladiador)
+    activate evento #B2FFFF
+    evento -> gladiador : mejorarEquipamiento()
+    activate gladiador #B2FFFF
+    gladiador -> equipamiento : mejorarEquipamiento()
+    activate equipamiento #B2FFFF
+    create "<<abstract>>\nevolucion:Equipamiento"
+    equipamiento -> "<<abstract>>\nevolucion:Equipamiento" : new
+    "<<abstract>>\nevolucion:Equipamiento" --> equipamiento
+    equipamiento -> gladiador : cambiarEquipamiento(evolucion)
+    gladiador --> equipamiento
+    return
+    return
+    return
+    return
+    return
+    return
+    return
+end
+
+newpage
+
+loop 4 Iteraciones
+    test09 -> gladiador : avanzar(1)
+    note right : 4 iteraciones de avanzar donde las casillas no tienen ningun premio/obstaculo
+    activate gladiador #B2FFFF
+    gladiador -> estado : avanzar(1)
+    activate estado #B2FFFF
+    estado -> gladiador : cambiarPosicion(1)
+    activate gladiador #B2FFFF
+    gladiador -> gladiador : recuperarEnergia()
+    activate gladiador #B2FFFF
+    gladiador -> seniority : recuperarEnergia()
+    activate seniority #B2FFFF
+    seniority -> gladiador : cambiarEnergia(recuperacionEnergia)
+    gladiador --> seniority
+    return
+    return
+    gladiador -> seniority : actualizar()
+    activate seniority #B2FFFF
+    return
+    gladiador -> casilla : obtenerSiguiente(1)
+    activate casilla #B2FFFF
+    return casilla = siguiente
+    gladiador -> casilla : afectarConEvento(gladiador = this)
+    activate casilla #B2FFFF
+    casilla -> eventoNulo : afectar(gladiador)
+    activate eventoNulo #B2FFFF
+    return
+    return
+    return
+    return
+    return
+end
+
+newpage
+
+test09 -> gladiador : avanzar(1)
+note right : En este avanzar tampoco cae sobre un premio/obstaculo pero evoluciona su seniority
+activate gladiador #B2FFFF
+gladiador -> estado : avanzar(1)
+activate estado #B2FFFF
+estado -> gladiador : cambiarPosicion(1)
+activate gladiador #B2FFFF
+gladiador -> gladiador : recuperarEnergia()
+activate gladiador #B2FFFF
+gladiador -> seniority : recuperarEnergia()
+activate seniority #B2FFFF
+seniority -> gladiador : cambiarEnergia(recuperacionEnergia)
+gladiador --> seniority
+return
+return
+gladiador -> seniority : actualizar()
+activate seniority #B2FFFF
+seniority -> ":SemiSenior" ** : new
+":SemiSenior" --> seniority
+seniority -> gladiador : cambiarSeniority(semi-senior)
+gladiador --> seniority
+return
+gladiador -> casilla : obtenerSiguiente(1)
+activate casilla #B2FFFF
+return casilla = siguiente
+gladiador -> casilla : afectarConEvento(gladiador = this)
+activate casilla #B2FFFF
+casilla -> eventoNulo : afectar(gladiador)
+activate eventoNulo #B2FFFF
+return
+return
+return
+return
+return
+
+newpage
+
+test09 -> gladiador : avanzar(1)
+note right : Finalmente llega a pompeya pero al no tener la llave vuelve a la mitad
+activate gladiador #B2FFFF
+gladiador -> estado : avanzar(1)
+activate estado #B2FFFF
+estado -> gladiador : cambiarPosicion(1)
+activate gladiador #B2FFFF
+gladiador -> gladiador : recuperarEnergia()
+activate gladiador #B2FFFF
+gladiador -> seniority : recuperarEnergia()
+activate seniority #B2FFFF
+seniority -> gladiador : cambiarEnergia(recuperacionEnergia)
+gladiador --> seniority
+return
+return
+gladiador -> seniority : actualizar()
+activate seniority #B2FFFF
+return
+gladiador -> casilla : obtenerSiguiente(1)
+activate casilla #B2FFFF
+return casilla = siguiente
+gladiador -> casilla : afectarConEvento(gladiador = this)
+activate casilla #B2FFFF
+casilla -> pompeya : afectar(gladiador)
+activate pompeya #B2FFFF
+pompeya -> gladiador : abrirCasaPompeya()
+activate gladiador #B2FFFF
+gladiador -> equipamiento : abrirCasaPompeya()
+activate equipamiento #B2FFFF
+equipamiento -> gladiador : irAMitadDelMapa()
+activate gladiador #B2FFFF
+gladiador --> mapa : casilla = getMitadDeCamino()
+activate mapa #B2FFFF
+return
+return
+return
+return
+return
+return
+return
+return
+return
+
+footer Pagina %page% de %lastpage%
+
+@enduml

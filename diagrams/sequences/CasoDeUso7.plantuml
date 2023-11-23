@@ -95,6 +95,6 @@ return
 return
 return
 
-footer Page %page% of %lastpage%
+footer Pagina %page% de %lastpage%
 
 @enduml
