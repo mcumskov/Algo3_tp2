@@ -3,3 +3,4 @@
 !$tituloCasoDeUso8 = "test08LuegoDe8TurnosElGladiadorPasaDeNovatoASemiSeniorYrecuperaEnergiaEnElSiguienteMovimiento"
 !$tituloCasoDeUso9 = "test09GladiadorConEscudoEspadaNoAbrePompeyaYvaALaMitadDelMapa"
 !$tituloDiagramaSecuenciaEvolucionLlave = "GladiadorSaludableNovatoTieneLlaveAvanzaACasillaConPremioYNoCambiaNada"
+!$tituloDiagramaSecuenciaSeJuegan30TurnoYNadieGana = "SeJuegan30TurnosNadieGanaYElJuegoTerminaSinGanador"

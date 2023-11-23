@@ -1,0 +1,40 @@
+@startuml
+!include ../variables.txt
+skinparam Style strictuml
+skinparam sequenceMessageAlign center
+title $tituloDiagramaSecuenciaSeJuegan30TurnoYNadieGana\n
+
+actor Actor
+participant ":GestorDeTurnos" as gestor
+participant ":Jugador" as jugador
+participant ":Juego" as juego
+
+Actor -> gestor ** : new GestorTurnos(rondas=30, ArrayList<Jugador>)
+activate gestor #B2FFFF
+    loop #C0C0C0 ArrayList<Jugador>.size() iteraciones
+        gestor -> gestor : agregarTurno()
+    end
+    gestor -> gestor : determinarPrimerJugador()
+return
+
+loop #C0C0C0 60 iteraciones
+    Actor -> gestor : siguienteTurno()
+        gestor -> jugador : jugar()
+        return
+    return
+end
+
+Actor -> gestor : siguienteTurno
+activate gestor #B2FFFF
+    gestor -> juego : finalizarSinGanador()
+    activate juego #B2FFFF
+        juego -> SinGanadorException ** : throw new
+        activate SinGanadorException #B2FFFF
+        return
+    return
+    gestor -> jugador : jugar()
+    activate jugador #B2FFFF
+    return
+return
+footer Pagina %page% de %lastpage%
+@enduml
