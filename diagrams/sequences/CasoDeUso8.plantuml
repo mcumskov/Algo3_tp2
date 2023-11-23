@@ -1,0 +1,116 @@
+@startuml
+!include ../variables.txt
+skinparam Style strictuml
+skinparam sequenceMessageAlign center
+title $tituloCasoDeUso8\n
+
+actor test08
+participant ":Gladiador" as gladiador
+participant "estado:GladiadorSaludable" as estado
+participant "seniority:Novato" as seniority
+participant "casilla:Casilla" as casilla
+participant "evento:EventoNulo" as evento
+participant "semi-senior:SemiSenior" as semisenior
+
+loop 7 Iteraciones
+    test08 -> gladiador : avanzar(1)
+    activate gladiador #B2FFFF
+    gladiador -> estado : avanzar(1)
+    activate estado #B2FFFF
+    estado -> gladiador : cambiarPosicion(1)
+    activate gladiador #B2FFFF
+    gladiador -> gladiador : recuperarEnergia()
+    activate gladiador #B2FFFF
+    gladiador -> seniority : recuperarEnergia()
+    activate seniority #B2FFFF
+    seniority -> gladiador : cambiarEnergia(recuperacionEnergia)
+    gladiador --> seniority
+    return
+    return
+    gladiador -> seniority : actualizar()
+    activate seniority #B2FFFF
+    return
+    gladiador -> casilla : obtenerSiguiente(1)
+    activate casilla #B2FFFF
+    return casilla = siguiente
+    gladiador -> casilla : afectarConEvento(gladiador = this)
+    activate casilla #B2FFFF
+    casilla -> evento : afectar(gladiador)
+    activate evento #B2FFFF
+    return
+    return
+    return
+    return
+    return
+end
+
+newpage
+
+    test08 -> gladiador : avanzar(1)
+    activate gladiador #B2FFFF
+    gladiador -> estado : avanzar(1)
+    activate estado #B2FFFF
+    estado -> gladiador : cambiarPosicion(1)
+    activate gladiador #B2FFFF
+    gladiador -> gladiador : recuperarEnergia()
+    activate gladiador #B2FFFF
+    gladiador -> seniority : recuperarEnergia()
+    activate seniority #B2FFFF
+    seniority -> gladiador : cambiarEnergia(recuperacionEnergia)
+    gladiador --> seniority
+    return
+    return
+    gladiador -> seniority : actualizar()
+    activate seniority #B2FFFF
+    seniority -> semisenior ** : new
+    semisenior --> seniority
+    seniority -> gladiador : cambiarSeniority(semi-senior)
+    gladiador --> seniority
+    return
+    gladiador -> casilla : obtenerSiguiente(1)
+    activate casilla #B2FFFF
+    return casilla = siguiente
+    gladiador -> casilla : afectarConEvento(gladiador = this)
+    activate casilla #B2FFFF
+    casilla -> evento : afectar(gladiador)
+    activate evento #B2FFFF
+    return
+    return
+    return
+    return
+    return
+
+newpage
+
+    test08 -> gladiador : avanzar(1)
+    activate gladiador #B2FFFF
+    gladiador -> estado : avanzar(1)
+    activate estado #B2FFFF
+    estado -> gladiador : cambiarPosicion(1)
+    activate gladiador #B2FFFF
+    gladiador -> gladiador : recuperarEnergia()
+    activate gladiador #B2FFFF
+    gladiador -> semisenior : recuperarEnergia()
+    activate semisenior #B2FFFF
+    semisenior -> gladiador : cambiarEnergia(recuperacionEnergia)
+    gladiador --> semisenior
+    return
+    return
+    gladiador -> semisenior : actualizar()
+    activate semisenior #B2FFFF
+    return
+    gladiador -> casilla : obtenerSiguiente(1)
+    activate casilla #B2FFFF
+    return casilla = siguiente
+    gladiador -> casilla : afectarConEvento(gladiador = this)
+    activate casilla #B2FFFF
+    casilla -> evento : afectar(gladiador)
+    activate evento #B2FFFF
+    return
+    return
+    return
+    return
+    return
+
+footer Page %page% of %lastpage%
+@enduml

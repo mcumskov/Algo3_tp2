@@ -1,2 +1,3 @@
 !$MiVar = "<valor variable 'MiVar'>"
 !$tituloCasoDeUso7 = "GladiadorPeleaConFieraConCascoDebePerderLaEnergiaCorrespondiente"
+!$tituloCasoDeUso8 = "LuegoDe8TurnosElGladiadorPasaDeNovatoASemiSeniorYrecuperaEnergiaEnElSiguienteMovimiento"

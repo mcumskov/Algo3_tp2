@@ -4,7 +4,7 @@ skinparam Style strictuml
 skinparam sequenceMessageAlign center
 title $tituloCasoDeUso7\n
 
-actor Actor
+actor test07
 participant ":Gladiador"
 participant "estado:GladiadorSaludable"
 participant "seniority:Novato"
@@ -13,7 +13,7 @@ participant "evento:EventoEquipamiento"
 participant "equipamiento:Equipamiento"
 participant "evento:EventoFiera"
 
-Actor -> ":Gladiador" : avanzar(1)
+test07 -> ":Gladiador" : avanzar(1)
 activate ":Gladiador" #B2FFFF
 ":Gladiador" -> "estado:GladiadorSaludable" : avanzar(1)
 activate "estado:GladiadorSaludable" #B2FFFF
@@ -53,13 +53,11 @@ return
 return
 return
 
-footer Page %page% of %lastpage%
-
 newpage
 
 skinparam sequenceMessageAlign center
 
-Actor -> ":Gladiador" : avanzar(1)
+test07 -> ":Gladiador" : avanzar(1)
 activate ":Gladiador" #B2FFFF
 ":Gladiador" -> "estado:GladiadorSaludable" : avanzar(1)
 activate "estado:GladiadorSaludable" #B2FFFF
