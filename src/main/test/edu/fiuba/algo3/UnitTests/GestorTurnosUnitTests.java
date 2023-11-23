@@ -92,9 +92,8 @@ public class GestorTurnosUnitTests {
 
     @Test
     public void test06GestorTurnosAgregarUnJugadorIndividualJuegaUnaVez(){
-        ArrayList<Jugador> jugadores = new ArrayList<>();
         Jugador jugadorMock = mock(Jugador.class);
-        GestorTurnos gestorTurnos = new GestorTurnos(5, jugadores);
+        GestorTurnos gestorTurnos = new GestorTurnos(5);
         gestorTurnos.agregarTurno(jugadorMock);
         gestorTurnos.determinarPrimerJugador();
         gestorTurnos.siguienteTurno();
@@ -103,9 +102,8 @@ public class GestorTurnosUnitTests {
 
     @Test
     public void test07GestorTurnosAgregarUnJugadorIndividualJuegaDosVeces(){
-        ArrayList<Jugador> jugadores = new ArrayList<>();
         Jugador jugadorMock = mock(Jugador.class);
-        GestorTurnos gestorTurnos = new GestorTurnos(5, jugadores);
+        GestorTurnos gestorTurnos = new GestorTurnos(5);
         gestorTurnos.agregarTurno(jugadorMock);
         gestorTurnos.determinarPrimerJugador();
         gestorTurnos.siguienteTurno();

@@ -10,13 +10,9 @@ import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.turnos.GestorTurnos;
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.equipamiento.Equipamiento;
-
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import static org.mockito.Mockito.mock;
 
 public class Entrega1Tests {
 
@@ -268,12 +264,12 @@ public class Entrega1Tests {
 
         Juego juego = Juego.getJuego();
 
-        Jugador jugadorMock1 = mock(Jugador.class);
-        Jugador jugadorMock2 = mock(Jugador.class);
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
 
         ArrayList<Jugador> jugadores = new ArrayList<>();
-        jugadores.add(jugadorMock1);
-        jugadores.add(jugadorMock2);
+        jugadores.add(jugador1);
+        jugadores.add(jugador2);
 
         GestorTurnos gestorTurnos = new GestorTurnos(30, jugadores);
 

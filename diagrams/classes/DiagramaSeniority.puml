@@ -21,7 +21,7 @@ abstract class Seniority {
   + turnosParaAscender: int
   + turnos: int
   + limiteAsencion: int
-  + obtenerEnergia(): void
+  + recuperarEnergia(): void
   + actualizar(): Seniority
 }
 

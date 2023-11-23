@@ -25,7 +25,7 @@ abstract class Seniority {
   + turnosParaAscender: int
   + turnos: int
   + limiteAsencion: int
-  + obtenerEnergia(): void
+  + recuperarEnergia(): void
   + actualizar(): Seniority
 }
 
@@ -62,7 +62,7 @@ class Gladiador {
   + getEstado(): Estado
   + cambiarPosicion(int): void
   + getSeniority(): Seniority
-  + obtenerEnergia(): void
+  + recuperarEnergia(): void
   + cambiarSeniority(Seniority): void
   + getCasilla(): Casilla
   + getGanador(): boolean
