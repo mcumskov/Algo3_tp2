@@ -29,3 +29,7 @@ Aquellos que deseen colaborar con el proyecto pueden consultar la [guía de desa
 ## Licencia
 
 Este repositorio se encuentra bajo la Licencia MIT.
+
+##TO-DO
+
+Aplicar refactor en State Seniority, agregando interfaz nueva encargada de recuperarEnergia().
