@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.UnitTests;
 
-import edu.fiuba.algo3.modelo.Eventos.Premio;
-import edu.fiuba.algo3.modelo.Eventos.PremioEquipamiento;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 
 import org.junit.jupiter.api.Test;

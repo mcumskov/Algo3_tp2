@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.gladiador;
 
-import edu.fiuba.algo3.modelo.Eventos.PremioComestible;
-import edu.fiuba.algo3.modelo.Eventos.PremioEquipamiento;
 import edu.fiuba.algo3.modelo.equipamiento.Equipamiento;
 import edu.fiuba.algo3.modelo.seniority.Seniority;
 

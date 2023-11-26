@@ -1,6 +1,10 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Eventos.*;
+import edu.fiuba.algo3.modelo.Eventos.Obstaculos.FieraSalvaje;
+import edu.fiuba.algo3.modelo.Eventos.Obstaculos.Obstaculo;
+import edu.fiuba.algo3.modelo.Eventos.Premios.Premio;
+import edu.fiuba.algo3.modelo.Eventos.Premios.PremioComestible;
+import edu.fiuba.algo3.modelo.Eventos.Premios.PremioEquipamiento;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 
 import org.junit.jupiter.api.Test;
