@@ -9,6 +9,6 @@ public class GladiadorSano implements Estado{
     }
 
     public void avanzar(int pasos){
-        gladiador.cambiarPosicion(pasos);
+        //gladiador.cambiarPosicion(pasos);
     }
 }

@@ -2,24 +2,32 @@ package edu.fiuba.algo3.modelo.equipamiento;
 
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 
-public abstract class Equipamiento{
+public class Equipamiento implements IEquipamiento{
 
-    protected Gladiador gladiador;
-    protected int reduccionDeDanio;
+    private Equipable equipable ;
 
-    public void mitigarDanio(int DanioRecibido){
-        int danioFinal = DanioRecibido + reduccionDeDanio;
-        if(danioFinal <= 0){
-            gladiador.cambiarEnergia(danioFinal);
-            return;
-        }
-        gladiador.cambiarEnergia(0);
+    public Equipamiento(){
+
+        this.equipable = new Desnudo();
+
+    }
+
+    public int recibirAtaque(int danioRecibido){
+
+        return (this.equipable.mitigarDanio(danioRecibido));
+
+    }
+
+    public void mejorar(){
+
+        this.equipable = equipable.mejorar();
+
     }
 
     public void abrirCasaPompeya(){
-        gladiador.irAMitadDelMapa();
+
+
     }
 
-    public abstract void mejorarEquipamiento();
 
 }

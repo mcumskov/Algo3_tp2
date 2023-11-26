@@ -1,20 +1,23 @@
 package edu.fiuba.algo3.modelo.seniority;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 
-public class SemiSenior extends Seniority{
+public class SemiSenior extends NivelDeSeniority{
 
-    public SemiSenior(Gladiador gladiadorRecibido){
-        this.gladiador = gladiadorRecibido;
-        this.turnos = 0;
-        this.recuperacionEnergia = 5;
-        this.limiteAsencion = 4;
+    public SemiSenior()
+    {
+        this.turnosRestantesParaMejora = 4 ;
+        this.recuperacionDeEnergiaPorTurno = 5 ;
+
     }
+    public NivelDeSeniority actualizar() {
 
-    public void actualizar(){
-        turnos++;
-        if(turnos >= limiteAsencion){
-            Seniority ascencion = new Senior(gladiador);
-            gladiador.cambiarSeniority(ascencion);
+        this.turnosRestantesParaMejora--;
+
+        if(this.turnosRestantesParaMejora < 1 ) {
+            return new Senior();
+        } else {
+            return this;
         }
+
     }
 }

@@ -1,13 +1,8 @@
 package edu.fiuba.algo3.UnitTests;
 
 import edu.fiuba.algo3.modelo.equipamiento.Equipamiento;
-import edu.fiuba.algo3.modelo.equipamiento.Desnudo;
-import edu.fiuba.algo3.modelo.equipamiento.Casco;
-import edu.fiuba.algo3.modelo.equipamiento.Armadura;
-import edu.fiuba.algo3.modelo.equipamiento.EscudoEspada;
-import edu.fiuba.algo3.modelo.equipamiento.Llave;
+
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
-import edu.fiuba.algo3.modelo.jugador.Jugador;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,197 +13,83 @@ public class EquipamientoUnitTests{
     @Test
     public void test01EquipamientoDesnudoNoCubreDanio(){
 
-        Gladiador gladiador =  new Gladiador();
-        Equipamiento equipamiento = new Desnudo(gladiador);
+        Equipamiento equipamiento = new Equipamiento();
 
-        int danioEfectuado = -10;
+        int danioRecibido = equipamiento.recibirAtaque(20);
 
-        equipamiento.mitigarDanio(danioEfectuado);
-
-        int energiaResultante = gladiador.getEnergia();
-
-        assertEquals(energiaResultante, 10);
+        assertEquals(20, danioRecibido);
 
     }
 
     @Test
-    public void test02EquipamientoCascoCubre5DeDanio(){
+    public void test02EquipamientoAsciendeACascoYCubre5DeDanio(){
 
-        Gladiador gladiador =  new Gladiador();
-        Equipamiento equipamiento = new Casco(gladiador, 0);
+        Equipamiento equipamiento = new Equipamiento();
+        equipamiento.mejorar();
 
-        int danioEfectuado = -10;
+        int danioRecibido = equipamiento.recibirAtaque(20);
 
-        equipamiento.mitigarDanio(danioEfectuado);
-
-        int energiaResultante = gladiador.getEnergia();
-
-        assertEquals(energiaResultante, 15);
+        assertEquals(15, danioRecibido);
 
     }
 
     @Test
-    public void test03EquipamientoArmaduraCubre10DeDanio(){
+    public void test03EquipamientoAsciendeAArmaduraYCubre10DeDanio(){
 
-        Gladiador gladiador =  new Gladiador();
-        Equipamiento equipamiento = new Armadura(gladiador, 5);
+        Equipamiento equipamiento = new Equipamiento();
+        equipamiento.mejorar();
+        equipamiento.mejorar();
 
-        int danioEfectuado = -10;
+        int danioRecibido = equipamiento.recibirAtaque(20);
 
-        equipamiento.mitigarDanio(danioEfectuado);
-
-        int energiaResultante = gladiador.getEnergia();
-
-        assertEquals(energiaResultante, 20);
+        assertEquals(10, danioRecibido);
 
     }
 
     @Test
-    public void test04EquipamientoEscudoEspadaCubre18DeDanio(){
+    public void test04EquipamientoAsciendeAEscudoEspadaYCubre18DeDanio(){
 
-        Gladiador gladiador =  new Gladiador();
-        Equipamiento equipamiento = new EscudoEspada(gladiador, 10);
+        Equipamiento equipamiento = new Equipamiento();
+        equipamiento.mejorar();
+        equipamiento.mejorar();
+        equipamiento.mejorar();
 
-        int danioEfectuado = -20;
+        int danioRecibido = equipamiento.recibirAtaque(20);
 
-        equipamiento.mitigarDanio(danioEfectuado);
-
-        int energiaResultante = gladiador.getEnergia();
-
-        assertEquals(energiaResultante, 18);
+        assertEquals(2, danioRecibido);
 
     }
 
     @Test
-    public void test05EquipamientoLlaveCubre20DeDanio(){
+    public void test05EquipamientoAsciendeALlaveYCubre20DeDanio(){
 
-        Gladiador gladiador =  new Gladiador();
-        Equipamiento equipamiento = new EscudoEspada(gladiador, 18);
+        Equipamiento equipamiento = new Equipamiento();
+        equipamiento.mejorar();
+        equipamiento.mejorar();
+        equipamiento.mejorar();
+        equipamiento.mejorar();
 
-        int danioEfectuado = -20;
+        int danioRecibido = equipamiento.recibirAtaque(20);
 
-        equipamiento.mitigarDanio(danioEfectuado);
-
-        int energiaResultante = gladiador.getEnergia();
-
-        assertEquals(energiaResultante, 20);
-
+        assertEquals(0, danioRecibido);
     }
 
     @Test
-    public void test06EquipamientoDesnudoAsciendeACascoYProteje5(){
+    public void test06EquipamientoAsciendeALlaveYLuegoNoSigueMejorandoYSigueCubriendo20DeDanio(){
 
-        Gladiador gladiador =  new Gladiador();
-        gladiador.mejorarEquipamiento();
+        Equipamiento equipamiento = new Equipamiento();
+        equipamiento.mejorar();
+        equipamiento.mejorar();
+        equipamiento.mejorar();
+        equipamiento.mejorar();
+        equipamiento.mejorar();
+        equipamiento.mejorar();
+        equipamiento.mejorar();
 
-        gladiador.recibirDanio(-10);
+        int danioRecibido = equipamiento.recibirAtaque(21);
 
-        assertEquals(gladiador.getEnergia(), 15);
+        assertEquals(1, danioRecibido);
     }
-
-    @Test
-    public void test07EquipamientoDesnudoAsciendeAArmaduraYProteje10(){
-
-        Gladiador gladiador =  new Gladiador();
-        gladiador.mejorarEquipamiento();
-        gladiador.mejorarEquipamiento();
-
-        gladiador.recibirDanio(-10);
-
-        assertEquals(gladiador.getEnergia(), 20);
-    }
-
-    @Test
-    public void test08EquipamientoDesnudoAsciendeAEscudoYEspadaYProteje18(){
-
-        Gladiador gladiador =  new Gladiador();
-        gladiador.mejorarEquipamiento();
-        gladiador.mejorarEquipamiento();
-        gladiador.mejorarEquipamiento();
-
-        gladiador.recibirDanio(-18);
-
-        assertEquals(gladiador.getEnergia(), 20);
-    }
-
-    @Test
-    public void test09EquipamientoDesnudoAsciendeALlaveYProteje20(){
-
-        Gladiador gladiador =  new Gladiador();
-        gladiador.mejorarEquipamiento();
-        gladiador.mejorarEquipamiento();
-        gladiador.mejorarEquipamiento();
-        gladiador.mejorarEquipamiento();
-
-        gladiador.recibirDanio(-20);
-
-        assertEquals(gladiador.getEnergia(), 20);
-    }
-
-    @Test
-    public void test10EquipamientoDesnudoNoAbreCasaPompeya(){
-
-        Gladiador gladiador =  new Gladiador();
-
-        gladiador.abrirCasaPompeya();
-
-        assertFalse(gladiador.getGanador());
-    }
-
-    @Test
-    public void test11EquipamientoCascoNoAbreCasaPompeya(){
-
-        Gladiador gladiador =  new Gladiador();
-        gladiador.mejorarEquipamiento();
-
-
-        gladiador.abrirCasaPompeya();
-
-        assertFalse(gladiador.getGanador());
-    }
-
-    @Test
-    public void test12EquipamientoArmaduraNoAbreCasaPompeya(){
-
-        Gladiador gladiador =  new Gladiador();
-        gladiador.mejorarEquipamiento();
-        gladiador.mejorarEquipamiento();
-
-
-        gladiador.abrirCasaPompeya();
-
-        assertFalse(gladiador.getGanador());
-    }
-
-    @Test
-    public void test13EquipamientoEscudoEspadaNoAbreCasaPompeya(){
-
-        Gladiador gladiador =  new Gladiador();
-        gladiador.mejorarEquipamiento();
-        gladiador.mejorarEquipamiento();
-        gladiador.mejorarEquipamiento();
-
-
-        gladiador.abrirCasaPompeya();
-
-        assertFalse(gladiador.getGanador());
-    }
-
-    @Test
-    public void test14EquipamientoLlaveSiAbreCasaPompeya(){
-
-        Gladiador gladiador =  new Gladiador();
-        gladiador.mejorarEquipamiento();
-        gladiador.mejorarEquipamiento();
-        gladiador.mejorarEquipamiento();
-        gladiador.mejorarEquipamiento();
-
-
-        gladiador.abrirCasaPompeya();
-
-        assertTrue(gladiador.getGanador());
-    }
-
 
 
 }

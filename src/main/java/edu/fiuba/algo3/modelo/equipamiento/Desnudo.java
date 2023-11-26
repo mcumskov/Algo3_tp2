@@ -1,14 +1,14 @@
 package edu.fiuba.algo3.modelo.equipamiento;
 
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
-public class Desnudo extends Equipamiento{
+public class Desnudo extends Equipable{
 
-    public Desnudo(Gladiador gladiadorRecibido){
-        this.gladiador = gladiadorRecibido;
-        this.reduccionDeDanio = 0;
+    public Desnudo(){
+        this.danioReducir = 0 ;
     }
 
-    public void mejorarEquipamiento(){
-        gladiador.cambiarEquipamiento(new Casco(gladiador, reduccionDeDanio));
+    public Equipable mejorar(){
+
+        return new Casco(this.danioReducir);
     }
 }

@@ -1,17 +1,14 @@
 package edu.fiuba.algo3.modelo.equipamiento;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 
-public class Llave extends Equipamiento{
+public class Llave extends Equipable{
 
-    public Llave(Gladiador gladiadorRecibido, int mitigacionAcumulada){
-        this.gladiador = gladiadorRecibido;
-        this.reduccionDeDanio = 2 + mitigacionAcumulada;
+    public Llave(int reduccionAcumulada){
+        this.danioReducir = reduccionAcumulada + 2 ;
     }
 
-    public void mejorarEquipamiento(){
-        // hace nada
-    }
-    public void abrirCasaPompeya(){
-        gladiador.victoria();
+    public Equipable mejorar(){
+
+        return this;
     }
 }
