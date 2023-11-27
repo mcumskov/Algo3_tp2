@@ -1,0 +1,7 @@
+@startuml
+class Comida {
+    - incrementoDeEnergia: int
+    + Comida()
+    + premiar(gladiador:Gladiador)
+}
+@enduml

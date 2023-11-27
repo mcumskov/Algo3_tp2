@@ -1,0 +1,8 @@
+@startuml
+abstract class Equipable {
+    - danioReducir:int
+    + Equipable()
+    + reducirDanio(danioBase:int):int
+    {abstract} + mejorar()
+}
+@enduml

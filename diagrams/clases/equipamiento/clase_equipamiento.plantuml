@@ -1,0 +1,6 @@
+@startuml
+class Equipamiento {
+    + recibirAtaque(danioRecibido:int, gladiador:Gladiador)
+    + mejorar()
+}
+@enduml

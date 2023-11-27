@@ -1,0 +1,7 @@
+@startuml
+class Llave {
+    + Llave(mitigacionAcumulada:int)
+    + abrirCasaPompeya(gladiador:Gladiador, pompeya:Pompeya)
+    + mejorar():Equipable
+}
+@enduml

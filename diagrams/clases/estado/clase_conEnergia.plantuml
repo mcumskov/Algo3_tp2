@@ -1,0 +1,5 @@
+@startuml
+class ConEnergia {
+    + mover(gladiador:Gladiador):Gladiador
+}
+@enduml

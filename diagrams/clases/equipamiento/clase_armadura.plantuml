@@ -1,0 +1,6 @@
+@startuml
+class Armadura {
+    + Armadura(mitigacionAcumulada:int)
+    + mejorar():Equipable
+}
+@enduml

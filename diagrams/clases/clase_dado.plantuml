@@ -1,0 +1,8 @@
+@startuml
+    class Dado {
+        - caras:int
+        + Dado()
+        + Dado(caras:int)
+        + tirar(): int
+    }
+@enduml

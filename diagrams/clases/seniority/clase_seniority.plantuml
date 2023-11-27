@@ -1,0 +1,12 @@
+@startuml
+abstract class Seniority {
+    # energiaRecuperar:int
+    # limiteExperiencia:int
+    # experienciaAcumulada:int
+    + Seniority():Seniority
+    {abstract} # ascender():Seniority
+    # debeAscender(experiencia:int):bool
+    + ganarExperiencia():Seniority
+    + recuperarEnergia():int
+}
+@enduml

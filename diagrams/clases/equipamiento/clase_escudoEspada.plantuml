@@ -1,0 +1,6 @@
+@startuml
+class EscudoEspada {
+    + EscudoEspada(mitigacionAcumulada:int)
+    + mejorar():Equipable
+}
+@enduml

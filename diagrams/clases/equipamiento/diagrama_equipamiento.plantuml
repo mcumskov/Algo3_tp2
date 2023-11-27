@@ -1,0 +1,28 @@
+@startuml
+!include interfaz_equipamiento.plantuml
+!include interfaz_equipable.plantuml
+!include clase_equipamiento.plantuml
+
+!include clase_equipable.plantuml
+!include clase_ropa.plantuml
+!include clase_casco.plantuml
+!include clase_armadura.plantuml
+!include clase_escudoEspada.plantuml
+!include clase_llave.plantuml
+
+IEquipamiento <|.. Equipamiento
+Equipamiento -- "1..5 " IEquipable
+IEquipable <|.. Equipable
+Equipable <|-- Ropa
+Equipable <|-- Casco
+Equipable <|-- Armadura
+Equipable <|-- EscudoEspada
+Equipable <|-- Llave
+
+Ropa .> Casco
+Casco .> Armadura
+Armadura .> EscudoEspada
+EscudoEspada .> Llave
+
+
+@enduml

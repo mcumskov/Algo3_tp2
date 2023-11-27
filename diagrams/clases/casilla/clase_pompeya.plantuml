@@ -1,0 +1,6 @@
+@startuml
+class Pompeya {
+  + Pompeya()
+  + afectar(gladiador:Gladiador)
+}
+@enduml

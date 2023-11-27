@@ -1,0 +1,6 @@
+@startuml
+class Lesion {
+  + Lesion()
+  + obstaculizar(gladiador:Gladiador)
+}
+@enduml

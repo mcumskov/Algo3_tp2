@@ -1,0 +1,5 @@
+@startuml
+interface IEstado <<interface>> {
+    {abstract} + mover(gladiador:Gladiador):Gladiador
+}
+@enduml

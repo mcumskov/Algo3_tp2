@@ -1,0 +1,10 @@
+@startuml
+    class Jugador {
+        - turnosJugados:int
+        - nombre:String
+        + Jugador(nombre:String):Jugador
+        - nombreValido(nombreString):bool
+        + ejecutarTurno(dado:Dado, mapa:Mapa)
+        + tirarDado():int
+    }
+@enduml

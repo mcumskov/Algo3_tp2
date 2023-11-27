@@ -1,0 +1,42 @@
+@startuml
+!include clases/clase_juego.plantuml
+!include clases/clase_gestorTurnos.plantuml
+!include clases/clase_jugador.plantuml
+!include clases/clase_mapa.plantuml
+
+!include clases/clase_gladiador.plantuml
+!include clases/clase_dado.plantuml
+
+!include clases/seniority/diagrama_seniority.plantuml
+!include clases/equipamiento/diagrama_equipamiento_actual.plantuml
+!include clases/estado/diagrama_estado.plantuml
+!include clases/casilla/diagrama_casilla.plantuml
+
+
+Juego o-- Mapa
+Juego o-- GestorTurnos
+Juego o-- Dado
+GestorTurnos o-- "2..6 " Jugador
+Jugador o-- Gladiador
+Jugador ..> Dado
+Jugador ..> Mapa
+
+Mapa o-- "2..*"Casilla
+Casilla o- "0..6 " Gladiador
+
+Gladiador o-- ISeniority
+Gladiador o- IEquipamiento
+Gladiador o-- IEstado
+
+
+interface ISeniority <<interface>> {
+}
+
+interface IEstado <<interface>> {
+}
+
+interface IEquipamiento <<interface>> {
+
+}
+
+@enduml

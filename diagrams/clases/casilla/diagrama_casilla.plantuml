@@ -1,0 +1,27 @@
+@startuml
+
+!include clase_bacanal.plantuml
+!include interfaz_obstaculo.plantuml
+!include interfaz_premio.plantuml
+!include clase_comida.plantuml
+!include clase_ganarEquipamiento.plantuml
+!include clase_fiera.plantuml
+!include clase_lesion.plantuml
+!include clase_casilla.plantuml
+!include clase_eventoNulo.plantuml
+!include clase_pompeya.plantuml
+
+Casilla o-- Premio
+Premio ^. EventoNulo
+EventoNulo .^ Obstaculo
+Casilla o-- Obstaculo
+
+Obstaculo ^.. Bacanal
+Obstaculo ^.. Fiera
+Obstaculo ^.. Lesion
+
+Premio ^.. GanarEquipamiento
+Premio ^.. Comida
+Premio ^.. Pompeya
+
+@enduml

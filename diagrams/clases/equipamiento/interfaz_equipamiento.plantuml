@@ -1,0 +1,6 @@
+@startuml
+interface IEquipamiento <<interface>> {
+    {abstract} + recibirAtaque(,gladiador:Gladiador):int
+    {abstract} + mejorar()
+}
+@enduml

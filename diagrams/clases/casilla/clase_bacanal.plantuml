@@ -1,0 +1,6 @@
+@startuml
+class Bacanal {
+  + Bacanal()
+  + obstaculizar(gladiador:Gladiador)
+}
+@enduml

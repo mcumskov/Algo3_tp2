@@ -1,0 +1,7 @@
+@startuml
+class Fiera {
+    - danioDeFiera: int
+    + Fiera()
+    + obstaculizar(gladiador:Gladiador)
+}
+@enduml

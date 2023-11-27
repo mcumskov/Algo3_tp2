@@ -1,0 +1,6 @@
+@startuml
+class GanarEquipamiento {
+  + GanarEquipamiento()
+  + premiar(gladiador:Gladiador)
+}
+@enduml
