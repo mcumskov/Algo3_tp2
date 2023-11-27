@@ -1,6 +1,8 @@
 @startuml
 
-note "-Seniority NO DEBE CONTAR TURNOS! -> Agregar GestorTurnos\n-Implementar estados Gladiador en actualizar():Gladiador\n-Juego no debe recibir lista casillas sino que debe llamar al parser para crearlas\n-Refactor con nuevas interfaces\n-EstadoJuego:Juego seguro sera afectado por GestorTurnos" as N1
+note "-Seniority NO DEBE CONTAR TURNOS! -> Agregar GestorTurnos\n-EstadoJuego:Juego seguro sera afectado por GestorTurnos" as N1
+note "-Implementar estados Gladiador en actualizar():Gladiador" as N2
+note "-Juego no debe recibir lista casillas sino que debe llamar al parser para crearlas" as N3
 
 class Juego{
     + Juego(int cantidadJugadores, List<Casilla> casillas)
@@ -218,7 +220,7 @@ Bacanal --|> Obstaculo
 
 Equipamiento <|.. Desnudo
 
-Equipamiento <|.. Casilla
+Equipamiento <|.. Casco
 
 Equipamiento <|.. Armadura
 
