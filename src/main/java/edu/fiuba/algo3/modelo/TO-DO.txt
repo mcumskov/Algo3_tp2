@@ -1,5 +1,0 @@
--Agregar GestorTurnos -> Seniority NO CUENTA TURNOS! y EstadoJuego:Juego seguro sera afectado por GestorTurnos
--Implementar estados Gladiador -> actualizar():Gladiador
--Juego no debe recibir lista casillas sino que debe llamar al parser para crearlas
--abrirPompeya()
--Refactor con nuevas interfaces -> Evolucionable
