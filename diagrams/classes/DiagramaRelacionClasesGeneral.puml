@@ -1,0 +1,202 @@
+@startuml
+
+note "-Seniority NO DEBE CONTAR TURNOS! -> Agregar GestorTurnos\n-Implementar estados Gladiador en actualizar():Gladiador\n-Juego no debe recibir lista casillas sino que debe llamar al parser para crearlas\n-Implementar los distintos Premios y Obstaculos\n-Refactor con nuevas interfaces\n-EstadoJuego:Juego seguro sera afectado por GestorTurnos" as N1
+
+class Juego{
+    + Juego(int cantidadJugadores, List<Casilla> casillas)
+    + iniciar() : void
+    + cambiarEstadoJuego( EstadoJuego estadoNuevo) : void
+}
+
+class Tablero{
+    - Map<Gladiador, Integer> posicionesGladiadores
+    + Tablero(List<Gladiador> gladiadores, List<Casilla> casillas)
+    + moverGladiador(Gladiador gladiador, int pasosAvanzar)
+}
+
+class Casilla{
+    + Casilla()
+    + afectar(Gladiador gladiador)
+}
+
+interface Afectador{
+    + afectar(Gladiador gladiador)
+}
+
+abstract Premio{
++ {abstract} afectar(Gladiador gladiador)
+}
+
+class PremioNulo{
++ afectar(Gladiador gladiador)
+}
+
+abstract Obstaculo{
++ {abstract} afectar(Gladiador gladiador)
+}
+
+class ObstaculoNulo{
++ afectar(Gladiador gladiador)
+}
+
+class Jugador{
+    + Jugador(Gladiador gladiador)
+    + realizarTurno(Tablero tablero, int maxCantidadPasos) : void
+}
+
+class Dado{
+    - random : Random
+    - caras : int
+    + Dado(int caras)
+    + lanzar() : int
+}
+
+class Gladiador{
+    - energia : int
+    + Gladiador()
+    + actualizar(Tablero tablero, int pasosAvanzar) : void
+    + cambiarEnergia(int cambioEnergia) : void
+    + cambiarSeniority(Seniority nuevoSeniority) : void
+    + cambiarEquipamiento(Equipamiento nuevoEquipamiento) : void
+    + recibirDanio(int danio) : void
+}
+
+abstract Seniority{
+    - turnos : int
+    # recuperacionEnergia : int
+    # limiteAsencion : int
+    + {abstract} void evolucionar(Gladiador gladiador)
+    + recuperarEnergia(Gladiador gladiador) : void
+}
+
+class Novato{
+    + Novato()
+    + evolucionar(Gladiador gladiador) : void
+}
+
+class SemiSenior{
+    + SemiSenior()
+    + evolucionar(Gladiador gladiador) : void
+}
+
+class Senior{
+    + Senior()
+    + evolucionar(Gladiador gladiador) : void
+}
+
+abstract Equipamiento{
+    # reduccionDeDanio : int
+    + mitigarDanio(int danio) : int
+    + {abstract} mejorarEquipamiento(Gladiador gladiador) : void
+}
+
+class Desnudo{
+ + Desnudo()
+ + mejorarEquipamiento(Gladiador gladiador) : void
+}
+
+class Casco{
+ + Casco()
+ + mejorarEquipamiento(Gladiador gladiador) : void
+}
+
+class Armadura{
+ + Armadura()
+ + mejorarEquipamiento(Gladiador gladiador) : void
+}
+
+class EscudoEspada{
+ + EscudoEspada()
+ + mejorarEquipamiento(Gladiador gladiador) : void
+}
+
+class Llave{
+ + Llave()
+ + mejorarEquipamiento(Gladiador gladiador) : void
+}
+
+abstract EstadoJuego{
+    + {abstract} finalizar() : void
+    + {abstract}  determinarContinuidadEjecucion() : boolean
+}
+
+interface Finalizador{
+    + finalizar() : void
+}
+
+interface DeterminadorContinuidadJuego{
+    + determinarContinuidadEjecucion() : boolean
+}
+
+class Jugando{
+    + finalizar() : void
+    + determinarContinuidadEjecucion() : boolean
+    }
+
+class FinalizadoConGanador{
+    + finalizar() : void
+    + determinarContinuidadEjecucion() : boolean
+}
+
+class FinalizadoSinGanador{
+    + finalizar() : void
+    + determinarContinuidadEjecucion() : boolean
+}
+
+Juego --> Tablero
+
+Juego *-- EstadoJuego
+
+Jugando --|> EstadoJuego
+
+EstadoJuego ..|> Finalizador
+
+EstadoJuego ..|> DeterminadorContinuidadJuego
+
+FinalizadoConGanador --|> EstadoJuego
+
+FinalizadoSinGanador --|> EstadoJuego
+
+Juego "2" --> "6" Jugador
+
+Jugador --> Gladiador
+
+Jugador -- Dado
+
+Gladiador *-- Seniority
+
+Novato --|> Seniority
+
+SemiSenior --|> Seniority
+
+Senior --|> Seniority
+
+Gladiador -- Equipamiento
+
+Tablero "1" --> "..*" Casilla
+
+Casilla --> Premio
+
+PremioNulo --|> Premio
+
+Casilla --> Obstaculo
+
+ObstaculoNulo --|> Obstaculo
+
+Afectador <|.. Casilla
+
+Afectador <|.. Premio
+
+Afectador <|.. Obstaculo
+
+Equipamiento <|.. Desnudo
+
+Equipamiento <|.. Casilla
+
+Equipamiento <|.. Armadura
+
+Equipamiento <|.. EscudoEspada
+
+Equipamiento <|.. Llave
+
+@enduml
