@@ -20,11 +20,18 @@ public class Gladiador {
         //El estado Lesionado no lo hace y cambia a Sano
     }
 
-    public void cambiarEnergia(int cambioEnergia){ this.energia += cambioEnergia; }
+    public void cambiarEnergia(int cambioEnergia){
+        this.energia += cambioEnergia;
+        if(this.energia < 0){
+            this.energia = 0;
+        }
+    }
 
     public void cambiarSeniority(Seniority nuevoSeniority){ this.seniority = nuevoSeniority; }
 
     public void cambiarEquipamiento(Equipamiento nuevoEquipamiento){ this.equipamiento = nuevoEquipamiento; }
 
-    public void recibirDanio(int danio){ this.energia -= equipamiento.mitigarDanio(danio); }
+    public void premiar(Premio premio){ premio.premiar(this, equipamiento); }
+
+    public void obstaculizar(Obstaculo obstaculo){ obstaculo.obstaculizar(this, equipamiento); }
 }

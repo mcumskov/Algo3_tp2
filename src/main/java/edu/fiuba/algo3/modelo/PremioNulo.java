@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
-public class PremioNulo extends Premio {
+public class PremioNulo extends Premio{
 
     @Override
-    public void afectar(Gladiador gladiador) {}
+    public void premiar(Gladiador gladiador, Equipamiento equipamiento){}
 }

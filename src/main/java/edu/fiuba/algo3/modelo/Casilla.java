@@ -10,7 +10,7 @@ class Casilla implements Afectador {
     }
 
     public void afectar(Gladiador gladiador){
-        premio.afectar(gladiador);
-        obstaculo.afectar(gladiador);
+        gladiador.premiar(premio);
+        gladiador.obstaculizar(obstaculo);
     }
 }
