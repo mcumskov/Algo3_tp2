@@ -1,6 +1,6 @@
 @startuml
 
-note "-Seniority NO DEBE CONTAR TURNOS! -> Agregar GestorTurnos\n-Implementar estados Gladiador en actualizar():Gladiador\n-Juego no debe recibir lista casillas sino que debe llamar al parser para crearlas\n-Implementar los distintos Premios y Obstaculos\n-Refactor con nuevas interfaces\n-EstadoJuego:Juego seguro sera afectado por GestorTurnos" as N1
+note "-Seniority NO DEBE CONTAR TURNOS! -> Agregar GestorTurnos\n-Implementar estados Gladiador en actualizar():Gladiador\n-Juego no debe recibir lista casillas sino que debe llamar al parser para crearlas\n-Refactor con nuevas interfaces\n-EstadoJuego:Juego seguro sera afectado por GestorTurnos" as N1
 
 class Juego{
     + Juego(int cantidadJugadores, List<Casilla> casillas)
@@ -19,24 +19,44 @@ class Casilla{
     + afectar(Gladiador gladiador)
 }
 
-interface Afectador{
-    + afectar(Gladiador gladiador)
-}
-
 abstract Premio{
-+ {abstract} afectar(Gladiador gladiador)
++ {abstract} premiar(Gladiador gladiador, Equipamiento equipamiento) : void
 }
 
 class PremioNulo{
 + afectar(Gladiador gladiador)
 }
 
+class GanarEquipo{
+ + premiar(Gladiador gladiador, Equipamiento equipamiento) : void
+}
+
+class Pompeya{
+ + premiar(Gladiador gladiador, Equipamiento equipamiento) : void
+}
+
+class Comida{
+ + premiar(Gladiador gladiador, Equipamiento equipamiento) : void
+}
+
 abstract Obstaculo{
-+ {abstract} afectar(Gladiador gladiador)
++ obstaculizar(Gladiador gladiador, Equipamiento equipamiento) : void
 }
 
 class ObstaculoNulo{
 + afectar(Gladiador gladiador)
+}
+
+class Fiera{
+ + obstaculizar(Gladiador gladiador, Equipamiento equipamiento) : void
+}
+
+class Lesion{
+ + obstaculizar(Gladiador gladiador, Equipamiento equipamiento) : void
+}
+
+class Bacanal{
+ + obstaculizar(Gladiador gladiador, Equipamiento equipamiento) : void
 }
 
 class Jugador{
@@ -58,14 +78,15 @@ class Gladiador{
     + cambiarEnergia(int cambioEnergia) : void
     + cambiarSeniority(Seniority nuevoSeniority) : void
     + cambiarEquipamiento(Equipamiento nuevoEquipamiento) : void
-    + recibirDanio(int danio) : void
+    + premiar(Premio premio) : void
+    + obstaculizar(Obstaculo obstaculo) : void
 }
 
 abstract Seniority{
     - turnos : int
     # recuperacionEnergia : int
     # limiteAsencion : int
-    + {abstract} void evolucionar(Gladiador gladiador)
+    + {abstract} evolucionar(Gladiador gladiador) : void
     + recuperarEnergia(Gladiador gladiador) : void
 }
 
@@ -179,15 +200,21 @@ Casilla --> Premio
 
 PremioNulo --|> Premio
 
+Comida --|> Premio
+
+Pompeya --|> Premio
+
+GanarEquipo --|> Premio
+
 Casilla --> Obstaculo
 
 ObstaculoNulo --|> Obstaculo
 
-Afectador <|.. Casilla
+Fiera --|> Obstaculo
 
-Afectador <|.. Premio
+Lesion --|> Obstaculo
 
-Afectador <|.. Obstaculo
+Bacanal --|> Obstaculo
 
 Equipamiento <|.. Desnudo
 

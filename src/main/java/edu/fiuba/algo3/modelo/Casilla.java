@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-class Casilla implements Afectador {
+class Casilla{
     private Premio premio;
     private Obstaculo obstaculo;
 
