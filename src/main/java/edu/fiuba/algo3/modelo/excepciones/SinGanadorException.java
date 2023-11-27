@@ -4,4 +4,5 @@ public class SinGanadorException extends  RuntimeException {
     public SinGanadorException(String mensaje){
         super(mensaje);
     }
+
 }

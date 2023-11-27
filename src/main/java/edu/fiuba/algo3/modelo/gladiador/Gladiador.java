@@ -16,7 +16,6 @@ public class Gladiador {
         this.equipamiento = new Equipamiento();
         //this.estado = new GladiadorSano(this);
         this.seniority = new Seniority();
-
     }
 
     private void disminuirEnergia(int energiaDisminuir) {
@@ -40,17 +39,8 @@ public class Gladiador {
 
     }
 
-
-    public void cambiarEnergia(int variacionDeEnergia) {
-        this.energia = energia + variacionDeEnergia;
-        if (this.energia <= 0) {
-            this.cambiarEstado(new GladiadorSinEnergia(this));
-        } else {
-            this.cambiarEstado(new GladiadorSano(this));
-        }
-    }
-
     public void mejorarEquipamiento() {
+
         this.equipamiento.mejorar();
     }
 
