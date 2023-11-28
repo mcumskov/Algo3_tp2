@@ -14,6 +14,8 @@ public abstract class Equipable {
 
     }
 
-    public void abrirCasaPompeya(){}
+    public void abrirCasaPompeya(){
+
+    }
 
 }

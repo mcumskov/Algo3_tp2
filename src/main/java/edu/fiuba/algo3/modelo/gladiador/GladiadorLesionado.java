@@ -1,14 +1,11 @@
 package edu.fiuba.algo3.modelo.gladiador;
 
+import edu.fiuba.algo3.modelo.mapa.Casilla;
+
 public class GladiadorLesionado implements Estado{
 
-    private Gladiador gladiador;
+    public void avanzar(Gladiador gladiador, Casilla casillaDeSalida, int pasos){
 
-    public GladiadorLesionado( Gladiador gladiadorRecibido){
-        this.gladiador = gladiadorRecibido;
-    }
-
-    public void avanzar(int pasos){
-        gladiador.cambiarEstado(new GladiadorSano(gladiador));
+        gladiador.cambiarEstado(new GladiadorSano());
     }
 }

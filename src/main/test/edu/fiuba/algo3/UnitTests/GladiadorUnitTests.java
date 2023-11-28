@@ -14,7 +14,6 @@ public class GladiadorUnitTests {
         Gladiador gladiador = new Gladiador();
 
         assertEquals(20, gladiador.getEnergia());
-
     }
 
     @Test
@@ -25,7 +24,6 @@ public class GladiadorUnitTests {
         gladiador.recibirAtaque(20);
 
         assertEquals(0, gladiador.getEnergia());
-
     }
 
     @Test
@@ -38,7 +36,6 @@ public class GladiadorUnitTests {
         gladiador.recibirAtaque(20);
 
         assertEquals(5, gladiador.getEnergia());
-
     }
 
     @Test
@@ -52,7 +49,6 @@ public class GladiadorUnitTests {
         gladiador.recibirAtaque(20);
 
         assertEquals(10, gladiador.getEnergia());
-
     }
 
     @Test
@@ -67,7 +63,6 @@ public class GladiadorUnitTests {
         gladiador.recibirAtaque(20);
 
         assertEquals(18, gladiador.getEnergia());
-
     }
 
     @Test
@@ -83,7 +78,6 @@ public class GladiadorUnitTests {
         gladiador.recibirAtaque(20);
 
         assertEquals(20, gladiador.getEnergia());
-
     }
 
     @Test
@@ -100,7 +94,6 @@ public class GladiadorUnitTests {
         gladiador.actualizarSeniority();
 
         assertEquals(20, gladiador.getEnergia());
-
     }
 
     @Test
@@ -115,7 +108,6 @@ public class GladiadorUnitTests {
 
 
         assertEquals(25, gladiador.getEnergia());
-
     }
 
     @Test
@@ -129,7 +121,6 @@ public class GladiadorUnitTests {
         }
 
         assertEquals(40, gladiador.getEnergia());
-
     }
 
     @Test
@@ -143,6 +134,9 @@ public class GladiadorUnitTests {
         }
 
         assertEquals(50, gladiador.getEnergia());
+    }
+    @Test
+    public void test10(){
 
     }
 
