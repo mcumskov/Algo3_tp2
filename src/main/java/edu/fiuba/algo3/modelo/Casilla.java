@@ -10,7 +10,7 @@ class Casilla{
     }
 
     public void afectar(Gladiador gladiador){
-        gladiador.premiar(premio);
-        gladiador.obstaculizar(obstaculo);
+        premio.premiar(gladiador);
+        obstaculo.obstaculizar(gladiador);
     }
 }

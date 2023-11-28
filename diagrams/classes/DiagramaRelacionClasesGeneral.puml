@@ -4,6 +4,7 @@ note "Seniority NO DEBE CONTAR TURNOS! -> Agregar GestorTurnos\n-EstadoJuego:Jue
 note "-Juego no debe recibir lista casillas sino que debe llamar al parser para crearlas" as N2
 note "Implementar abrirPompeya():Equipamiento, seguro abra que pasar como parametro al Tablero" as N3
 note "Refactor con nuevas interfaces -> Evolucionable" as N4
+note "siguienteTurno : SeguirJugando NoSeguirJugando" as N5
 
 class Juego{
     + Juego(int cantidadJugadores, List<Casilla> casillas)

@@ -12,4 +12,6 @@ public abstract class Equipamiento{
 
     public abstract void mejorarEquipamiento(Gladiador gladiador);
 
+    public abstract void llegarPompeya();
+
 }

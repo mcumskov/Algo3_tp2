@@ -21,7 +21,8 @@ public class Gladiador {
 
     public void cambiarEnergia(int cambioEnergia){
         this.energia += cambioEnergia;
-        if(this.energia < 0){
+        if(this.energia <= 0){
+            cambiarEstado(new SinEnergia());
             this.energia = 0;
         }
     }
@@ -32,7 +33,7 @@ public class Gladiador {
 
     public void cambiarEstado(EstadoGladiador nuevoEstadoGladiador){ this.estadoGladiador = nuevoEstadoGladiador; };
 
-    public void premiar(Premio premio){ premio.premiar(this, equipamiento); }
+    public void mejorarEquipamiento(){ equipamiento.mejorarEquipamiento(this); }
 
-    public void obstaculizar(Obstaculo obstaculo){ obstaculo.obstaculizar(this, equipamiento); }
+    public void llegarPompeya(){ equipamiento.llegarPompeya(); }
 }
