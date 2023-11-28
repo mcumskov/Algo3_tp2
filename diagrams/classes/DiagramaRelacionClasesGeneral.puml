@@ -1,10 +1,9 @@
 @startuml
 
 note "Seniority NO DEBE CONTAR TURNOS! -> Agregar GestorTurnos\n-EstadoJuego:Juego seguro sera afectado por GestorTurnos" as N1
-note "Implementar estados Gladiador en actualizar():Gladiador" as N2
-note "-Juego no debe recibir lista casillas sino que debe llamar al parser para crearlas" as N3
-note "Implementar abrirPompeya():Equipamiento, seguro abra que pasar como parametro al Tablero" as N4
-note "Refactor con nuevas interfaces -> Evolucionable" as N5
+note "-Juego no debe recibir lista casillas sino que debe llamar al parser para crearlas" as N2
+note "Implementar abrirPompeya():Equipamiento, seguro abra que pasar como parametro al Tablero" as N3
+note "Refactor con nuevas interfaces -> Evolucionable" as N4
 
 class Juego{
     + Juego(int cantidadJugadores, List<Casilla> casillas)

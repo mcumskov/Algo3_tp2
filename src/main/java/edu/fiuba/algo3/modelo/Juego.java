@@ -25,8 +25,8 @@ public class Juego {
 
     public void iniciar(){
         Iterator<Jugador> iteradorJugadores = jugadores.iterator();
-        while( iteradorJugadores.hasNext() && estadoJuego.determinarContinuidadEjecucion() ){
-            iteradorJugadores.next().realizarTurno(tablero, 6);
+        while( iteradorJugadores.hasNext() && estadoJuego.determinarContinuidadEjecucion() ){ //Excepciones
+            iteradorJugadores.next().realizarTurno(tablero, 6); //GestorTurnos
         }
         estadoJuego.finalizar();
     }

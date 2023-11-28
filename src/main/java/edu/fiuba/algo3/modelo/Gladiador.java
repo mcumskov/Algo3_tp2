@@ -5,19 +5,18 @@ public class Gladiador {
     private Seniority seniority;
     private Equipamiento equipamiento;
 
+    private EstadoGladiador estadoGladiador;
+
     public Gladiador(){
         this.seniority = new Novato();
         this.equipamiento = new Desnudo();
+        this.estadoGladiador = new Sano();
     }
 
     public void actualizar(Tablero tablero, int pasosAvanzar){
         seniority.recuperarEnergia(this);
         seniority.evolucionar(this);
-        //Cambiar estado si no tiene energia
-        tablero.moverGladiador(this, pasosAvanzar);
-        //De esto de arriba se puede encargar el Estado Sano like:
-        // estado.moverGladiador(Tablero tablero, Gladiador gladiador){ tablero.moverGladiador(gladiador, pasosAvanzar); }
-        //El estado Lesionado no lo hace y cambia a Sano
+        estadoGladiador.mover(tablero, this, pasosAvanzar);
     }
 
     public void cambiarEnergia(int cambioEnergia){
@@ -30,6 +29,8 @@ public class Gladiador {
     public void cambiarSeniority(Seniority nuevoSeniority){ this.seniority = nuevoSeniority; }
 
     public void cambiarEquipamiento(Equipamiento nuevoEquipamiento){ this.equipamiento = nuevoEquipamiento; }
+
+    public void cambiarEstado(EstadoGladiador nuevoEstadoGladiador){ this.estadoGladiador = nuevoEstadoGladiador; };
 
     public void premiar(Premio premio){ premio.premiar(this, equipamiento); }
 
