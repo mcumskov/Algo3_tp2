@@ -23,6 +23,7 @@ public class Juego {
     public Dado dado;
     public ArrayList<Jugador> jugadores;
     public int cantidadJugadores;
+    private static Juego instancia;
 
     public Juego () throws IOException {
 
@@ -45,9 +46,10 @@ public class Juego {
 
         this.gestorTurnos = new GestorTurnos(30, this.jugadores);
         this.dado = new Dado();
+        this.iniciarPartida();
     }
 
-    public void iniciarPartida(){
+    private void iniciarPartida(){
 
         try{
             while(true){
@@ -58,6 +60,32 @@ public class Juego {
         }
     }
 
+    public static Juego getJuego() throws IOException {
+        if(instancia == null){
+            instancia = new Juego();
+        }
+        return instancia;
+    }
+    private void moverGladiadorAMitadMapa(Gladiador gladiador) {
+        this.mapa.enviarAMitad(gladiador);
+    }
+    private void buscarGanador() {
+        Jugador ganador = gestorTurnos.getJugadoractual();
+        //hacerle una fiesta al ganador
+    }
+    public static void gladiadorSinLlaveLlegaAlFinal(Gladiador gladiador){
+        if(instancia == null){
+            return;
+        }
+        instancia.moverGladiadorAMitadMapa(gladiador);
+    }
 
+
+    public static void gladiadorConLlaveLlegaAlFinal(){
+        if(instancia == null){
+            return;
+        }
+        instancia.buscarGanador();
+    }
 
 }

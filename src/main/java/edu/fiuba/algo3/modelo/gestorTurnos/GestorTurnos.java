@@ -69,4 +69,7 @@ public class GestorTurnos {
         throw new SinGanadorException("Finalizó sin ganador");
     }
 
+    public Jugador getJugadoractual() {
+        return jugadoractual;
+    }
 }

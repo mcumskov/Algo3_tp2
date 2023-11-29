@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Eventos.Obstaculos.Obstaculo;
 import edu.fiuba.algo3.modelo.Eventos.Premios.Premio;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CasillaFinal implements Casilla{
@@ -17,6 +18,7 @@ public class CasillaFinal implements Casilla{
         this.casillaSiguiente = siguiente;
         this.obstaculo = obstaculo;
         this.premio = premio;
+        this.gladiadoresEnLaCasilla = new ArrayList<Gladiador>();
     }
     public void SetSiguiente(Casilla siguiente){
         this.casillaSiguiente = siguiente;

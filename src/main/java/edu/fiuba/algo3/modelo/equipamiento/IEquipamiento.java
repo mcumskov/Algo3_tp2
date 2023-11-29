@@ -8,6 +8,6 @@ public interface IEquipamiento {
 
     public void mejorar();
 
-    public void abrirCasaPompeya();
+    public void abrirCasaPompeya(Gladiador gladiador);
 
 }

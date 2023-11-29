@@ -8,13 +8,15 @@ public class Mapa {
 
     protected List<Casilla> casillas;
     protected Casilla casillaMedio;
-
+    protected Casilla casillaUltima;
     public Mapa(List<Gladiador> gladiadores, List<Casilla> casillas, int CantJugadores){
 
         this.casillas = casillas;
         Casilla primerCasilla = casillas.get(0);
         int mitad = casillas.size()/2;
+        int ultima = casillas.size()-1;
         this.casillaMedio = casillas.get(mitad);
+        this.casillaUltima = casillas.get(ultima);
 
         for(int i=0; i<CantJugadores; i++){
             primerCasilla.recibir(gladiadores.get(i));
@@ -56,8 +58,9 @@ public class Mapa {
           opinion*/
 
         gladiador.avanzar(inicioMovimiento, tiradaDeDado);
-
-
-
+    }
+    public void enviarAMitad(Gladiador gladiador){
+        this.casillaUltima.expulsar(gladiador);
+        this.casillaMedio.recibir(gladiador);
     }
 }

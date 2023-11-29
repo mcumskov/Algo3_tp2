@@ -51,8 +51,8 @@ public class Gladiador {
         this.aumentarEnergia(this.seniority.recuperarEnergia());
     }
 
-    public void abrirCasaPompeya() {
-        equipamiento.abrirCasaPompeya();
+    public void abrirCasaPompeya(Gladiador gladiador) {
+        equipamiento.abrirCasaPompeya(gladiador);
     }
 
     public int getEnergia() {

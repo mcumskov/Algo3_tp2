@@ -20,8 +20,8 @@ public class Equipamiento implements IEquipamiento{
         this.equipable = equipable.mejorar();
     }
 
-    public void abrirCasaPompeya(){
-        this.equipable.abrirCasaPompeya();
+    public void abrirCasaPompeya(Gladiador gladiador){
+        this.equipable.abrirCasaPompeya(gladiador);
     }
 
 
