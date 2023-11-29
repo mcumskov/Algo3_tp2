@@ -1,0 +1,6 @@
+@startuml
+class Casco {
+    + Casco(mitigacionAcumulada:int)
+    + mejorar():Equipable
+}
+@enduml

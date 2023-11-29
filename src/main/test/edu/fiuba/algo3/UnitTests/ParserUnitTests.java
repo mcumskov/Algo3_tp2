@@ -5,8 +5,8 @@ import edu.fiuba.algo3.modelo.excepciones.PremioInvalidoException;
 import edu.fiuba.algo3.modelo.excepciones.TipoCasillaInvalidaException;
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.Mapa.Casilla;
-import edu.fiuba.algo3.modelo.Mapa.Parser;
+import edu.fiuba.algo3.modelo.mapa.Casilla;
+import edu.fiuba.algo3.modelo.mapa.Parser;
 
 import java.io.IOException;
 import java.nio.file.Files;

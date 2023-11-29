@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.modelo.gladiador;
 
 import edu.fiuba.algo3.modelo.equipamiento.Equipamiento;
-import edu.fiuba.algo3.modelo.log.Log;
+
+import edu.fiuba.algo3.modelo.mapa.Casilla;
+
 import edu.fiuba.algo3.modelo.seniority.Seniority;
 
 public class Gladiador {
@@ -12,21 +14,20 @@ public class Gladiador {
     private int energia;
 
     public Gladiador() {
-        Log.obtenerLogger().warning("");
         this.energia = 20;
         this.equipamiento = new Equipamiento();
-        //this.estado = new GladiadorSano(this);
+        this.estado = new GladiadorSano();
         this.seniority = new Seniority();
     }
 
-    private void disminuirEnergia(int energiaDisminuir) {
-
+    public void disminuirEnergia(int energiaDisminuir) {
         this.energia -= energiaDisminuir;
-
+        if(this.energia <= 0){
+            this.estado = new GladiadorSinEnergia();
+        }
     }
 
     public void aumentarEnergia(int energiaAumentar){
-
         this.energia += energiaAumentar;
     }
 
@@ -35,29 +36,37 @@ public class Gladiador {
     }
 
     public void recibirAtaque(int danio) {
-
         this.disminuirEnergia(this.equipamiento.recibirAtaque(danio));
+    }
 
+    public void avanzar(Casilla casilla, int pasos){
+       this.estado.avanzar(this, casilla, pasos);
     }
 
     public void mejorarEquipamiento() {
-
         this.equipamiento.mejorar();
     }
 
     public void actualizarSeniority(){
-
         this.seniority.actualizar();
         this.aumentarEnergia(this.seniority.recuperarEnergia());
-
     }
 
-    public void abrirCasaPompeya() {
-        equipamiento.abrirCasaPompeya();
+    public void abrirCasaPompeya(Gladiador gladiador) {
+        equipamiento.abrirCasaPompeya(gladiador);
     }
 
     public int getEnergia() {
         return this.energia;
+    }
+
+    @Override
+    public boolean equals(Object gladiadorAComparar) {
+        boolean resultado = false;
+        if (this == gladiadorAComparar) {
+            resultado = true;
+        }
+        return resultado;
     }
 
 }

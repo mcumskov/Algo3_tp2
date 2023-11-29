@@ -1,0 +1,6 @@
+@startuml
+class Ropa {
+    + Ropa(mitigacionAcumulada:int)
+    + mejorar():Equipable
+}
+@enduml

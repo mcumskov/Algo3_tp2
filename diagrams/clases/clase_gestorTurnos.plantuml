@@ -1,0 +1,8 @@
+@startuml
+    class GestorTurnos {
+        - jugadorActual:Jugador
+        + GestorTurnos(Jugadores:Jugador):GestorTurnos
+        + siguienteTurno():Jugador
+        + getJugadorActual():Jugador
+    }
+@enduml

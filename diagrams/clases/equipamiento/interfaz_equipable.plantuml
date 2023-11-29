@@ -1,0 +1,6 @@
+@startuml
+interface IEquipable <<interface>> {
+    {abstract} + reducirDanio():int
+    {abstract} + mejorar()
+}
+@enduml

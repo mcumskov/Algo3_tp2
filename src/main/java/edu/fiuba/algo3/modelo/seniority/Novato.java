@@ -14,9 +14,10 @@ public class Novato extends NivelDeSeniority{
 
         if(this.turnosRestantesParaMejora < 1 ) {
             return new SemiSenior();
-        } else {
-            return this;
         }
+
+        return this;
+
 
     }
 }

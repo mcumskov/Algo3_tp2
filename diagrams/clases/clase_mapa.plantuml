@@ -1,0 +1,8 @@
+@startuml
+class Mapa {
+    - localizarGladiador(gladiador:Gladiador):Casilla
+    - recorrerHaciaAdelante(casillaInicial:Casilla, pasos:int):Casilla
+    + moverGladiador(gladiador:Gladiador, pasos:int)
+    + casillaInicial():Casilla
+}
+@enduml

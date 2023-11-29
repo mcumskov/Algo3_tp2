@@ -1,0 +1,9 @@
+@startuml
+class Casilla {
+    + Casilla(premio:Premio,obstaculo:Obstaculo)
+    + recibir(gladiador:Gladiador)
+    + expulsar(gladiador:Gladiador)
+    + otorgarPremio(gladiador:Gladiador)
+    + aplicarObstaculo(gladiador:Gladiado)
+}
+@enduml

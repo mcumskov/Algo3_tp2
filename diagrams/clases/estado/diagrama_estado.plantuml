@@ -1,0 +1,12 @@
+@startuml
+!include interfaz_estado.plantuml
+!include clase_estado.plantuml
+!include clase_conEnergia.plantuml
+!include clase_sinEnergia.plantuml
+!include clase_lesionado.plantuml
+
+IEstado <|.. Estado
+Estado <|-- ConEnergia
+Estado <|-- SinEnergia
+Estado <|-- Lesionado
+@enduml

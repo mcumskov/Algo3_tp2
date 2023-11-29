@@ -1,0 +1,5 @@
+@startuml
+abstract class Estado {
+    {abstract} + mover(gladiador:Gladiador):Gladiador
+}
+@enduml

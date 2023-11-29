@@ -1,0 +1,5 @@
+@startuml
+interface Premio <<interface>> {
+    {abstract} + premiar(gladiador:Gladiador)
+}
+@enduml

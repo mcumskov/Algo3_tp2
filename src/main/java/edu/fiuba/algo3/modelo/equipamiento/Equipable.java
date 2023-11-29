@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.equipamiento;
 
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
+import edu.fiuba.algo3.modelo.juego.Juego;
 
 public abstract class Equipable {
 
@@ -14,6 +15,8 @@ public abstract class Equipable {
 
     }
 
-    public void abrirCasaPompeya(){}
+    public void abrirCasaPompeya(Gladiador gladiador){
+        Juego.gladiadorSinLlaveLlegaAlFinal(gladiador);
+    }
 
 }

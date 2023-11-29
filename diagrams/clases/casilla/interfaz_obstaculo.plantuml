@@ -1,0 +1,5 @@
+@startuml
+interface Obstaculo <<interface>> {
+    {abstract} + obstaculizar(gladiador:Gladiador)
+}
+@enduml

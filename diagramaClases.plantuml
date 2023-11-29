@@ -1,0 +1,172 @@
+@startuml
+class Juego {
+    + iniciarJuego(): void
+}
+
+class Dado {
+    + lanzar(): int
+}
+
+class Mapa {
+    + obtenerCasillaActual(): Casilla
+}
+
+class Jugador {
+    - nombre: string
+    + verificarGanador(): boolean
+}
+
+class GestorTurnos {
+
+}
+
+class Turno {
+
+}
+
+interface Casilla {
+    + aplicarEfecto(Gladiador: gladiador): void
+}
+
+class CasillaNormal implements Casilla {
+    + aplicarEfecto(Gladiador: gladiador): void
+}
+
+class ColiseoRomano extends CasillaNormal {
+    + aplicarEfecto(Gladiador: gladiador): void
+}
+
+class Pompeya extends CasillaNormal {
+    + aplicarEfecto(Gladiador: gladiador): void
+}
+
+class Comida extends CasillaNormal {
+    + aplicarEfecto(Gladiador: gladiador): void
+}
+
+class Recompensa extends CasillaNormal {
+    + aplicarEfecto(Gladiador: gladiador): void
+}
+
+class Bacanal extends CasillaNormal {
+    + aplicarEfecto(Gladiador: gladiador): void
+}
+
+class FieraSalvaje extends CasillaNormal {
+    + aplicarEfecto(Gladiador: gladiador): void
+}
+
+class Lesion extends CasillaNormal {
+    + aplicarEfecto(Gladiador: gladiador): void
+}
+
+class Gladiador {
+    - energia: int
+    - seniority: string
+    + obtenerPremio(tipoPremio: Premio): void
+    + recibirPenalizacion(tipoObstaculo: Obstaculo): void
+}
+
+class Equipamiento {
+
+}
+
+interface Equipable {
+    + reducirDanio(danio: int): int
+}
+
+class Casco implements Equipable {
+    - proteccion: int
+    + reducirDanio(danio: int): int
+}
+
+class Armadura implements Equipable {
+    - proteccion: int
+    + reducirDanio(danio: int): int
+}
+
+class EscudoEspada implements Equipable {
+    - proteccion: int
+    + reducirDanio(danio: int): int
+}
+
+class Llave implements Equipable {
+    - proteccion: int
+    + reducirDanio(danio: int): int
+}
+
+abstract class Seniority {
+
+}
+
+class Novato Extends Seniority {
+
+}
+
+class SemiSenior Extends Seniority {
+
+}
+
+class Senior Extends Seniority {
+
+}
+
+
+Juego --> Mapa
+Mapa *-- "2..*" Casilla
+Juego *-- "2..6" Jugador
+Juego  *-- Dado
+Juego  *-- GestorTurnos
+GestorTurnos *-- "2..6" Turno
+Jugador *-- Gladiador
+Jugador -> Dado
+Jugador -> Mapa
+Gladiador -- Equipamiento
+Gladiador -- Casilla
+Gladiador *-- Seniority
+Equipamiento -- Casco
+Equipamiento -- Armadura
+Equipamiento -- EscudoEspada
+Equipamiento -- Llave
+Casilla o-- Casilla
+Equipable o-- Equipable
+@enduml
+
+@startuml
+
+skinparam linetype ortho
+
+class Gladiador {
+}
+
+class GladiadorSano {
+    + GladiadorSano(Gladiador):
+    gladiador: Gladiador+ avanzar(int, int): void
+}
+class GladiadorLesionado {
+    + GladiadorLesionado(Gladiador):
+    gladiador: Gladiador+ avanzar(int, int): void
+}
+class GladiadorSinEnergia {
+    + GladiadorSinEnergia(Gladiador):
+    gladiador: Gladiador+ avanzar(int, int): void
+}
+
+interface Estado << interface >> {
+    + avanzar(int, int): void
+}
+
+Gladiador <-- GladiadorLesionado
+Gladiador <-- GladiadorSano
+Gladiador <-- GladiadorSinEnergia
+
+GladiadorLesionado .-> GladiadorSano : "«create»"
+GladiadorSinEnergia .-> GladiadorSano : "«create»"
+Gladiador .-> GladiadorSinEnergia : "«create»"
+
+GladiadorLesionado   .--^  Estado
+GladiadorSano        .--^  Estado
+GladiadorSinEnergia  .--^  Estado
+@enduml
+
+test - juego

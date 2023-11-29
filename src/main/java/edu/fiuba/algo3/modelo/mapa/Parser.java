@@ -1,11 +1,7 @@
-package edu.fiuba.algo3.modelo.Mapa;
+package edu.fiuba.algo3.modelo.mapa;
 
-import edu.fiuba.algo3.modelo.CasillaCamino;
-import edu.fiuba.algo3.modelo.Eventos.Nulo;
-import edu.fiuba.algo3.modelo.Eventos.Obstaculos.Bacanal;
-import edu.fiuba.algo3.modelo.Eventos.Obstaculos.FieraSalvaje;
-import edu.fiuba.algo3.modelo.Eventos.Obstaculos.Lesion;
-import edu.fiuba.algo3.modelo.Eventos.Obstaculos.Obstaculo;
+import edu.fiuba.algo3.modelo.Eventos.Obstaculos.*;
+import edu.fiuba.algo3.modelo.Eventos.Premios.PremioNulo;
 import edu.fiuba.algo3.modelo.Eventos.Premios.Premio;
 import edu.fiuba.algo3.modelo.Eventos.Premios.PremioComestible;
 import edu.fiuba.algo3.modelo.Eventos.Premios.PremioEquipamiento;
@@ -21,9 +17,15 @@ public class Parser {
     List<Casilla> casillas ;
 
     private int ancho ;
-    private int alto ;
+    private int alto ; // esto calculo q tampoco lo necesitamos
 
-    public List<Casilla> parsearJSON(String jsonString) {
+    protected Casilla casillaAnterior;
+
+    public void Parser(){
+        this.casillaAnterior = null;
+    }
+
+    public List<Casilla> parsearJSON (String jsonString) {
 
         List<Casilla> casillas = new ArrayList<>();
 
@@ -42,6 +44,10 @@ public class Parser {
             // Crear objeto Casilla y agregar a la lista
             Casilla casilla = construirCasillaDesdeJSON(celdaJson);
             casillas.add(casilla);
+            if(this.casillaAnterior != null){
+                this.casillaAnterior.SetSiguiente(casilla);
+            }
+            this.casillaAnterior = casilla;
         }
 
         // Falta implementar
@@ -66,9 +72,9 @@ public class Parser {
     private static Casilla construirCasillaDesdeJSON(String celdaJson) {
 
 
-        int x = obtenerValorNumerico(celdaJson, "\"x\":");
-        int y = obtenerValorNumerico(celdaJson, "\"y\":");
-        Coordenada coordenada = new Coordenada(x,y);
+        //int x = obtenerValorNumerico(celdaJson, "\"x\":"); esto maia dijo q ya no
+        //int y = obtenerValorNumerico(celdaJson, "\"y\":"); lo queremos
+        //Coordenada coordenada = new Coordenada(x,y);
 
         String tipo = obtenerValorString(celdaJson, "\"tipo\":");
         String obstaculo = obtenerValorString(celdaJson, "\"obstaculo\":");
@@ -83,7 +89,7 @@ public class Parser {
         } else if(obstaculo.equals("Bacanal")){
             itemObstaculo = new Bacanal();
         } else if (obstaculo.isEmpty()){
-            itemObstaculo = new Nulo();
+            itemObstaculo = new ObstaculoNulo();
         } else {
             throw new ObstaculoInvalidoException("El obstáculo introducido en una casilla no es válido.");
         }
@@ -95,22 +101,23 @@ public class Parser {
         } else if (premio.equals("Comida")) {
             itemPremio = new PremioComestible();
         } else if(premio.isEmpty()){
-            itemPremio = new Nulo();
+            itemPremio = new PremioNulo();
         } else {
             throw new PremioInvalidoException("El premio introducido en una casilla no es válido.");
         }
 
         if(tipo.equals("Camino")){
 
-            return new CasillaCamino(coordenada, itemObstaculo, itemPremio);
+            return new CasillaCamino(null,itemObstaculo, itemPremio);
 
-        }else if(tipo.equals("Salida")){
+        }
+        else if(tipo.equals("Salida")){
 
-            return new CasillaInicio(coordenada);
+            return new CasillaInicio(null, itemObstaculo, itemPremio);
 
         }else if(tipo.equals("Llegada")){
 
-            return new CasillaFinal(coordenada);
+            return new CasillaFinal(null, itemObstaculo, itemPremio);
 
         }else{
             throw new TipoCasillaInvalidaException("El tipo de casilla introducido en una casilla no es válido.");

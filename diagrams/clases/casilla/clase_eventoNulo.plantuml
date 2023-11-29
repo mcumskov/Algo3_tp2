@@ -1,0 +1,7 @@
+@startuml
+class EventoNulo {
+  + EventoNulo()
+  + premiar(gladiador:Gladiador)
+  + obstaculizar(gladiador:Gladiador)
+}
+@enduml

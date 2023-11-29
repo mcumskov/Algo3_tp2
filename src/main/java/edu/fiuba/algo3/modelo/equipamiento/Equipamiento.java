@@ -13,20 +13,15 @@ public class Equipamiento implements IEquipamiento{
     }
 
     public int recibirAtaque(int danioRecibido){
-
         return (this.equipable.mitigarDanio(danioRecibido));
-
     }
 
     public void mejorar(){
-
         this.equipable = equipable.mejorar();
-
     }
 
-    public void abrirCasaPompeya(){
-
-
+    public void abrirCasaPompeya(Gladiador gladiador){
+        this.equipable.abrirCasaPompeya(gladiador);
     }
 
 

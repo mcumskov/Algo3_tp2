@@ -1,0 +1,11 @@
+@startuml
+class Juego {
+    - cantRondas:int
+    - cantJugadores:int
+    + Juego(jugadores:Jugador, cantRondas:int, mapa:Mapa):Juego
+    - jugadoresValidos(jugadores:Jugador):bool
+    + Iniciar()
+    + finalizarSinGanador()
+    + finalizarConGanador()
+}
+@enduml

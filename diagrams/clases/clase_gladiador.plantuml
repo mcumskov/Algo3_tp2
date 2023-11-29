@@ -1,0 +1,12 @@
+@startuml
+    class Gladiador {
+        - energia:int
+        + abrirCasaPompeya(pompeya:Pompeya)
+        + cambiarEnergia(energia:int)
+        + ganarExperiencia(experiencia:int)
+        + mover():Gladiador
+        + recibirAtaque()
+        + recibirEquipamiento()
+        + recuperarEnergia(energia:int)
+    }
+@enduml

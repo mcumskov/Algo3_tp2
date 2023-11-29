@@ -1,0 +1,15 @@
+@startuml
+!include interfaz_seniority.plantuml
+!include clase_seniority.plantuml
+!include clase_novato.plantuml
+!include clase_semiSenior.plantuml
+!include clase_senior.plantuml
+
+ISeniority <|.. Seniority
+Seniority <|-- Novato
+Seniority <|-- SemiSenior
+Seniority <|-- Senior
+
+Novato .> SemiSenior
+SemiSenior .> Senior
+@enduml

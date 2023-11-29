@@ -1,0 +1,6 @@
+@startuml
+interface ISeniority <<interface>> {
+    {abstract} + recuperarEnergia():int
+    {abstract} + ganarExperiencia():ISeniority
+}
+@enduml

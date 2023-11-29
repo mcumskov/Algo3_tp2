@@ -1,0 +1,40 @@
+@startuml
+!include clase_equipamiento.plantuml
+
+!include clase_ropa.plantuml
+!include clase_casco.plantuml
+!include clase_armadura.plantuml
+!include clase_escudoEspada.plantuml
+!include clase_llave.plantuml
+
+IEquipamiento <|.. Equipamiento
+Equipamiento o-- Equipable
+Equipable <|-- Ropa
+Equipable <|-- Casco
+Equipable <|-- Armadura
+Equipable <|-- EscudoEspada
+Equipable <|-- Llave
+
+Ropa .> Casco
+Casco .> Armadura
+Armadura .> EscudoEspada
+EscudoEspada .> Llave
+
+interface IEquipamiento <<interface>> {
+    {abstract} + recibirAtaque(gladiador:Gladiador):int
+    {abstract} + mejorar()
+    {abstract} + abrirCasaPompeya(gladiador:Gladiador, pompeya:Pompeya)
+}
+
+class Equipamiento {
+    + abrirCasaPompeya(gladiador:Gladiador, pompeya:Pompeya)
+}
+
+abstract class Equipable {
+    - danioReducir:int
+    {abstract} + mejorar():Equipable
+    + mitigarDanio(danioRecibido:int):int
+    + abrirCasaPompeya(gladiador:Gladiador, pompeya:Pompeya)
+}
+
+@enduml

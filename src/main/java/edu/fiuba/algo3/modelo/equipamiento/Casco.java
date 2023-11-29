@@ -7,7 +7,6 @@ public class Casco extends Equipable{
     }
 
     public Equipable mejorar(){
-
         return new Armadura(this.danioReducir);
     }
 }

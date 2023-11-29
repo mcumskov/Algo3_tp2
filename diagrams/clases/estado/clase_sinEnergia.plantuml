@@ -1,0 +1,5 @@
+@startuml
+class SinEnergia {
+    + mover(gladiador:Gladiador)
+}
+@enduml
