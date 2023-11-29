@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.UnitTests;
 
-import edu.fiuba.algo3.modelo.log.Log;
 import edu.fiuba.algo3.modelo.log.LogFormatter;
 import org.junit.jupiter.api.Test;
 import java.util.logging.Level;
@@ -10,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LogFormatterUnitTests {
 
     @Test
-    void test01ElFormateadorAlRecibirElSiguienteRecordDebeDevolverElSiguienteString(){
+    public void test01ElFormateadorAlRecibirElSiguienteRecordDebeDevolverElSiguienteString(){
         LogFormatter formateador = new LogFormatter();
         LogRecord recordFalso = new LogRecord(Level.FINEST, "SoyUnMensaje");
 
