@@ -1,15 +1,37 @@
 @startuml
-!include interfaz_seniority.plantuml
-!include clase_seniority.plantuml
-!include clase_novato.plantuml
-!include clase_semiSenior.plantuml
-!include clase_senior.plantuml
 
-ISeniority <|.. Seniority
-Seniority <|-- Novato
-Seniority <|-- SemiSenior
-Seniority <|-- Senior
+skinparam linetype ortho
 
-Novato .> SemiSenior
-SemiSenior .> Senior
+interface ISeniority << interface >> {
+  + actualizar(): void
+  + recuperarEnergia(): int
+}
+Abstract class NivelDeSeniority {
+  + NivelDeSeniority():
+  + actualizar(): NivelDeSeniority
+  + recuperarEnergiaEnTurno(): int
+}
+class Novato {
+  + Novato():
+  + actualizar(): NivelDeSeniority
+}
+class SemiSenior {
+  + SemiSenior():
+  + actualizar(): NivelDeSeniority
+}
+class Senior {
+  + Senior():
+  + actualizar(): NivelDeSeniority
+}
+class Seniority {
+  + Seniority():
+  + actualizar(): void
+  + recuperarEnergia(): int
+}
+
+NivelDeSeniority ^-- Novato
+NivelDeSeniority ^-- SemiSenior
+NivelDeSeniority ^-- Senior
+ISeniority  ^-.   Seniority
+Seniority o-- NivelDeSeniority
 @enduml

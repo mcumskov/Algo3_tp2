@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.excepciones.PremioInvalidoException;
 import edu.fiuba.algo3.modelo.excepciones.TipoCasillaInvalidaException;
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.mapa.Casilla;
+import edu.fiuba.algo3.modelo.mapa.iCasilla;
 import edu.fiuba.algo3.modelo.mapa.Parser;
 
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class ParserUnitTests {
 
         assertThrows(TipoCasillaInvalidaException.class, () -> {
 
-            List<Casilla> casillas = parser.parsearJSON(jsonString);
+            List<iCasilla> casillas = parser.parsearJSON(jsonString);
 
         });
     }
@@ -40,7 +40,7 @@ public class ParserUnitTests {
 
         assertThrows(PremioInvalidoException.class, () -> {
 
-            List<Casilla> casillas = parser.parsearJSON(jsonString);
+            List<iCasilla> casillas = parser.parsearJSON(jsonString);
 
         });
     }
@@ -54,7 +54,7 @@ public class ParserUnitTests {
 
         assertThrows(ObstaculoInvalidoException.class, () -> {
 
-            List<Casilla> casillas = parser.parsearJSON(jsonString);
+            List<iCasilla> casillas = parser.parsearJSON(jsonString);
 
         });
     }
@@ -66,7 +66,7 @@ public class ParserUnitTests {
 
         Parser parser = new Parser();
 
-        List<Casilla> casillas = parser.parsearJSON(jsonString);
+        List<iCasilla> casillas = parser.parsearJSON(jsonString);
 
         assertEquals(10,casillas.size());
 

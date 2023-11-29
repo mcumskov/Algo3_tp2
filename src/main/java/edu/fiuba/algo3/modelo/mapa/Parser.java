@@ -14,20 +14,20 @@ import java.util.List;
 
 public class Parser {
 
-    List<Casilla> casillas ;
+    List<iCasilla> casillas ;
 
     private int ancho ;
     private int alto ; // esto calculo q tampoco lo necesitamos
 
-    protected Casilla casillaAnterior;
+    protected iCasilla casillaAnterior;
 
     public void Parser(){
         this.casillaAnterior = null;
     }
 
-    public List<Casilla> parsearJSON (String jsonString) {
+    public List<iCasilla> parsearJSON (String jsonString) {
 
-        List<Casilla> casillas = new ArrayList<>();
+        List<iCasilla> casillas = new ArrayList<>();
 
         // Dividir la cadena JSON en partes para analizar
         String[] partes = jsonString.split("\"celdas\":\\s*\\[");
@@ -42,7 +42,7 @@ public class Parser {
             celdaJson = "{" + celdaJson + "}";
 
             // Crear objeto Casilla y agregar a la lista
-            Casilla casilla = construirCasillaDesdeJSON(celdaJson);
+            iCasilla casilla = construirCasillaDesdeJSON(celdaJson);
             casillas.add(casilla);
             if(this.casillaAnterior != null){
                 this.casillaAnterior.SetSiguiente(casilla);
@@ -69,12 +69,7 @@ public class Parser {
 
     }
 
-    private static Casilla construirCasillaDesdeJSON(String celdaJson) {
-
-
-        //int x = obtenerValorNumerico(celdaJson, "\"x\":"); esto maia dijo q ya no
-        //int y = obtenerValorNumerico(celdaJson, "\"y\":"); lo queremos
-        //Coordenada coordenada = new Coordenada(x,y);
+    private static iCasilla construirCasillaDesdeJSON(String celdaJson) {
 
         String tipo = obtenerValorString(celdaJson, "\"tipo\":");
         String obstaculo = obtenerValorString(celdaJson, "\"obstaculo\":");
@@ -108,16 +103,16 @@ public class Parser {
 
         if(tipo.equals("Camino")){
 
-            return new CasillaCamino(null,itemObstaculo, itemPremio);
+            return new Casilla(null,itemObstaculo, itemPremio);
 
         }
         else if(tipo.equals("Salida")){
 
-            return new CasillaInicio(null, itemObstaculo, itemPremio);
+            return new Casilla(null, itemObstaculo, itemPremio);
 
         }else if(tipo.equals("Llegada")){
 
-            return new CasillaFinal(null, itemObstaculo, itemPremio);
+            return new Casilla(null, itemObstaculo, itemPremio);
 
         }else{
             throw new TipoCasillaInvalidaException("El tipo de casilla introducido en una casilla no es válido.");

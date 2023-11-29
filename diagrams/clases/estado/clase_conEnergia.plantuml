@@ -1,5 +1,5 @@
 @startuml
 class ConEnergia {
-    + mover(gladiador:Gladiador):Gladiador
+    + avanzar(Gladiador gladiador, Casilla casilla, int pasos);
 }
 @enduml

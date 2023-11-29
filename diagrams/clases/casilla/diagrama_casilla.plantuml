@@ -8,12 +8,25 @@
 !include clase_fiera.plantuml
 !include clase_lesion.plantuml
 !include clase_casilla.plantuml
-!include clase_eventoNulo.plantuml
 !include clase_pompeya.plantuml
 
+class ObstaculoNulo {
+  + obstaculizar(gladiador:Gladiador)
+}
+class PremioNulo{
+  + premiar(gladiador:Gladiador)
+}
+interface iCasilla {
+    + Casilla(premio:Premio,obstaculo:Obstaculo)
+    + recibir(gladiador:Gladiador)
+    + expulsar(gladiador:Gladiador)
+    + otorgarPremio(gladiador:Gladiador)
+    + aplicarObstaculo(gladiador:Gladiado)
+}
+iCasilla ^-. Casilla
 Casilla o-- Premio
-Premio ^. EventoNulo
-EventoNulo .^ Obstaculo
+Premio ^. PremioNulo
+ObstaculoNulo .^ Obstaculo
 Casilla o-- Obstaculo
 
 Obstaculo ^.. Bacanal

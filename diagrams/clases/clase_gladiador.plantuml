@@ -1,12 +1,18 @@
 @startuml
     class Gladiador {
+        - estado:Estado
+        - seniority:Seniority
+        - equipamiento:Equipamiento
         - energia:int
-        + abrirCasaPompeya(pompeya:Pompeya)
-        + cambiarEnergia(energia:int)
-        + ganarExperiencia(experiencia:int)
-        + mover():Gladiador
-        + recibirAtaque()
-        + recibirEquipamiento()
-        + recuperarEnergia(energia:int)
+        + avanzar(Casilla casilla, int pasos)
+        + disminuirEnergia(int energiaDisminuir)
+        + aumentarEnergia(int energiaAumentar)
+        + cambiarEstado(Estado estado_nuevo)
+        + recibirAtaque(int danio)
+        + mejorarEquipamiento()
+        + actualizarSeniority()
+        + abrirCasaPompeya(Gladiador gladiador)
+        + getEnergia()
+        + equals(Object gladiadorAComparar): boolean
     }
 @enduml

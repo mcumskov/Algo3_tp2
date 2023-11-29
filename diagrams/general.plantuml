@@ -21,8 +21,8 @@ Jugador o-- Gladiador
 Jugador ..> Dado
 Jugador ..> Mapa
 
-Mapa o-- "2..*"Casilla
-Casilla o- "0..6 " Gladiador
+Mapa o-- "2..*"iCasilla
+iCasilla o- "0..6 " Gladiador
 
 Gladiador o-- ISeniority
 Gladiador o- IEquipamiento

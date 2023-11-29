@@ -1,5 +1,5 @@
 @startuml
 abstract class Estado {
-    {abstract} + mover(gladiador:Gladiador):Gladiador
+    {abstract} + avanzar(Gladiador gladiador, Casilla casilla, int pasos);
 }
 @enduml

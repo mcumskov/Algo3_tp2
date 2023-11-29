@@ -1,11 +1,16 @@
 @startuml
 class Juego {
-    - cantRondas:int
+    - jugadores:ArrayList<Jugador>
     - cantJugadores:int
-    + Juego(jugadores:Jugador, cantRondas:int, mapa:Mapa):Juego
+    - {static}instancia: Juego
+    - Juego(jugadores:Jugador, cantRondas:int, mapa:Mapa):Juego
     - jugadoresValidos(jugadores:Jugador):bool
-    + Iniciar()
-    + finalizarSinGanador()
-    + finalizarConGanador()
+    + getJuego():Juego
+    - iniciarPartida()
+    - moverGladiadorAMitadMapa(Gladiador gladiador)
+    - buscarGanador()
+    + {static}gladiadorSinLlaveLlegaAlFinal(Gladiador gladiador)
+    + {static} gladiadorConLlaveLlegaAlFinal()
+
 }
 @enduml

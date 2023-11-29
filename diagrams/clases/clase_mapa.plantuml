@@ -1,8 +1,11 @@
 @startuml
 class Mapa {
-    - localizarGladiador(gladiador:Gladiador):Casilla
-    - recorrerHaciaAdelante(casillaInicial:Casilla, pasos:int):Casilla
-    + moverGladiador(gladiador:Gladiador, pasos:int)
-    + casillaInicial():Casilla
+    - casillas: List<Casilla>
+    - casillaMedio: Casilla
+    - casillaUltima: Casilla
+    + Mapa(List<Gladiador> gladiadores, List<Casilla> casillas, int CantJugadores)
+    - EncontrarGladiador(gladiador:Gladiador):Casilla
+    + moverGladiador(Gladiador gladiador, int tiradaDeDado)
+    + enviarAMitad(Gladiador gladiador)
 }
 @enduml

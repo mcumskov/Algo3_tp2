@@ -1,9 +1,8 @@
 package edu.fiuba.algo3.modelo.gladiador;
 
 import edu.fiuba.algo3.modelo.equipamiento.Equipamiento;
-import edu.fiuba.algo3.modelo.mapa.Casilla;
+import edu.fiuba.algo3.modelo.mapa.iCasilla;
 import edu.fiuba.algo3.modelo.seniority.Seniority;
-import java.util.List;
 
 public class Gladiador {
 
@@ -38,7 +37,7 @@ public class Gladiador {
         this.disminuirEnergia(this.equipamiento.recibirAtaque(danio));
     }
 
-    public void avanzar(Casilla casilla, int pasos){
+    public void avanzar(iCasilla casilla, int pasos){
        this.estado.avanzar(this, casilla, pasos);
     }
 

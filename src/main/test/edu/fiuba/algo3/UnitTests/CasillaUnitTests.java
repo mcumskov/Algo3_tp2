@@ -2,14 +2,11 @@ package edu.fiuba.algo3.UnitTests;
 import edu.fiuba.algo3.modelo.Eventos.Obstaculos.ObstaculoNulo;
 import edu.fiuba.algo3.modelo.Eventos.Premios.PremioNulo;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
+import edu.fiuba.algo3.modelo.mapa.iCasilla;
 import edu.fiuba.algo3.modelo.mapa.Casilla;
-import edu.fiuba.algo3.modelo.mapa.CasillaCamino;
-import edu.fiuba.algo3.modelo.mapa.CasillaFinal;
-import edu.fiuba.algo3.modelo.mapa.CasillaInicio;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 public class CasillaUnitTests {
 
@@ -19,11 +16,11 @@ public class CasillaUnitTests {
         PremioNulo premioAburrido = new PremioNulo();
         ObstaculoNulo obstaculoAburrido = new ObstaculoNulo();
 
-        CasillaInicio primeraCasilla = new CasillaInicio(null,obstaculoAburrido,premioAburrido);
+        Casilla primeraCasilla = new Casilla(null,obstaculoAburrido,premioAburrido);
 
         Gladiador dummy = new Gladiador();
         primeraCasilla.recibir(dummy);
-        Casilla casillaObtenida = primeraCasilla.BuscadoEstaEnLaCasilla(dummy);
+        iCasilla casillaObtenida = primeraCasilla.BuscadoEstaEnLaCasilla(dummy);
         assertSame(casillaObtenida, primeraCasilla);
     }
     @Test
@@ -32,11 +29,11 @@ public class CasillaUnitTests {
         PremioNulo premioAburrido = new PremioNulo();
         ObstaculoNulo obstaculoAburrido = new ObstaculoNulo();
 
-        CasillaInicio primeraCasilla = new CasillaInicio(null,obstaculoAburrido,premioAburrido);
+        Casilla primeraCasilla = new Casilla(null,obstaculoAburrido,premioAburrido);
 
         Gladiador dummy = new Gladiador();
         primeraCasilla.recibir(dummy);
-        Casilla casillaObtenida = primeraCasilla.BuscadoEstaEnLaCasilla(dummy);
+        iCasilla casillaObtenida = primeraCasilla.BuscadoEstaEnLaCasilla(dummy);
         assertSame(casillaObtenida, primeraCasilla);
         primeraCasilla.expulsar(dummy);
         assertNull(primeraCasilla.BuscadoEstaEnLaCasilla(dummy));
@@ -48,16 +45,14 @@ public class CasillaUnitTests {
         PremioNulo premioAburrido = new PremioNulo();
         ObstaculoNulo obstaculoAburrido = new ObstaculoNulo();
 
-        CasillaFinal ultimaCasilla = new CasillaFinal(null,obstaculoAburrido, premioAburrido);
-
-        CasillaCamino segundaCasilla = new CasillaCamino(ultimaCasilla, obstaculoAburrido,premioAburrido);
-
-        CasillaInicio primeraCasilla = new CasillaInicio(segundaCasilla,obstaculoAburrido,premioAburrido);
+        Casilla ultimaCasilla = new Casilla(null,obstaculoAburrido, premioAburrido);
+        Casilla segundaCasilla = new Casilla(ultimaCasilla, obstaculoAburrido,premioAburrido);
+        Casilla primeraCasilla = new Casilla(segundaCasilla,obstaculoAburrido,premioAburrido);
 
         Gladiador dummy = new Gladiador();
         primeraCasilla.recibir(dummy);
         primeraCasilla.moverGladiador(1,dummy);
-        Casilla casillaObtenida = segundaCasilla.BuscadoEstaEnLaCasilla(dummy);
+        iCasilla casillaObtenida = segundaCasilla.BuscadoEstaEnLaCasilla(dummy);
         assertSame(casillaObtenida, segundaCasilla);
     }
     @Test
@@ -66,23 +61,23 @@ public class CasillaUnitTests {
         PremioNulo premioAburrido = new PremioNulo();
         ObstaculoNulo obstaculoAburrido = new ObstaculoNulo();
 
-        CasillaFinal doceCasilla = new CasillaFinal(null,obstaculoAburrido, premioAburrido);
-        CasillaCamino onceCasilla = new CasillaCamino(doceCasilla, obstaculoAburrido,premioAburrido);
-        CasillaCamino decimaCasilla = new CasillaCamino(onceCasilla,obstaculoAburrido,premioAburrido);
-        CasillaCamino novenaCasilla = new CasillaCamino(decimaCasilla,obstaculoAburrido, premioAburrido);
-        CasillaCamino octavaCasilla = new CasillaCamino(novenaCasilla, obstaculoAburrido,premioAburrido);
-        CasillaCamino septimaCasilla = new CasillaCamino(octavaCasilla,obstaculoAburrido,premioAburrido);
-        CasillaCamino sextaCasilla = new CasillaCamino(septimaCasilla,obstaculoAburrido, premioAburrido);
-        CasillaCamino quintaCasilla = new CasillaCamino(sextaCasilla, obstaculoAburrido,premioAburrido);
-        CasillaCamino cuartaCasilla = new CasillaCamino(quintaCasilla,obstaculoAburrido,premioAburrido);
-        CasillaCamino terceraCasilla = new CasillaCamino(cuartaCasilla,obstaculoAburrido, premioAburrido);
-        CasillaCamino segundaCasilla = new CasillaCamino(terceraCasilla, obstaculoAburrido,premioAburrido);
-        CasillaInicio primeraCasilla = new CasillaInicio(segundaCasilla,obstaculoAburrido,premioAburrido);
+        Casilla doceCasilla = new Casilla(null,obstaculoAburrido, premioAburrido);
+        Casilla onceCasilla = new Casilla(doceCasilla, obstaculoAburrido,premioAburrido);
+        Casilla decimaCasilla = new Casilla(onceCasilla,obstaculoAburrido,premioAburrido);
+        Casilla novenaCasilla = new Casilla(decimaCasilla,obstaculoAburrido, premioAburrido);
+        Casilla octavaCasilla = new Casilla(novenaCasilla, obstaculoAburrido,premioAburrido);
+        Casilla septimaCasilla = new Casilla(octavaCasilla,obstaculoAburrido,premioAburrido);
+        Casilla sextaCasilla = new Casilla(septimaCasilla,obstaculoAburrido, premioAburrido);
+        Casilla quintaCasilla = new Casilla(sextaCasilla, obstaculoAburrido,premioAburrido);
+        Casilla cuartaCasilla = new Casilla(quintaCasilla,obstaculoAburrido,premioAburrido);
+        Casilla terceraCasilla = new Casilla(cuartaCasilla,obstaculoAburrido, premioAburrido);
+        Casilla segundaCasilla = new Casilla(terceraCasilla, obstaculoAburrido,premioAburrido);
+        Casilla primeraCasilla = new Casilla(segundaCasilla,obstaculoAburrido,premioAburrido);
 
         Gladiador dummy = new Gladiador();
         primeraCasilla.recibir(dummy);
         primeraCasilla.moverGladiador(10,dummy);
-        Casilla casillaObtenida = onceCasilla.BuscadoEstaEnLaCasilla(dummy);
+        iCasilla casillaObtenida = onceCasilla.BuscadoEstaEnLaCasilla(dummy);
         assertSame(casillaObtenida, onceCasilla);
     }
 
@@ -92,23 +87,23 @@ public class CasillaUnitTests {
         PremioNulo premioAburrido = new PremioNulo();
         ObstaculoNulo obstaculoAburrido = new ObstaculoNulo();
 
-        CasillaFinal ultimaCasilla = new CasillaFinal(null,obstaculoAburrido, premioAburrido);
-        CasillaCamino onceCasilla = new CasillaCamino(ultimaCasilla, obstaculoAburrido,premioAburrido);
-        CasillaCamino decimaCasilla = new CasillaCamino(onceCasilla,obstaculoAburrido,premioAburrido);
-        CasillaCamino novenaCasilla = new CasillaCamino(decimaCasilla,obstaculoAburrido, premioAburrido);
-        CasillaCamino octavaCasilla = new CasillaCamino(novenaCasilla, obstaculoAburrido,premioAburrido);
-        CasillaCamino septimaCasilla = new CasillaCamino(octavaCasilla,obstaculoAburrido,premioAburrido);
-        CasillaCamino sextaCasilla = new CasillaCamino(septimaCasilla,obstaculoAburrido, premioAburrido);
-        CasillaCamino quintaCasilla = new CasillaCamino(sextaCasilla, obstaculoAburrido,premioAburrido);
-        CasillaCamino cuartaCasilla = new CasillaCamino(quintaCasilla,obstaculoAburrido,premioAburrido);
-        CasillaCamino terceraCasilla = new CasillaCamino(cuartaCasilla,obstaculoAburrido, premioAburrido);
-        CasillaCamino segundaCasilla = new CasillaCamino(terceraCasilla, obstaculoAburrido,premioAburrido);
-        CasillaInicio primeraCasilla = new CasillaInicio(segundaCasilla,obstaculoAburrido,premioAburrido);
+        Casilla ultimaCasilla = new Casilla(null,obstaculoAburrido, premioAburrido);
+        Casilla onceCasilla = new Casilla(ultimaCasilla, obstaculoAburrido,premioAburrido);
+        Casilla decimaCasilla = new Casilla(onceCasilla,obstaculoAburrido,premioAburrido);
+        Casilla novenaCasilla = new Casilla(decimaCasilla,obstaculoAburrido, premioAburrido);
+        Casilla octavaCasilla = new Casilla(novenaCasilla, obstaculoAburrido,premioAburrido);
+        Casilla septimaCasilla = new Casilla(octavaCasilla,obstaculoAburrido,premioAburrido);
+        Casilla sextaCasilla = new Casilla(septimaCasilla,obstaculoAburrido, premioAburrido);
+        Casilla quintaCasilla = new Casilla(sextaCasilla, obstaculoAburrido,premioAburrido);
+        Casilla cuartaCasilla = new Casilla(quintaCasilla,obstaculoAburrido,premioAburrido);
+        Casilla terceraCasilla = new Casilla(cuartaCasilla,obstaculoAburrido, premioAburrido);
+        Casilla segundaCasilla = new Casilla(terceraCasilla, obstaculoAburrido,premioAburrido);
+        Casilla primeraCasilla = new Casilla(segundaCasilla,obstaculoAburrido,premioAburrido);
 
         Gladiador dummy = new Gladiador();
         primeraCasilla.recibir(dummy);
         primeraCasilla.moverGladiador(100,dummy);
-        Casilla casillaObtenida = ultimaCasilla.BuscadoEstaEnLaCasilla(dummy);
+        iCasilla casillaObtenida = ultimaCasilla.BuscadoEstaEnLaCasilla(dummy);
         assertSame(casillaObtenida, ultimaCasilla);
     }
 

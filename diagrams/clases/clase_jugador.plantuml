@@ -1,10 +1,9 @@
 @startuml
     class Jugador {
-        - turnosJugados:int
-        - nombre:String
+        - MiGladiador: Gladiador
         + Jugador(nombre:String):Jugador
-        - nombreValido(nombreString):bool
-        + ejecutarTurno(dado:Dado, mapa:Mapa)
-        + tirarDado():int
+        + jugar(dado:Dado, mapa:Mapa)
+        + getGladiador(): Gladiador
+
     }
 @enduml

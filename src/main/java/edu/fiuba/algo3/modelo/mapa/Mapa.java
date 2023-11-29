@@ -1,18 +1,17 @@
 package edu.fiuba.algo3.modelo.mapa;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Mapa {
 
-    protected List<Casilla> casillas;
-    protected Casilla casillaMedio;
-    protected Casilla casillaUltima;
-    public Mapa(List<Gladiador> gladiadores, List<Casilla> casillas, int CantJugadores){
+    protected List<iCasilla> casillas;
+    protected iCasilla casillaMedio;
+    protected iCasilla casillaUltima;
+    public Mapa(List<Gladiador> gladiadores, List<iCasilla> casillas, int CantJugadores){
 
         this.casillas = casillas;
-        Casilla primerCasilla = casillas.get(0);
+        iCasilla primerCasilla = casillas.get(0);
         int mitad = casillas.size()/2;
         int ultima = casillas.size()-1;
         this.casillaMedio = casillas.get(mitad);
@@ -23,12 +22,12 @@ public class Mapa {
         }
     }
 
-    private Casilla EncontrarGladiador(Gladiador gladiador){
+    private iCasilla EncontrarGladiador(Gladiador gladiador){
 
-        Casilla casillaBuscada = null;
+        iCasilla casillaBuscada = null;
         int i = 0;
         while (casillaBuscada == null){
-            Casilla casillaCandidata = casillas.get(i);
+            iCasilla casillaCandidata = casillas.get(i);
             casillaBuscada = casillaCandidata.BuscadoEstaEnLaCasilla(gladiador);
             i++;
         }
@@ -49,7 +48,7 @@ public class Mapa {
 
     public void moverGladiador(Gladiador gladiador, int tiradaDeDado){
 
-        Casilla inicioMovimiento = this.EncontrarGladiador(gladiador);
+        iCasilla inicioMovimiento = this.EncontrarGladiador(gladiador);
 
         /*Casilla finalMovimiento = ObtenerCasillaDeLLegada(inicioMovimiento, tiradaDeDado);
 
