@@ -25,7 +25,7 @@ public class Juego {
     public int cantidadJugadores;
     private static Juego instancia;
 
-    public Juego () throws IOException {
+    private Juego () throws IOException {
 
         //se pide al usuario la cantidad de jugadores, por ahora lo hardcodeo en 6
         this.cantidadJugadores = 6;
