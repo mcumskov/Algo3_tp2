@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.gladiador;
 
 import edu.fiuba.algo3.modelo.equipamiento.Equipamiento;
+import edu.fiuba.algo3.modelo.log.Log;
 import edu.fiuba.algo3.modelo.seniority.Seniority;
 
 public class Gladiador {
@@ -11,7 +12,7 @@ public class Gladiador {
     private int energia;
 
     public Gladiador() {
-
+        Log.obtenerLogger().warning("");
         this.energia = 20;
         this.equipamiento = new Equipamiento();
         //this.estado = new GladiadorSano(this);
