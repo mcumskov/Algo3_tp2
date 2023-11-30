@@ -1,7 +1,7 @@
 @startuml
-class Casilla {
+class CasillaCamino {
     - iCasilla CasillaSiguiente
-    + Casilla(coordenada: Coordenada, iCasilla CasillaSiguiente, premio:Premio,obstaculo:Obstaculo)
+    + CasillaCamino(coordenada: Coordenada, iCasilla CasillaSiguiente, premio:Premio,obstaculo:Obstaculo)
     + recibir(gladiador:Gladiador)
     + expulsar(gladiador:Gladiador)
     + otorgarPremio(gladiador:Gladiador)
