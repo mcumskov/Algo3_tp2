@@ -1,0 +1,18 @@
+@startuml
+
+actor Actor
+participant ":Juego"
+participant ":GestorTurnos"
+participant ":Dado"
+Actor -> ":Juego" ** : instanciarJuego(mapa: Mapa, jugadores: List<Jugador>)
+activate ":Juego"
+":Juego" -> ":GestorTurnos"**: new ":GestorTurnos"(rondas = 30, jugadores)
+activate ":GestorTurnos"
+":Juego" -> ":Dado"**: new ":Dado"()
+activate ":Dado"
+":Juego" --> Actor: instancia: ":Juego"
+deactivate ":Dado"
+deactivate ":GestorTurnos"
+deactivate ":Juego"
+
+@enduml

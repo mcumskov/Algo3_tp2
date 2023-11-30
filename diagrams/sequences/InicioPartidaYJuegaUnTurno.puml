@@ -1,0 +1,58 @@
+@startuml
+actor Actor
+participant Juego
+participant GestorTurnos
+participant Dado
+participant Mapa
+participant Jugador
+
+Actor -> Juego: iniciarPartida()
+activate Juego
+loop Until SinGanadorException
+    Juego -> GestorTurnos: siguienteTurno(dado, mapa)
+    activate GestorTurnos
+    GestorTurnos -> Jugador: jugar(dado, mapa)
+    activate Jugador
+    Jugador -> Dado: lanzar()
+    activate Dado
+    Dado --> Jugador: tiradaDeDado:int
+    Jugador -> Mapa: moverGladiador(this, tiradaDeDado)
+    Mapa -> Mapa: EncontrarGladiador(gladiador)
+    Mapa -> "gladiador: Gladiador":avanzar(CasillaDeSalida, tiradaDeDado)
+    "gladiador: Gladiador" -> "estado: GladiadorSano": avanzar(this:Gladiador, inicioMovimiento, tiradaDeDado)
+    "estado: GladiadorSano" -> "gladiador: Gladiador": actualizarSeniority();
+    "gladiador: Gladiador" -> "seniority: Seniority":actualizar()
+    "seniority: Seniority" -> "nivelDeSeniority: Novato":actualizar()
+    "nivelDeSeniority: Novato" --> "seniority: Seniority": :NivelDeSeniority
+    "seniority: Seniority" --> "gladiador: Gladiador"
+    "gladiador: Gladiador" -> "seniority: Seniority":recuperarEnergia()
+    "seniority: Seniority" -> "nivelDeSeniority: Novato":recuperarEnergia()
+    "nivelDeSeniority: Novato" --> "seniority: Seniority": recuperacion:int
+    "seniority: Seniority" --> "gladiador: Gladiador": recuperacion:int
+    "gladiador: Gladiador" -> "gladiador: Gladiador": aumentarEnergia(recuperacion: int)
+    "gladiador: Gladiador" --> "estado: GladiadorSano"
+     "estado: GladiadorSano" -> "casillaInicioMovimiento :iCasilla": moverGladiador(pasos, gladiador)
+    loop Until pasos=0 | casillaSiguiente = Null
+     "casillaInicioMovimiento :iCasilla" -> casillaSiguiente :moverGladiador(pasos-1, gladiador)
+    end
+    casillaSiguiente -> casillaSiguiente: recibir(gladiador: Gladiador)
+    casillaSiguiente -> "premio: PremioNulo" : premiar(gladiador)
+    "premio: PremioNulo" --> casillaSiguiente
+    casillaSiguiente -> "obstaculo: ObstaculoNulo" : obstaculizar(gladiador)
+    "obstaculo: ObstaculoNulo" --> casillaSiguiente
+    casillaSiguiente --> "casillaInicioMovimiento :iCasilla":
+    "casillaInicioMovimiento :iCasilla" -> "casillaInicioMovimiento :iCasilla": expulsar(gladiador: Gladiador)
+    "casillaInicioMovimiento :iCasilla" --> "estado: GladiadorSano"
+    "estado: GladiadorSano" --> "gladiador: Gladiador"
+    "gladiador: Gladiador" --> Mapa
+    Mapa --> Jugador
+    Jugador--> GestorTurnos
+    GestorTurnos --> Juego
+
+    deactivate Jugador
+    deactivate Dado
+    deactivate GestorTurnos
+end
+deactivate Juego
+
+@enduml
