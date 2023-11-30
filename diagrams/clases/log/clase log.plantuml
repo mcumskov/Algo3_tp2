@@ -1,0 +1,24 @@
+@startuml
+skinparam Style strictuml
+skinparam sequenceMessageAlign center
+title Se hace un log info desde el constructor de Gladiador\n
+
+actor Actor
+participant ":Gladiador" as g
+participant "<class>\nLog" as log
+participant "logger: java.util.logging.Logger" as logger
+
+Actor --> g ** : <<create>>
+activate g
+    g -> log : <<static>> getLogger()
+    activate log
+
+    return logger
+    deactivate log
+    g -> logger : info("Mensaje de log desde constructor de Gladiador")
+    activate logger
+    return
+    deactivate logger
+deactivate g
+g --> Actor
+@enduml
