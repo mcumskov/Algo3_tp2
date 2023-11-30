@@ -53,7 +53,7 @@ public class GestorTurnos {
         }
     }
 
-    public void siguienteTurno(Dado dado, Mapa mapa) throws IOException {
+    public void siguienteTurno(Dado dado, Mapa mapa){
         if (contador >= (this.colaTurnos.size() * cantidadRondas)){
             //Juego juego = Juego.getJuego();
             //juego.finalizarSinGanador();

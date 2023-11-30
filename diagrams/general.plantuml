@@ -3,6 +3,7 @@
 !include clases/clase_gestorTurnos.plantuml
 !include clases/clase_jugador.plantuml
 !include clases/clase_mapa.plantuml
+!include clases/clase_parser.plantuml
 
 !include clases/clase_gladiador.plantuml
 !include clases/clase_dado.plantuml
@@ -25,6 +26,20 @@ class CasillaFinal {
     + expulsar(gladiador:Gladiador)
 }
 
+class Log {
+  - Log():
+  + obtenerLogger(): Logger
+  - construirLogger(): void
+}
+class LogFormatter {
+  + LogFormatter():
+  - calcularFecha(long): String
+  + format(LogRecord): String
+}
+
+Log .>  LogFormatter
+
+
 iCasilla ^-. CasillaInicio
 iCasilla ^-. CasillaFinal
 Juego o-- Mapa
@@ -41,6 +56,8 @@ iCasilla o- "0..6 " Gladiador
 Gladiador o-- ISeniority
 Gladiador o- IEquipamiento
 Gladiador o-- IEstado
+
+Parser .--> iCasilla
 
 
 interface ISeniority <<interface>> {
