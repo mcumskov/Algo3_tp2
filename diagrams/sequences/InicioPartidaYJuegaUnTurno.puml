@@ -20,6 +20,7 @@ loop Until SinGanadorException
     Mapa -> Mapa: EncontrarGladiador(gladiador)
     Mapa -> "gladiador: Gladiador":avanzar(CasillaDeSalida, tiradaDeDado)
     "gladiador: Gladiador" -> "estado: GladiadorSano": avanzar(this:Gladiador, inicioMovimiento, tiradaDeDado)
+    activate "estado: GladiadorSano"
     "estado: GladiadorSano" -> "gladiador: Gladiador": actualizarSeniority();
     "gladiador: Gladiador" -> "seniority: Seniority":actualizar()
     "seniority: Seniority" -> "nivelDeSeniority: Novato":actualizar()
@@ -44,6 +45,7 @@ loop Until SinGanadorException
     "casillaInicioMovimiento :iCasilla" -> "casillaInicioMovimiento :iCasilla": expulsar(gladiador: Gladiador)
     "casillaInicioMovimiento :iCasilla" --> "estado: GladiadorSano"
     "estado: GladiadorSano" --> "gladiador: Gladiador"
+    deactivate "estado: GladiadorSano"
     "gladiador: Gladiador" --> Mapa
     Mapa --> Jugador
     Jugador--> GestorTurnos

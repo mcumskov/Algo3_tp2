@@ -24,6 +24,7 @@ public class Juego {
     public List<Jugador> jugadores;
     public int cantidadJugadores;
     private static Juego instancia;
+    Jugador ganador;
 
     private Juego (Mapa mapa, List<Jugador> jugadores) {
 
@@ -33,18 +34,19 @@ public class Juego {
         this.dado = new Dado();
         this.mapa = mapa;
         this.jugadores = jugadores;
+        this.ganador = null;
 
     }
 
     public Jugador iniciarPartida(){
 
         try{
-            while(true){
+            while(this.ganador == null){
                 this.gestorTurnos.siguienteTurno(this.dado,this.mapa);
             }
-        }catch (SinGanadorException | IOException exception){
-            return null;
+        }catch (SinGanadorException finalTriste){
         }
+        return this.ganador;
     }
 
     public static Juego instanciarJuego(Mapa mapa, List<Jugador> jugadores) {
@@ -57,7 +59,7 @@ public class Juego {
         this.mapa.enviarAMitad(gladiador);
     }
     private void buscarGanador() {
-        Jugador ganador = gestorTurnos.getJugadoractual();
+        this.ganador = gestorTurnos.getJugadoractual();
         //hacerle una fiesta al ganador
     }
     public static void gladiadorSinLlaveLlegaAlFinal(Gladiador gladiador){
