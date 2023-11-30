@@ -16,263 +16,275 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ParserUnitTests {
 
     @Test
-    public void test01LeoJsonConCasillaDeTipoInvalidoYReciboExcepcion() throws IOException {
+    public void test01LeoJsonConCasillaDeTipoInvalidoYReciboExcepcion(){
 
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaCasillaInvalida.json")));
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaCasillaInvalida.json";
         Parser parser = new Parser();
-
 
         assertThrows(TipoCasillaInvalidaException.class, () -> {
 
-            List<iCasilla> casillas = parser.parsearJSON(jsonString);
-
+            List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
         });
     }
 
     @Test
-    public void test02LeoJsonConPremioDeTipoInvalidoYReciboExcepcion() throws IOException {
+    public void test02LeoJsonConPremioDeTipoInvalidoYReciboExcepcion() {
 
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaPremioInvalido.json")));
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaPremioInvalido.json";
+
         Parser parser = new Parser();
-
 
         assertThrows(PremioInvalidoException.class, () -> {
 
-            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+            List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
 
         });
     }
 
     @Test
-    public void test03LeoJsonConObstaculoDeTipoInvalidoYReciboExcepcion() throws IOException {
+    public void test03LeoJsonConObstaculoDeTipoInvalidoYReciboExcepcion() {
 
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaObstaculoInvalido.json")));
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaObstaculoInvalido.json";
         Parser parser = new Parser();
 
 
         assertThrows(ObstaculoInvalidoException.class, () -> {
 
-            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+            List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
 
         });
     }
 
     @Test
-    public void test04ParseoUnMapaValidoCon10CasillasYReciboListaConTamanio10() throws IOException {
+    public void test04ParseoUnMapaValidoCon10CasillasYReciboListaConTamanio10(){
 
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaValido10Casillas.json")));
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaValido10Casillas.json";
 
         Parser parser = new Parser();
 
-        List<iCasilla> casillas = parser.parsearJSON(jsonString);
+        List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
 
         assertEquals(10,casillas.size());
 
     }
 
     @Test
-    public void test05ParseoUnMapaConClaveInvalidaDePremioReciboExcepcionDeFormatoInvalido() throws IOException {
+    public void test05ParseoUnMapaConClaveInvalidaDePremioReciboExcepcionDeFormatoInvalido() {
 
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaClavePremioInvalida.json")));
-
-        Parser parser = new Parser();
-
-        assertThrows(FormatoInvalidoMapaException.class, () -> {
-
-            List<iCasilla> casillas = parser.parsearJSON(jsonString);
-
-        });
-    }
-
-    @Test
-    public void test06ParseoUnMapaConClaveInvalidaDeObstaculoReciboExcepcionDeFormatoInvalido() throws IOException {
-
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaClaveObstaculoInvalida.json")));
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaClavePremioInvalida.json" ;
 
         Parser parser = new Parser();
 
         assertThrows(FormatoInvalidoMapaException.class, () -> {
 
-            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+            List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
 
         });
     }
 
     @Test
-    public void test07ParseoUnMapaConClaveInvalidaDeTipoReciboExcepcionDeFormatoInvalido() throws IOException {
+    public void test06ParseoUnMapaConClaveInvalidaDeObstaculoReciboExcepcionDeFormatoInvalido() {
 
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaClaveTipoInvalida.json")));
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaClaveObstaculoInvalida.json";
 
         Parser parser = new Parser();
 
         assertThrows(FormatoInvalidoMapaException.class, () -> {
 
-            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+            List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
 
         });
     }
 
     @Test
-    public void test08ParseoUnMapaConClaveInvalidaDeXReciboExcepcionDeFormatoInvalido() throws IOException {
+    public void test07ParseoUnMapaConClaveInvalidaDeTipoReciboExcepcionDeFormatoInvalido() {
 
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaClaveXInvalida.json")));
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaClaveTipoInvalida.json";
 
         Parser parser = new Parser();
 
         assertThrows(FormatoInvalidoMapaException.class, () -> {
 
-            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+            List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
 
         });
     }
 
     @Test
-    public void test09ParseoUnMapaConClaveInvalidaDeYReciboExcepcionDeFormatoInvalido() throws IOException {
+    public void test08ParseoUnMapaConClaveInvalidaDeXReciboExcepcionDeFormatoInvalido() {
 
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaClaveYInvalida.json")));
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaClaveXInvalida.json";
 
         Parser parser = new Parser();
 
         assertThrows(FormatoInvalidoMapaException.class, () -> {
 
-            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+            List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
 
         });
     }
 
     @Test
-    public void test10ParseoUnMapaConClaveInvalidaDeAnchoDeMapaYReciboExcepcionDeFormatoInvalido() throws IOException {
+    public void test09ParseoUnMapaConClaveInvalidaDeYReciboExcepcionDeFormatoInvalido() {
 
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaClaveAnchoMapaInvalida.json")));
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaClaveYInvalida.json";
 
         Parser parser = new Parser();
 
         assertThrows(FormatoInvalidoMapaException.class, () -> {
 
-            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+            List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
 
         });
     }
 
     @Test
-    public void test11ParseoUnMapaConClaveInvalidaDeAltoDeMapaYReciboExcepcionDeFormatoInvalido() throws IOException {
+    public void test10ParseoUnMapaConClaveInvalidaDeAnchoDeMapaYReciboExcepcionDeFormatoInvalido() {
 
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaClaveAltoMapaInvalida.json")));
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaClaveAnchoMapaInvalida.json" ;
 
         Parser parser = new Parser();
 
         assertThrows(FormatoInvalidoMapaException.class, () -> {
 
-            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+            List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
 
         });
     }
 
     @Test
-    public void test12ParseoUnMapaCorrectoSinProblemas() throws IOException {
+    public void test11ParseoUnMapaConClaveInvalidaDeAltoDeMapaYReciboExcepcionDeFormatoInvalido() {
 
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapa.json")));
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaClaveAltoMapaInvalida.json" ;
 
         Parser parser = new Parser();
 
-        List<iCasilla> casillas = parser.parsearJSON(jsonString);
+        assertThrows(FormatoInvalidoMapaException.class, () -> {
+
+            List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
+
+        });
+    }
+
+    @Test
+    public void test12ParseoUnMapaCorrectoSinProblemas() {
+
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapa.json" ;
+
+        Parser parser = new Parser();
+
+        List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
 
     }
 
     @Test
-    public void test13ParseoUnMapaConLaCasillaInicialQueNoEsDelTipoSalidaReciboExcepcion() throws IOException {
+    public void test13ParseoUnMapaConLaCasillaInicialQueNoEsDelTipoSalidaReciboExcepcion() {
 
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaCasillaInicialNoEsDeTipoSalida.json")));
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaCasillaInicialNoEsDeTipoSalida.json";
 
         Parser parser = new Parser();
 
         assertThrows(CasillaInicialNoEsDeTipoSalidaException.class, () -> {
 
-            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+            List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
 
         });
     }
 
     @Test
-    public void test14ParseoUnMapaConLaCasillaFinaQueNoEsDelTipoLlegadaReciboExcepcion() throws IOException {
+    public void test14ParseoUnMapaConLaCasillaFinaQueNoEsDelTipoLlegadaReciboExcepcion() {
 
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaCasillaFinalNoEsDeTipoLlegada.json")));
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaCasillaFinalNoEsDeTipoLlegada.json";
 
         Parser parser = new Parser();
 
         assertThrows(CasillaFinalNoEsDeTipoLlegadaException.class, () -> {
 
-            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+            List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
 
         });
     }
 
     @Test
-    public void test15ParseoUnMapaConUnaCasillaIntermediaQueNoEsDelTipoCaminoReciboExcepcion() throws IOException {
+    public void test15ParseoUnMapaConUnaCasillaIntermediaQueNoEsDelTipoCaminoReciboExcepcion() {
 
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaCasillaIntermediaNoEsDeTipoCamino.json")));
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaCasillaIntermediaNoEsDeTipoCamino.json" ;
 
         Parser parser = new Parser();
 
         assertThrows(CasillaIntermediaNoEsDeTipoCaminoException.class, () -> {
 
-            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+            List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
 
         });
     }
 
     @Test
-    public void test16ParseoUnMapaConUnCaminoDiscontinuoReciboExcepcion() throws IOException {
+    public void test16ParseoUnMapaConUnCaminoDiscontinuoReciboExcepcion() {
 
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaConCaminoDiscontinuo.json")));
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaConCaminoDiscontinuo.json" ;
 
         Parser parser = new Parser();
 
         assertThrows(CaminoDiscontinuoException.class, () -> {
 
-            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+            List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
 
         });
     }
 
     @Test
-    public void test17ParseoUnMapaConUnaCasillaFueraDeMapaReciboExcepcion() throws IOException {
+    public void test17ParseoUnMapaConUnaCasillaFueraDeMapaReciboExcepcion() {
 
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaConCasillaFueraDeMapa.json")));
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaConCasillaFueraDeMapa.json" ;
 
         Parser parser = new Parser();
 
         assertThrows(CasillaFueraDeMapaException.class, () -> {
 
-            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+            List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
 
         });
     }
 
     @Test
-    public void test18ParseoUnMapaConAnchoInvalidoReciboExcepcion() throws IOException {
+    public void test18ParseoUnMapaConAnchoInvalidoReciboExcepcion() {
 
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaAnchoinvalido.json")));
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaAnchoinvalido.json" ;
 
         Parser parser = new Parser();
 
         assertThrows(MapaDimensionesInconsistentesException.class, () -> {
 
-            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+            List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
 
         });
     }
 
     @Test
-    public void test19ParseoUnMapaConAltoInvalidoReciboExcepcion() throws IOException {
+    public void test19ParseoUnMapaConAltoInvalidoReciboExcepcion() {
 
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaAltoinvalido.json")));
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaAltoinvalido.json" ;
 
         Parser parser = new Parser();
 
         assertThrows(MapaDimensionesInconsistentesException.class, () -> {
 
-            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+            List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
+
+        });
+    }
+
+    @Test
+    public void test20IntentoParsearUnMapaConPathInvalidoReciboExcepcion() {
+
+        String nombreArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/HolaJuanCarlos.json" ;
+
+        Parser parser = new Parser();
+
+        assertThrows(MapaJsonNoSePudoAbrirException.class, () -> {
+
+            List<iCasilla> casillas = parser.parsearJSON(nombreArchivo);
 
         });
     }

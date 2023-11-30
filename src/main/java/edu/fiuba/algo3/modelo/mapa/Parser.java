@@ -7,6 +7,9 @@ import edu.fiuba.algo3.modelo.Eventos.Premios.PremioComestible;
 import edu.fiuba.algo3.modelo.Eventos.Premios.PremioEquipamiento;
 import edu.fiuba.algo3.modelo.excepciones.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +24,18 @@ public class Parser {
         this.casillaAnterior = null;
     }
 
-    public List<iCasilla> parsearJSON (String jsonString) {
+    public List<iCasilla> parsearJSON (String pathJson) {
+
+        String jsonString;
+
+        try {
+
+            jsonString = new String(Files.readAllBytes(Paths.get(pathJson)));
+
+        } catch (IOException e) {
+
+            throw new MapaJsonNoSePudoAbrirException("No se pudo abrir el archivo de mapa especificado: " + pathJson +" . " + e.getMessage());
+        }
 
         List<iCasilla> casillas = new ArrayList<>();
 
@@ -42,13 +56,13 @@ public class Parser {
             // Crear objeto Casilla y agregar a la lista
             iCasilla casilla = construirCasillaDesdeJSON(celdaJson);
             casillas.add(casilla);
-            if(this.casillaAnterior != null){
+            if (this.casillaAnterior != null) {
                 this.casillaAnterior.setSiguiente(casilla);
             }
             this.casillaAnterior = casilla;
         }
 
-        validarListaCasillas(casillas) ;
+        validarListaCasillas(casillas);
 
         return casillas;
     }
