@@ -13,7 +13,7 @@ import java.util.List;
 public class Parser {
 
     private int ancho ;
-    private int alto ;
+    private int largo;
 
     protected iCasilla casillaAnterior;
 
@@ -28,8 +28,7 @@ public class Parser {
         // Dividir la cadena JSON en partes para analizar
         String[] partes = jsonString.split("\"celdas\":\\s*\\[");
 
-        Coordenada dimensionesMapa ;
-        dimensionesMapa = obtenerDimensionesMapa(partes[0]);
+        obtenerDimensionesMapa(partes[0]);
 
         // La parte 1 contiene las celdas
         String celdasJson = partes[1].substring(0, partes[1].length() - 3);
@@ -58,10 +57,14 @@ public class Parser {
 
         int finIteracion = casillas.size() - 1;
         Coordenada coordenadaAnterior = null;
+        Coordenada coordenadaIteracion = null ;
 
         for(int i = 0; i <= finIteracion; i++) {
 
             iCasilla casillaIteracion = casillas.get(i);
+            coordenadaIteracion = casillaIteracion.getCoordenada();
+
+            validarCoordenadaCasilla(coordenadaIteracion);
 
             if(i == 0)
             {
@@ -89,10 +92,6 @@ public class Parser {
 
             }
 
-
-
-            coordenadaAnterior = casillaIteracion.getCoordenada();
-
             if(i != 0 ){
 
                 if(!casillaIteracion.getCoordenada().esContigua(coordenadaAnterior)){
@@ -103,11 +102,12 @@ public class Parser {
 
             }
 
+            coordenadaAnterior = coordenadaIteracion;
         }
 
     }
 
-    private static iCasilla construirCasillaDesdeJSON(String celdaJsonString) {
+    private iCasilla construirCasillaDesdeJSON(String celdaJsonString) {
 
         int y = obtenerValorNumerico(celdaJsonString, "\"y\":");
         int x = obtenerValorNumerico(celdaJsonString, "\"x\":");
@@ -135,7 +135,7 @@ public class Parser {
         }
     }
 
-    private static int obtenerValorNumerico(String json, String clave) {
+    private int obtenerValorNumerico(String json, String clave) {
 
         if (!json.contains(clave)){
             throw new FormatoInvalidoMapaException("No se encontró la clave" + clave + " en al menos una casilla. El formato no es válido");
@@ -154,7 +154,7 @@ public class Parser {
         return Integer.parseInt(json.substring(inicio, fin).trim());
     }
 
-    private static String obtenerValorString(String json, String clave) {
+    private String obtenerValorString(String json, String clave) {
 
         if (!json.contains(clave)){
             throw new FormatoInvalidoMapaException("No se encontró la clave" + clave + " en al menos una casilla. El formato no es válido");
@@ -166,7 +166,7 @@ public class Parser {
         return json.substring(inicio + 2, fin).trim();
     }
 
-    private static Premio obtenerPremioPorString(String stringPremio) {
+    private Premio obtenerPremioPorString(String stringPremio) {
 
         Premio itemPremio ;
 
@@ -183,7 +183,7 @@ public class Parser {
         return itemPremio;
     }
 
-    private static Obstaculo obtenerObstaculoPorString(String stringObstaculo){
+    private Obstaculo obtenerObstaculoPorString(String stringObstaculo){
 
         Obstaculo itemObstaculo ;
 
@@ -203,12 +203,35 @@ public class Parser {
 
     }
 
-    private static Coordenada obtenerDimensionesMapa(String stringParteMapa){
+    private void obtenerDimensionesMapa(String stringParteMapa){
 
         int anchoMapa = obtenerValorNumerico(stringParteMapa, "\"ancho\":");
         int largoMapa = obtenerValorNumerico(stringParteMapa, "\"largo\":");
 
-        return new Coordenada(anchoMapa, largoMapa);
+        if (largoMapa < 1){
+
+            throw new MapaDimensionesInconsistentesException("Se ingresó un mapa con largo menor o igual a cero. Formato inválido");
+        }
+
+        if (anchoMapa < 1){
+
+            throw new MapaDimensionesInconsistentesException("Se ingresó un mapa con ancho menor o igual a cero. Formato inválido");
+
+        }
+
+        this.largo = largoMapa ;
+        this.ancho = anchoMapa ;
+
+    }
+
+    private void validarCoordenadaCasilla(Coordenada coordenada){
+
+        if(coordenada.getX() < 1 || coordenada.getX() > this.largo || coordenada.getY() < 0 || coordenada.getY() > this.ancho){
+
+            throw new CasillaFueraDeMapaException("Al menos una casilla se encuentra fuera de las dimensiones del mapa. Formato de mapa inválido. ");
+
+        }
+
 
     }
 

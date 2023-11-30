@@ -234,4 +234,47 @@ public class ParserUnitTests {
 
         });
     }
+
+    @Test
+    public void test17ParseoUnMapaConUnaCasillaFueraDeMapaReciboExcepcion() throws IOException {
+
+        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaConCasillaFueraDeMapa.json")));
+
+        Parser parser = new Parser();
+
+        assertThrows(CasillaFueraDeMapaException.class, () -> {
+
+            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+
+        });
+    }
+
+    @Test
+    public void test18ParseoUnMapaConAnchoInvalidoReciboExcepcion() throws IOException {
+
+        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaAnchoinvalido.json")));
+
+        Parser parser = new Parser();
+
+        assertThrows(MapaDimensionesInconsistentesException.class, () -> {
+
+            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+
+        });
+    }
+
+    @Test
+    public void test19ParseoUnMapaConAltoInvalidoReciboExcepcion() throws IOException {
+
+        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaAltoinvalido.json")));
+
+        Parser parser = new Parser();
+
+        assertThrows(MapaDimensionesInconsistentesException.class, () -> {
+
+            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+
+        });
+    }
+
 }

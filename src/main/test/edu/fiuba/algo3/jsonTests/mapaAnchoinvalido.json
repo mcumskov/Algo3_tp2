@@ -1,6 +1,6 @@
 {
 	"mapa": {
-		"ancho": 10,
+		"ancho": 0,
 		"largo": 18
 	},
 	"camino": {
@@ -154,7 +154,7 @@
 			},
 			{
 				"x": 12,
-				"y": 6,
+				"y": 5,
 				"tipo": "Camino",
 				"obstaculo": "",
 				"premio": "Equipamiento"

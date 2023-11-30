@@ -1,7 +1,7 @@
 {
 	"mapa": {
 		"ancho": 10,
-		"largo": 18
+		"largo": -3
 	},
 	"camino": {
 		"celdas": [
@@ -154,7 +154,7 @@
 			},
 			{
 				"x": 12,
-				"y": 6,
+				"y": 5,
 				"tipo": "Camino",
 				"obstaculo": "",
 				"premio": "Equipamiento"
