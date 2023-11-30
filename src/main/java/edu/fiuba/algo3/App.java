@@ -21,7 +21,7 @@ public class App extends Application {
         double screenWidth = screen.getBounds().getWidth();
         double screenHeight = screen.getBounds().getHeight();
 
-        Button startButton = new Button("jugar nueva partida");
+        Button startButton = new Button("Jugar nueva partida");
         startButton.setOnAction(e -> {
             mostrarCantidadJugadoresForm();
         });
@@ -32,7 +32,7 @@ public class App extends Application {
         Scene scene = new Scene(this.contenedorPrincipal, screenWidth*0.7, screenHeight*0.7);
 
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Nustro jueguezito");
+        primaryStage.setTitle("POC JavaFX");
         primaryStage.show();
     }
 
