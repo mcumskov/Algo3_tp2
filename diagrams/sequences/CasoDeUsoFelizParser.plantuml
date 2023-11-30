@@ -9,6 +9,7 @@ participant ":Parser" #D5D8DC
 
 Actor -> ":Parser" : parsearJSON(nombreJSON)
 activate ":Parser" #D5D8DC
+":Parser" -> ":Parser" : abrirJSON()
 ":Parser" --> "casillas: List<iCasilla>" ** : <<create>>
 ":Parser" -> ":Parser" : splitJSON()
 ":Parser" -> ":Parser" : obtenerDimensionesMapa()
