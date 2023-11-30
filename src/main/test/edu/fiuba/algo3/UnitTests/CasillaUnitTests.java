@@ -20,7 +20,7 @@ public class CasillaUnitTests {
 
         Gladiador dummy = new Gladiador();
         primeraCasilla.recibir(dummy);
-        iCasilla casillaObtenida = primeraCasilla.BuscadoEstaEnLaCasilla(dummy);
+        iCasilla casillaObtenida = primeraCasilla.buscadoEstaEnLaCasilla(dummy);
         assertSame(casillaObtenida, primeraCasilla);
     }
     @Test
@@ -33,10 +33,10 @@ public class CasillaUnitTests {
 
         Gladiador dummy = new Gladiador();
         primeraCasilla.recibir(dummy);
-        iCasilla casillaObtenida = primeraCasilla.BuscadoEstaEnLaCasilla(dummy);
+        iCasilla casillaObtenida = primeraCasilla.buscadoEstaEnLaCasilla(dummy);
         assertSame(casillaObtenida, primeraCasilla);
         primeraCasilla.expulsar(dummy);
-        assertNull(primeraCasilla.BuscadoEstaEnLaCasilla(dummy));
+        assertNull(primeraCasilla.buscadoEstaEnLaCasilla(dummy));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class CasillaUnitTests {
         Gladiador dummy = new Gladiador();
         primeraCasilla.recibir(dummy);
         primeraCasilla.moverGladiador(1,dummy);
-        iCasilla casillaObtenida = segundaCasilla.BuscadoEstaEnLaCasilla(dummy);
+        iCasilla casillaObtenida = segundaCasilla.buscadoEstaEnLaCasilla(dummy);
         assertSame(casillaObtenida, segundaCasilla);
     }
     @Test
@@ -77,7 +77,7 @@ public class CasillaUnitTests {
         Gladiador dummy = new Gladiador();
         primeraCasilla.recibir(dummy);
         primeraCasilla.moverGladiador(10,dummy);
-        iCasilla casillaObtenida = onceCasilla.BuscadoEstaEnLaCasilla(dummy);
+        iCasilla casillaObtenida = onceCasilla.buscadoEstaEnLaCasilla(dummy);
         assertSame(casillaObtenida, onceCasilla);
     }
 
@@ -103,7 +103,7 @@ public class CasillaUnitTests {
         Gladiador dummy = new Gladiador();
         primeraCasilla.recibir(dummy);
         primeraCasilla.moverGladiador(100,dummy);
-        iCasilla casillaObtenida = ultimaCasilla.BuscadoEstaEnLaCasilla(dummy);
+        iCasilla casillaObtenida = ultimaCasilla.buscadoEstaEnLaCasilla(dummy);
         assertSame(casillaObtenida, ultimaCasilla);
     }
 

@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.mapa;
 
-import edu.fiuba.algo3.modelo.Eventos.Obstaculos.Obstaculo;
-import edu.fiuba.algo3.modelo.Eventos.Premios.Premio;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 
 import java.util.ArrayList;
@@ -13,11 +11,13 @@ public class CasillaFinal implements iCasilla{
     protected Coordenada coordenada;
     protected List<Gladiador> gladiadoresEnLaCasilla;
 
-    public CasillaFinal(Casilla siguiente){
-        this.casillaSiguiente = siguiente;
+    public CasillaFinal(Coordenada coordenada ){
+
+        this.coordenada = coordenada;
+        this.casillaSiguiente = null;
         this.gladiadoresEnLaCasilla = new ArrayList<Gladiador>();
     }
-    public void SetSiguiente(iCasilla siguiente){
+    public void setSiguiente(iCasilla siguiente){
         this.casillaSiguiente = siguiente;
     }
     public void moverGladiador(int pasos, Gladiador gladiador){
@@ -38,7 +38,7 @@ public class CasillaFinal implements iCasilla{
         gladiadoresEnLaCasilla.remove(gladiador);
     }
 
-    public iCasilla BuscadoEstaEnLaCasilla(Gladiador gladiador){
+    public iCasilla buscadoEstaEnLaCasilla(Gladiador gladiador){
         if(gladiadoresEnLaCasilla.contains(gladiador)){
             return this;
         }

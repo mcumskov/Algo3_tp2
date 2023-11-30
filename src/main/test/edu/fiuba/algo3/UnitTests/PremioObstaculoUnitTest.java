@@ -90,15 +90,15 @@ public class PremioObstaculoUnitTest{
         dummy.avanzar(primeraCasilla,1);
         Casilla casillaEnLaQueSeLesiona = segundaCasilla;
         dummy.avanzar(segundaCasilla,1);
-        assertSame(casillaEnLaQueSeLesiona, segundaCasilla.BuscadoEstaEnLaCasilla(dummy));
+        assertSame(casillaEnLaQueSeLesiona, segundaCasilla.buscadoEstaEnLaCasilla(dummy));
 
 
         dummy.avanzar(segundaCasilla,1);
-        assertNull(segundaCasilla.BuscadoEstaEnLaCasilla(dummy));
+        assertNull(segundaCasilla.buscadoEstaEnLaCasilla(dummy));
 
 
         Casilla casillaALaQueAvanza = terceraCasilla;
-        assertSame(casillaALaQueAvanza, terceraCasilla.BuscadoEstaEnLaCasilla(dummy));
+        assertSame(casillaALaQueAvanza, terceraCasilla.buscadoEstaEnLaCasilla(dummy));
 
     }
 
