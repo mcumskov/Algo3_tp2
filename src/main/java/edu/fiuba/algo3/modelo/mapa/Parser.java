@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.Eventos.Premios.PremioEquipamiento;
 import edu.fiuba.algo3.modelo.excepciones.ObstaculoInvalidoException;
 import edu.fiuba.algo3.modelo.excepciones.PremioInvalidoException;
 import edu.fiuba.algo3.modelo.excepciones.TipoCasillaInvalidaException;
+import edu.fiuba.algo3.modelo.excepciones.FormatoInvalidoMapaException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class Parser {
     List<iCasilla> casillas ;
 
     private int ancho ;
-    private int alto ; // esto calculo q tampoco lo necesitamos
+    private int alto ;
 
     protected iCasilla casillaAnterior;
 
@@ -32,7 +33,10 @@ public class Parser {
         // Dividir la cadena JSON en partes para analizar
         String[] partes = jsonString.split("\"celdas\":\\s*\\[");
 
-        // La parte[1] contiene las celdas
+        Coordenada dimensionesMapa ;
+        dimensionesMapa = obtenerDimensionesMapa(partes[0]);
+
+        // La parte 1 contiene las celdas
         String celdasJson = partes[1].substring(0, partes[1].length() - 3);
         String[] celdasArray = celdasJson.split("\\},\\s*\\{");
 
@@ -69,62 +73,66 @@ public class Parser {
 
     }
 
-    private static iCasilla construirCasillaDesdeJSON(String celdaJson) {
+    private static iCasilla construirCasillaDesdeJSON(String celdaJsonString) {
 
-        String tipo = obtenerValorString(celdaJson, "\"tipo\":");
-        String obstaculo = obtenerValorString(celdaJson, "\"obstaculo\":");
-        String premio = obtenerValorString(celdaJson, "\"premio\":");
-
-        Obstaculo itemObstaculo ;
-
-        if(obstaculo.equals("Fiera")){
-            itemObstaculo = new FieraSalvaje();
-        } else if (obstaculo.equals("Lesion")) {
-            itemObstaculo = new Lesion();
-        } else if(obstaculo.equals("Bacanal")){
-            itemObstaculo = new Bacanal();
-        } else if (obstaculo.isEmpty()){
-            itemObstaculo = new ObstaculoNulo();
-        } else {
-            throw new ObstaculoInvalidoException("El obstáculo introducido en una casilla no es válido.");
+        // Validaciones de presencia de llave
+        if (!celdaJsonString.contains("\"x\":")){
+            throw new FormatoInvalidoMapaException("No se encontró la coordenada X de al menos una casilla. El formato no es válido");
         }
 
-        Premio itemPremio ;
-
-        if(premio.equals("Equipamiento")){
-            itemPremio = new PremioEquipamiento();
-        } else if (premio.equals("Comida")) {
-            itemPremio = new PremioComestible();
-        } else if(premio.isEmpty()){
-            itemPremio = new PremioNulo();
-        } else {
-            throw new PremioInvalidoException("El premio introducido en una casilla no es válido.");
+        if (!celdaJsonString.contains("\"y\":")){
+            throw new FormatoInvalidoMapaException("No se encontró la coordenada Y de al menos una casilla. El formato no es válido");
         }
 
-        if(tipo.equals("Camino")){
-
-            return new Casilla(null,itemObstaculo, itemPremio);
-
+        if (!celdaJsonString.contains("\"tipo\":")){
+            throw new FormatoInvalidoMapaException("No se encontró la clave con el tipo de casilla de al menos una casilla. El formato no es válido");
         }
-        else if(tipo.equals("Salida")){
 
-            return new Casilla(null, itemObstaculo, itemPremio);
+        if (!celdaJsonString.contains("\"obstaculo\":")){
+            throw new FormatoInvalidoMapaException("No se encontró la clave con el tipo de obstáculo de al menos una casilla. El formato no es válido");
+        }
 
-        }else if(tipo.equals("Llegada")){
+        if (!celdaJsonString.contains("\"premio\":")){
+            throw new FormatoInvalidoMapaException("No se encontró la clave con el tipo de premio de al menos una casilla. El formato no es válido");
+        }
 
-            return new Casilla(null, itemObstaculo, itemPremio);
+        int y = obtenerValorNumerico(celdaJsonString, "\"y\":");
+        int x = obtenerValorNumerico(celdaJsonString, "\"x\":");
 
-        }else{
+        Coordenada coordenada = new Coordenada(x,y);
+
+        String stringTipo = obtenerValorString(celdaJsonString, "\"tipo\":");
+        String stringObstaculo = obtenerValorString(celdaJsonString, "\"obstaculo\":");
+        String stringPremio = obtenerValorString(celdaJsonString, "\"premio\":");
+
+        Premio itemPremio = obtenerPremioPorString(stringPremio);
+        Obstaculo itemObstaculo = obtenerObstaculoPorString(stringObstaculo);
+
+        if(stringTipo.equals("Camino")){
+
+            return new Casilla(coordenada, null,itemObstaculo, itemPremio);
+        } else if(stringTipo.equals("Salida")){
+
+            return new Casilla(coordenada, null, itemObstaculo, itemPremio);
+        } else if(stringTipo.equals("Llegada")){
+
+            return new Casilla(coordenada, null, itemObstaculo, itemPremio);
+        } else{
             throw new TipoCasillaInvalidaException("El tipo de casilla introducido en una casilla no es válido.");
         }
     }
 
     private static int obtenerValorNumerico(String json, String clave) {
         int inicio = json.indexOf(clave) + clave.length();
-        int fin = json.indexOf(",", inicio);
-        if (fin == -1) {
-            fin = json.indexOf("}", inicio);
-        }
+        int fin ;
+        int proxComa = json.indexOf(",", inicio);
+        int proxLlave = json.indexOf("}", inicio);
+
+        if(proxComa < proxLlave)
+            fin = proxComa;
+        else
+            fin = proxLlave;
+
         return Integer.parseInt(json.substring(inicio, fin).trim());
     }
 
@@ -135,6 +143,60 @@ public class Parser {
         return json.substring(inicio + 2, fin).trim();
     }
 
+    private static Premio obtenerPremioPorString(String stringPremio) {
+
+        Premio itemPremio ;
+
+        if(stringPremio.equals("Equipamiento")){
+            itemPremio = new PremioEquipamiento();
+        } else if (stringPremio.equals("Comida")) {
+            itemPremio = new PremioComestible();
+        } else if(stringPremio.isEmpty()){
+            itemPremio = new PremioNulo();
+        } else {
+            throw new PremioInvalidoException("El premio introducido en una casilla no es válido.");
+        }
+
+        return itemPremio;
+    }
+
+    private static Obstaculo obtenerObstaculoPorString(String stringObstaculo){
+
+        Obstaculo itemObstaculo ;
+
+        if(stringObstaculo.equals("Fiera")){
+            itemObstaculo = new FieraSalvaje();
+        } else if (stringObstaculo.equals("Lesion")) {
+            itemObstaculo = new Lesion();
+        } else if(stringObstaculo.equals("Bacanal")){
+            itemObstaculo = new Bacanal();
+        } else if (stringObstaculo.isEmpty()){
+            itemObstaculo = new ObstaculoNulo();
+        } else {
+            throw new ObstaculoInvalidoException("El obstáculo introducido en una casilla no es válido.");
+        }
+
+        return itemObstaculo;
+
+    }
+
+    private static Coordenada obtenerDimensionesMapa(String stringParteMapa){
+
+        // La parte 0 contiene las dimensiones del mapa
+        if (!stringParteMapa.contains("\"ancho\":")){
+            throw new FormatoInvalidoMapaException("No se encontró la clave con el alto del mapa. El formato no es válido");
+        }
+
+        if (!stringParteMapa.contains("\"largo\":")){
+            throw new FormatoInvalidoMapaException("No se encontró la clave con el alto del mapa. El formato no es válido");
+        }
+
+        int anchoMapa = obtenerValorNumerico(stringParteMapa, "\"ancho\":");
+        int largoMapa = obtenerValorNumerico(stringParteMapa, "\"largo\":");
+
+        return new Coordenada(anchoMapa, largoMapa);
+
+    }
 
 }
 
