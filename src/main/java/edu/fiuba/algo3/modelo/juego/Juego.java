@@ -25,7 +25,7 @@ public class Juego {
     public int cantidadJugadores;
     private static Juego instancia;
 
-    private Juego (Mapa mapa, List<Jugador> jugadores) throws IOException {
+    private Juego (Mapa mapa, List<Jugador> jugadores) {
 
         this.jugadores = jugadores;
         this.cantidadJugadores = jugadores.size();
@@ -47,7 +47,7 @@ public class Juego {
         }
     }
 
-    public static Juego instanciarJuego(Mapa mapa, List<Jugador> jugadores) throws IOException {
+    public static Juego instanciarJuego(Mapa mapa, List<Jugador> jugadores) {
         if(instancia == null){
             instancia = new Juego(mapa, jugadores);
         }
