@@ -16,43 +16,82 @@ loop Until SinGanadorException
     Jugador -> Dado: lanzar()
     activate Dado
     Dado --> Jugador: tiradaDeDado:int
+
+    deactivate Dado
+
     Jugador -> Mapa: moverGladiador(this, tiradaDeDado)
+    activate Mapa
     Mapa -> Mapa: EncontrarGladiador(gladiador)
     Mapa -> "gladiador: Gladiador":avanzar(CasillaDeSalida, tiradaDeDado)
+    activate "gladiador: Gladiador"
     "gladiador: Gladiador" -> "estado: GladiadorSano": avanzar(this:Gladiador, inicioMovimiento, tiradaDeDado)
     activate "estado: GladiadorSano"
     "estado: GladiadorSano" -> "gladiador: Gladiador": actualizarSeniority();
+    activate "gladiador: Gladiador"
     "gladiador: Gladiador" -> "seniority: Seniority":actualizar()
+    activate "seniority: Seniority"
     "seniority: Seniority" -> "nivelDeSeniority: Novato":actualizar()
+    activate "nivelDeSeniority: Novato"
     "nivelDeSeniority: Novato" --> "seniority: Seniority": :NivelDeSeniority
+    deactivate "nivelDeSeniority: Novato"
     "seniority: Seniority" --> "gladiador: Gladiador"
+    deactivate "seniority: Seniority"
     "gladiador: Gladiador" -> "seniority: Seniority":recuperarEnergia()
+   activate "seniority: Seniority"
     "seniority: Seniority" -> "nivelDeSeniority: Novato":recuperarEnergia()
+     activate "nivelDeSeniority: Novato"
     "nivelDeSeniority: Novato" --> "seniority: Seniority": recuperacion:int
+    deactivate "nivelDeSeniority: Novato"
     "seniority: Seniority" --> "gladiador: Gladiador": recuperacion:int
+    deactivate "seniority: Seniority"
     "gladiador: Gladiador" -> "gladiador: Gladiador": aumentarEnergia(recuperacion: int)
+
     "gladiador: Gladiador" --> "estado: GladiadorSano"
-     "estado: GladiadorSano" -> "casillaInicioMovimiento :iCasilla": moverGladiador(pasos, gladiador)
+    deactivate "gladiador: Gladiador"
+
+    "estado: GladiadorSano" -> "casillaInicioMovimiento :iCasilla": moverGladiador(pasos, gladiador)
+    activate "casillaInicioMovimiento :iCasilla"
+    note right
+    esto no es un loop tal cual,
+    es una secuencia de llamadas a objetos de la misma clase
+
+    public void moverGladiador(int pasos, Gladiador gladiador){
+            if( pasos == 0 || casillaSiguiente == null){
+                this.recibir(gladiador);
+                return;
+            }
+            casillaSiguiente.moverGladiador(pasos-1, gladiador);
+            this.expulsar(gladiador);
+        }
+    end note
     loop Until pasos=0 | casillaSiguiente = Null
      "casillaInicioMovimiento :iCasilla" -> casillaSiguiente :moverGladiador(pasos-1, gladiador)
+    activate casillaSiguiente
     end
     casillaSiguiente -> casillaSiguiente: recibir(gladiador: Gladiador)
     casillaSiguiente -> "premio: PremioNulo" : premiar(gladiador)
+    activate "premio: PremioNulo"
     "premio: PremioNulo" --> casillaSiguiente
+    deactivate "premio: PremioNulo"
     casillaSiguiente -> "obstaculo: ObstaculoNulo" : obstaculizar(gladiador)
+    activate "obstaculo: ObstaculoNulo"
     "obstaculo: ObstaculoNulo" --> casillaSiguiente
+    deactivate "obstaculo: ObstaculoNulo"
     casillaSiguiente --> "casillaInicioMovimiento :iCasilla":
+    deactivate casillaSiguiente
     "casillaInicioMovimiento :iCasilla" -> "casillaInicioMovimiento :iCasilla": expulsar(gladiador: Gladiador)
     "casillaInicioMovimiento :iCasilla" --> "estado: GladiadorSano"
+    deactivate "casillaInicioMovimiento :iCasilla"
     "estado: GladiadorSano" --> "gladiador: Gladiador"
     deactivate "estado: GladiadorSano"
     "gladiador: Gladiador" --> Mapa
-    Mapa --> Jugador
-    Jugador--> GestorTurnos
-    GestorTurnos --> Juego
+    deactivate "gladiador: Gladiador"
 
+    Mapa --> Jugador
+    deactivate Mapa
+    Jugador--> GestorTurnos
     deactivate Jugador
-    deactivate Dado
+    GestorTurnos --> Juego
     deactivate GestorTurnos
 end
 deactivate Juego

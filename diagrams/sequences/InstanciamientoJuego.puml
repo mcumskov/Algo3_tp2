@@ -7,12 +7,18 @@ participant ":Dado"
 Actor -> ":Juego" ** : instanciarJuego(mapa: Mapa, jugadores: List<Jugador>)
 activate ":Juego"
 ":Juego" -> ":GestorTurnos"**: new ":GestorTurnos"(rondas = 30, jugadores)
+
 activate ":GestorTurnos"
+":GestorTurnos" --> ":Juego": :GestorTurnos
+deactivate ":GestorTurnos"
+
+
 ":Juego" -> ":Dado"**: new ":Dado"()
 activate ":Dado"
-":Juego" --> Actor: instancia: ":Juego"
+":Dado" --> ":Juego":
 deactivate ":Dado"
-deactivate ":GestorTurnos"
+":Juego" --> Actor: instancia: ":Juego"
+
 deactivate ":Juego"
 
 @enduml

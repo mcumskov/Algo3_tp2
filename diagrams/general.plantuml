@@ -3,6 +3,7 @@
 !include clases/clase_gestorTurnos.plantuml
 !include clases/clase_jugador.plantuml
 !include clases/clase_mapa.plantuml
+!include clases/clase_parser.plantuml
 
 !include clases/clase_gladiador.plantuml
 !include clases/clase_dado.plantuml
@@ -39,20 +40,6 @@ class LogFormatter {
 Log .>  LogFormatter
 
 
-class Parser {
-  + Parser():
-  - construirCasillaDesdeJSON(String): iCasilla
-  - obtenerPremioPorString(String): Premio
-  - obtenerValorString(String, String): String
-  - obtenerDimensionesMapa(String): Coordenada
-  - obtenerValorNumerico(String, String): int
-  + Parser(): void
-  - obtenerObstaculoPorString(String): Obstaculo
-  - validarListaCasillas(): void
-  + parsearJSON(String): List<iCasilla>
-}
-
-
 iCasilla ^-. CasillaInicio
 iCasilla ^-. CasillaFinal
 Juego o-- Mapa
@@ -69,6 +56,8 @@ iCasilla o- "0..6 " Gladiador
 Gladiador o-- ISeniority
 Gladiador o- IEquipamiento
 Gladiador o-- IEstado
+
+Parser .--> iCasilla
 
 
 interface ISeniority <<interface>> {

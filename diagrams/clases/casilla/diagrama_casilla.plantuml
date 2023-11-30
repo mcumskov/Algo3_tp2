@@ -8,7 +8,6 @@
 !include clase_fiera.plantuml
 !include clase_lesion.plantuml
 !include clase_casilla.plantuml
-!include clase_pompeya.plantuml
 
 class ObstaculoNulo {
   + obstaculizar(gladiador:Gladiador)
@@ -23,11 +22,11 @@ interface iCasilla {
     + otorgarPremio(gladiador:Gladiador)
     + aplicarObstaculo(gladiador:Gladiado)
 }
-iCasilla ^-. Casilla
-Casilla o-- Premio
+iCasilla ^-. CasillaCamino
+CasillaCamino o-- Premio
 Premio ^. PremioNulo
 ObstaculoNulo .^ Obstaculo
-Casilla o-- Obstaculo
+CasillaCamino o-- Obstaculo
 
 Obstaculo ^.. Bacanal
 Obstaculo ^.. Fiera
@@ -35,6 +34,5 @@ Obstaculo ^.. Lesion
 
 Premio ^.. GanarEquipamiento
 Premio ^.. Comida
-Premio ^.. Pompeya
 
 @enduml
