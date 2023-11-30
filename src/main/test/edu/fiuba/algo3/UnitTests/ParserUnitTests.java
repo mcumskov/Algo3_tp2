@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.UnitTests;
 
-import edu.fiuba.algo3.modelo.excepciones.FormatoInvalidoMapaException;
-import edu.fiuba.algo3.modelo.excepciones.ObstaculoInvalidoException;
-import edu.fiuba.algo3.modelo.excepciones.PremioInvalidoException;
-import edu.fiuba.algo3.modelo.excepciones.TipoCasillaInvalidaException;
+import edu.fiuba.algo3.modelo.excepciones.*;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.mapa.iCasilla;
@@ -180,5 +177,61 @@ public class ParserUnitTests {
 
         List<iCasilla> casillas = parser.parsearJSON(jsonString);
 
+    }
+
+    @Test
+    public void test13ParseoUnMapaConLaCasillaInicialQueNoEsDelTipoSalidaReciboExcepcion() throws IOException {
+
+        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaCasillaInicialNoEsDeTipoSalida.json")));
+
+        Parser parser = new Parser();
+
+        assertThrows(CasillaInicialNoEsDeTipoSalidaException.class, () -> {
+
+            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+
+        });
+    }
+
+    @Test
+    public void test14ParseoUnMapaConLaCasillaFinaQueNoEsDelTipoLlegadaReciboExcepcion() throws IOException {
+
+        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaCasillaFinalNoEsDeTipoLlegada.json")));
+
+        Parser parser = new Parser();
+
+        assertThrows(CasillaFinalNoEsDeTipoLlegadaException.class, () -> {
+
+            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+
+        });
+    }
+
+    @Test
+    public void test15ParseoUnMapaConUnaCasillaIntermediaQueNoEsDelTipoCaminoReciboExcepcion() throws IOException {
+
+        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaCasillaIntermediaNoEsDeTipoCamino.json")));
+
+        Parser parser = new Parser();
+
+        assertThrows(CasillaIntermediaNoEsDeTipoCaminoException.class, () -> {
+
+            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+
+        });
+    }
+
+    @Test
+    public void test16ParseoUnMapaConUnCaminoDiscontinuoReciboExcepcion() throws IOException {
+
+        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/test/edu/fiuba/algo3/jsonTests/mapaConCaminoDiscontinuo.json")));
+
+        Parser parser = new Parser();
+
+        assertThrows(CaminoDiscontinuoException.class, () -> {
+
+            List<iCasilla> casillas = parser.parsearJSON(jsonString);
+
+        });
     }
 }

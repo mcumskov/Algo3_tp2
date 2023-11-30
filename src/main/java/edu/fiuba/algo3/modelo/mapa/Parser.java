@@ -5,17 +5,12 @@ import edu.fiuba.algo3.modelo.Eventos.Premios.PremioNulo;
 import edu.fiuba.algo3.modelo.Eventos.Premios.Premio;
 import edu.fiuba.algo3.modelo.Eventos.Premios.PremioComestible;
 import edu.fiuba.algo3.modelo.Eventos.Premios.PremioEquipamiento;
-import edu.fiuba.algo3.modelo.excepciones.ObstaculoInvalidoException;
-import edu.fiuba.algo3.modelo.excepciones.PremioInvalidoException;
-import edu.fiuba.algo3.modelo.excepciones.TipoCasillaInvalidaException;
-import edu.fiuba.algo3.modelo.excepciones.FormatoInvalidoMapaException;
+import edu.fiuba.algo3.modelo.excepciones.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Parser {
-
-    List<iCasilla> casillas ;
 
     private int ancho ;
     private int alto ;
@@ -54,52 +49,68 @@ public class Parser {
             this.casillaAnterior = casilla;
         }
 
-        // Falta implementar
-        // validarListaCasillas() ;
-
+        validarListaCasillas(casillas) ;
 
         return casillas;
     }
 
-    private void validarListaCasillas(){
+    private void validarListaCasillas(List<iCasilla> casillas){
 
-        // Tendríamos que validar que:
-        // 1) la primera casilla sea de la clase CasillaInicio
-        // 2) la última casilla sea de la clase CasillaFinal
-        // 3) las casillas del medio sean del tipo CasillaCamino
-        // 4) Las coordenadas de las casillas sean contiguas entre sí (que formen un camino continuo)
+        int finIteracion = casillas.size() - 1;
+        Coordenada coordenadaAnterior = null;
 
-        // Generar excepciones y tests
+        for(int i = 0; i <= finIteracion; i++) {
+
+            iCasilla casillaIteracion = casillas.get(i);
+
+            if(i == 0)
+            {
+                if(!(casillaIteracion instanceof CasillaInicio)){
+
+                    throw new CasillaInicialNoEsDeTipoSalidaException("La primera casilla del mapa debe ser del tipo \"Salida\". Formato de mapa inválido.");
+
+                }
+
+            } else if( i == finIteracion ){
+
+                if(!(casillaIteracion instanceof CasillaFinal)){
+
+                    throw new CasillaFinalNoEsDeTipoLlegadaException("La útlima casilla del mapa debe ser del tipo \"Llegada\". Formato de mapa inválido.");
+
+                }
+
+            } else {
+
+                if(!(casillaIteracion instanceof CasillaCamino)){
+
+                    throw new CasillaIntermediaNoEsDeTipoCaminoException("Una o más de las casillas intermedia no cumplen con el tipo \"Camino\". Formato de mapa inválido.");
+
+                }
+
+            }
+
+
+
+            coordenadaAnterior = casillaIteracion.getCoordenada();
+
+            if(i != 0 ){
+
+                if(!casillaIteracion.getCoordenada().esContigua(coordenadaAnterior)){
+
+                    throw new CaminoDiscontinuoException("Al menos dos casillas del mapa no son contiguas. Formato de mapa inválido. ");
+
+                }
+
+            }
+
+        }
 
     }
 
     private static iCasilla construirCasillaDesdeJSON(String celdaJsonString) {
 
-        // Validaciones de presencia de llave
-        if (!celdaJsonString.contains("\"x\":")){
-            throw new FormatoInvalidoMapaException("No se encontró la coordenada X de al menos una casilla. El formato no es válido");
-        }
-
-        if (!celdaJsonString.contains("\"y\":")){
-            throw new FormatoInvalidoMapaException("No se encontró la coordenada Y de al menos una casilla. El formato no es válido");
-        }
-
-        if (!celdaJsonString.contains("\"tipo\":")){
-            throw new FormatoInvalidoMapaException("No se encontró la clave con el tipo de casilla de al menos una casilla. El formato no es válido");
-        }
-
-        if (!celdaJsonString.contains("\"obstaculo\":")){
-            throw new FormatoInvalidoMapaException("No se encontró la clave con el tipo de obstáculo de al menos una casilla. El formato no es válido");
-        }
-
-        if (!celdaJsonString.contains("\"premio\":")){
-            throw new FormatoInvalidoMapaException("No se encontró la clave con el tipo de premio de al menos una casilla. El formato no es válido");
-        }
-
         int y = obtenerValorNumerico(celdaJsonString, "\"y\":");
         int x = obtenerValorNumerico(celdaJsonString, "\"x\":");
-
-        Coordenada coordenada = new Coordenada(x,y);
 
         String stringTipo = obtenerValorString(celdaJsonString, "\"tipo\":");
         String stringObstaculo = obtenerValorString(celdaJsonString, "\"obstaculo\":");
@@ -108,21 +119,28 @@ public class Parser {
         Premio itemPremio = obtenerPremioPorString(stringPremio);
         Obstaculo itemObstaculo = obtenerObstaculoPorString(stringObstaculo);
 
+        Coordenada coordenada = new Coordenada(x,y);
+
         if(stringTipo.equals("Camino")){
 
-            return new Casilla(coordenada, null,itemObstaculo, itemPremio);
+            return new CasillaCamino(coordenada, null,itemObstaculo, itemPremio);
         } else if(stringTipo.equals("Salida")){
 
-            return new Casilla(coordenada, null, itemObstaculo, itemPremio);
+            return new CasillaInicio(coordenada, null);
         } else if(stringTipo.equals("Llegada")){
 
-            return new Casilla(coordenada, null, itemObstaculo, itemPremio);
+            return new CasillaFinal(coordenada);
         } else{
             throw new TipoCasillaInvalidaException("El tipo de casilla introducido en una casilla no es válido.");
         }
     }
 
     private static int obtenerValorNumerico(String json, String clave) {
+
+        if (!json.contains(clave)){
+            throw new FormatoInvalidoMapaException("No se encontró la clave" + clave + " en al menos una casilla. El formato no es válido");
+        }
+
         int inicio = json.indexOf(clave) + clave.length();
         int fin ;
         int proxComa = json.indexOf(",", inicio);
@@ -137,6 +155,11 @@ public class Parser {
     }
 
     private static String obtenerValorString(String json, String clave) {
+
+        if (!json.contains(clave)){
+            throw new FormatoInvalidoMapaException("No se encontró la clave" + clave + " en al menos una casilla. El formato no es válido");
+        }
+
         int inicio = json.indexOf(clave) + clave.length();
 
         int fin = json.indexOf("\"", inicio + 2);
@@ -181,15 +204,6 @@ public class Parser {
     }
 
     private static Coordenada obtenerDimensionesMapa(String stringParteMapa){
-
-        // La parte 0 contiene las dimensiones del mapa
-        if (!stringParteMapa.contains("\"ancho\":")){
-            throw new FormatoInvalidoMapaException("No se encontró la clave con el alto del mapa. El formato no es válido");
-        }
-
-        if (!stringParteMapa.contains("\"largo\":")){
-            throw new FormatoInvalidoMapaException("No se encontró la clave con el alto del mapa. El formato no es válido");
-        }
 
         int anchoMapa = obtenerValorNumerico(stringParteMapa, "\"ancho\":");
         int largoMapa = obtenerValorNumerico(stringParteMapa, "\"largo\":");

@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Casilla implements iCasilla {
+public class CasillaCamino implements iCasilla {
 
 
     protected Obstaculo obstaculo;
@@ -17,7 +17,7 @@ public class Casilla implements iCasilla {
 
     protected List<Gladiador> gladiadoresEnLaCasilla;
 
-    public Casilla(iCasilla siguiente, Obstaculo obstaculo, Premio premio) {
+    public CasillaCamino(iCasilla siguiente, Obstaculo obstaculo, Premio premio) {
         this.casillaSiguiente = siguiente;
         this.obstaculo = obstaculo;
         this.premio = premio;
@@ -25,7 +25,7 @@ public class Casilla implements iCasilla {
         this.coordenada = null; // Mock para test
     }
 
-    public Casilla(Coordenada coordenada, iCasilla siguiente, Obstaculo obstaculo, Premio premio) {
+    public CasillaCamino(Coordenada coordenada, iCasilla siguiente, Obstaculo obstaculo, Premio premio) {
         this.casillaSiguiente = siguiente;
         this.obstaculo = obstaculo;
         this.premio = premio;

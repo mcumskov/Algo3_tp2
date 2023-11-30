@@ -37,8 +37,8 @@ public class Entrega1Tests {
         ObstaculoNulo obstaculoAburrido = new ObstaculoNulo();
         PremioNulo premioAburrido = new PremioNulo();
 
-        Casilla ultimaCasilla = new Casilla(null, obstaculoAburrido, premioAburrido);
-        Casilla primerCasilla = new Casilla(ultimaCasilla, obstaculoAburrido,premioAburrido);
+        CasillaCamino ultimaCasilla = new CasillaCamino(null, obstaculoAburrido, premioAburrido);
+        CasillaCamino primerCasilla = new CasillaCamino(ultimaCasilla, obstaculoAburrido,premioAburrido);
 
         ArrayList<iCasilla> listaCasillas = new ArrayList<iCasilla>();
         listaCasillas.add(primerCasilla);
@@ -61,9 +61,9 @@ public class Entrega1Tests {
         ObstaculoNulo obstaculoAburrido = new ObstaculoNulo();
         FieraSalvaje eventoFiera = new FieraSalvaje();
 
-        Casilla terceraCasilla =  new Casilla(null,obstaculoAburrido, premioAburrido);
-        Casilla segundaCasilla = new Casilla(terceraCasilla,eventoFiera, premioAburrido);
-        Casilla primeraCasilla = new Casilla(segundaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino terceraCasilla =  new CasillaCamino(null,obstaculoAburrido, premioAburrido);
+        CasillaCamino segundaCasilla = new CasillaCamino(terceraCasilla,eventoFiera, premioAburrido);
+        CasillaCamino primeraCasilla = new CasillaCamino(segundaCasilla, obstaculoAburrido, premioAburrido);
 
         Gladiador gladiadorcito = new Gladiador();
         primeraCasilla.recibir(gladiadorcito);
@@ -143,16 +143,16 @@ public class Entrega1Tests {
         PremioNulo premioAburrido = new PremioNulo();
         ObstaculoNulo obstaculoAburrido = new ObstaculoNulo();
 
-        Casilla ultimaCasilla = new Casilla(null, obstaculoAburrido, premioAburrido);
-        Casilla novenaCasilla = new Casilla(ultimaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla octavaCasilla = new Casilla(novenaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla septimaCasilla = new Casilla(octavaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla sextaCasilla = new Casilla(septimaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla quintaCasilla = new Casilla(sextaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla cuartaCasilla = new Casilla(quintaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla tercerCasilla = new Casilla(cuartaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla segundaCasilla = new Casilla(tercerCasilla,obstaculoAburrido, premioAburrido);
-        Casilla primerCasilla = new Casilla(segundaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino ultimaCasilla = new CasillaCamino(null, obstaculoAburrido, premioAburrido);
+        CasillaCamino novenaCasilla = new CasillaCamino(ultimaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino octavaCasilla = new CasillaCamino(novenaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino septimaCasilla = new CasillaCamino(octavaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino sextaCasilla = new CasillaCamino(septimaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino quintaCasilla = new CasillaCamino(sextaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino cuartaCasilla = new CasillaCamino(quintaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino tercerCasilla = new CasillaCamino(cuartaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino segundaCasilla = new CasillaCamino(tercerCasilla,obstaculoAburrido, premioAburrido);
+        CasillaCamino primerCasilla = new CasillaCamino(segundaCasilla, obstaculoAburrido, premioAburrido);
 
         Gladiador gladiadorcito = new Gladiador();
         primerCasilla.recibir(gladiadorcito);
@@ -183,15 +183,15 @@ public class Entrega1Tests {
         ObstaculoNulo obstaculoAburrido = new ObstaculoNulo();
 
         CasillaFinal ultimaCasilla = new CasillaFinal(new Coordenada(0,0));
-        Casilla novenaCasilla = new Casilla(ultimaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla octavaCasilla = new Casilla(novenaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla septimaCasilla = new Casilla(octavaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla sextaCasilla = new Casilla(septimaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla quintaCasilla = new Casilla(sextaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla cuartaCasilla = new Casilla(quintaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla tercerCasilla = new Casilla(cuartaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla segundaCasilla = new Casilla(tercerCasilla,obstaculoAburrido, premioAburrido);
-        Casilla primerCasilla = new Casilla(segundaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino novenaCasilla = new CasillaCamino(ultimaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino octavaCasilla = new CasillaCamino(novenaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino septimaCasilla = new CasillaCamino(octavaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino sextaCasilla = new CasillaCamino(septimaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino quintaCasilla = new CasillaCamino(sextaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino cuartaCasilla = new CasillaCamino(quintaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino tercerCasilla = new CasillaCamino(cuartaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino segundaCasilla = new CasillaCamino(tercerCasilla,obstaculoAburrido, premioAburrido);
+        CasillaCamino primerCasilla = new CasillaCamino(segundaCasilla, obstaculoAburrido, premioAburrido);
 
         List<iCasilla> casillas = new ArrayList<>();
         casillas.add(primerCasilla);
@@ -268,16 +268,16 @@ public class Entrega1Tests {
         PremioNulo premioAburrido = new PremioNulo();
         ObstaculoNulo obstaculoAburrido = new ObstaculoNulo();
 
-        Casilla ultimaCasilla = new Casilla(null, obstaculoAburrido, premioAburrido);
-        Casilla novenaCasilla = new Casilla(ultimaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla octavaCasilla = new Casilla(novenaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla septimaCasilla = new Casilla(octavaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla sextaCasilla = new Casilla(septimaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla quintaCasilla = new Casilla(sextaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla cuartaCasilla = new Casilla(quintaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla tercerCasilla = new Casilla(cuartaCasilla, obstaculoAburrido, premioAburrido);
-        Casilla segundaCasilla = new Casilla(tercerCasilla,obstaculoAburrido, premioAburrido);
-        Casilla primerCasilla = new Casilla(segundaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino ultimaCasilla = new CasillaCamino(null, obstaculoAburrido, premioAburrido);
+        CasillaCamino novenaCasilla = new CasillaCamino(ultimaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino octavaCasilla = new CasillaCamino(novenaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino septimaCasilla = new CasillaCamino(octavaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino sextaCasilla = new CasillaCamino(septimaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino quintaCasilla = new CasillaCamino(sextaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino cuartaCasilla = new CasillaCamino(quintaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino tercerCasilla = new CasillaCamino(cuartaCasilla, obstaculoAburrido, premioAburrido);
+        CasillaCamino segundaCasilla = new CasillaCamino(tercerCasilla,obstaculoAburrido, premioAburrido);
+        CasillaCamino primerCasilla = new CasillaCamino(segundaCasilla, obstaculoAburrido, premioAburrido);
 
         List<iCasilla> casillas = new ArrayList<>();
         casillas.add(primerCasilla);
