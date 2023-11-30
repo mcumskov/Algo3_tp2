@@ -3,18 +3,20 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.Eventos.Obstaculos.FieraSalvaje;
 import edu.fiuba.algo3.modelo.Eventos.Obstaculos.Obstaculo;
 import edu.fiuba.algo3.modelo.Eventos.Obstaculos.ObstaculoNulo;
-import edu.fiuba.algo3.modelo.Eventos.Premios.Premio;
-import edu.fiuba.algo3.modelo.Eventos.Premios.PremioComestible;
-import edu.fiuba.algo3.modelo.Eventos.Premios.PremioEquipamiento;
-import edu.fiuba.algo3.modelo.Eventos.Premios.PremioNulo;
+import edu.fiuba.algo3.modelo.Eventos.Premios.*;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
+import edu.fiuba.algo3.modelo.juego.Juego;
+import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.mapa.CasillaFinal;
 import edu.fiuba.algo3.modelo.mapa.iCasilla;
 import edu.fiuba.algo3.modelo.mapa.Casilla;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -178,6 +180,54 @@ public class Entrega1Tests {
         assertEquals(5, diferenciaDeEnergia);
     }
     @Test
+    public void test09GladiadorConEscudoEspadaNoAbrePompeyaYvaALaMitadDelMapa() throws IOException {
+
+        PremioNulo premioAburrido = new PremioNulo();
+        ObstaculoNulo obstaculoAburrido = new ObstaculoNulo();
+
+        CasillaFinal ultimaCasilla = new CasillaFinal(null);
+        Casilla novenaCasilla = new Casilla(ultimaCasilla, obstaculoAburrido, premioAburrido);
+        Casilla octavaCasilla = new Casilla(novenaCasilla, obstaculoAburrido, premioAburrido);
+        Casilla septimaCasilla = new Casilla(octavaCasilla, obstaculoAburrido, premioAburrido);
+        Casilla sextaCasilla = new Casilla(septimaCasilla, obstaculoAburrido, premioAburrido);
+        Casilla quintaCasilla = new Casilla(sextaCasilla, obstaculoAburrido, premioAburrido);
+        Casilla cuartaCasilla = new Casilla(quintaCasilla, obstaculoAburrido, premioAburrido);
+        Casilla tercerCasilla = new Casilla(cuartaCasilla, obstaculoAburrido, premioAburrido);
+        Casilla segundaCasilla = new Casilla(tercerCasilla,obstaculoAburrido, premioAburrido);
+        Casilla primerCasilla = new Casilla(segundaCasilla, obstaculoAburrido, premioAburrido);
+
+        List<iCasilla> casillas = new ArrayList<>();
+        casillas.add(primerCasilla);
+        casillas.add(segundaCasilla);
+        casillas.add(tercerCasilla);
+        casillas.add(cuartaCasilla);
+        casillas.add(quintaCasilla);
+        casillas.add(sextaCasilla);
+        casillas.add(septimaCasilla);
+        casillas.add(octavaCasilla);
+        casillas.add(novenaCasilla);
+        casillas.add(ultimaCasilla);
+
+        Jugador jugador = new Jugador();
+        List<Jugador> jugadores = new ArrayList<>();
+        jugadores.add(jugador);
+        List<Gladiador> gladiador = new ArrayList<>();
+        Gladiador gladiadorcito = jugador.getGladiador();
+        gladiador.add(jugador.getGladiador());
+        Mapa mapa = new Mapa(gladiador, casillas, 1);
+
+        Juego juego = Juego.instanciarJuego(mapa,jugadores);
+
+        novenaCasilla.recibir(gladiadorcito);
+        gladiadorcito.avanzar(novenaCasilla, 1);
+
+        assertNull(ultimaCasilla.BuscadoEstaEnLaCasilla(gladiadorcito));
+        iCasilla casillaObtenida =  sextaCasilla.BuscadoEstaEnLaCasilla(gladiadorcito);
+
+        assertSame(casillaObtenida, sextaCasilla);
+    }
+
+    @Test
     public void test10GladiadorRecibeLlaveYPeleaConFieraNoDebeHaberPerdidoEnergia()
     {
         Gladiador gladiador = new Gladiador();
@@ -214,42 +264,51 @@ public class Entrega1Tests {
         obstaculo.obstaculizarGladiador(gladiador);
 
         assertEquals(20, gladiador.getEnergia());
-    }/* el 12 no me funciona
+    }
     @Test
     public void test12SeJuegan30TurnosYElJuegoTerminaSinGanador() throws IOException {
 
-        Jugador jugador1 = new Jugador();
-        Jugador jugador2 = new Jugador();
         PremioNulo premioAburrido = new PremioNulo();
         ObstaculoNulo obstaculoAburrido = new ObstaculoNulo();
 
-        ArrayList<Jugador> jugadores = new ArrayList<>();
-        jugadores.add(jugador1);
-        jugadores.add(jugador2);
+        Casilla ultimaCasilla = new Casilla(null, obstaculoAburrido, premioAburrido);
+        Casilla novenaCasilla = new Casilla(ultimaCasilla, obstaculoAburrido, premioAburrido);
+        Casilla octavaCasilla = new Casilla(novenaCasilla, obstaculoAburrido, premioAburrido);
+        Casilla septimaCasilla = new Casilla(octavaCasilla, obstaculoAburrido, premioAburrido);
+        Casilla sextaCasilla = new Casilla(septimaCasilla, obstaculoAburrido, premioAburrido);
+        Casilla quintaCasilla = new Casilla(sextaCasilla, obstaculoAburrido, premioAburrido);
+        Casilla cuartaCasilla = new Casilla(quintaCasilla, obstaculoAburrido, premioAburrido);
+        Casilla tercerCasilla = new Casilla(cuartaCasilla, obstaculoAburrido, premioAburrido);
+        Casilla segundaCasilla = new Casilla(tercerCasilla,obstaculoAburrido, premioAburrido);
+        Casilla primerCasilla = new Casilla(segundaCasilla, obstaculoAburrido, premioAburrido);
 
-        List<Gladiador> gladiadores = null;
-        gladiadores.add(jugador1.getGladiador());
-        gladiadores.add(jugador2.getGladiador());
+        List<iCasilla> casillas = new ArrayList<>();
+        casillas.add(primerCasilla);
+        casillas.add(segundaCasilla);
+        casillas.add(tercerCasilla);
+        casillas.add(cuartaCasilla);
+        casillas.add(quintaCasilla);
+        casillas.add(sextaCasilla);
+        casillas.add(septimaCasilla);
+        casillas.add(octavaCasilla);
+        casillas.add(novenaCasilla);
+        casillas.add(ultimaCasilla);
 
-        List<Casilla> casillas = null;
-        casillas.add(new CasillaCamino(null, obstaculoAburrido,premioAburrido));
-        GestorTurnos gestorTurnos = new GestorTurnos(30, jugadores);
+        Jugador jugador = new Jugador();
+        List<Jugador> jugadores = new ArrayList<>();
+        jugadores.add(jugador);
+        List<Gladiador> gladiador = new ArrayList<>();
+        Gladiador gladiadorcito = jugador.getGladiador();
+        gladiador.add(jugador.getGladiador());
+        Mapa mapa = new Mapa(gladiador, casillas, 1);
 
-        Dado miDado = new Dado(0);
-        Mapa miMapa = new Mapa(gladiadores,casillas,2);
+        Juego juego = Juego.instanciarJuego(mapa,jugadores);
 
-        for (int i = 0; i < 60; i++) {
+        primerCasilla.recibir(gladiadorcito);
 
-            gestorTurnos.siguienteTurno(miDado,miMapa);
+        assertNull(juego.iniciarPartida());
 
-        }
-
-        assertThrows(SinGanadorException.class, () -> {
-
-            gestorTurnos.siguienteTurno(miDado,miMapa);
-
-        });
-    }*/
+    }
 
 
 
