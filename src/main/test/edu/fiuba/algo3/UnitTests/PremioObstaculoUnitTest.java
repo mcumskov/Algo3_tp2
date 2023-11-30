@@ -121,33 +121,4 @@ public class PremioObstaculoUnitTest{
         assertTrue(energiaPreBorrachera > energiaPostBorrachera);
     }
 
-    /* no funciona pq al harcodear todo por afuera, no creo instancia de juego
-       cuando el gladiador llama al metodo de clase d juego, este devuelve null (pq no esta instanciado)
-       y entonces el test crashea por nullexception
-
-    @Test
-    public void test06EventoPompeyaSinLlaveMandaGladiadorAMitadDeMapa(){
-
-        CasaPompeya eventoPompeya = new CasaPompeya();
-        PremioNulo premioAburrido = new PremioNulo();
-        ObstaculoNulo obstaculoAburrido = new ObstaculoNulo();
-
-        CasillaCamino UltimaCasilla =  new CasillaCamino(null,obstaculoAburrido, eventoPompeya);
-        CasillaCamino terceraCasilla =  new CasillaCamino(UltimaCasilla,obstaculoAburrido, premioAburrido);
-        CasillaCamino segundaCasilla = new CasillaCamino(terceraCasilla, obstaculoAburrido, premioAburrido);
-        CasillaCamino primeraCasilla = new CasillaCamino(segundaCasilla, obstaculoAburrido, premioAburrido);
-
-        Gladiador dummy = new Gladiador();
-        dummy.avanzar(primeraCasilla,1);
-        dummy.avanzar(segundaCasilla,1);
-        dummy.avanzar(terceraCasilla,1);
-
-        assertNull(UltimaCasilla.BuscadoEstaEnLaCasilla(dummy));
-
-        CasillaCamino casillaMitad = terceraCasilla;
-
-        assertSame(casillaMitad, terceraCasilla.BuscadoEstaEnLaCasilla(dummy));
-    } */
-
-
 }
