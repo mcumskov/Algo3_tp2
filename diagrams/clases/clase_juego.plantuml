@@ -3,9 +3,9 @@ class Juego {
     - jugadores:ArrayList<Jugador>
     - cantJugadores:int
     - {static}instancia: Juego
-    - Juego(jugadores:Jugador, cantRondas:int, mapa:Mapa):Juego
+    - Juego(Mapa mapa, List<Jugador> jugadores):Juego
     - jugadoresValidos(jugadores:Jugador):bool
-    + getJuego():Juego
+    + instanciarJuego(Mapa mapa, List<Jugador> jugadores):Juego
     - iniciarPartida()
     - moverGladiadorAMitadMapa(Gladiador gladiador)
     - buscarGanador()

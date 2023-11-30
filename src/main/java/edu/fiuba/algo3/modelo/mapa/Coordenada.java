@@ -23,5 +23,16 @@ public class Coordenada {
 
     }
 
+    public Boolean esContigua(Coordenada coordenada){
+
+        int minX = this.x - 1 ;
+        int maxX = this.x + 1 ;
+        int minY = this.y - 1 ;
+        int maxY = this.y + 1 ;
+
+        return ((coordenada.getX() <= maxX) && (coordenada.getX() >= minX) && (coordenada.getY() <= maxY) && (coordenada.getY() >= minY));
+
+    }
+
 
 }

@@ -12,7 +12,21 @@
 !include clases/estado/diagrama_estado.plantuml
 !include clases/casilla/diagrama_casilla.plantuml
 
+class CasillaInicio {
+    - iCasilla CasillaSiguiente
+    + Casilla(coordenada: Coordenada, iCasilla CasillaSiguiente)
+    + recibir(gladiador:Gladiador)
+    + expulsar(gladiador:Gladiador)
+}
+class CasillaFinal {
+    - iCasilla CasillaSiguiente
+    + Casilla(coordenada: Coordenada, iCasilla CasillaSiguiente)
+    + recibir(gladiador:Gladiador)
+    + expulsar(gladiador:Gladiador)
+}
 
+iCasilla ^-. CasillaInicio
+iCasilla ^-. CasillaFinal
 Juego o-- Mapa
 Juego o-- GestorTurnos
 Juego o-- Dado
