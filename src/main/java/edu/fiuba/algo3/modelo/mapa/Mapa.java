@@ -28,7 +28,7 @@ public class Mapa {
         int i = 0;
         while (casillaBuscada == null){
             iCasilla casillaCandidata = casillas.get(i);
-            casillaBuscada = casillaCandidata.BuscadoEstaEnLaCasilla(gladiador);
+            casillaBuscada = casillaCandidata.buscadoEstaEnLaCasilla(gladiador);
             i++;
         }
         return casillaBuscada;

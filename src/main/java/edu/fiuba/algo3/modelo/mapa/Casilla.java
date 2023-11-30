@@ -32,7 +32,7 @@ public class Casilla implements iCasilla {
         this.gladiadoresEnLaCasilla = new ArrayList<Gladiador>();
         this.coordenada = coordenada ;
     }
-    public void SetSiguiente(iCasilla siguiente){
+    public void setSiguiente(iCasilla siguiente){
         this.casillaSiguiente = siguiente;
     }
 
@@ -55,7 +55,7 @@ public class Casilla implements iCasilla {
         gladiadoresEnLaCasilla.remove(gladiador);
     }
 
-    public iCasilla BuscadoEstaEnLaCasilla(Gladiador gladiador){
+    public iCasilla buscadoEstaEnLaCasilla(Gladiador gladiador){
         if(gladiadoresEnLaCasilla.contains(gladiador)){
             return this;
         }

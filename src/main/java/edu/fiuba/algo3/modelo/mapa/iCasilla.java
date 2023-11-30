@@ -8,9 +8,9 @@ public interface iCasilla {
 
     public void expulsar(Gladiador gladiador);
 
-    public void SetSiguiente(iCasilla siguiente);
+    public void setSiguiente(iCasilla siguiente);
 
-    public iCasilla BuscadoEstaEnLaCasilla(Gladiador gladiador);
+    public iCasilla buscadoEstaEnLaCasilla(Gladiador gladiador);
 
     public void moverGladiador(int pasos, Gladiador gladiador);
 

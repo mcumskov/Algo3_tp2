@@ -49,7 +49,7 @@ public class Parser {
             iCasilla casilla = construirCasillaDesdeJSON(celdaJson);
             casillas.add(casilla);
             if(this.casillaAnterior != null){
-                this.casillaAnterior.SetSiguiente(casilla);
+                this.casillaAnterior.setSiguiente(casilla);
             }
             this.casillaAnterior = casilla;
         }

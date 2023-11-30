@@ -7,10 +7,7 @@ import edu.fiuba.algo3.modelo.Eventos.Premios.*;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
-import edu.fiuba.algo3.modelo.mapa.CasillaFinal;
-import edu.fiuba.algo3.modelo.mapa.iCasilla;
-import edu.fiuba.algo3.modelo.mapa.Casilla;
-import edu.fiuba.algo3.modelo.mapa.Mapa;
+import edu.fiuba.algo3.modelo.mapa.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -54,7 +51,7 @@ public class Entrega1Tests {
 
         Mapa mapa = new Mapa(listaGladiadores, listaCasillas, 1);
 
-        assertSame(primerCasilla, primerCasilla.BuscadoEstaEnLaCasilla(gladiadorcito));
+        assertSame(primerCasilla, primerCasilla.buscadoEstaEnLaCasilla(gladiadorcito));
     }
     @Test
     public void test03GladiadorSinEnergiaNoCambiaDeCasilla(){
@@ -74,7 +71,7 @@ public class Entrega1Tests {
         iCasilla casillaEnLaQuePierdoEnergia = segundaCasilla;
         gladiadorcito.avanzar(segundaCasilla,1);
 
-        assertSame(casillaEnLaQuePierdoEnergia, segundaCasilla.BuscadoEstaEnLaCasilla(gladiadorcito));
+        assertSame(casillaEnLaQuePierdoEnergia, segundaCasilla.buscadoEstaEnLaCasilla(gladiadorcito));
     }
     @Test
     public void test04GladiadorIncrementaSuEnergiaEn15AlRecibirUnPremioComestible(){
@@ -185,7 +182,7 @@ public class Entrega1Tests {
         PremioNulo premioAburrido = new PremioNulo();
         ObstaculoNulo obstaculoAburrido = new ObstaculoNulo();
 
-        CasillaFinal ultimaCasilla = new CasillaFinal(null);
+        CasillaFinal ultimaCasilla = new CasillaFinal(new Coordenada(0,0));
         Casilla novenaCasilla = new Casilla(ultimaCasilla, obstaculoAburrido, premioAburrido);
         Casilla octavaCasilla = new Casilla(novenaCasilla, obstaculoAburrido, premioAburrido);
         Casilla septimaCasilla = new Casilla(octavaCasilla, obstaculoAburrido, premioAburrido);
@@ -221,8 +218,8 @@ public class Entrega1Tests {
         novenaCasilla.recibir(gladiadorcito);
         gladiadorcito.avanzar(novenaCasilla, 1);
 
-        assertNull(ultimaCasilla.BuscadoEstaEnLaCasilla(gladiadorcito));
-        iCasilla casillaObtenida =  sextaCasilla.BuscadoEstaEnLaCasilla(gladiadorcito);
+        assertNull(ultimaCasilla.buscadoEstaEnLaCasilla(gladiadorcito));
+        iCasilla casillaObtenida =  sextaCasilla.buscadoEstaEnLaCasilla(gladiadorcito);
 
         assertSame(casillaObtenida, sextaCasilla);
     }
