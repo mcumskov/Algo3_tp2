@@ -12,6 +12,7 @@ public class Casilla implements iCasilla {
 
     protected Obstaculo obstaculo;
     protected Premio premio;
+    protected Coordenada coordenada;
     protected iCasilla casillaSiguiente;
 
     protected List<Gladiador> gladiadoresEnLaCasilla;
@@ -21,6 +22,15 @@ public class Casilla implements iCasilla {
         this.obstaculo = obstaculo;
         this.premio = premio;
         this.gladiadoresEnLaCasilla = new ArrayList<Gladiador>();
+        this.coordenada = null; // Mock para test
+    }
+
+    public Casilla(Coordenada coordenada, iCasilla siguiente, Obstaculo obstaculo, Premio premio) {
+        this.casillaSiguiente = siguiente;
+        this.obstaculo = obstaculo;
+        this.premio = premio;
+        this.gladiadoresEnLaCasilla = new ArrayList<Gladiador>();
+        this.coordenada = coordenada ;
     }
     public void SetSiguiente(iCasilla siguiente){
         this.casillaSiguiente = siguiente;
@@ -50,6 +60,12 @@ public class Casilla implements iCasilla {
             return this;
         }
         return null;
+    }
+
+    public Coordenada getCoordenada(){
+
+        return this.coordenada;
+
     }
 
 }

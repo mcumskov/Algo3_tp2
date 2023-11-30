@@ -13,4 +13,6 @@ public interface iCasilla {
     public iCasilla BuscadoEstaEnLaCasilla(Gladiador gladiador);
 
     public void moverGladiador(int pasos, Gladiador gladiador);
+
+    public Coordenada getCoordenada();
 }
