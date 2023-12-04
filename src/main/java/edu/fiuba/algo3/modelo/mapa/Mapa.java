@@ -8,6 +8,30 @@ public class Mapa {
     protected List<iCasilla> casillas;
     protected iCasilla casillaMedio;
     protected iCasilla casillaUltima;
+
+    private int largo;
+    private int ancho;
+
+    public Mapa(int ancho, int largo){
+
+        this.largo = largo ;
+        this.ancho = ancho ;
+    }
+
+    public void agregarCamino(List<iCasilla> casillas){
+
+        this.casillas = casillas ;
+
+    }
+
+    public int getAncho() {
+        return ancho;
+    }
+
+    public int getLargo() {
+        return largo;
+    }
+
     public Mapa(List<Gladiador> gladiadores, List<iCasilla> casillas, int CantJugadores){
 
         this.casillas = casillas;

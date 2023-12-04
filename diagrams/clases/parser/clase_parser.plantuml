@@ -1,0 +1,106 @@
+@startuml
+class Parser {
+
+    + parsearJSON(nombreJSON: String) : Mapa
+
+}
+
+class LectorJSON {
+
+    +LeerJSON(nombreJSON: String) : String
+
+
+}
+
+class IteradorJSONMapa {
+
+    - casillaIteracion : int
+    - stringMapaDim : String
+    - listaCasillas : List<String>
+    + IteradorJSONMapa(stringMapa: String)
+    + obtenerCeldaMapa() : String
+    + obtenerSiguienteCasilla() : String
+    - obtenerCeldaMapa(stringInicio: String) : String
+    - obtenerCamino(stringInicio: String) : String
+    - separarCeldasCasillas(stringCamino: String) : List<String>
+    - obtenerCasilla(i : Int) : String
+
+}
+
+class BuscadorValorJSON{
+
+    - obtenerValorInt(stringBusqueda : String , clave: String)
+    - obtenerValorStr(stringBusqueda : String , clave: String)
+
+}
+
+class MapaFactory{
+
+    + crearMapa(celdaInfo : String) : Mapa
+
+}
+
+class CasillaFactory{
+
+    + crearCasilla(celdaInfo : String) : iCasilla
+    - instanciarPremio(nombrePremio : Premio) : Premio
+    - instanciarObstaculo(nombreObstaculo : Obstaculo) : Obstaculo
+
+}
+
+interface CreadorCasilla{
+
+    + crearCasilla(coordenada : Coordenada, obstaculo : Obstaculo, premio : Premio ) : iCasilla
+
+}
+
+class CreadorCasillaInicio{
+    + crearCasilla(coordenada : Coordenada, obstaculo : Obstaculo, premio : Premio ) : iCasilla
+}
+
+class CreadorCasillaFin{
+    + crearCasilla(coordenada : Coordenada, obstaculo : Obstaculo, premio : Premio ) : iCasilla
+}
+
+class CreadorCasillaCamino{
+    + crearCasilla(coordenada : Coordenada, obstaculo : Obstaculo, premio : Premio ) : iCasilla
+}
+
+exception NoSePudoAbrirElArchivoException{}
+
+exception FinDelArchivoException{}
+
+exception FormatoInvalidoMapaException{}
+exception FormatoInvalidoCasillaException{}
+exception PremioInvalidoException{}
+exception ObstaculoInvalidoException{}
+exception ClaveInexistenteException{}
+
+Parser o-- LectorJSON
+LectorJSON .-> NoSePudoAbrirElArchivoException
+
+Parser o-- IteradorJSONMapa
+IteradorJSONMapa ..> FinDelArchivoException
+
+Parser o-- MapaFactory
+Parser o-- CasillaFactory
+
+MapaFactory o--> BuscadorValorJSON
+CasillaFactory o--> BuscadorValorJSON
+BuscadorValorJSON ..> ClaveInexistenteException
+
+
+CasillaFactory ..> CreadorCasilla
+CasillaFactory ..> PremioInvalidoException
+CasillaFactory ..> ObstaculoInvalidoException
+
+CreadorCasilla <|.. CreadorCasillaInicio
+CreadorCasilla <|..  CreadorCasillaCamino
+CreadorCasilla <|...  CreadorCasillaFin
+
+MapaFactory ..> FormatoInvalidoMapaException
+CasillaFactory ..> FormatoInvalidoCasillaException
+
+
+
+@enduml

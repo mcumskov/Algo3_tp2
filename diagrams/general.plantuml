@@ -3,7 +3,7 @@
 !include clases/clase_gestorTurnos.plantuml
 !include clases/clase_jugador.plantuml
 !include clases/clase_mapa.plantuml
-!include clases/clase_parser.plantuml
+!include clases/parser/clase_parser.plantuml
 
 !include clases/clase_gladiador.plantuml
 !include clases/clase_dado.plantuml
