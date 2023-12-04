@@ -1,4 +1,8 @@
 package edu.fiuba.algo3.modelo.mapa;
+import edu.fiuba.algo3.modelo.excepciones.CaminoDiscontinuoException;
+import edu.fiuba.algo3.modelo.excepciones.CasillaFinalNoEsDeTipoLlegadaException;
+import edu.fiuba.algo3.modelo.excepciones.CasillaInicialNoEsDeTipoSalidaException;
+import edu.fiuba.algo3.modelo.excepciones.CasillaIntermediaNoEsDeTipoCaminoException;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 
 import java.util.List;
@@ -22,7 +26,46 @@ public class Mapa {
 
         this.casillas = casillas ;
 
+        validarCamino();
+
     }
+
+    private void validarCamino(){
+
+        Coordenada coordenadaAnterior = null;
+
+        for (int i = 0; i < casillas.size(); i++) {
+
+            if(coordenadaAnterior!=null){
+
+                if(!(casillas.get(i).getCoordenada().esContigua(coordenadaAnterior))){
+
+                    throw new CaminoDiscontinuoException("El camino proporcionado no es continuo. ");
+                }
+
+            }
+
+            if(i == 0){
+                if(!(casillas.get(i) instanceof CasillaInicio)){
+                    throw new CasillaInicialNoEsDeTipoSalidaException("La casilla inicial no es de tipo \"Salida\". ");
+                }
+            } else if(i == (casillas.size()-1)){
+                if(!(casillas.get(i) instanceof CasillaFinal)){
+                    throw new CasillaFinalNoEsDeTipoLlegadaException("La casilla final no es de tipo \"Llegada\". ");
+                }
+            } else {
+                if(!(casillas.get(i) instanceof CasillaCamino)){
+
+                    throw new CasillaIntermediaNoEsDeTipoCaminoException("Una o más casillas intermedias no son del tipo \"Camino\". ");
+                }
+            }
+
+
+            coordenadaAnterior = casillas.get(i).getCoordenada();
+        }
+    }
+
+
 
     public int getAncho() {
         return ancho;

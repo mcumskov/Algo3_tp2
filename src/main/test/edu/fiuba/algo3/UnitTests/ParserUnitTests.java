@@ -50,6 +50,63 @@ public class ParserUnitTests {
         assertEquals(18, mapa.getLargo());
     }
 
+    @Test
+    public void test04ParseoMapaConPrimeraCasillaQueNoEsDeTipoInicioLanzoExcepcion(){
+
+        String pathArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaCasillaInicialNoEsDeTipoSalida.json";
+
+        Parser parser = new Parser();
+
+
+        assertThrows(CasillaInicialNoEsDeTipoSalidaException.class, () -> {
+
+            Mapa mapa = parser.parsearMapa(pathArchivo);
+
+        });
+    }
+
+    @Test
+    public void test05ParseoMapaConCasillaInermediaQueNoEsDeTipoCaminoLanzoExcepcion(){
+
+        String pathArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaCasillaIntermediaNoEsDeTipoCamino.json";
+
+        Parser parser = new Parser();
+
+        assertThrows(CasillaIntermediaNoEsDeTipoCaminoException.class, () -> {
+
+            Mapa mapa = parser.parsearMapa(pathArchivo);
+
+        });
+    }
+
+    @Test
+    public void test06ParseoMapaConCasillaFinalQueNoEsDeTipoLlegadaLanzoExcepcion(){
+
+        String pathArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaCasillaFinalNoEsDeTipoLlegada.json";
+
+        Parser parser = new Parser();
+
+        assertThrows(CasillaFinalNoEsDeTipoLlegadaException.class, () -> {
+
+            Mapa mapa = parser.parsearMapa(pathArchivo);
+
+        });
+    }
+
+    @Test
+    public void test07ParseoMapaDiscontinuoLanzoExcepcion(){
+
+        String pathArchivo = "src/main/test/edu/fiuba/algo3/jsonTests/mapaConCaminoDiscontinuo.json";
+
+        Parser parser = new Parser();
+
+        assertThrows(CaminoDiscontinuoException.class, () -> {
+
+            Mapa mapa = parser.parsearMapa(pathArchivo);
+
+        });
+    }
+
 
 
 
