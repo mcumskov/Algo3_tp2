@@ -17,11 +17,7 @@ public class ParserUnitTests {
 
         Parser parser = new Parser();
 
-        assertThrows(NoSePudoAbrirArchivoException.class, () -> {
-
-            parser.parsearMapa(pathArchivo);
-
-        });
+        assertThrows(NoSePudoAbrirArchivoException.class, () -> parser.parsearMapa(pathArchivo));
     }
 
     @Test
@@ -58,11 +54,7 @@ public class ParserUnitTests {
         Parser parser = new Parser();
 
 
-        assertThrows(CasillaInicialNoEsDeTipoSalidaException.class, () -> {
-
-            Mapa mapa = parser.parsearMapa(pathArchivo);
-
-        });
+        assertThrows(CasillaInicialNoEsDeTipoSalidaException.class, () -> parser.parsearMapa(pathArchivo));
     }
 
     @Test
@@ -72,11 +64,7 @@ public class ParserUnitTests {
 
         Parser parser = new Parser();
 
-        assertThrows(CasillaIntermediaNoEsDeTipoCaminoException.class, () -> {
-
-            Mapa mapa = parser.parsearMapa(pathArchivo);
-
-        });
+        assertThrows(CasillaIntermediaNoEsDeTipoCaminoException.class, () -> parser.parsearMapa(pathArchivo));
     }
 
     @Test
@@ -86,11 +74,7 @@ public class ParserUnitTests {
 
         Parser parser = new Parser();
 
-        assertThrows(CasillaFinalNoEsDeTipoLlegadaException.class, () -> {
-
-            Mapa mapa = parser.parsearMapa(pathArchivo);
-
-        });
+        assertThrows(CasillaFinalNoEsDeTipoLlegadaException.class, () -> parser.parsearMapa(pathArchivo));
     }
 
     @Test
@@ -100,11 +84,7 @@ public class ParserUnitTests {
 
         Parser parser = new Parser();
 
-        assertThrows(CaminoDiscontinuoException.class, () -> {
-
-            Mapa mapa = parser.parsearMapa(pathArchivo);
-
-        });
+        assertThrows(CaminoDiscontinuoException.class, () -> parser.parsearMapa(pathArchivo));
     }
 
 
