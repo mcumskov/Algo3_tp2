@@ -1,0 +1,15 @@
+.cantidadDeJugadoresTextField {
+    -fx-max-width: 100px;
+    -fx-border-style: solid;
+    -fx-border-width: 3;
+    -fx-border-radius: 3;
+    -fx-border-color: saddlebrown;
+    -fx-focus-color: transparent;
+}
+
+.fondo-scene {
+    -fx-background-image: url("image/coliseo.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}

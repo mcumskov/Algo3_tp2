@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="edu.fiuba.algo3.controller.NombreJugadoresFormController"
+            prefHeight="400.0" prefWidth="600.0" alignment="TOP_CENTER">
+
+    <VBox alignment="CENTER" spacing="20">
+        <VBox fx:id="mainBox" alignment="CENTER"> </VBox>
+        <Button fx:id="botonContinuar" text="CONTINUAR" style="-fx-background-color: #8B4513; -fx-text-fill: white;"/>
+    </VBox>
+
+</StackPane>
