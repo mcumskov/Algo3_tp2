@@ -42,6 +42,7 @@ public class Mapa {
         }
     }
 
+
     private void validarCamino(){
 
         Coordenada coordenadaAnterior = null;
