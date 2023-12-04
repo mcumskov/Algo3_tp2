@@ -28,6 +28,18 @@ public class Mapa {
 
         validarCamino();
 
+        int mitad = casillas.size()/2;
+        int ultima = casillas.size()-1;
+        this.casillaMedio = casillas.get(mitad);
+        this.casillaUltima = casillas.get(ultima);
+
+    }
+
+    public void agregarGladiadores(List<Gladiador> gladiadores, int CantJugadores){
+
+        for(int i=0; i<CantJugadores; i++){
+            this.casillas.get(0).recibir(gladiadores.get(i));
+        }
     }
 
     private void validarCamino(){
@@ -59,8 +71,6 @@ public class Mapa {
                     throw new CasillaIntermediaNoEsDeTipoCaminoException("Una o más casillas intermedias no son del tipo \"Camino\". ");
                 }
             }
-
-
             coordenadaAnterior = casillas.get(i).getCoordenada();
         }
     }
