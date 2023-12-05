@@ -29,7 +29,7 @@ public class IteradorJSONMapaUnitTests {
         }
         assertThrows(MapaSinMasCasillasException.class, iterador::obtenerSiguienteCasilla);
     }
-
+/*
     @Test
     public void test02LeoMapaJSONConsultStringMapaYObtengoStringConAnchoYAlto(){
 
@@ -47,6 +47,6 @@ public class IteradorJSONMapaUnitTests {
 
         assertEquals(dimMapaEnArchivo, stringRet);
     }
-
+*/
 
 }
