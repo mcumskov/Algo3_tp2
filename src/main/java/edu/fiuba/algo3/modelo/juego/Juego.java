@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.mapa.iCasilla;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Parser;
+import edu.fiuba.algo3.modelo.log.Buffer;
 
 
 import java.io.IOException;
@@ -43,7 +44,7 @@ public class Juego {
         try{
             while(this.ganador == null){
                 this.gestorTurnos.siguienteTurno(this.dado,this.mapa);
-
+                Buffer.getBuffer().imprimirMensaje();
             }
         }catch (SinGanadorException finalTriste){
         }
@@ -58,6 +59,7 @@ public class Juego {
     }
     private void moverGladiadorAMitadMapa(Gladiador gladiador) {
         this.mapa.enviarAMitad(gladiador);
+        Buffer.getBuffer().agregarABuffer(" -_-___-- " );
     }
     private void buscarGanador() {
         this.ganador = gestorTurnos.getJugadoractual();

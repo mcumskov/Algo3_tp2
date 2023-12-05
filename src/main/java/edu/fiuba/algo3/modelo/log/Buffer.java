@@ -17,12 +17,10 @@ public class Buffer {
     public void agregarABuffer(String mensajito){
         mensajeAImprimir = mensajeAImprimir + mensajito;
     }
-    public void imprimirMensaje(){
-        // aca se llama al log, pasandole el mensaje a imprimir que tiene
-        // el buffer guardado en su atributo
 
-        mensajeAImprimir = "~ "; // antes d terminar, se resetea el valor original para que quede listo
-                                 // para el siguiente uso.
+    public void imprimirMensaje(){
+        Log.obtenerLogger().info(mensajeAImprimir);
+        mensajeAImprimir = "~ ";
     }
 
 }
