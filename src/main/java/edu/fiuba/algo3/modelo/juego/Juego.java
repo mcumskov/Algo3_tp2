@@ -43,6 +43,7 @@ public class Juego {
         try{
             while(this.ganador == null){
                 this.gestorTurnos.siguienteTurno(this.dado,this.mapa);
+
             }
         }catch (SinGanadorException finalTriste){
         }
