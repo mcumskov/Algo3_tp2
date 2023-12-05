@@ -11,22 +11,21 @@
 <?import java.net.URL?>
 <StackPane fx:id="mainPane" xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
-           fx:controller="edu.fiuba.algo3.controller.CantidadJugadoresFormController" style="-fx-background-color: #D2B48C;"
->
+           fx:controller="edu.fiuba.algo3.controller.CantidadJugadoresFormController" styleClass="fondo-scene">
 
     <stylesheets>
-        <URL value="@myStyle.css" />
+        <URL value="@style.css" />
     </stylesheets>
 
-    <VBox spacing="50" alignment="CENTER" styleClass="fondo-scene">
-        <Label text="GLADIATORS" style="-fx-font-size: 30; -fx-font-weight: BOLD" textFill="antiquewhite"/>
+    <VBox spacing="40" alignment="CENTER">
+        <Label text="GLADIATORS" styleClass="titulo"/>
 
         <VBox spacing="10" alignment="CENTER">
-            <Label text="INGRESE LA CANTIDAD DE JUGADORES" style="-fx-font-size: 16;" textFill="saddlebrown"/>
+            <Label text="INGRESE LA CANTIDAD DE JUGADORES" styleClass="subtitulo"/>
             <TextField fx:id="cantidadJugadoresTextField" styleClass="textField" promptText="Cantidad"/>
         </VBox>
 
-        <Button fx:id="botonContinuar" text="CONTINUAR" style="-fx-background-color: #8B4513; -fx-text-fill: white;" onAction="#continuarButtonAction"/>
+        <Button fx:id="botonContinuar" text="CONTINUAR" styleClass="botonContinuar" onAction="#continuarButtonAction"/>
     </VBox>
 
 </StackPane>

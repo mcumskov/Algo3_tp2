@@ -82,14 +82,7 @@ public class CantidadJugadoresFormController {
     @FXML
     public void continuarButtonAction() throws IOException {
         int cantidad = getCantidadJugadores();
-        if (cantidad >= 2 && cantidad <= 6) {
-
-            mostrarNombreDeJugadoresForm();
-
-        } else {
-            // Muestra un mensaje de error o toma alguna acción según tus necesidades
-            System.out.println("La cantidad de jugadores debe estar entre 2 y 6");
-        }
+        if (cantidad >= 2 && cantidad <= 6) mostrarNombreDeJugadoresForm();
     }
 
 }
