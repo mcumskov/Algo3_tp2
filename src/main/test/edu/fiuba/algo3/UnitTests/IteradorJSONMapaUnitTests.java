@@ -45,7 +45,7 @@ public class IteradorJSONMapaUnitTests {
 
         String stringRet = iterador.obtenerDimensionesMapa();
 
-        assertTrue(dimMapaEnArchivo.equals(stringRet));
+        assertEquals(dimMapaEnArchivo, stringRet);
     }
 
 
