@@ -4,19 +4,13 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +28,7 @@ public class NombreJugadoresFormController {
     private static final String TEXT_FIELD_CLASS = "textField";
     private static final String LABEL_CLASS = "labelNombre";
     private static final String JUGADOR_BOX_CLASS = "jugadorBox";
+    private static final int CANTIDAD_MINIMA_CARACTERES = 4;
 
 
     public void initialize(int cantidadJugadores) {
@@ -55,7 +50,7 @@ public class NombreJugadoresFormController {
 
         for (TextField t : textFields) {
             String nombre = t.getText();
-            if (nombre.length() >= 4) {
+            if (nombre.length() >= CANTIDAD_MINIMA_CARACTERES) {
                 t.getStyleClass().removeAll(ESTILO_INVALIDO);
                 t.getStyleClass().add(ESTILO_VALIDO);
             } else {
@@ -95,7 +90,7 @@ public class NombreJugadoresFormController {
         boolean nombreValido = true;
         for (TextField t : textFields) {
             String nombre = t.getText();
-            if (nombre.length() < 4) {
+            if (nombre.length() < CANTIDAD_MINIMA_CARACTERES) {
                 nombreValido = false;
             }
         }

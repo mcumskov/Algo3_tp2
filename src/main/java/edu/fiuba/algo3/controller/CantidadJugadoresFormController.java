@@ -1,19 +1,14 @@
 package edu.fiuba.algo3.controller;
 
-import edu.fiuba.algo3.App;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -27,6 +22,8 @@ public class CantidadJugadoresFormController {
 
     private static final String ESTILO_VALIDO = "valido";
     private static final String ESTILO_INVALIDO = "invalido";
+    private static final int CANTIDAD_MINIMA_JUGADORES = 2;
+    private static final int CANTIDAD_MAXIMA_JUGADORES = 6;
 
     public void initialize() {
         cantidadJugadoresTextField.textProperty().addListener(new ChangeListener<String>() {
@@ -50,7 +47,7 @@ public class CantidadJugadoresFormController {
 
     private void actualizarColorTexto() {
         int cantidad = getCantidadJugadores();
-        if (cantidad >= 2 && cantidad <= 6) {
+        if (cantidad >= CANTIDAD_MINIMA_JUGADORES && cantidad <= CANTIDAD_MAXIMA_JUGADORES) {
             cantidadJugadoresTextField.getStyleClass().removeAll(ESTILO_INVALIDO);
             cantidadJugadoresTextField.getStyleClass().add(ESTILO_VALIDO);
         } else {
@@ -82,7 +79,7 @@ public class CantidadJugadoresFormController {
     @FXML
     public void continuarButtonAction() throws IOException {
         int cantidad = getCantidadJugadores();
-        if (cantidad >= 2 && cantidad <= 6) mostrarNombreDeJugadoresForm();
+        if (cantidad >= CANTIDAD_MINIMA_JUGADORES && cantidad <= CANTIDAD_MAXIMA_JUGADORES) mostrarNombreDeJugadoresForm();
     }
 
 }
