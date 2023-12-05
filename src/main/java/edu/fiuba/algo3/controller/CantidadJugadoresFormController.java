@@ -73,12 +73,8 @@ public class CantidadJugadoresFormController {
         Parent newView = fxmlLoader.load();
 
         NombreJugadoresFormController nombreJugadoresController = fxmlLoader.getController();
+        nombreJugadoresController.initialize(getCantidadJugadores());
 
-        // Configurar el controlador con los datos necesarios, por ejemplo, la lista de jugadores
-        nombreJugadoresController.inicializarTextFields(getCantidadJugadores());
-
-
-        // Reemplaza el contenido del contenedor existente con la nueva vista
         mainPane.getChildren().setAll(newView);
 
     }
