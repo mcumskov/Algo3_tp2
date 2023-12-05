@@ -1,23 +1,21 @@
 package edu.fiuba.algo3;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-/**
- * JavaFX App
- */
+import java.io.IOException;
+
 public class App extends Application {
-
     @Override
-    public void start(Stage stage) {
-        var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
-
-        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
+    public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("cantidad-jugadores-form-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        stage.setTitle("GLADIATORS");
+        stage.setWidth(900);
+        stage.setHeight(600);
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -25,5 +23,4 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
-
 }

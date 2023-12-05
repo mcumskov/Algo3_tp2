@@ -291,17 +291,20 @@ public class Entrega1Tests {
         casillas.add(novenaCasilla);
         casillas.add(ultimaCasilla);
 
-        Jugador jugador = new Jugador();
+        Jugador jugador1 = new Jugador("mip");
+        Jugador jugador2 = new Jugador("tip");
         List<Jugador> jugadores = new ArrayList<>();
-        jugadores.add(jugador);
+        jugadores.add(jugador1);
+        jugadores.add(jugador2);
         List<Gladiador> gladiador = new ArrayList<>();
-        Gladiador gladiadorcito = jugador.getGladiador();
-        gladiador.add(jugador.getGladiador());
-        Mapa mapa = new Mapa(gladiador, casillas, 1);
+        Gladiador gladiadorcito1 = jugador1.getGladiador();
+        Gladiador gladiadorcito2 = jugador2.getGladiador();
+        gladiador.add(gladiadorcito1);
+        gladiador.add(gladiadorcito2);
+        Mapa mapa = new Mapa(gladiador, casillas, 2);
 
         Juego juego = Juego.instanciarJuego(mapa,jugadores);
 
-        primerCasilla.recibir(gladiadorcito);
 
         assertNull(juego.iniciarPartida());
 

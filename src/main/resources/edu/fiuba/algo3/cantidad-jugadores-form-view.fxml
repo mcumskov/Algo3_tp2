@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
+
+
+<?import java.net.URL?>
+<StackPane fx:id="mainPane" xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="edu.fiuba.algo3.controller.CantidadJugadoresFormController" styleClass="fondo-scene">
+
+    <stylesheets>
+        <URL value="@style.css" />
+    </stylesheets>
+
+    <VBox spacing="40" alignment="CENTER">
+        <Label text="GLADIATORS" styleClass="titulo"/>
+
+        <VBox spacing="10" alignment="CENTER">
+            <Label text="INGRESE LA CANTIDAD DE JUGADORES" styleClass="subtitulo"/>
+            <TextField fx:id="cantidadJugadoresTextField" styleClass="textField" promptText="Cantidad"/>
+        </VBox>
+
+        <Button fx:id="botonContinuar" text="CONTINUAR" styleClass="botonContinuar" onAction="#continuarButtonAction"/>
+    </VBox>
+
+</StackPane>
