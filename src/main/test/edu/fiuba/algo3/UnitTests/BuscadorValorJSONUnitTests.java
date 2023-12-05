@@ -2,7 +2,7 @@ package edu.fiuba.algo3.UnitTests;
 
 import edu.fiuba.algo3.modelo.excepciones.ClaveInexistenteException;
 import edu.fiuba.algo3.modelo.parser.BuscadorValorJSON;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
