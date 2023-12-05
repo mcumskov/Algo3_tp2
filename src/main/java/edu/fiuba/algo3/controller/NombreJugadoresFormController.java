@@ -14,6 +14,8 @@ public class NombreJugadoresFormController {
     public VBox mainBox;
     public Button botonContinuar;
 
+    private static final String ESTILO_TEXT_FIELD = "textField";
+
     public void inicializarTextFields(int cantidadJugadores) {
         for (int i = 0; i < cantidadJugadores; i++) {
             Label label = new Label();
@@ -21,7 +23,7 @@ public class NombreJugadoresFormController {
             TextField textField = new TextField();
             textField.setPromptText("nombre");
 
-            textField.setMaxWidth(200);
+            textField.getStyleClass().add(ESTILO_TEXT_FIELD);
             mainBox.getChildren().add(label);
             mainBox.getChildren().add(textField);
         }

@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -34,6 +35,17 @@ public class CantidadJugadoresFormController {
                 actualizarColorTexto();
             }
         });
+
+        cantidadJugadoresTextField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    continuarButtonAction();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
     }
 
     private void actualizarColorTexto() {
@@ -72,7 +84,7 @@ public class CantidadJugadoresFormController {
     }
 
     @FXML
-    public void continuarButtonAction(ActionEvent actionEvent) throws IOException {
+    public void continuarButtonAction() throws IOException {
         int cantidad = getCantidadJugadores();
         if (cantidad >= 2 && cantidad <= 6) {
 
