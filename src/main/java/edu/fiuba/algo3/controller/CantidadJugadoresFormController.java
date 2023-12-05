@@ -16,12 +16,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+
+
 public class CantidadJugadoresFormController {
     @FXML
     public TextField cantidadJugadoresTextField;
     public Button botonContinuar;
     public StackPane mainPane;
 
+    private static final String ESTILO_VALIDO = "valido";
+    private static final String ESTILO_INVALIDO = "invalido";
 
     public void initialize() {
         cantidadJugadoresTextField.textProperty().addListener(new ChangeListener<String>() {
@@ -35,9 +39,11 @@ public class CantidadJugadoresFormController {
     private void actualizarColorTexto() {
         int cantidad = getCantidadJugadores();
         if (cantidad >= 2 && cantidad <= 6) {
-            cantidadJugadoresTextField.setStyle("-fx-text-fill: green");
+            cantidadJugadoresTextField.getStyleClass().removeAll(ESTILO_INVALIDO);
+            cantidadJugadoresTextField.getStyleClass().add(ESTILO_VALIDO);
         } else {
-            cantidadJugadoresTextField.setStyle("-fx-text-fill: red");
+            cantidadJugadoresTextField.getStyleClass().removeAll(ESTILO_VALIDO);
+            cantidadJugadoresTextField.getStyleClass().add(ESTILO_INVALIDO);
         }
     }
 
