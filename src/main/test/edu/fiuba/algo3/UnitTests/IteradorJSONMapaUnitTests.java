@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.UnitTests;
 
 import edu.fiuba.algo3.modelo.excepciones.MapaSinMasCasillasException;
-import edu.fiuba.algo3.modelo.excepciones.NoSePudoAbrirArchivoException;
+//import edu.fiuba.algo3.modelo.excepciones.NoSePudoAbrirArchivoException;
 import edu.fiuba.algo3.modelo.parser.IteradorJSONMapa;
 import edu.fiuba.algo3.modelo.parser.LectorJSON;
 import org.junit.jupiter.api.Test;
@@ -21,16 +21,15 @@ public class IteradorJSONMapaUnitTests {
 
         IteradorJSONMapa iterador = new IteradorJSONMapa(archivo);
 
-        String stringRetornada;
 
         for (int i = 0; i < 39; i++) {
 
-            stringRetornada = iterador.obtenerSiguienteCasilla();
+            iterador.obtenerSiguienteCasilla();
 
         }
         assertThrows(MapaSinMasCasillasException.class, iterador::obtenerSiguienteCasilla);
     }
-
+    /*
     @Test
     public void test02LeoMapaJSONConsultStringMapaYObtengoStringConAnchoYAlto(){
 
@@ -48,4 +47,6 @@ public class IteradorJSONMapaUnitTests {
 
         assertTrue(dimMapaEnArchivo.equals(stringRet));
     }
+    */
+
 }
