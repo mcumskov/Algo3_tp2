@@ -6,7 +6,26 @@ import java.util.logging.Formatter;
 
 public class Log {
     private static Logger logger;
-    private Log(){}
+    protected String mensajeAImprimir;
+    private static Log instancia;
+    private Log(){
+        instancia = this;
+        mensajeAImprimir = "~ ";
+    }
+    public static Log getLog(){
+        if(instancia == null){
+            instancia = new Log();
+        }
+        return instancia;
+    }
+    public void agregarABuffer(String mensajito){
+        mensajeAImprimir = mensajeAImprimir + mensajito;
+    }
+
+    public void imprimirMensaje(){
+        Log.obtenerLogger().info(mensajeAImprimir);
+        mensajeAImprimir = "~ ";
+    }
 
     public static Logger obtenerLogger(){
         if(Log.logger == null){

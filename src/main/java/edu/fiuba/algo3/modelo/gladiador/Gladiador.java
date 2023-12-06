@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.gladiador;
 
 import edu.fiuba.algo3.modelo.equipamiento.Equipamiento;
-import edu.fiuba.algo3.modelo.log.Buffer;
+import edu.fiuba.algo3.modelo.log.Log;
 import edu.fiuba.algo3.modelo.mapa.iCasilla;
 import edu.fiuba.algo3.modelo.seniority.Seniority;
 
@@ -28,7 +28,7 @@ public class Gladiador {
 
     public void aumentarEnergia(int energiaAumentar){
         this.energia += energiaAumentar;
-        Buffer.getBuffer().agregarABuffer( " | se recupera " + energiaAumentar + " de energia");
+        Log.getLog().agregarABuffer( " | se recupera " + energiaAumentar + " de energia");
     }
 
     public void cambiarEstado(Estado estado_nuevo) {
