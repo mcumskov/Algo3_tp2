@@ -59,6 +59,9 @@ public class Juego {
     }
     private void buscarGanador() {
         this.ganador = gestorTurnos.getJugadoractual();
+        Log.getLog().imprimirMensaje();
+        Log.getLog().agregarABuffer(" LA LLAVE ABRE LA CASA!! VICTORIA " );
+        Log.getLog().imprimirMensaje();
         //hacerle una fiesta al ganador
     }
     public static void gladiadorSinLlaveLlegaAlFinal(Gladiador gladiador){

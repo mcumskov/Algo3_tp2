@@ -55,6 +55,7 @@ public class Gladiador {
     }
 
     public void abrirCasaPompeya(Gladiador gladiador) {
+        Log.getLog().agregarABuffer(" el gladiador llega a la casa de pompeya... intenta abrirla..." );
         equipamiento.abrirCasaPompeya(gladiador);
     }
 
