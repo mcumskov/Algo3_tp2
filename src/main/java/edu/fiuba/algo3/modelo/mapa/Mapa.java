@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.excepciones.CasillaFinalNoEsDeTipoLlegadaException
 import edu.fiuba.algo3.modelo.excepciones.CasillaInicialNoEsDeTipoSalidaException;
 import edu.fiuba.algo3.modelo.excepciones.CasillaIntermediaNoEsDeTipoCaminoException;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
+import edu.fiuba.algo3.modelo.log.Log;
 
 import java.util.List;
 
@@ -34,14 +35,6 @@ public class Mapa {
         this.casillaUltima = casillas.get(ultima);
 
     }
-
-    public void agregarGladiadores(List<Gladiador> gladiadores, int CantJugadores){
-
-        for(int i=0; i<CantJugadores; i++){
-            this.casillas.get(0).recibir(gladiadores.get(i));
-        }
-    }
-
 
 
     private void validarCamino(){
@@ -107,7 +100,11 @@ public class Mapa {
         int i = 0;
         while (casillaBuscada == null){
             iCasilla casillaCandidata = casillas.get(i);
+            Log.getLog().imprimirMensaje();
+            Log.getLog().agregarABuffer("se busca en casilla: " + i );
+            Log.getLog().imprimirMensaje();
             casillaBuscada = casillaCandidata.buscadoEstaEnLaCasilla(gladiador);
+
             i++;
         }
         return casillaBuscada;

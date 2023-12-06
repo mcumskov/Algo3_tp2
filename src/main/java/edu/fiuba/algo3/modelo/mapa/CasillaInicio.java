@@ -13,12 +13,16 @@ public class CasillaInicio  implements iCasilla{
     private Coordenada coordenada;
 
     public CasillaInicio(Coordenada coordenada, iCasilla siguiente){
-
         this.coordenada = coordenada ;
         this.casillaSiguiente = siguiente;
         this.gladiadoresEnLaCasilla = new ArrayList<Gladiador>();
-
     }
+    public CasillaInicio(iCasilla siguiente){
+        this.coordenada = null;
+        this.casillaSiguiente = siguiente;
+        this.gladiadoresEnLaCasilla = new ArrayList<Gladiador>();
+    }
+
     public void setSiguiente(iCasilla siguiente){
         this.casillaSiguiente = siguiente;
     }

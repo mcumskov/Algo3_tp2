@@ -17,16 +17,17 @@ public class CasillaFinal implements iCasilla{
         this.casillaSiguiente = null;
         this.gladiadoresEnLaCasilla = new ArrayList<Gladiador>();
     }
+    public CasillaFinal(){
+        this.coordenada = null;
+        this.casillaSiguiente = null;
+        this.gladiadoresEnLaCasilla = new ArrayList<Gladiador>();
+    }
+
     public void setSiguiente(iCasilla siguiente){
-        this.casillaSiguiente = siguiente;
+        this.casillaSiguiente = null;
     }
     public void moverGladiador(int pasos, Gladiador gladiador){
-        if( pasos == 0 || casillaSiguiente == null){
-            this.recibir(gladiador);
-            return;
-        }
-        casillaSiguiente.moverGladiador(pasos-1, gladiador);
-        this.expulsar(gladiador);
+        this.recibir(gladiador);
     }
 
     public void recibir(Gladiador gladiador){

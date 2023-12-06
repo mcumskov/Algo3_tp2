@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.mapa;
 import edu.fiuba.algo3.modelo.Eventos.Obstaculos.Obstaculo;
 import edu.fiuba.algo3.modelo.Eventos.Premios.Premio;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
+import edu.fiuba.algo3.modelo.log.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +47,9 @@ public class CasillaCamino implements iCasilla {
     }
 
     public void recibir(Gladiador gladiador){
+        System.out.println("List contents before recibir: " + gladiadoresEnLaCasilla);
         gladiadoresEnLaCasilla.add(gladiador);
+        System.out.println("List contents after recibir: " + gladiadoresEnLaCasilla);
         this.premio.premiarGladiador(gladiador);
         this.obstaculo.obstaculizarGladiador(gladiador);
     }
@@ -56,6 +59,7 @@ public class CasillaCamino implements iCasilla {
     }
 
     public iCasilla buscadoEstaEnLaCasilla(Gladiador gladiador){
+        System.out.println("List contents before buscar: " + gladiadoresEnLaCasilla);
         if(gladiadoresEnLaCasilla.contains(gladiador)){
             return this;
         }
