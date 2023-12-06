@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Eventos.Obstaculos.FieraSalvaje;
+import edu.fiuba.algo3.modelo.Eventos.Obstaculos.Lesion;
 import edu.fiuba.algo3.modelo.Eventos.Obstaculos.Obstaculo;
 import edu.fiuba.algo3.modelo.Eventos.Obstaculos.ObstaculoNulo;
 import edu.fiuba.algo3.modelo.Eventos.Premios.*;
@@ -267,16 +268,20 @@ public class Entrega1Tests {
 
         PremioNulo premioAburrido = new PremioNulo();
         ObstaculoNulo obstaculoAburrido = new ObstaculoNulo();
+        Premio premio = new PremioEquipamiento();
+        Premio comida = new PremioComestible();
+        Obstaculo fiera = new FieraSalvaje();
+        Obstaculo Lesion = new Lesion();
 
-        CasillaCamino ultimaCasilla = new CasillaCamino(null, obstaculoAburrido, premioAburrido);
-        CasillaCamino novenaCasilla = new CasillaCamino(ultimaCasilla, obstaculoAburrido, premioAburrido);
-        CasillaCamino octavaCasilla = new CasillaCamino(novenaCasilla, obstaculoAburrido, premioAburrido);
-        CasillaCamino septimaCasilla = new CasillaCamino(octavaCasilla, obstaculoAburrido, premioAburrido);
-        CasillaCamino sextaCasilla = new CasillaCamino(septimaCasilla, obstaculoAburrido, premioAburrido);
-        CasillaCamino quintaCasilla = new CasillaCamino(sextaCasilla, obstaculoAburrido, premioAburrido);
-        CasillaCamino cuartaCasilla = new CasillaCamino(quintaCasilla, obstaculoAburrido, premioAburrido);
-        CasillaCamino tercerCasilla = new CasillaCamino(cuartaCasilla, obstaculoAburrido, premioAburrido);
-        CasillaCamino segundaCasilla = new CasillaCamino(tercerCasilla,obstaculoAburrido, premioAburrido);
+        CasillaCamino ultimaCasilla = new CasillaCamino(null, fiera, comida);
+        CasillaCamino novenaCasilla = new CasillaCamino(ultimaCasilla, fiera, premio);
+        CasillaCamino octavaCasilla = new CasillaCamino(novenaCasilla, Lesion, premio);
+        CasillaCamino septimaCasilla = new CasillaCamino(octavaCasilla, fiera, comida);
+        CasillaCamino sextaCasilla = new CasillaCamino(septimaCasilla, fiera, premio);
+        CasillaCamino quintaCasilla = new CasillaCamino(sextaCasilla, Lesion, premio);
+        CasillaCamino cuartaCasilla = new CasillaCamino(quintaCasilla, Lesion, comida);
+        CasillaCamino tercerCasilla = new CasillaCamino(cuartaCasilla, obstaculoAburrido, premio);
+        CasillaCamino segundaCasilla = new CasillaCamino(tercerCasilla,obstaculoAburrido, premio);
         CasillaCamino primerCasilla = new CasillaCamino(segundaCasilla, obstaculoAburrido, premioAburrido);
 
         List<iCasilla> casillas = new ArrayList<>();

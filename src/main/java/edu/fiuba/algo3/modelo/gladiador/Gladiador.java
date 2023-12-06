@@ -21,14 +21,16 @@ public class Gladiador {
 
     public void disminuirEnergia(int energiaDisminuir) {
         this.energia -= energiaDisminuir;
+        Log.getLog().agregarABuffer( " se pierde " + energiaDisminuir + " de energia |");
         if(this.energia <= 0){
+            Log.getLog().agregarABuffer( " el gladiador se quedo sin energia |");
             this.estado = new GladiadorSinEnergia();
         }
     }
 
     public void aumentarEnergia(int energiaAumentar){
         this.energia += energiaAumentar;
-        Log.getLog().agregarABuffer( " | se recupera " + energiaAumentar + " de energia");
+        Log.getLog().agregarABuffer( " se recupera " + energiaAumentar + " de energia |");
     }
 
     public void cambiarEstado(Estado estado_nuevo) {

@@ -7,6 +7,6 @@ public class GladiadorLesionado implements Estado{
     public void avanzar(Gladiador gladiador, iCasilla casillaDeSalida, int pasos){
 
         gladiador.cambiarEstado(new GladiadorSano());
-        Log.getLog().agregarABuffer(" el gladiador esta lesionado, no se pudo mover y pierde su turno :[ ");
+        Log.getLog().agregarABuffer(" el gladiador esta lesionado, no se pudo mover y pierde su turno :[ |");
     }
 }

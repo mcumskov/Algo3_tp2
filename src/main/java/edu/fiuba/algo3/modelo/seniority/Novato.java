@@ -14,7 +14,7 @@ public class Novato extends NivelDeSeniority{
         this.turnosRestantesParaMejora--;
 
         if(this.turnosRestantesParaMejora < 1 ) {
-            Log.getLog().agregarABuffer(" El gladiador asciende a SemiSenior !! un crack! ");
+            Log.getLog().agregarABuffer(" El gladiador asciende a SemiSenior !! un crack! |");
             return new SemiSenior();
         }
 

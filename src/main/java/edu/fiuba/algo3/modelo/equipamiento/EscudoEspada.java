@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.equipamiento;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
+import edu.fiuba.algo3.modelo.log.Log;
 
 public class EscudoEspada extends Equipable{
 
@@ -8,7 +9,7 @@ public class EscudoEspada extends Equipable{
     }
 
     public Equipable mejorar(){
-
+        Log.getLog().agregarABuffer(" recibe un premio! es una llave para una casa en mardel! |");
         return new Llave(this.danioReducir);
     }
 }

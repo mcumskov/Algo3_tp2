@@ -15,7 +15,7 @@ public class SemiSenior extends NivelDeSeniority{
         this.turnosRestantesParaMejora--;
 
         if(this.turnosRestantesParaMejora < 1 ) {
-            Log.getLog().agregarABuffer(" el gladiador asciende a senior!! ");
+            Log.getLog().agregarABuffer(" el gladiador asciende a senior!! |");
             return new Senior();
         } else {
             return this;

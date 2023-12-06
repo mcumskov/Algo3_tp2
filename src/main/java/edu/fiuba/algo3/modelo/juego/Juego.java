@@ -53,9 +53,9 @@ public class Juego {
         return instancia;
     }
     private void moverGladiadorAMitadMapa(Gladiador gladiador) {
+        Log.getLog().agregarABuffer(" no tenia la llave asi que fue enviado a la mitad del mapa |" );
+        Log.getLog().imprimirMensaje();
         this.mapa.enviarAMitad(gladiador);
-        Log.getLog().agregarABuffer(" -_-___-- " );
-
     }
     private void buscarGanador() {
         this.ganador = gestorTurnos.getJugadoractual();
