@@ -12,7 +12,6 @@ public class CasillaFinal implements iCasilla{
     protected List<Gladiador> gladiadoresEnLaCasilla;
 
     public CasillaFinal(Coordenada coordenada ){
-
         this.coordenada = coordenada;
         this.casillaSiguiente = null;
         this.gladiadoresEnLaCasilla = new ArrayList<Gladiador>();

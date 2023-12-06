@@ -42,6 +42,9 @@ public class Juego {
                 Log.getLog().imprimirMensaje();
             }
         }catch (SinGanadorException finalTriste){
+            Log.getLog().imprimirMensaje();
+            Log.getLog().agregarABuffer("SE TERMINARON LOS TURNOS...|FIN DEL JUEGO|" );
+            Log.getLog().imprimirMensaje();
         }
         return this.ganador;
     }
@@ -79,4 +82,7 @@ public class Juego {
         instancia.buscarGanador();
     }
 
+    public static void resetInstancia() {
+        instancia = null;
+    }
 }

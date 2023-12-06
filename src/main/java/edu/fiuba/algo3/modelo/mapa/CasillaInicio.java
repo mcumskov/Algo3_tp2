@@ -23,12 +23,12 @@ public class CasillaInicio  implements iCasilla{
         this.casillaSiguiente = siguiente;
     }
     public void moverGladiador(int pasos, Gladiador gladiador){
+        this.expulsar(gladiador);
         if( pasos == 0 || casillaSiguiente == null){
             this.recibir(gladiador);
             return;
         }
         casillaSiguiente.moverGladiador(pasos-1, gladiador);
-        this.expulsar(gladiador);
     }
 
     public void recibir(Gladiador gladiador){
