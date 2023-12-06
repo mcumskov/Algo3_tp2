@@ -21,9 +21,9 @@ public class LogFormatter extends Formatter
         mensaje.append("]");
 
         //Clase desde donde es invocado el log
-        mensaje.append(" [");
-        mensaje.append( record.getSourceClassName() );
-        mensaje.append("]");
+        //mensaje.append(" [");
+        //mensaje.append( record.getSourceClassName() );
+        //mensaje.append("]");
 
         //Nivel
         mensaje.append(" [");

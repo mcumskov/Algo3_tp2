@@ -19,7 +19,7 @@ public class LogFormatterUnitTests {
         Object[] parametros = metodo.getParameters();
         recordFalso.setParameters(parametros);
 
-        String mensajeEsperado = " [null] [FINEST]\u001B[37m - SoyUnMensaje\tint arg0, int arg1, char[] arg2, int arg3\u001B[0m\n";
+        String mensajeEsperado = " [FINEST]\u001B[37m - SoyUnMensaje\tint arg0, int arg1, char[] arg2, int arg3\u001B[0m\n";
 
         //Act
         String recordFormateado = formateador.format(recordFalso);
@@ -35,7 +35,7 @@ public class LogFormatterUnitTests {
         LogFormatter formateador = new LogFormatter();
         LogRecord recordFalso = new LogRecord(Level.FINEST, "SoyUnMensaje");
 
-        String mensajeEsperado = " [null] [FINEST]\u001B[37m - SoyUnMensaje\u001B[0m\n";
+        String mensajeEsperado = " [FINEST]\u001B[37m - SoyUnMensaje\u001B[0m\n";
 
         //Act
         String recordFormateado = formateador.format(recordFalso);
