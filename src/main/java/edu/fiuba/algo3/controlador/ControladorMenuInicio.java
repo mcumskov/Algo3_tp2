@@ -24,7 +24,6 @@ public class ControladorMenuInicio extends Application {
         vistaInicio = new VistaMenuInicio(primaryStage);
 
         continuarButton = new Button("Continuar");
-        continuarButton.setDisable(true);
         continuarButton.setOnAction(e -> mostrarSiguientePantalla());
 
         atrasButton = new Button("Atrás");

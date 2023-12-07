@@ -24,6 +24,7 @@ public class VistaMenuInicio {
 
     public void mostrarPantallaInicio(Button continuarButton) {
 
+        continuarButton.setDisable(true);
         continuarButton.setStyle("-fx-background-color: #de9532; -fx-border-radius: 4; -fx-text-fill: white");
 
         VBox pantallaInicio = new VBox(10);
@@ -62,14 +63,14 @@ public class VistaMenuInicio {
         try {
             int cantidadJugadores = Integer.parseInt(cantidad);
             if (cantidadJugadores >= 2 && cantidadJugadores <= 6) {
-                cantidadDeJugadoresTextField.setStyle("-fx-max-width: 200; -fx-text-fill: green;");
+                cantidadDeJugadoresTextField.setStyle("-fx-max-width: 100; -fx-text-fill: green;");
                 continuar.setDisable(false);
             } else {
-                cantidadDeJugadoresTextField.setStyle("-fx-max-width: 200; -fx-text-fill: red;");
+                cantidadDeJugadoresTextField.setStyle("-fx-max-width: 100; -fx-text-fill: red;");
                 continuar.setDisable(true);
             }
         } catch (NumberFormatException e) {
-            cantidadDeJugadoresTextField.setStyle("-fx-max-width: 200; -fx-text-fill: red;");
+            cantidadDeJugadoresTextField.setStyle("-fx-max-width: 100; -fx-text-fill: red;");
             continuar.setDisable(true);
         }
     }
@@ -79,10 +80,35 @@ public class VistaMenuInicio {
         VBox pantallaSiguiente = new VBox(10);
         pantallaSiguiente.setBackground(establecerFondoPantalla());
         pantallaSiguiente.setPadding(new Insets(20, 20, 20, 20));
+        pantallaSiguiente.setSpacing(50);
+
+        atrasButton.setStyle("-fx-background-color: #de9532; -fx-border-radius: 4; -fx-text-fill: white");
+        pantallaSiguiente.getChildren().add(atrasButton);
+
+        VBox boxJugadores = new VBox();
+        boxJugadores.setSpacing(20);
+
+        for (int i = 0; i < getCantidadDeJugadores(); i++) {
+            Label label = new Label("Nombre Jugador " + (i + 1));
+            label.setStyle("-fx-font-weight: BOLD; -fx-text-fill: white; -fx-font-size: 14");
+
+            TextField nombreTextField = new TextField();
+            nombreTextField.setStyle("-fx-max-width: 200");
+
+            HBox hBox = new HBox();
+            hBox.getChildren().addAll(label, nombreTextField);
+            hBox.setAlignment(Pos.CENTER);
+            hBox.setSpacing(10);
+
+            boxJugadores.getChildren().add(hBox);
+        }
+
+        boxJugadores.setAlignment(Pos.CENTER);
+        pantallaSiguiente.getChildren().add(boxJugadores);
 
         Button iniciarJuegoButton = new Button("Iniciar juego");
-
-        pantallaSiguiente.getChildren().addAll(iniciarJuegoButton, atrasButton);
+        iniciarJuegoButton.setStyle("-fx-background-color: #de9532; -fx-border-radius: 4; -fx-text-fill: white");
+        pantallaSiguiente.getChildren().add(iniciarJuegoButton);
 
         pantallaSiguiente.setAlignment(Pos.CENTER);
 
