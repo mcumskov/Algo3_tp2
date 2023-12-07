@@ -118,10 +118,8 @@ public class VistaMenuInicio {
         iniciarJuegoButton.setDisable(true);
         pantallaSiguiente.getChildren().add(iniciarJuegoButton);
 
-        for (TextField t: nombresTextFields) {
-            t.textProperty().addListener((observable, oldValue, newValue) -> {
-                validarNombreJugador(newValue, t, iniciarJuegoButton);
-            });
+        for (TextField textField : nombresTextFields) {
+            configurarValidacionEnTiempoReal(textField, iniciarJuegoButton);
         }
 
         pantallaSiguiente.setAlignment(Pos.CENTER);
@@ -131,14 +129,25 @@ public class VistaMenuInicio {
         primaryStage.setTitle("GLADIATORS");
     }
 
-    private void validarNombreJugador(String nombre, TextField t, Button iniciarJuegoButton) {
-        if (nombre.length() < 4) {
-            t.setStyle("-fx-max-width: 200; -fx-text-fill: red;");
-            iniciarJuegoButton.setDisable(true);
-        } else {
-            t.setStyle("-fx-max-width: 200; -fx-text-fill: green;");
-            iniciarJuegoButton.setDisable(false);
+    private void configurarValidacionEnTiempoReal(TextField textField, Button iniciarJuego) {
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && newValue.length() >= 4) {
+                textField.setStyle("-fx-text-fill: green;");
+            } else {
+                textField.setStyle("-fx-text-fill: red;");
+            }
+            actualizarBotonIniciarJuego(iniciarJuego);
+        });
+    }
+
+    private void actualizarBotonIniciarJuego(Button iniciarJuego) {
+        for (TextField textField : nombresTextFields) {
+            if (textField.getText().length() < 4) {
+                iniciarJuego.setDisable(true);
+                return;
+            }
         }
+        iniciarJuego.setDisable(false);
     }
 
     private Background establecerFondoPantalla() {
