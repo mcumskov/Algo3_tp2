@@ -8,15 +8,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VistaMenuInicio {
     private Stage primaryStage;
     private TextField cantidadDeJugadoresTextField;
     private Label cantidadJugadoresLabel;
     private Label titulo;
+
+    private List<TextField> nombresTextFields;
 
     public VistaMenuInicio(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -88,12 +93,14 @@ public class VistaMenuInicio {
         VBox boxJugadores = new VBox();
         boxJugadores.setSpacing(20);
 
+        nombresTextFields = new ArrayList<TextField>();
         for (int i = 0; i < getCantidadDeJugadores(); i++) {
             Label label = new Label("Nombre Jugador " + (i + 1));
             label.setStyle("-fx-font-weight: BOLD; -fx-text-fill: white; -fx-font-size: 14");
 
             TextField nombreTextField = new TextField();
             nombreTextField.setStyle("-fx-max-width: 200");
+            nombresTextFields.add(nombreTextField);
 
             HBox hBox = new HBox();
             hBox.getChildren().addAll(label, nombreTextField);
@@ -108,13 +115,30 @@ public class VistaMenuInicio {
 
         Button iniciarJuegoButton = new Button("Iniciar juego");
         iniciarJuegoButton.setStyle("-fx-background-color: #de9532; -fx-border-radius: 4; -fx-text-fill: white");
+        iniciarJuegoButton.setDisable(true);
         pantallaSiguiente.getChildren().add(iniciarJuegoButton);
+
+        for (TextField t: nombresTextFields) {
+            t.textProperty().addListener((observable, oldValue, newValue) -> {
+                validarNombreJugador(newValue, t, iniciarJuegoButton);
+            });
+        }
 
         pantallaSiguiente.setAlignment(Pos.CENTER);
 
         Scene sceneSiguiente = new Scene(pantallaSiguiente, 300, 200);
         primaryStage.setScene(sceneSiguiente);
         primaryStage.setTitle("GLADIATORS");
+    }
+
+    private void validarNombreJugador(String nombre, TextField t, Button iniciarJuegoButton) {
+        if (nombre.length() < 4) {
+            t.setStyle("-fx-max-width: 200; -fx-text-fill: red;");
+            iniciarJuegoButton.setDisable(true);
+        } else {
+            t.setStyle("-fx-max-width: 200; -fx-text-fill: green;");
+            iniciarJuegoButton.setDisable(false);
+        }
     }
 
     private Background establecerFondoPantalla() {
