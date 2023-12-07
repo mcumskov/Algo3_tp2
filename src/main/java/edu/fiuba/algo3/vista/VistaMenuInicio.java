@@ -119,7 +119,7 @@ public class VistaMenuInicio {
         pantallaSiguiente.getChildren().add(iniciarJuegoButton);
 
         for (TextField textField : nombresTextFields) {
-            configurarValidacionEnTiempoReal(textField, iniciarJuegoButton);
+            validacionDeNombresEnTiempoReal(textField, iniciarJuegoButton);
         }
 
         pantallaSiguiente.setAlignment(Pos.CENTER);
@@ -129,7 +129,7 @@ public class VistaMenuInicio {
         primaryStage.setTitle("GLADIATORS");
     }
 
-    private void configurarValidacionEnTiempoReal(TextField textField, Button iniciarJuego) {
+    private void validacionDeNombresEnTiempoReal(TextField textField, Button iniciarJuego) {
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null && newValue.length() >= 4) {
                 textField.setStyle("-fx-text-fill: green;");
