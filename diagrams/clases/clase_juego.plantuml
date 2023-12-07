@@ -11,6 +11,7 @@ class Juego {
     - buscarGanador()
     + {static}gladiadorSinLlaveLlegaAlFinal(Gladiador gladiador)
     + {static} gladiadorConLlaveLlegaAlFinal()
+    + {static} resetInstancia()
 
 }
 @enduml

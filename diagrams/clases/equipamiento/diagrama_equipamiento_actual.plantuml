@@ -9,13 +9,13 @@
 
 IEquipamiento <|.. Equipamiento
 Equipamiento o-- Equipable
-Equipable <|-- Ropa
+Equipable <|-- Desnudo
 Equipable <|-- Casco
 Equipable <|-- Armadura
 Equipable <|-- EscudoEspada
 Equipable <|-- Llave
 
-Ropa .> Casco
+Desnudo .> Casco
 Casco .> Armadura
 Armadura .> EscudoEspada
 EscudoEspada .> Llave

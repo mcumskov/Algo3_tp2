@@ -27,10 +27,15 @@ class CasillaFinal {
 }
 
 class Log {
-  - Log():
-  + obtenerLogger(): Logger
-  - construirLogger(): void
+  - mensajeAImprimir:String
+  - {static} construirLogger(): void
+  + {static} obtenerLogger(): Logger
+  + {static} getLog()
+  + imprimirMensaje(): void
+  + agregarABuffer(String): void
+   - instancia: Log
 }
+
 class LogFormatter {
   + LogFormatter():
   - calcularFecha(long): String

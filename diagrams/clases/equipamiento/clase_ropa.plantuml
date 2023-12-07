@@ -1,6 +1,6 @@
 @startuml
-class Ropa {
-    + Ropa(mitigacionAcumulada:int)
+class Desnudo {
+    + Desnudo(mitigacionAcumulada:int)
     + mejorar():Equipable
 }
 @enduml
