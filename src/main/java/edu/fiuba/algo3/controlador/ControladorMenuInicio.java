@@ -19,7 +19,7 @@ public class ControladorMenuInicio extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        primaryStage.setWidth(900);
+        primaryStage.setWidth(800);
         primaryStage.setHeight(600);
         vistaInicio = new VistaMenuInicio(primaryStage);
 
