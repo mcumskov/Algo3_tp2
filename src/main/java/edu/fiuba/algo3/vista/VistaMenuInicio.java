@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -14,6 +15,8 @@ import java.net.URL;
 public class VistaMenuInicio {
     private Stage primaryStage;
     private TextField cantidadDeJugadoresTextField;
+    private Label cantidadJugadoresLabel;
+    private Label titulo;
 
     public VistaMenuInicio(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -26,15 +29,27 @@ public class VistaMenuInicio {
         VBox pantallaInicio = new VBox(10);
         pantallaInicio.setBackground(establecerFondoPantalla());
         pantallaInicio.setPadding(new Insets(20, 20, 20, 20));
+        pantallaInicio.setSpacing(40);
+
+        titulo = new Label("GLADIATORS");
+        titulo.setStyle("-fx-font-size: 40; -fx-font-weight: BOLDER; -fx-text-fill: white");
+
+        cantidadJugadoresLabel = new Label("Ingrese la cantidad de jugadores");
+        cantidadJugadoresLabel.setStyle("-fx-font-weight: BOLD; -fx-text-fill: white; -fx-font-size: 16");
 
         cantidadDeJugadoresTextField = new TextField();
-        cantidadDeJugadoresTextField.setStyle("-fx-max-width: 200");
+        cantidadDeJugadoresTextField.setStyle("-fx-max-width: 100");
+
+        VBox contenedorCantidadJugadores = new VBox();
+        contenedorCantidadJugadores.setSpacing(10);
+        contenedorCantidadJugadores.setAlignment(Pos.CENTER);
+        contenedorCantidadJugadores.getChildren().addAll(cantidadJugadoresLabel, cantidadDeJugadoresTextField);
 
         cantidadDeJugadoresTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             validarCantidadJugadores(newValue, continuarButton);
         });
 
-        pantallaInicio.getChildren().addAll(cantidadDeJugadoresTextField, continuarButton);
+        pantallaInicio.getChildren().addAll(titulo, contenedorCantidadJugadores, continuarButton);
 
         pantallaInicio.setAlignment(Pos.CENTER);
 
