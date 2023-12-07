@@ -5,5 +5,8 @@ module edu.fiuba.algo3 {
 
     opens edu.fiuba.algo3 to javafx.fxml;
     exports edu.fiuba.algo3;
-    exports edu.fiuba.algo3.controller;
+    exports edu.fiuba.algo3.controlador;
+    exports edu.fiuba.algo3.vista;
+    opens edu.fiuba.algo3.vista to javafx.fxml;
+    opens edu.fiuba.algo3.controlador to javafx.fxml;
 }
