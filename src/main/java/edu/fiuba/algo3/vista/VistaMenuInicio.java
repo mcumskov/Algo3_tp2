@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.FileChooser;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -80,7 +81,7 @@ public class VistaMenuInicio {
         }
     }
 
-    public void mostrarSiguientePantalla(Button atrasButton) {
+    public void mostrarSiguientePantalla(Button atrasButton, Button elegirMapaButton) {
 
         VBox pantallaSiguiente = new VBox(10);
         pantallaSiguiente.setBackground(establecerFondoPantalla());
@@ -112,6 +113,9 @@ public class VistaMenuInicio {
 
         boxJugadores.setAlignment(Pos.CENTER);
         pantallaSiguiente.getChildren().add(boxJugadores);
+
+        elegirMapaButton.setStyle("-fx-background-color: #de9532; -fx-border-radius: 4; -fx-text-fill: white");
+        pantallaSiguiente.getChildren().add(elegirMapaButton);
 
         Button iniciarJuegoButton = new Button("Iniciar juego");
         iniciarJuegoButton.setStyle("-fx-background-color: #de9532; -fx-border-radius: 4; -fx-text-fill: white");
