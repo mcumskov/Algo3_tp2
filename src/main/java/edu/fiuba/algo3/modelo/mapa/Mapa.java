@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.excepciones.CasillaInicialNoEsDeTipoSalidaExceptio
 import edu.fiuba.algo3.modelo.excepciones.CasillaIntermediaNoEsDeTipoCaminoException;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Mapa {
@@ -34,14 +35,6 @@ public class Mapa {
         this.casillaUltima = casillas.get(ultima);
 
     }
-
-    public void agregarGladiadores(List<Gladiador> gladiadores, int CantJugadores){
-
-        for(int i=0; i<CantJugadores; i++){
-            this.casillas.get(0).recibir(gladiadores.get(i));
-        }
-    }
-
 
 
     private void validarCamino(){
@@ -141,4 +134,9 @@ public class Mapa {
         this.casillaUltima.expulsar(gladiador);
         this.casillaMedio.recibir(gladiador);
     }
+
+    public List<iCasilla> getCasillas(){
+        return this.casillas;
+    }
+
 }

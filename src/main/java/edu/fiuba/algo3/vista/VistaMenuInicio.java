@@ -1,20 +1,28 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.modelo.mapa.*;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class VistaMenuInicio {
     private Stage primaryStage;
@@ -22,10 +30,17 @@ public class VistaMenuInicio {
     private Label cantidadJugadoresLabel;
     private Label titulo;
 
+    public boolean mapaCargado;
+
     private List<TextField> nombresTextFields;
 
     public VistaMenuInicio(Stage primaryStage) {
         this.primaryStage = primaryStage;
+        this.mapaCargado = false;
+    }
+
+    public void setMapaCargado(Boolean bool){
+        this.mapaCargado = bool;
     }
 
     public void mostrarPantallaInicio(Button continuarButton) {
@@ -81,7 +96,7 @@ public class VistaMenuInicio {
         }
     }
 
-    public void mostrarSiguientePantalla(Button atrasButton, Button elegirMapaButton) {
+    public void mostrarSiguientePantalla(Button atrasButton, Button elegirMapaButton, Button verMapaButton) {
 
         VBox pantallaSiguiente = new VBox(10);
         pantallaSiguiente.setBackground(establecerFondoPantalla());
@@ -117,13 +132,12 @@ public class VistaMenuInicio {
         elegirMapaButton.setStyle("-fx-background-color: #de9532; -fx-border-radius: 4; -fx-text-fill: white");
         pantallaSiguiente.getChildren().add(elegirMapaButton);
 
-        Button iniciarJuegoButton = new Button("Iniciar juego");
-        iniciarJuegoButton.setStyle("-fx-background-color: #de9532; -fx-border-radius: 4; -fx-text-fill: white");
-        iniciarJuegoButton.setDisable(true);
-        pantallaSiguiente.getChildren().add(iniciarJuegoButton);
+        verMapaButton.setStyle("-fx-background-color: #de9532; -fx-border-radius: 4; -fx-text-fill: white");
+        verMapaButton.setDisable(true);
+        pantallaSiguiente.getChildren().add(verMapaButton);
 
         for (TextField textField : nombresTextFields) {
-            validacionDeNombresEnTiempoReal(textField, iniciarJuegoButton);
+            validacionDeNombresEnTiempoReal(textField, verMapaButton);
         }
 
         pantallaSiguiente.setAlignment(Pos.CENTER);
@@ -133,25 +147,91 @@ public class VistaMenuInicio {
         primaryStage.setTitle("GLADIATORS");
     }
 
-    private void validacionDeNombresEnTiempoReal(TextField textField, Button iniciarJuego) {
+    public void MostrarMapa(Button atrasButton, Button empezarJuego, Mapa mapa){
+
+        VBox pantallaMapa = new VBox(10);
+        pantallaMapa.setBackground(establecerFondoPantalla());
+        pantallaMapa.setPadding(new Insets(20, 20, 20, 20));
+        pantallaMapa.setSpacing(50);
+
+        atrasButton.setStyle("-fx-background-color: #de9532; -fx-border-radius: 4; -fx-text-fill: white");
+        pantallaMapa.getChildren().add(atrasButton);
+
+        empezarJuego.setStyle("-fx-background-color: #de9532; -fx-border-radius: 4; -fx-text-fill: white");
+        pantallaMapa.getChildren().add(empezarJuego);
+
+        GridPane gridPane = new GridPane();
+
+         int largo = mapa.getLargo();
+         int ancho = mapa.getAncho();
+         List<iCasilla> casillas = mapa.getCasillas();
+
+        for (int fila = 1; fila <= ancho; fila++) {
+            for (int col = 1; col <= largo; col++) {
+                Rectangle rectangulo = new Rectangle(42, 32);
+                rectangulo.setFill(Color.ROSYBROWN);
+                rectangulo.setStroke(Color.ROSYBROWN.darker());
+
+                gridPane.add(rectangulo, col, fila);
+            }
+        }
+
+        Map<String,Color> map = new HashMap<>();
+
+        map.put(CasillaInicio.class.getName(), Color.GAINSBORO);
+        map.put(CasillaCamino.class.getName(), Color.SANDYBROWN);
+        map.put(CasillaFinal.class.getName(), Color.GREY);
+
+        for (iCasilla casilla:casillas){
+            Coordenada coordenada = casilla.getCoordenada();
+            Node nodito = getNodo(gridPane,coordenada.getX() ,coordenada.getY());
+            Rectangle rectangulito =  (Rectangle) nodito;
+            rectangulito.setFill(map.get((casilla.getClass().getName())));
+            rectangulito.setStroke(Color.BLACK);
+        }
+
+        gridPane.setAlignment(Pos.CENTER);
+        pantallaMapa.getChildren().add(gridPane);
+        pantallaMapa.setAlignment(Pos.CENTER);
+        Scene sceneMapa = new Scene(pantallaMapa, 300, 200);
+        primaryStage.setScene(sceneMapa);
+        primaryStage.setTitle("GLADIATORS");
+    }
+
+
+
+    private Node getNodo(GridPane gridPane, int col, int fila) {
+        for (Node nodo : gridPane.getChildren()) {
+            if (GridPane.getColumnIndex(nodo) == col && GridPane.getRowIndex(nodo) == fila) {
+                return nodo;
+            }
+        }
+        return null;
+    }
+
+
+    private void validacionDeNombresEnTiempoReal(TextField textField, Button verMapaButton) {
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null && newValue.length() >= 4) {
                 textField.setStyle("-fx-text-fill: green;");
             } else {
                 textField.setStyle("-fx-text-fill: red;");
             }
-            actualizarBotonIniciarJuego(iniciarJuego);
+            actualizarBotonIniciarJuego(verMapaButton);
         });
     }
 
-    private void actualizarBotonIniciarJuego(Button iniciarJuego) {
+    public void actualizarBotonIniciarJuego(Button verMapaButton) {
+        boolean status = false;
         for (TextField textField : nombresTextFields) {
-            if (textField.getText().length() < 4) {
-                iniciarJuego.setDisable(true);
-                return;
+            if (textField.getText().length() < 4 ) {
+                status = true;
             }
         }
-        iniciarJuego.setDisable(false);
+        if(!this.mapaCargado){
+            status = true;
+        }
+        verMapaButton.setDisable(status);
     }
 
     private Background establecerFondoPantalla() {
