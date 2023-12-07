@@ -242,7 +242,7 @@ public class VistaMenuInicio {
     private Background establecerFondoPantalla() {
         URL imageUrl = getClass().getResource("/image/coliseo.png");
         Image backgroundImage = new Image(imageUrl.toExternalForm());
-        BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true));
         return new Background(background);
     }
 
