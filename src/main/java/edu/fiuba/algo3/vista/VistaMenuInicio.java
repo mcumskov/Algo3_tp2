@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.mapa.*;
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -10,11 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.FileChooser;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 
@@ -46,7 +42,7 @@ public class VistaMenuInicio {
     public void mostrarPantallaInicio(Button continuarButton) {
 
         continuarButton.setDisable(true);
-        continuarButton.setStyle("-fx-background-color: #de9532; -fx-border-radius: 4; -fx-text-fill: white");
+        continuarButton.getStyleClass().add("botonContinuar");
 
         VBox pantallaInicio = new VBox(10);
         pantallaInicio.setBackground(establecerFondoPantalla());
@@ -54,15 +50,16 @@ public class VistaMenuInicio {
         pantallaInicio.setSpacing(40);
 
         titulo = new Label("GLADIATORS");
-        titulo.setStyle("-fx-font-size: 40; -fx-font-weight: BOLDER; -fx-text-fill: white");
+        titulo.getStyleClass().add("titulo");
 
         cantidadJugadoresLabel = new Label("Ingrese la cantidad de jugadores");
-        cantidadJugadoresLabel.setStyle("-fx-font-weight: BOLD; -fx-text-fill: white; -fx-font-size: 16");
+        cantidadJugadoresLabel.getStyleClass().add("subtitulo");
 
         cantidadDeJugadoresTextField = new TextField();
-        cantidadDeJugadoresTextField.setStyle("-fx-max-width: 100");
+        cantidadDeJugadoresTextField.getStyleClass().add("textField");
 
         VBox contenedorCantidadJugadores = new VBox();
+        contenedorCantidadJugadores.getStyleClass().add("jugadorBox");
         contenedorCantidadJugadores.setSpacing(10);
         contenedorCantidadJugadores.setAlignment(Pos.CENTER);
         contenedorCantidadJugadores.getChildren().addAll(cantidadJugadoresLabel, cantidadDeJugadoresTextField);
@@ -76,6 +73,9 @@ public class VistaMenuInicio {
         pantallaInicio.setAlignment(Pos.CENTER);
 
         Scene sceneInicio = new Scene(pantallaInicio, 300, 200);
+        // Cargar el archivo CSS desde resources
+        String cssFile = getClass().getResource("/style.css").toExternalForm();
+        sceneInicio.getStylesheets().add(cssFile);
         primaryStage.setScene(sceneInicio);
         primaryStage.setTitle("Menú Inicio");
     }
@@ -84,14 +84,15 @@ public class VistaMenuInicio {
         try {
             int cantidadJugadores = Integer.parseInt(cantidad);
             if (cantidadJugadores >= 2 && cantidadJugadores <= 6) {
-                cantidadDeJugadoresTextField.setStyle("-fx-max-width: 100; -fx-text-fill: green;");
+                cantidadDeJugadoresTextField.getStyleClass().removeAll("invalido");
+                cantidadDeJugadoresTextField.getStyleClass().add("valido");
                 continuar.setDisable(false);
             } else {
-                cantidadDeJugadoresTextField.setStyle("-fx-max-width: 100; -fx-text-fill: red;");
+                cantidadDeJugadoresTextField.getStyleClass().removeAll("valido");
+                cantidadDeJugadoresTextField.getStyleClass().add("invalido");
                 continuar.setDisable(true);
             }
         } catch (NumberFormatException e) {
-            cantidadDeJugadoresTextField.setStyle("-fx-max-width: 100; -fx-text-fill: red;");
             continuar.setDisable(true);
         }
     }
@@ -103,7 +104,7 @@ public class VistaMenuInicio {
         pantallaSiguiente.setPadding(new Insets(20, 20, 20, 20));
         pantallaSiguiente.setSpacing(50);
 
-        atrasButton.setStyle("-fx-background-color: #de9532; -fx-border-radius: 4; -fx-text-fill: white");
+        atrasButton.getStyleClass().add("botonAtras");
         pantallaSiguiente.getChildren().add(atrasButton);
 
         VBox boxJugadores = new VBox();
@@ -112,10 +113,10 @@ public class VistaMenuInicio {
         nombresTextFields = new ArrayList<TextField>();
         for (int i = 0; i < getCantidadDeJugadores(); i++) {
             Label label = new Label("Nombre Jugador " + (i + 1));
-            label.setStyle("-fx-font-weight: BOLD; -fx-text-fill: white; -fx-font-size: 14");
+            label.getStyleClass().add("labelNombre");
 
             TextField nombreTextField = new TextField();
-            nombreTextField.setStyle("-fx-max-width: 200");
+            nombreTextField.getStyleClass().add("textField");
             nombresTextFields.add(nombreTextField);
 
             HBox hBox = new HBox();
@@ -128,12 +129,11 @@ public class VistaMenuInicio {
 
         boxJugadores.setAlignment(Pos.CENTER);
         pantallaSiguiente.getChildren().add(boxJugadores);
-
-        elegirMapaButton.setStyle("-fx-background-color: #de9532; -fx-border-radius: 4; -fx-text-fill: white");
+        elegirMapaButton.getStyleClass().add("botonContinuar");
         pantallaSiguiente.getChildren().add(elegirMapaButton);
 
-        verMapaButton.setStyle("-fx-background-color: #de9532; -fx-border-radius: 4; -fx-text-fill: white");
         verMapaButton.setDisable(true);
+        verMapaButton.getStyleClass().add("botonContinuar");
         pantallaSiguiente.getChildren().add(verMapaButton);
 
         for (TextField textField : nombresTextFields) {
@@ -143,6 +143,8 @@ public class VistaMenuInicio {
         pantallaSiguiente.setAlignment(Pos.CENTER);
 
         Scene sceneSiguiente = new Scene(pantallaSiguiente, 300, 200);
+        String cssFile = getClass().getResource("/style.css").toExternalForm();
+        sceneSiguiente.getStylesheets().add(cssFile);
         primaryStage.setScene(sceneSiguiente);
         primaryStage.setTitle("GLADIATORS");
     }
@@ -154,10 +156,9 @@ public class VistaMenuInicio {
         pantallaMapa.setPadding(new Insets(20, 20, 20, 20));
         pantallaMapa.setSpacing(50);
 
-        atrasButton.setStyle("-fx-background-color: #de9532; -fx-border-radius: 4; -fx-text-fill: white");
+        atrasButton.getStyleClass().add("botonAtras");
         pantallaMapa.getChildren().add(atrasButton);
-
-        empezarJuego.setStyle("-fx-background-color: #de9532; -fx-border-radius: 4; -fx-text-fill: white");
+        empezarJuego.getStyleClass().add("botonContinuar");
         pantallaMapa.getChildren().add(empezarJuego);
 
         GridPane gridPane = new GridPane();
@@ -194,6 +195,8 @@ public class VistaMenuInicio {
         pantallaMapa.getChildren().add(gridPane);
         pantallaMapa.setAlignment(Pos.CENTER);
         Scene sceneMapa = new Scene(pantallaMapa, 300, 200);
+        String cssFile = getClass().getResource("/style.css").toExternalForm();
+        sceneMapa.getStylesheets().add(cssFile);
         primaryStage.setScene(sceneMapa);
         primaryStage.setTitle("GLADIATORS");
     }
@@ -213,9 +216,11 @@ public class VistaMenuInicio {
     private void validacionDeNombresEnTiempoReal(TextField textField, Button verMapaButton) {
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null && newValue.length() >= 4) {
-                textField.setStyle("-fx-text-fill: green;");
+                textField.getStyleClass().removeAll("invalido");
+                textField.getStyleClass().add("valido");
             } else {
-                textField.setStyle("-fx-text-fill: red;");
+                textField.getStyleClass().removeAll("valido");
+                textField.getStyleClass().add("invalido");
             }
             actualizarBotonIniciarJuego(verMapaButton);
         });

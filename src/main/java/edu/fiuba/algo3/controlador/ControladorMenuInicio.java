@@ -38,7 +38,7 @@ public class ControladorMenuInicio extends Application {
         atrasButton.setOnAction(e -> mostrarPantallaInicio());
         buttons.add(atrasButton);
 
-        Button ElegirMapaButton = new Button("Elegir mapa :0!!");
+        Button ElegirMapaButton = new Button("Elegir mapa");
         ElegirMapaButton.setOnAction(e -> PantallaelegirMapa());
         buttons.add(ElegirMapaButton);
 
