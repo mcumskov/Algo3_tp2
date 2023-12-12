@@ -55,20 +55,23 @@ class ValidadorDeCamino{
 
 interface CreadorCasilla{
 
-    + crearCasilla(coordenada : Coordenada, obstaculo : Obstaculo, premio : Premio ) : iCasilla
+    + crearCasilla(coordenada : Coordenada,obstaculo : Obstaculo,premio : Premio ) : iCasilla
 
 }
 
 class CreadorCasillaInicio{
-    + crearCasilla(coordenada : Coordenada, obstaculo : Obstaculo, premio : Premio ) : iCasilla
+    + crearCasilla(coordenada : Coordenada, 
+    obstaculo : Obstaculo, premio : Premio ) : iCasilla
 }
 
 class CreadorCasillaFin{
-    + crearCasilla(coordenada : Coordenada, obstaculo : Obstaculo, premio : Premio ) : iCasilla
+    + crearCasilla(coordenada : Coordenada, 
+    obstaculo : Obstaculo, premio : Premio ) : iCasilla
 }
 
 class CreadorCasillaCamino{
-    + crearCasilla(coordenada : Coordenada, obstaculo : Obstaculo, premio : Premio ) : iCasilla
+    + crearCasilla(coordenada : Coordenada, 
+    obstaculo : Obstaculo, premio : Premio ) : iCasilla
 }
 
 exception NoSePudoAbrirElArchivoException{}
@@ -84,11 +87,11 @@ exception ClaveInexistenteException{}
 Parser o-- LectorJSON
 LectorJSON .-> NoSePudoAbrirElArchivoException
 
-Parser o-- IteradorJSONMapa
+Parser o--- IteradorJSONMapa
 IteradorJSONMapa ..> FinDelArchivoException
 
-Parser o-- MapaFactory
-Parser o-- CasillaFactory
+Parser o----- MapaFactory
+Parser o----- CasillaFactory
 
 MapaFactory o--> BuscadorValorJSON
 CasillaFactory o--> BuscadorValorJSON
@@ -115,9 +118,9 @@ exception CasillaTipoCaminoMalPosicionadaException{}
 exception CasillaTipoLlegadaMalPosicionadaException{}
 exception CaminoDiscontinuoException{}
 
-ValidadorDeCamino ...> CasillaTipoSalidaMalPosicionadaException
-ValidadorDeCamino ....> CasillaTipoCaminoMalPosicionadaException
-ValidadorDeCamino ...> CasillaTipoLlegadaMalPosicionadaException
-ValidadorDeCamino ..> CaminoDiscontinuoException
+ValidadorDeCamino ..> CasillaTipoSalidaMalPosicionadaException
+ValidadorDeCamino ...> CasillaTipoCaminoMalPosicionadaException
+ValidadorDeCamino .....> CasillaTipoLlegadaMalPosicionadaException
+ValidadorDeCamino .......> CaminoDiscontinuoException
 
 @enduml
