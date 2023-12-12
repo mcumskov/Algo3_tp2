@@ -2,6 +2,7 @@ package edu.fiuba.algo3.UnitTests;
 import edu.fiuba.algo3.modelo.Eventos.Obstaculos.ObstaculoNulo;
 import edu.fiuba.algo3.modelo.Eventos.Premios.PremioNulo;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
+import edu.fiuba.algo3.modelo.mapa.Coordenada;
 import edu.fiuba.algo3.modelo.mapa.iCasilla;
 import edu.fiuba.algo3.modelo.mapa.CasillaCamino;
 import org.junit.jupiter.api.Test;
@@ -105,6 +106,24 @@ public class CasillaUnitTests {
         primeraCasilla.moverGladiador(100,dummy);
         iCasilla casillaObtenida = ultimaCasilla.buscadoEstaEnLaCasilla(dummy);
         assertSame(casillaObtenida, ultimaCasilla);
+    }
+
+    @Test
+    public void test06InstancioCasillasConCoordenadasNoContinuasYReciboQueNoSonContinuas(){
+
+        CasillaCamino casilla1 = new CasillaCamino(new Coordenada(1,1), null, new ObstaculoNulo(), new PremioNulo());
+        CasillaCamino casilla2 = new CasillaCamino(new Coordenada(5,12), null, new ObstaculoNulo(), new PremioNulo());
+
+        assertFalse(casilla1.esContigua(casilla2));
+    }
+
+    @Test
+    public void test07InstancioCasillasConCoordenadasContinuasYReciboQueSonContinuas(){
+
+        CasillaCamino casilla1 = new CasillaCamino(new Coordenada(1,1), null, new ObstaculoNulo(), new PremioNulo());
+        CasillaCamino casilla2 = new CasillaCamino(new Coordenada(2,1), null, new ObstaculoNulo(), new PremioNulo());
+
+        assertTrue(casilla1.esContigua(casilla2));
     }
 
 }

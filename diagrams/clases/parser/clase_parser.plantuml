@@ -45,6 +45,11 @@ class CasillaFactory{
     + crearCasilla(celdaInfo : String) : iCasilla
     - instanciarPremio(nombrePremio : Premio) : Premio
     - instanciarObstaculo(nombreObstaculo : Obstaculo) : Obstaculo
+}
+
+class ValidadorDeCamino{
+
+    +validarCamino(casillas : List<iCasilla>)
 
 }
 
@@ -90,17 +95,29 @@ CasillaFactory o--> BuscadorValorJSON
 BuscadorValorJSON ..> ClaveInexistenteException
 
 
-CasillaFactory ..> CreadorCasilla
-CasillaFactory ..> PremioInvalidoException
-CasillaFactory ..> ObstaculoInvalidoException
-
+CasillaFactory ....> CreadorCasilla
 CreadorCasilla <|.. CreadorCasillaInicio
 CreadorCasilla <|..  CreadorCasillaCamino
 CreadorCasilla <|...  CreadorCasillaFin
 
+CasillaFactory ....> FormatoInvalidoCasillaException
+CasillaFactory ...> PremioInvalidoException
+CasillaFactory ....> ObstaculoInvalidoException
+
+
+
 MapaFactory ..> FormatoInvalidoMapaException
-CasillaFactory ..> FormatoInvalidoCasillaException
 
+Parser o---> ValidadorDeCamino
 
+exception CasillaTipoSalidaMalPosicionadaException{}
+exception CasillaTipoCaminoMalPosicionadaException{}
+exception CasillaTipoLlegadaMalPosicionadaException{}
+exception CaminoDiscontinuoException{}
+
+ValidadorDeCamino ...> CasillaTipoSalidaMalPosicionadaException
+ValidadorDeCamino ....> CasillaTipoCaminoMalPosicionadaException
+ValidadorDeCamino ...> CasillaTipoLlegadaMalPosicionadaException
+ValidadorDeCamino ..> CaminoDiscontinuoException
 
 @enduml

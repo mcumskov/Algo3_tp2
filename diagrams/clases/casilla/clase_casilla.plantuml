@@ -6,5 +6,8 @@ class CasillaCamino {
     + expulsar(gladiador:Gladiador)
     + otorgarPremio(gladiador:Gladiador)
     + aplicarObstaculo(gladiador:Gladiado)
+    + validarPosicion(posicion: int , largoCamino : int)
+    + esContigua(iCasilla casilla) : boolean
+    + esContigua(Coordenada coordenada): boolean
 }
 @enduml

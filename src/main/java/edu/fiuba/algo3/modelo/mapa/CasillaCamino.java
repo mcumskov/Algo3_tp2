@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.mapa;
 
 import edu.fiuba.algo3.modelo.Eventos.Obstaculos.Obstaculo;
 import edu.fiuba.algo3.modelo.Eventos.Premios.Premio;
+import edu.fiuba.algo3.modelo.excepciones.CasillaTipoMalPosicionadaException;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 
 import java.util.ArrayList;
@@ -61,6 +62,28 @@ public class CasillaCamino implements iCasilla {
         }
         return null;
     }
+
+    public void validarPosicionEnCamino(int posicion, int longitudCamino){
+
+        if ( posicion < 1 || posicion >= (longitudCamino-1)){
+
+            throw new CasillaTipoMalPosicionadaException("Casilla de tipo \"Camino\" mal posicionada en el camino.");
+
+        }
+    }
+
+    public boolean esContigua(iCasilla casilla){
+
+        return casilla.esContigua(this.coordenada);
+
+    }
+
+    public boolean esContigua(Coordenada coordenada){
+
+        return this.coordenada.esContigua(coordenada);
+
+    }
+
 
     public Coordenada getCoordenada(){
 

@@ -1,11 +1,10 @@
 package edu.fiuba.algo3.modelo.mapa;
 import edu.fiuba.algo3.modelo.excepciones.CaminoDiscontinuoException;
-import edu.fiuba.algo3.modelo.excepciones.CasillaFinalNoEsDeTipoLlegadaException;
-import edu.fiuba.algo3.modelo.excepciones.CasillaInicialNoEsDeTipoSalidaException;
-import edu.fiuba.algo3.modelo.excepciones.CasillaIntermediaNoEsDeTipoCaminoException;
+import edu.fiuba.algo3.modelo.excepciones.CasillaTipoLlegadaMalPosicionadaException;
+import edu.fiuba.algo3.modelo.excepciones.CasillaTipoSalidaMalPosicionadaException;
+import edu.fiuba.algo3.modelo.excepciones.CasillaTipoMalPosicionadaException;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Mapa {
@@ -27,50 +26,12 @@ public class Mapa {
 
         this.casillas = casillas ;
 
-        validarCamino();
-
         int mitad = casillas.size()/2;
         int ultima = casillas.size()-1;
         this.casillaMedio = casillas.get(mitad);
         this.casillaUltima = casillas.get(ultima);
 
     }
-
-
-    private void validarCamino(){
-
-        Coordenada coordenadaAnterior = null;
-
-        for (int i = 0; i < casillas.size(); i++) {
-
-            if(coordenadaAnterior!=null){
-
-                if(!(casillas.get(i).getCoordenada().esContigua(coordenadaAnterior))){
-
-                    throw new CaminoDiscontinuoException("El camino proporcionado no es continuo. ");
-                }
-
-            }
-
-            if(i == 0){
-                if(!(casillas.get(i) instanceof CasillaInicio)){
-                    throw new CasillaInicialNoEsDeTipoSalidaException("La casilla inicial no es de tipo \"Salida\". ");
-                }
-            } else if(i == (casillas.size()-1)){
-                if(!(casillas.get(i) instanceof CasillaFinal)){
-                    throw new CasillaFinalNoEsDeTipoLlegadaException("La casilla final no es de tipo \"Llegada\". ");
-                }
-            } else {
-                if(!(casillas.get(i) instanceof CasillaCamino)){
-
-                    throw new CasillaIntermediaNoEsDeTipoCaminoException("Una o más casillas intermedias no son del tipo \"Camino\". ");
-                }
-            }
-            coordenadaAnterior = casillas.get(i).getCoordenada();
-        }
-    }
-
-
 
     public int getAncho() {
         return ancho;
@@ -105,18 +66,6 @@ public class Mapa {
         }
         return casillaBuscada;
     }
-
-   /* private Casilla ObtenerCasillaDeLLegada(Casilla salida, int pasos){
-
-        int max = casillas.size();
-        int indexSalida = casillas.indexOf(salida);
-
-        if(indexSalida+pasos >= max){
-            return casillas.get(max-1);
-        }
-
-        return casillas.get(indexSalida+pasos);
-    } */
 
     public void moverGladiador(Gladiador gladiador, int tiradaDeDado){
 

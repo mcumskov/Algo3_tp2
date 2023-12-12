@@ -44,6 +44,10 @@ public class Parser {
             }
         }
 
+        ValidadorDeCamino validadorCamino = new ValidadorDeCamino();
+
+        validadorCamino.validarCamino(listaCasillas);
+
         mapa.agregarCamino(listaCasillas);
 
         return mapa ;

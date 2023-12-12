@@ -14,5 +14,11 @@ public interface iCasilla {
 
     public void moverGladiador(int pasos, Gladiador gladiador);
 
+    public void validarPosicionEnCamino(int posicion, int longitudCamino);
+
+    public boolean esContigua(iCasilla casilla);
+
+    public boolean esContigua(Coordenada coordenada);
+
     public Coordenada getCoordenada();
 }

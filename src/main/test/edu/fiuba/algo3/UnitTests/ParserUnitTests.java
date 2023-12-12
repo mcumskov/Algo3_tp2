@@ -54,7 +54,7 @@ public class ParserUnitTests {
         Parser parser = new Parser();
 
 
-        assertThrows(CasillaInicialNoEsDeTipoSalidaException.class, () -> parser.parsearMapa(pathArchivo));
+        assertThrows(FormatoInvalidoMapaException.class, () -> parser.parsearMapa(pathArchivo));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class ParserUnitTests {
 
         Parser parser = new Parser();
 
-        assertThrows(CasillaIntermediaNoEsDeTipoCaminoException.class, () -> parser.parsearMapa(pathArchivo));
+        assertThrows(FormatoInvalidoMapaException.class, () -> parser.parsearMapa(pathArchivo));
     }
 
     @Test
@@ -74,7 +74,7 @@ public class ParserUnitTests {
 
         Parser parser = new Parser();
 
-        assertThrows(CasillaFinalNoEsDeTipoLlegadaException.class, () -> parser.parsearMapa(pathArchivo));
+        assertThrows(FormatoInvalidoMapaException.class, () -> parser.parsearMapa(pathArchivo));
     }
 
     @Test

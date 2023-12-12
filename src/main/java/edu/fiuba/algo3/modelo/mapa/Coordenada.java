@@ -20,7 +20,6 @@ public class Coordenada {
     public int getY(){
 
         return this.y ;
-
     }
 
     public Boolean esContigua(Coordenada coordenada){
@@ -31,8 +30,6 @@ public class Coordenada {
         int maxY = this.y + 1 ;
 
         return ((coordenada.getX() <= maxX) && (coordenada.getX() >= minX) && (coordenada.getY() <= maxY) && (coordenada.getY() >= minY));
-
     }
-
 
 }
