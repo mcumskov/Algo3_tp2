@@ -180,7 +180,7 @@ public class Entrega1Tests {
         assertEquals(5, diferenciaDeEnergia);
     }
     @Test
-    public void test09GladiadorConEscudoEspadaNoAbrePompeyaYvaALaMitadDelMapa() throws IOException {
+    public void test09GladiadorConEscudoEspadaNoAbrePompeyaYvaALaMitadDelMapa(){
 
         PremioNulo premioAburrido = new PremioNulo();
         ObstaculoNulo obstaculoAburrido = new ObstaculoNulo();
@@ -267,7 +267,7 @@ public class Entrega1Tests {
         assertEquals(20, gladiador.getEnergia());
     }
     @Test
-    public void test12SeJuegan30TurnosYElJuegoTerminaSinGanador() throws IOException {
+    public void test12SeJuegan30TurnosYElJuegoTerminaSinGanador(){
 
         PremioNulo premioAburrido = new PremioNulo();
         ObstaculoNulo obstaculoAburrido = new ObstaculoNulo();
