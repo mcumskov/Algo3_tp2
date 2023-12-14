@@ -1,10 +1,16 @@
 package edu.fiuba.algo3.controlador;
 
+import edu.fiuba.algo3.modelo.mapa.Coordenada;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
+import edu.fiuba.algo3.modelo.mapa.iCasilla;
 import edu.fiuba.algo3.modelo.parser.Parser;
 import edu.fiuba.algo3.vista.VistaMenuInicio;
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser;
 
@@ -82,12 +88,62 @@ public class ControladorMenuInicio extends Application {
                 vistaInicio.actualizarBotonIniciarJuego(buttons.get(3));
             }catch (Exception e){
                 System.out.println("Error con el JSON seleccionado: " + e);
+
             }
         }
     }
 
     private void PantallaMostrarMapa(){
-        vistaInicio.MostrarMapa(buttons.get(5), buttons.get(4), this.miMapa);
+
+        int largoMapa = this.miMapa.getLargo();
+        int anchoMapa = this.miMapa.getAncho();
+        List<iCasilla> casillas = this.miMapa.getCasillas();
+        List<Coordenada> coordenadas = new ArrayList<>();
+        GridPane gridPane = new GridPane();
+
+        for (iCasilla casilla:casillas) {
+            coordenadas.add(casilla.getCoordenada());
+        }
+
+        for (iCasilla casilla:casillas) {
+            coordenadas.add(casilla.getCoordenada());
+        }
+
+        for (int fila = 1; fila <= anchoMapa; fila++) {
+            for (int col = 1; col <= largoMapa; col++) {
+                Rectangle rectangulo = new Rectangle(42, 32);
+                rectangulo.setFill(Color.ROSYBROWN);
+                rectangulo.setStroke(Color.ROSYBROWN.darker());
+
+                gridPane.add(rectangulo, col, fila);
+            }
+        }
+
+        int tope = coordenadas.size();
+
+        for (int i=0 ; i< tope; i++){
+            Coordenada coordenada = coordenadas.get(i);
+            Node nodito = getNodo(gridPane,coordenada.getX() ,coordenada.getY());
+            Rectangle rectangulito =  (Rectangle) nodito;
+            rectangulito.setFill(Color.SANDYBROWN);
+            rectangulito.setStroke(Color.BLACK);
+            if(i==0){
+                rectangulito.setFill(Color.GAINSBORO);
+            } else if (i == tope-1){
+                rectangulito.setFill(Color.GREY);
+            }
+        }
+
+        vistaInicio.MostrarMapa(buttons.get(5), buttons.get(4),gridPane);
+    }
+
+    private Node getNodo(GridPane gridPane, int col, int fila) {
+        for (Node nodo : gridPane.getChildren()) {
+            if (GridPane.getColumnIndex(nodo) == col && GridPane.getRowIndex(nodo) == fila) {
+                return nodo;
+            }
+        }
+        return null;
     }
 
 }

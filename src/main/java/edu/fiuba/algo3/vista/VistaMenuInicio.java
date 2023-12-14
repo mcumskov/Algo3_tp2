@@ -16,11 +16,9 @@ import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class VistaMenuInicio {
+public class VistaMenuInicio{
     private Stage primaryStage;
     private TextField cantidadDeJugadoresTextField;
     private Label cantidadJugadoresLabel;
@@ -33,8 +31,8 @@ public class VistaMenuInicio {
     public VistaMenuInicio(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.mapaCargado = false;
-    }
 
+    }
     public void setMapaCargado(Boolean bool){
         this.mapaCargado = bool;
     }
@@ -149,7 +147,7 @@ public class VistaMenuInicio {
         primaryStage.setTitle("GLADIATORS");
     }
 
-    public void MostrarMapa(Button atrasButton, Button empezarJuego, Mapa mapa){
+    public void MostrarMapa(Button atrasButton, Button empezarJuego, GridPane DatosMapa){
 
         VBox pantallaMapa = new VBox(10);
         pantallaMapa.setBackground(establecerFondoPantalla());
@@ -161,38 +159,8 @@ public class VistaMenuInicio {
         empezarJuego.getStyleClass().add("botonContinuar");
         pantallaMapa.getChildren().add(empezarJuego);
 
-        GridPane gridPane = new GridPane();
-
-         int largo = mapa.getLargo();
-         int ancho = mapa.getAncho();
-         List<iCasilla> casillas = mapa.getCasillas();
-
-        for (int fila = 1; fila <= ancho; fila++) {
-            for (int col = 1; col <= largo; col++) {
-                Rectangle rectangulo = new Rectangle(42, 32);
-                rectangulo.setFill(Color.ROSYBROWN);
-                rectangulo.setStroke(Color.ROSYBROWN.darker());
-
-                gridPane.add(rectangulo, col, fila);
-            }
-        }
-
-        Map<String,Color> map = new HashMap<>();
-
-        map.put(CasillaInicio.class.getName(), Color.GAINSBORO);
-        map.put(CasillaCamino.class.getName(), Color.SANDYBROWN);
-        map.put(CasillaFinal.class.getName(), Color.GREY);
-
-        for (iCasilla casilla:casillas){
-            Coordenada coordenada = casilla.getCoordenada();
-            Node nodito = getNodo(gridPane,coordenada.getX() ,coordenada.getY());
-            Rectangle rectangulito =  (Rectangle) nodito;
-            rectangulito.setFill(map.get((casilla.getClass().getName())));
-            rectangulito.setStroke(Color.BLACK);
-        }
-
-        gridPane.setAlignment(Pos.CENTER);
-        pantallaMapa.getChildren().add(gridPane);
+        DatosMapa.setAlignment(Pos.CENTER);
+        pantallaMapa.getChildren().add(DatosMapa);
         pantallaMapa.setAlignment(Pos.CENTER);
         Scene sceneMapa = new Scene(pantallaMapa, 300, 200);
         String cssFile = getClass().getResource("/style.css").toExternalForm();
@@ -201,16 +169,6 @@ public class VistaMenuInicio {
         primaryStage.setTitle("GLADIATORS");
     }
 
-
-
-    private Node getNodo(GridPane gridPane, int col, int fila) {
-        for (Node nodo : gridPane.getChildren()) {
-            if (GridPane.getColumnIndex(nodo) == col && GridPane.getRowIndex(nodo) == fila) {
-                return nodo;
-            }
-        }
-        return null;
-    }
 
 
     private void validacionDeNombresEnTiempoReal(TextField textField, Button verMapaButton) {
@@ -249,4 +207,5 @@ public class VistaMenuInicio {
     public int getCantidadDeJugadores() {
         return Integer.parseInt(cantidadDeJugadoresTextField.getText());
     }
+
 }

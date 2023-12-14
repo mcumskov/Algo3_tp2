@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.mapa;
 
-public class Coordenada {
+public class Coordenada{
 
     private int x ;
     private int y ;
