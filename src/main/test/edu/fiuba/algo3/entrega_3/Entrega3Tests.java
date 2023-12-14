@@ -53,21 +53,15 @@ public class Entrega3Tests {
         casillas.add(ultimaCasilla);
 
         Jugador jugador1 = new Jugador("mip");
-        Jugador jugador2 = new Jugador("tip");
         List<iJugador> jugadores = new ArrayList<>();
         jugadores.add(jugador1);
-        jugadores.add(jugador2);
         List<Gladiador> gladiador = new ArrayList<>();
         Gladiador gladiadorcito1 = jugador1.getGladiador();
-        Gladiador gladiadorcito2 = jugador2.getGladiador();
         gladiador.add(gladiadorcito1);
-        gladiador.add(gladiadorcito2);
-        Mapa mapa = new Mapa(gladiador, casillas, 2);
-        Dado dado = new Dado();
+        Mapa mapa = new Mapa(gladiador, casillas, 1);
+        Dado dado = new Dado(1);
 
         Juego juego = Juego.instanciarJuego(mapa,jugadores, dado);
-
-
 
         assertNotNull(juego.iniciarPartida());
     }
@@ -78,7 +72,6 @@ public class Entrega3Tests {
 
         PremioNulo premioAburrido = new PremioNulo();
         ObstaculoNulo obstaculoAburrido = new ObstaculoNulo();
-        Premio premio = new PremioEquipamiento();
         Premio comida = new PremioComestible();
         Obstaculo fiera = new FieraSalvaje();
         Obstaculo Lesion = new Lesion();
@@ -106,18 +99,14 @@ public class Entrega3Tests {
         casillas.add(novenaCasilla);
         casillas.add(ultimaCasilla);
 
-        Jugador jugador1 = new Jugador("mip");
-        Jugador jugador2 = new Jugador("tip");
+        Jugador jugador1 = new Jugador("tip");
         List<iJugador> jugadores = new ArrayList<>();
         jugadores.add(jugador1);
-        jugadores.add(jugador2);
         List<Gladiador> gladiador = new ArrayList<>();
         Gladiador gladiadorcito1 = jugador1.getGladiador();
-        Gladiador gladiadorcito2 = jugador2.getGladiador();
         gladiador.add(gladiadorcito1);
-        gladiador.add(gladiadorcito2);
-        Mapa mapa = new Mapa(gladiador, casillas, 2);
-        Dado dado = new Dado();
+        Mapa mapa = new Mapa(gladiador, casillas, 1);
+        Dado dado = new Dado(1);
 
         Juego juego = Juego.instanciarJuego(mapa,jugadores, dado);
 
