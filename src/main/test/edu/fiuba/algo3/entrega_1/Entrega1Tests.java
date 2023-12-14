@@ -217,6 +217,7 @@ public class Entrega1Tests {
         Mapa mapa = new Mapa(gladiador, casillas, 1);
         Dado dado = new Dado();
 
+        Juego.resetInstancia();
         Juego juego = Juego.instanciarJuego(mapa,jugadores, dado);
 
         novenaCasilla.recibir(gladiadorcito);
