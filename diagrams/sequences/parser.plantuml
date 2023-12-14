@@ -1,0 +1,59 @@
+@startuml
+
+actor Actor #273746
+participant ":Parser" #D5D8DC
+
+Actor -> ":Parser" : parsearJSON(nombreJSON)
+
+activate ":Parser" #D5D8DC
+":Parser" --> "lector:LectorJSON" ** : <<create>
+
+":Parser" ->  "lector:LectorJSON" : leerJSON(nombreJSON)
+activate "lector:LectorJSON" #D5D8DC
+"lector:LectorJSON" --> ":Parser" : contenidoJSON : String
+
+":Parser" --> "iterador:IteradorJSON" ** : <<create>
+
+":Parser" -> "iterador:IteradorJSON" : obtenerDimensionesMapa : String
+activate "iterador:IteradorJSON" #D5D8DC
+"iterador:IteradorJSON" --> ":Parser" 
+
+":Parser" -> "mapaFactory:MapaFactory" ** : <<create>
+":Parser" -> "mapaFactory:MapaFactory" : crearMapa(dimensiones)
+activate "mapaFactory:MapaFactory" #D5D8DC
+
+"mapaFactory:MapaFactory" --> "mapa:Mapa" ** : <<create>
+
+"mapaFactory:MapaFactory" --> ":Parser" : mapa 
+
+
+":Parser" -> ":Parser" : inicializarListaDeCasillas()
+
+
+":Parser" --> "casillaFactory:CasillaFactory" ** : <<create>
+
+loop ! fin de archivo
+
+":Parser" -> "iterador:IteradorJSON" : obtenerSiguienteCasilla()
+"iterador:IteradorJSON" --> ":Parser"
+
+":Parser" -> "casillaFactory:CasillaFactory" : crearCasilla()
+activate "casillaFactory:CasillaFactory" #D5D8DC
+"casillaFactory:CasillaFactory" --> ":__iCasilla__" ** : <<create>
+"casillaFactory:CasillaFactory" --> ":Parser" : iCasilla
+
+":Parser" -> ":Parser": listaDeCasillas.add(iCasilla)
+
+end
+
+":Parser" --> "validador:ValidadorCamino" ** : <<create>
+
+":Parser" -> "validador:ValidadorCamino": validarCamino(listaDeCasillas)
+activate "validador:ValidadorCamino" #D5D8DC
+"validador:ValidadorCamino" --> ":Parser" 
+
+":Parser" -> "mapa:Mapa" : agregarCamino(listaDeCasillas)
+
+":Parser" --> "Actor" : mapa
+
+@enduml
