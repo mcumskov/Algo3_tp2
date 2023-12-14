@@ -22,8 +22,3 @@ Log <-. Armadura
 Log <-. EscudoEspada
 @enduml
 // podemos incluir esto pero complejiza lo que se quiere mostrar sin aportar mucho mas
-!include clases/seniority/diagrama_seniority.plantuml
-!include clases/equipamiento/diagrama_equipamiento_actual.plantuml
-!include clases/clase_jugador.plantuml
-!include clases/clase_juego.plantuml
-!include clases/clase_gladiador.plantuml

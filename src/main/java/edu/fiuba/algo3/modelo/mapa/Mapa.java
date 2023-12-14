@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 
 import java.util.List;
 
-public class Mapa {
+public class Mapa implements iMapa{
 
     protected List<iCasilla> casillas;
     protected iCasilla casillaMedio;

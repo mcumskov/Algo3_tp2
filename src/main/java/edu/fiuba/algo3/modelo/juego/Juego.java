@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.modelo.juego;
 
-import edu.fiuba.algo3.modelo.dado.Dado;
+import edu.fiuba.algo3.modelo.dado.iDado;
 import edu.fiuba.algo3.modelo.excepciones.SinGanadorException;
 import edu.fiuba.algo3.modelo.gestorTurnos.GestorTurnos;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
-import edu.fiuba.algo3.modelo.mapa.Mapa;
-import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.mapa.iMapa;
+import edu.fiuba.algo3.modelo.jugador.iJugador;
 import edu.fiuba.algo3.modelo.log.Log;
 
 
@@ -14,27 +14,21 @@ import java.util.List;
 
 public class Juego {
 
-    public Mapa mapa;
+    public iMapa mapa;
     public GestorTurnos gestorTurnos;
-    public Dado dado;
-    public List<Jugador> jugadores;
-    public int cantidadJugadores;
+    public iDado dado;
     private static Juego instancia;
-    Jugador ganador;
+    iJugador ganador;
 
-    private Juego (Mapa mapa, List<Jugador> jugadores) {
+    private Juego (iMapa mapa, List<iJugador> jugadores, iDado dado) {
 
-        this.jugadores = jugadores;
-        this.cantidadJugadores = jugadores.size();
-        this.gestorTurnos = new GestorTurnos(30, (ArrayList<Jugador>) this.jugadores);
-        this.dado = new Dado();
+        this.gestorTurnos = new GestorTurnos(30, (ArrayList<iJugador>) jugadores);
+        this.dado = dado;
         this.mapa = mapa;
-        this.jugadores = jugadores;
         this.ganador = null;
-
     }
 
-    public Jugador iniciarPartida(){
+    public iJugador iniciarPartida(){
 
         try{
             while(this.ganador == null){
@@ -49,9 +43,9 @@ public class Juego {
         return this.ganador;
     }
 
-    public static Juego instanciarJuego(Mapa mapa, List<Jugador> jugadores) {
+    public static Juego instanciarJuego(iMapa mapa, List<iJugador> jugadores, iDado dado) {
         if(instancia == null){
-            instancia = new Juego(mapa, jugadores);
+            instancia = new Juego(mapa, jugadores, dado);
         }
         return instancia;
     }

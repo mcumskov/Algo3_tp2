@@ -44,15 +44,32 @@ class LogFormatter {
 
 Log .>  LogFormatter
 
+interface iMapa << interface >> {
+  + moverGladiador(Gladiador, int): void
+  + enviarAMitad(Gladiador): void
+}
+
+interface iJugador << interface >> {
+  + jugar(Dado, iMapa): void
+}
+
+interface iDado {
+    public int lanzar();
+}
+
 
 iCasilla ^-. CasillaInicio
 iCasilla ^-. CasillaFinal
-Juego o-- Mapa
+Juego o-- iMapa
+iMapa <|-. Mapa
+Mapa .-> Gladiador
 Juego o-- GestorTurnos
-Juego o-- Dado
-GestorTurnos o-- "2..6 " Jugador
-Jugador o-- Gladiador
-Jugador ..> Dado
+Juego o-- iDado
+iDado <|. Dado
+GestorTurnos o-- "2..6 " iJugador
+iJugador <|-. Jugador
+Jugador *-- Gladiador
+Jugador ..> iDado
 Jugador ..> Mapa
 
 Mapa o-- "2..*"iCasilla

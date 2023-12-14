@@ -3,6 +3,7 @@ package edu.fiuba.algo3.UnitTests;
 import edu.fiuba.algo3.modelo.dado.Dado;
 import edu.fiuba.algo3.modelo.excepciones.SinGanadorException;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.jugador.iJugador;
 import edu.fiuba.algo3.modelo.gestorTurnos.GestorTurnos;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ import static org.mockito.Mockito.*;
 public class GestorTurnosUnitTests {
     @Test
     public void test01GestorTurnosConUnJugadorJuegaUnaVez() throws IOException {
-        ArrayList<Jugador> jugadores = new ArrayList<>();
+        ArrayList<iJugador> jugadores = new ArrayList<>();
         Jugador jugadorMock = mock(Jugador.class);
         Dado dadoMock = mock(Dado.class);
         Mapa mapaMock = mock(Mapa.class);
@@ -26,8 +27,8 @@ public class GestorTurnosUnitTests {
         verify(jugadorMock, times(1)).jugar(dadoMock, mapaMock);
     }
     @Test
-    public void test02GestorTurnosConUnJugadorJuegaUnaDosVeces() throws IOException {
-        ArrayList<Jugador> jugadores = new ArrayList<>();
+    public void test02GestorTurnosConUnJugadorJuegaDosVeces() throws IOException {
+        ArrayList<iJugador> jugadores = new ArrayList<>();
         Jugador jugadorMock = mock(Jugador.class);
         Dado dadoMock = mock(Dado.class);
         Mapa mapaMock = mock(Mapa.class);
@@ -39,7 +40,7 @@ public class GestorTurnosUnitTests {
     }
     @Test
     public void test03GestorTurnosConUnJugadorJuegaCincoVecesLaSextaDevuelveSinGanadorException() throws SinGanadorException, IOException {
-        ArrayList<Jugador> jugadores = new ArrayList<>();
+        ArrayList<iJugador> jugadores = new ArrayList<>();
         Jugador jugadorMock = mock(Jugador.class);
         jugadores.add(jugadorMock);
         Dado dadoMock = mock(Dado.class);
@@ -55,7 +56,7 @@ public class GestorTurnosUnitTests {
     }
     @Test
     public void test04GestorTurnosConDosJugadoresJueganUnaVezCadaUno() throws IOException {
-        ArrayList<Jugador> jugadores = new ArrayList<>();
+        ArrayList<iJugador> jugadores = new ArrayList<>();
         Jugador jugadorMock = mock(Jugador.class);
         Jugador jugadorMock2 = mock(Jugador.class);
         Dado dadoMock = mock(Dado.class);
@@ -70,7 +71,7 @@ public class GestorTurnosUnitTests {
     }
     @Test
     public void test05GestorTurnosConSeisJugadoresJueganUnaVezCadaUno() throws IOException {
-        ArrayList<Jugador> jugadores = new ArrayList<>();
+        ArrayList<iJugador> jugadores = new ArrayList<>();
         Jugador jugadorMock = mock(Jugador.class);
         Jugador jugadorMock2 = mock(Jugador.class);
         Jugador jugadorMock3 = mock(Jugador.class);
@@ -121,7 +122,7 @@ public class GestorTurnosUnitTests {
     }
     @Test
     public void test08GestorTurnosSinJugadoresDevuelveSinGanadorException() throws SinGanadorException {
-        ArrayList<Jugador> jugadores = new ArrayList<>();
+        ArrayList<iJugador> jugadores = new ArrayList<>();
         Dado dadoMock = mock(Dado.class);
         Mapa mapaMock = mock(Mapa.class);
         GestorTurnos gestorTurnos = new GestorTurnos(5, jugadores);

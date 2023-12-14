@@ -6,20 +6,22 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import edu.fiuba.algo3.modelo.dado.iDado;
 import edu.fiuba.algo3.modelo.dado.Dado;
 import edu.fiuba.algo3.modelo.excepciones.SinGanadorException;
 import edu.fiuba.algo3.modelo.juego.Juego;
-import edu.fiuba.algo3.modelo.jugador.Jugador;
-import edu.fiuba.algo3.modelo.mapa.Mapa;
+import edu.fiuba.algo3.modelo.jugador.iJugador;
+import edu.fiuba.algo3.modelo.mapa.iMapa;
+
 
 public class GestorTurnos {
 
-    private Queue<Jugador> colaTurnos;
+    private Queue<iJugador> colaTurnos;
     private int contador;
     private int cantidadRondas;
-    protected Jugador jugadoractual;
+    protected iJugador jugadoractual;
 
-    public GestorTurnos(int rondas, ArrayList<Jugador> jugadores){
+    public GestorTurnos(int rondas, ArrayList<iJugador> jugadores){
 
         this.colaTurnos = new LinkedList<>();
         this.cantidadRondas = rondas;
@@ -27,7 +29,7 @@ public class GestorTurnos {
         this.jugadoractual = null;
 
         if(!jugadores.isEmpty()){
-            for (Jugador jugador : jugadores) {
+            for (iJugador jugador : jugadores) {
                 agregarTurno(jugador);
             }
             this.determinarPrimerJugador();
@@ -40,7 +42,7 @@ public class GestorTurnos {
         this.contador = 0;
     }
 
-    public void agregarTurno(Jugador jugador){
+    public void agregarTurno(iJugador jugador){
         this.colaTurnos.add(jugador);
     }
 
@@ -48,12 +50,12 @@ public class GestorTurnos {
         Dado dado = new Dado(this.colaTurnos.size());
         int num = dado.lanzar();
         for (int i = 0; i < num; i++) {
-            Jugador aux = this.colaTurnos.remove();
+            iJugador aux = this.colaTurnos.remove();
             this.colaTurnos.add(aux);
         }
     }
 
-    public void siguienteTurno(Dado dado, Mapa mapa){
+    public void siguienteTurno(iDado dado, iMapa mapa){
         if (contador >= (this.colaTurnos.size() * cantidadRondas)){
             //Juego juego = Juego.getJuego();
             //juego.finalizarSinGanador();
@@ -69,7 +71,7 @@ public class GestorTurnos {
         throw new SinGanadorException("Finalizó sin ganador");
     }
 
-    public Jugador getJugadoractual() {
+    public iJugador getJugadoractual() {
         return jugadoractual;
     }
 }

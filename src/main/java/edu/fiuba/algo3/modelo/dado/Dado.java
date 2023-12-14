@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.dado;
 
 import java.util.Random;
 
-public class Dado {
+public class Dado implements iDado{
 
     private final Random random;
     private int caras;

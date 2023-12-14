@@ -8,9 +8,11 @@ import edu.fiuba.algo3.modelo.Eventos.Premios.Premio;
 import edu.fiuba.algo3.modelo.Eventos.Premios.PremioComestible;
 import edu.fiuba.algo3.modelo.Eventos.Premios.PremioEquipamiento;
 import edu.fiuba.algo3.modelo.Eventos.Premios.PremioNulo;
+import edu.fiuba.algo3.modelo.dado.Dado;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.jugador.iJugador;
 import edu.fiuba.algo3.modelo.mapa.*;
 import org.junit.jupiter.api.Test;
 
@@ -52,7 +54,7 @@ public class Entrega3Tests {
 
         Jugador jugador1 = new Jugador("mip");
         Jugador jugador2 = new Jugador("tip");
-        List<Jugador> jugadores = new ArrayList<>();
+        List<iJugador> jugadores = new ArrayList<>();
         jugadores.add(jugador1);
         jugadores.add(jugador2);
         List<Gladiador> gladiador = new ArrayList<>();
@@ -61,8 +63,9 @@ public class Entrega3Tests {
         gladiador.add(gladiadorcito1);
         gladiador.add(gladiadorcito2);
         Mapa mapa = new Mapa(gladiador, casillas, 2);
+        Dado dado = new Dado();
 
-        Juego juego = Juego.instanciarJuego(mapa,jugadores);
+        Juego juego = Juego.instanciarJuego(mapa,jugadores, dado);
 
 
 
@@ -105,7 +108,7 @@ public class Entrega3Tests {
 
         Jugador jugador1 = new Jugador("mip");
         Jugador jugador2 = new Jugador("tip");
-        List<Jugador> jugadores = new ArrayList<>();
+        List<iJugador> jugadores = new ArrayList<>();
         jugadores.add(jugador1);
         jugadores.add(jugador2);
         List<Gladiador> gladiador = new ArrayList<>();
@@ -114,8 +117,9 @@ public class Entrega3Tests {
         gladiador.add(gladiadorcito1);
         gladiador.add(gladiadorcito2);
         Mapa mapa = new Mapa(gladiador, casillas, 2);
+        Dado dado = new Dado();
 
-        Juego juego = Juego.instanciarJuego(mapa,jugadores);
+        Juego juego = Juego.instanciarJuego(mapa,jugadores, dado);
 
 
         assertNull(juego.iniciarPartida());
