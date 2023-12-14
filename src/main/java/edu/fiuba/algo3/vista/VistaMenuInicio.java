@@ -149,20 +149,25 @@ public class VistaMenuInicio{
 
     public void MostrarMapa(Button atrasButton, Button empezarJuego, GridPane DatosMapa){
 
-        VBox pantallaMapa = new VBox(10);
-        pantallaMapa.setBackground(establecerFondoPantalla());
-        pantallaMapa.setPadding(new Insets(20, 20, 20, 20));
-        pantallaMapa.setSpacing(50);
+        HBox pantallaMapa1 = new HBox(10);
+        VBox pantallaMapa2 = new VBox(pantallaMapa1);
+        VBox mainPantallaMapa = new VBox(pantallaMapa1, pantallaMapa2);
+
+        mainPantallaMapa.setBackground(establecerFondoPantalla());
+        mainPantallaMapa.setPadding(new Insets(20, 20, 20, 20));
+        mainPantallaMapa.setSpacing(50);
 
         atrasButton.getStyleClass().add("botonAtras");
-        pantallaMapa.getChildren().add(atrasButton);
+        pantallaMapa1.getChildren().add(atrasButton);
         empezarJuego.getStyleClass().add("botonContinuar");
-        pantallaMapa.getChildren().add(empezarJuego);
+        pantallaMapa1.getChildren().add(empezarJuego);
+        pantallaMapa1.setAlignment(Pos.CENTER);
 
         DatosMapa.setAlignment(Pos.CENTER);
-        pantallaMapa.getChildren().add(DatosMapa);
-        pantallaMapa.setAlignment(Pos.CENTER);
-        Scene sceneMapa = new Scene(pantallaMapa, 300, 200);
+        pantallaMapa2.getChildren().add(DatosMapa);
+        pantallaMapa2.setAlignment(Pos.CENTER);
+
+        Scene sceneMapa = new Scene(mainPantallaMapa, 300, 200);
         String cssFile = getClass().getResource("/style.css").toExternalForm();
         sceneMapa.getStylesheets().add(cssFile);
         primaryStage.setScene(sceneMapa);

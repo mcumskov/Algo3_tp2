@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.mapa.iCasilla;
 import edu.fiuba.algo3.modelo.parser.Parser;
 import edu.fiuba.algo3.vista.VistaMenuInicio;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -24,7 +25,7 @@ public class ControladorMenuInicio extends Application {
     private Mapa miMapa;
 
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
 
     @Override
@@ -53,7 +54,7 @@ public class ControladorMenuInicio extends Application {
         buttons.add(verMapaButton);
 
         Button jugarButton = new Button("~JUGAR~");
-        //ElegirMapaButton.setOnAction(e -> PantallaMostrarMapa());
+        jugarButton.setOnAction(e -> iniciarJuego());
         buttons.add(jugarButton);
 
         Button volverButton = new Button("Volver");
@@ -144,6 +145,10 @@ public class ControladorMenuInicio extends Application {
             }
         }
         return null;
+    }
+
+    public void iniciarJuego(){
+        Platform.exit();
     }
 
 }
