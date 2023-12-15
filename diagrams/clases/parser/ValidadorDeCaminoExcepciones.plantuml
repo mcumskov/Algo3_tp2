@@ -1,0 +1,13 @@
+@startuml
+
+exception CasillaTipoSalidaMalPosicionadaException{}
+exception CasillaTipoCaminoMalPosicionadaException{}
+exception CasillaTipoLlegadaMalPosicionadaException{}
+exception CaminoDiscontinuoException{}
+
+ValidadorDeCamino ..> CasillaTipoSalidaMalPosicionadaException
+ValidadorDeCamino ...> CasillaTipoCaminoMalPosicionadaException
+ValidadorDeCamino ...> CasillaTipoLlegadaMalPosicionadaException
+ValidadorDeCamino ..> CaminoDiscontinuoException
+
+@enduml

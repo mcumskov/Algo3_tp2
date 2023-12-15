@@ -1,0 +1,46 @@
+@startuml
+
+
+class BuscadorValorJSON{
+
+
+}
+
+class MapaFactory{
+
+
+}
+
+class CasillaFactory{
+
+   }
+
+
+
+exception FormatoInvalidoMapaException{}
+exception FormatoInvalidoCasillaException{}
+exception PremioInvalidoException{}
+exception ObstaculoInvalidoException{}
+exception ClaveInexistenteException{}
+
+
+
+
+MapaFactory o--> BuscadorValorJSON
+CasillaFactory o--> BuscadorValorJSON
+BuscadorValorJSON ..> ClaveInexistenteException
+
+
+
+CasillaFactory ....> FormatoInvalidoCasillaException
+CasillaFactory ...> PremioInvalidoException
+CasillaFactory ....> ObstaculoInvalidoException
+
+
+
+MapaFactory ..> FormatoInvalidoMapaException
+
+
+
+
+@enduml
