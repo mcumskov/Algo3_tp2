@@ -4,11 +4,12 @@ import edu.fiuba.algo3.modelo.Eventos.Obstaculos.Obstaculo;
 import edu.fiuba.algo3.modelo.Eventos.Premios.Premio;
 import edu.fiuba.algo3.modelo.excepciones.CasillaTipoMalPosicionadaException;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
+import java.util.Observable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CasillaCamino implements iCasilla {
+public class CasillaCamino extends Observable implements iCasilla{
 
 
     protected Obstaculo obstaculo;
@@ -90,5 +91,7 @@ public class CasillaCamino implements iCasilla {
         return this.coordenada;
 
     }
+
+
 
 }

@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.jugador.iJugador;
+import edu.fiuba.algo3.modelo.mapa.CasillaCamino;
 import edu.fiuba.algo3.modelo.mapa.Coordenada;
 import edu.fiuba.algo3.modelo.mapa.iCasilla;
 import edu.fiuba.algo3.vista.VistaJuego;
@@ -29,6 +30,8 @@ public class ControladorJuego implements Observer{
     iMapa mapa;
     private List<Button> buttons;
     Juego juego;
+
+    GridPane grid;
 
 public ControladorJuego(Stage mainStage, iMapa mapa){
     this.mainStage = mainStage;
@@ -66,16 +69,19 @@ public void start(){
     this.juego = Juego.instanciarJuego(mapa, jugadores, dado);
     this.juego.siguienteTurno();
 
-    GridPane grid = crearGrid();
+    this.grid = crearGrid();
 
 
-    this.vistaJuego.mostrarJuego(buttons.get(0), buttons.get(1), grid);
+    this.vistaJuego.mostrarJuego(buttons.get(0), buttons.get(1), this.grid);
 }
 
 public void tirarDado(){
     this.juego.tirarDado();
     buttons.get(1).setDisable(false);
     buttons.get(0).setDisable(true);
+
+    ControladorPrototipo caca = new ControladorPrototipo();
+    caca.caca(this.grid);
 }
 public void terminarTurno(){
     this.juego.siguienteTurno();
@@ -133,6 +139,9 @@ private Node getNodo(GridPane gridPane, int col, int fila) {
     @Override
     public void update(Observable o, Object arg) {
 
+        this.grid = crearGrid();
+
+        this.vistaJuego.mostrarJuego(buttons.get(0), buttons.get(1), this.grid);
     }
 
 }
