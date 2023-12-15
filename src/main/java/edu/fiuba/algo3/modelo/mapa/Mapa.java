@@ -23,14 +23,21 @@ public class Mapa implements iMapa{
     }
 
     public void agregarCamino(List<iCasilla> casillas){
-
         this.casillas = casillas ;
 
         int mitad = casillas.size()/2;
         int ultima = casillas.size()-1;
         this.casillaMedio = casillas.get(mitad);
         this.casillaUltima = casillas.get(ultima);
+    }
 
+    public void ingresarGladiadores(List<Gladiador> gladiadores, int CantJugadores){
+
+        iCasilla primerCasilla = casillas.get(0);
+
+        for(int i=0; i<CantJugadores; i++){
+            primerCasilla.recibir(gladiadores.get(i));
+        }
     }
 
     public int getAncho() {

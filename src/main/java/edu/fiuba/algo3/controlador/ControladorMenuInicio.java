@@ -146,7 +146,8 @@ public class ControladorMenuInicio{
     }
 
     public void iniciarJuego(){
-        Platform.exit();
+        ControladorJuego controladorJuego = new ControladorJuego(mainStage, this.miMapa);
+        controladorJuego.start();
     }
 
 

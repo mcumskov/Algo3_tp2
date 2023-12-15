@@ -14,13 +14,11 @@ public class Main extends Application{
 
     @Override
     public void start(Stage mainStage){
-
         mainStage.setWidth(800);
         mainStage.setHeight(600);
 
         ControladorMenuInicio controladorInicio = new ControladorMenuInicio(mainStage);
         controladorInicio.start();
-
 
     }
 }

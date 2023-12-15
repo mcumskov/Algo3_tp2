@@ -33,7 +33,7 @@ public class Juego {
     public void siguienteTurno(){
         try{
             this.jugadorActual = this.gestorTurnos.siguienteTurno();
-            Log.getLog().imprimirMensaje();
+
         }catch (SinGanadorException finalTriste){
             Log.getLog().imprimirMensaje();
             Log.getLog().agregarABuffer("SE TERMINARON LOS TURNOS...|FIN DEL JUEGO|" );
@@ -44,6 +44,7 @@ public class Juego {
 
     public iJugador tirarDado(){
         this.jugadorActual.jugar(this.dado, this.mapa);
+        Log.getLog().imprimirMensaje();
         return this.ganador;
     }
 

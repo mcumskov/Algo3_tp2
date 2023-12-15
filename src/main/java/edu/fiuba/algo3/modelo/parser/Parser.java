@@ -11,6 +11,7 @@ public class Parser {
     IteradorJSONMapa iteradorJSON ;
     CasillaFactory casillaFactory ;
     MapaFactory mapaFactory ;
+    iCasilla casillaAnterior;
 
     public Parser(){
 
@@ -24,6 +25,8 @@ public class Parser {
         this.iteradorJSON = new IteradorJSONMapa(stringMapa);
         this.casillaFactory = new CasillaFactory();
         this.mapaFactory = new MapaFactory();
+        this.casillaAnterior = null;
+
 
         Mapa mapa ;
 
@@ -34,9 +37,12 @@ public class Parser {
         while(true){
 
             try {
-
-                listaCasillas.add(casillaFactory.crearCasilla(iteradorJSON.obtenerSiguienteCasilla()));
-
+                iCasilla casillaNueva = casillaFactory.crearCasilla(iteradorJSON.obtenerSiguienteCasilla());
+                listaCasillas.add(casillaNueva);
+                if(this.casillaAnterior != null){
+                    this.casillaAnterior.setSiguiente(casillaNueva);
+                }
+                this.casillaAnterior = casillaNueva;
             }catch(MapaSinMasCasillasException e){
 
                 break ;

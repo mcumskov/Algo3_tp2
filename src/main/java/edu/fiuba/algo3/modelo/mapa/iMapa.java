@@ -15,4 +15,6 @@ public interface iMapa {
 
     public List<iCasilla> getCasillas();
 
-}
+    public void ingresarGladiadores(List<Gladiador> gladiadores, int CantJugadores);
+
+    }
