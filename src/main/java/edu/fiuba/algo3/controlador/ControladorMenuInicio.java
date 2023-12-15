@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controlador;
 
+import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 import edu.fiuba.algo3.modelo.mapa.Coordenada;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.iCasilla;
@@ -18,52 +19,47 @@ import javafx.stage.FileChooser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ControladorMenuInicio extends Application {
-    private Stage primaryStage;
+public class ControladorMenuInicio{
+    private Stage mainStage;
     private VistaMenuInicio vistaInicio;
     private List<Button> buttons;
     private Mapa miMapa;
 
-    public static void main(String[] args) {
-        launch();
+    public ControladorMenuInicio(Stage mainStage){
+        this.mainStage = mainStage;
+        this.vistaInicio = new VistaMenuInicio(mainStage);
+        this.buttons = new ArrayList<>();
     }
 
-    @Override
-    public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-        this.primaryStage.setWidth(800);
-        this.primaryStage.setHeight(600);
-
-        this.vistaInicio = new VistaMenuInicio(primaryStage);
-        this.buttons = new ArrayList<>();
+    public void start() {
 
         Button continuarButton = new Button("Continuar");
         continuarButton.setOnAction(e -> MostrarPantallaNombres());
-        buttons.add(continuarButton);
+        this.buttons.add(continuarButton);
 
         Button atrasButton = new Button("Volver");
         atrasButton.setOnAction(e -> mostrarPantallaInicio());
-        buttons.add(atrasButton);
+        this.buttons.add(atrasButton);
 
         Button ElegirMapaButton = new Button("Elegir mapa");
         ElegirMapaButton.setOnAction(e -> PantallaelegirMapa());
-        buttons.add(ElegirMapaButton);
+        this.buttons.add(ElegirMapaButton);
 
         Button verMapaButton = new Button("Ver mapa elegido");
         verMapaButton.setOnAction(e -> PantallaMostrarMapa());
-        buttons.add(verMapaButton);
+        this.buttons.add(verMapaButton);
 
         Button jugarButton = new Button("~JUGAR~");
         jugarButton.setOnAction(e -> iniciarJuego());
-        buttons.add(jugarButton);
+        this.buttons.add(jugarButton);
 
         Button volverButton = new Button("Volver");
         volverButton.setOnAction(e -> MostrarPantallaNombres());
-        buttons.add(volverButton);
+        this.buttons.add(volverButton);
 
-        vistaInicio.mostrarPantallaInicio(continuarButton);
+        this.vistaInicio.mostrarPantallaInicio(continuarButton);
 
-        primaryStage.show();
+        this.mainStage.show();
     }
 
     private void MostrarPantallaNombres() {
@@ -77,7 +73,7 @@ public class ControladorMenuInicio extends Application {
     private void PantallaelegirMapa(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("archivos JSON", "*.json"));
-        java.io.File selectedFile = fileChooser.showOpenDialog(primaryStage);
+        java.io.File selectedFile = fileChooser.showOpenDialog(mainStage);
         Parser parser = new Parser();
         if (selectedFile != null) {
             try{
@@ -101,10 +97,6 @@ public class ControladorMenuInicio extends Application {
         List<iCasilla> casillas = this.miMapa.getCasillas();
         List<Coordenada> coordenadas = new ArrayList<>();
         GridPane gridPane = new GridPane();
-
-        for (iCasilla casilla:casillas) {
-            coordenadas.add(casilla.getCoordenada());
-        }
 
         for (iCasilla casilla:casillas) {
             coordenadas.add(casilla.getCoordenada());
@@ -136,6 +128,12 @@ public class ControladorMenuInicio extends Application {
         }
 
         vistaInicio.MostrarMapa(buttons.get(5), buttons.get(4),gridPane);
+        /*
+        Node nodito = getNodo(gridPane,5 ,5);
+        Rectangle rectangulito =  (Rectangle) nodito;
+        rectangulito.setFill(Color.WHITESMOKE);
+        */
+
     }
 
     private Node getNodo(GridPane gridPane, int col, int fila) {
@@ -150,5 +148,7 @@ public class ControladorMenuInicio extends Application {
     public void iniciarJuego(){
         Platform.exit();
     }
+
+
 
 }

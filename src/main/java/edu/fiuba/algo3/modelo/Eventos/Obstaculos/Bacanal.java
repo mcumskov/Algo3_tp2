@@ -17,6 +17,7 @@ public class Bacanal implements Obstaculo{
         Dado miDado = new Dado(6);
         Log.getLog().agregarABuffer( " terminar el bacanal ");
         gladiador.disminuirEnergia(miDado.lanzar()*this.perdidaEnergiaMinima);
+
     }
 
 }
