@@ -14,8 +14,8 @@ public class Main extends Application{
 
     @Override
     public void start(Stage mainStage){
-        mainStage.setWidth(800);
-        mainStage.setHeight(600);
+        mainStage.setWidth(1800);
+        mainStage.setHeight(1000);
 
         ControladorMenuInicio controladorInicio = new ControladorMenuInicio(mainStage);
         controladorInicio.start();

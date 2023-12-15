@@ -125,7 +125,7 @@ public class ControladorMenuInicio{
             } else if (i == tope-1){
                 rectangulito.setFill(Color.GREY);
             }
-        }
+         }
 
         vistaInicio.MostrarMapa(buttons.get(5), buttons.get(4),gridPane);
         /*
