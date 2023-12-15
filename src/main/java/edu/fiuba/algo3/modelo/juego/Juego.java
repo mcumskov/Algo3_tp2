@@ -18,6 +18,7 @@ public class Juego {
     public GestorTurnos gestorTurnos;
     public iDado dado;
     private static Juego instancia;
+    private iJugador jugadorActual;
     iJugador ganador;
 
     private Juego (iMapa mapa, List<iJugador> jugadores, iDado dado) {
@@ -25,21 +26,24 @@ public class Juego {
         this.gestorTurnos = new GestorTurnos(30, (ArrayList<iJugador>) jugadores);
         this.dado = dado;
         this.mapa = mapa;
+        this.jugadorActual = null;
         this.ganador = null;
     }
 
-    public iJugador iniciarPartida(){
-
+    public void siguienteTurno(){
         try{
-            while(this.ganador == null){
-                this.gestorTurnos.siguienteTurno(this.dado,this.mapa);
-                Log.getLog().imprimirMensaje();
-            }
+            this.jugadorActual = this.gestorTurnos.siguienteTurno();
+            Log.getLog().imprimirMensaje();
         }catch (SinGanadorException finalTriste){
             Log.getLog().imprimirMensaje();
             Log.getLog().agregarABuffer("SE TERMINARON LOS TURNOS...|FIN DEL JUEGO|" );
             Log.getLog().imprimirMensaje();
+            throw finalTriste;
         }
+    }
+
+    public iJugador tirarDado(){
+        this.jugadorActual.jugar(this.dado, this.mapa);
         return this.ganador;
     }
 
@@ -55,7 +59,7 @@ public class Juego {
         this.mapa.enviarAMitad(gladiador);
     }
     private void buscarGanador() {
-        this.ganador = gestorTurnos.getJugadoractual();
+        this.ganador = this.jugadorActual;
         Log.getLog().imprimirMensaje();
         Log.getLog().agregarABuffer(" LA LLAVE ABRE LA CASA!! VICTORIA " );
         Log.getLog().imprimirMensaje();

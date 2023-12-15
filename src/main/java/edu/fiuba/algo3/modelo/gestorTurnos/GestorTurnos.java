@@ -55,23 +55,17 @@ public class GestorTurnos {
         }
     }
 
-    public void siguienteTurno(iDado dado, iMapa mapa){
+    public iJugador siguienteTurno(){
         if (contador >= (this.colaTurnos.size() * cantidadRondas)){
-            //Juego juego = Juego.getJuego();
-            //juego.finalizarSinGanador();
             this.finalizarSinGanador();
         }
-        this.jugadoractual = this.colaTurnos.remove();
-        this.colaTurnos.add(this.jugadoractual);
-        this.jugadoractual.jugar(dado, mapa);
+        iJugador jugadorActual = this.colaTurnos.remove();
+        this.colaTurnos.add(jugadorActual);
         this.contador++;
+        return jugadorActual;
     }
-
     public void finalizarSinGanador(){
         throw new SinGanadorException("Finalizó sin ganador");
     }
 
-    public iJugador getJugadoractual() {
-        return jugadoractual;
-    }
 }

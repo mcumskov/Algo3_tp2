@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.Eventos.Premios.PremioComestible;
 import edu.fiuba.algo3.modelo.Eventos.Premios.PremioEquipamiento;
 import edu.fiuba.algo3.modelo.Eventos.Premios.PremioNulo;
 import edu.fiuba.algo3.modelo.dado.Dado;
+import edu.fiuba.algo3.modelo.excepciones.SinGanadorException;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
@@ -62,8 +63,12 @@ public class Entrega3Tests {
         Dado dado = new Dado(1);
 
         Juego juego = Juego.instanciarJuego(mapa,jugadores, dado);
-
-        assertNotNull(juego.iniciarPartida());
+        for (int i = 0; i < 9; i++) {
+            juego.siguienteTurno();
+            juego.tirarDado();
+        }
+        juego.siguienteTurno();
+        assertNotNull(juego.tirarDado());
     }
 
     @Test
@@ -111,7 +116,12 @@ public class Entrega3Tests {
         Juego juego = Juego.instanciarJuego(mapa,jugadores, dado);
 
 
-        assertNull(juego.iniciarPartida());
+        for (int i = 0; i < 30; i++) {
+            juego.siguienteTurno();
+            juego.tirarDado();
+        }
+
+        assertThrows(SinGanadorException.class, juego::siguienteTurno);
     }
 
 }

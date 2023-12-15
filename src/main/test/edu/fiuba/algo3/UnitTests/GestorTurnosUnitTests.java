@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 public class GestorTurnosUnitTests {
     @Test
-    public void test01GestorTurnosConUnJugadorJuegaUnaVez() throws IOException {
+    public void test01GestorTurnosConUnJugadorJuegaUnaVez() {
         ArrayList<iJugador> jugadores = new ArrayList<>();
         Jugador jugadorMock = mock(Jugador.class);
         Dado dadoMock = mock(Dado.class);
@@ -23,39 +23,43 @@ public class GestorTurnosUnitTests {
         jugadores.add(jugadorMock);
 
         GestorTurnos gestorTurnos = new GestorTurnos(5, jugadores);
-        gestorTurnos.siguienteTurno(dadoMock, mapaMock);
+        iJugador jugadorActual = gestorTurnos.siguienteTurno();
+        jugadorActual.jugar(dadoMock, mapaMock);
         verify(jugadorMock, times(1)).jugar(dadoMock, mapaMock);
     }
     @Test
-    public void test02GestorTurnosConUnJugadorJuegaDosVeces() throws IOException {
+    public void test02GestorTurnosConUnJugadorJuegaDosVeces() {
         ArrayList<iJugador> jugadores = new ArrayList<>();
         Jugador jugadorMock = mock(Jugador.class);
         Dado dadoMock = mock(Dado.class);
         Mapa mapaMock = mock(Mapa.class);
         jugadores.add(jugadorMock);
         GestorTurnos gestorTurnos = new GestorTurnos(5, jugadores);
-        gestorTurnos.siguienteTurno(dadoMock, mapaMock);
-        gestorTurnos.siguienteTurno(dadoMock, mapaMock);
+
+        for (int i = 0; i < 2; i++) {
+            iJugador jugadorActual = gestorTurnos.siguienteTurno();
+            jugadorActual.jugar(dadoMock, mapaMock);
+        }
+
         verify(jugadorMock, times(2)).jugar(dadoMock, mapaMock);
     }
     @Test
-    public void test03GestorTurnosConUnJugadorJuegaCincoVecesLaSextaDevuelveSinGanadorException() throws SinGanadorException, IOException {
+    public void test03GestorTurnosConUnJugadorJuegaCincoVecesLaSextaDevuelveSinGanadorException() throws SinGanadorException {
         ArrayList<iJugador> jugadores = new ArrayList<>();
         Jugador jugadorMock = mock(Jugador.class);
         jugadores.add(jugadorMock);
         Dado dadoMock = mock(Dado.class);
         Mapa mapaMock = mock(Mapa.class);
         GestorTurnos gestorTurnos = new GestorTurnos(5, jugadores);
-        gestorTurnos.siguienteTurno(dadoMock, mapaMock);
-        gestorTurnos.siguienteTurno(dadoMock, mapaMock);
-        gestorTurnos.siguienteTurno(dadoMock, mapaMock);
-        gestorTurnos.siguienteTurno(dadoMock, mapaMock);
-        gestorTurnos.siguienteTurno(dadoMock, mapaMock);
+        for (int i = 0; i < 5; i++) {
+            iJugador jugadorActual = gestorTurnos.siguienteTurno();
+            jugadorActual.jugar(dadoMock, mapaMock);
+        }
         verify(jugadorMock, times(5)).jugar(dadoMock, mapaMock);
-        assertThrows(SinGanadorException.class, () -> gestorTurnos.siguienteTurno(dadoMock, mapaMock));
+        assertThrows(SinGanadorException.class, () -> gestorTurnos.siguienteTurno());
     }
     @Test
-    public void test04GestorTurnosConDosJugadoresJueganUnaVezCadaUno() throws IOException {
+    public void test04GestorTurnosConDosJugadoresJueganUnaVezCadaUno() {
         ArrayList<iJugador> jugadores = new ArrayList<>();
         Jugador jugadorMock = mock(Jugador.class);
         Jugador jugadorMock2 = mock(Jugador.class);
@@ -64,13 +68,15 @@ public class GestorTurnosUnitTests {
         jugadores.add(jugadorMock);
         jugadores.add(jugadorMock2);
         GestorTurnos gestorTurnos = new GestorTurnos(5, jugadores);
-        gestorTurnos.siguienteTurno(dadoMock, mapaMock);
-        gestorTurnos.siguienteTurno(dadoMock, mapaMock);
+        for (int i = 0; i < 2; i++) {
+            iJugador jugadorActual = gestorTurnos.siguienteTurno();
+            jugadorActual.jugar(dadoMock, mapaMock);
+        }
         verify(jugadorMock, times(1)).jugar(dadoMock, mapaMock);
         verify(jugadorMock2, times(1)).jugar(dadoMock, mapaMock);
     }
     @Test
-    public void test05GestorTurnosConSeisJugadoresJueganUnaVezCadaUno() throws IOException {
+    public void test05GestorTurnosConSeisJugadoresJueganUnaVezCadaUno() {
         ArrayList<iJugador> jugadores = new ArrayList<>();
         Jugador jugadorMock = mock(Jugador.class);
         Jugador jugadorMock2 = mock(Jugador.class);
@@ -88,7 +94,8 @@ public class GestorTurnosUnitTests {
         jugadores.add(jugadorMock6);
         GestorTurnos gestorTurnos = new GestorTurnos(5, jugadores);
         for (int i = 0; i < 6; i++) {
-            gestorTurnos.siguienteTurno(dadoMock, mapaMock);
+            iJugador jugadorActual = gestorTurnos.siguienteTurno();
+            jugadorActual.jugar(dadoMock, mapaMock);
         }
         verify(jugadorMock, times(1)).jugar(dadoMock, mapaMock);
         verify(jugadorMock2, times(1)).jugar(dadoMock, mapaMock);
@@ -98,34 +105,35 @@ public class GestorTurnosUnitTests {
         verify(jugadorMock6, times(1)).jugar(dadoMock, mapaMock);
     }
     @Test
-    public void test06GestorTurnosAgregarUnJugadorIndividualJuegaUnaVez() throws IOException {
+    public void test06GestorTurnosAgregarUnJugadorIndividualJuegaUnaVez() {
         Jugador jugadorMock = mock(Jugador.class);
         Dado dadoMock = mock(Dado.class);
         Mapa mapaMock = mock(Mapa.class);
         GestorTurnos gestorTurnos = new GestorTurnos(5);
         gestorTurnos.agregarTurno(jugadorMock);
         gestorTurnos.determinarPrimerJugador();
-        gestorTurnos.siguienteTurno(dadoMock, mapaMock);
+        iJugador jugadorActual = gestorTurnos.siguienteTurno();
+        jugadorActual.jugar(dadoMock, mapaMock);
         verify(jugadorMock, times(1)).jugar(dadoMock, mapaMock);
     }
     @Test
-    public void test07GestorTurnosAgregarUnJugadorIndividualJuegaDosVeces() throws IOException {
+    public void test07GestorTurnosAgregarUnJugadorIndividualJuegaDosVeces() {
         Jugador jugadorMock = mock(Jugador.class);
         Dado dadoMock = mock(Dado.class);
         Mapa mapaMock = mock(Mapa.class);
         GestorTurnos gestorTurnos = new GestorTurnos(5);
         gestorTurnos.agregarTurno(jugadorMock);
         gestorTurnos.determinarPrimerJugador();
-        gestorTurnos.siguienteTurno(dadoMock, mapaMock);
-        gestorTurnos.siguienteTurno(dadoMock, mapaMock);
+        for (int i = 0; i < 2; i++) {
+            iJugador jugadorActual = gestorTurnos.siguienteTurno();
+            jugadorActual.jugar(dadoMock, mapaMock);
+        }
         verify(jugadorMock, times(2)).jugar(dadoMock, mapaMock);
     }
     @Test
     public void test08GestorTurnosSinJugadoresDevuelveSinGanadorException() throws SinGanadorException {
         ArrayList<iJugador> jugadores = new ArrayList<>();
-        Dado dadoMock = mock(Dado.class);
-        Mapa mapaMock = mock(Mapa.class);
         GestorTurnos gestorTurnos = new GestorTurnos(5, jugadores);
-        assertThrows(SinGanadorException.class, () -> gestorTurnos.siguienteTurno(dadoMock, mapaMock));
+        assertThrows(SinGanadorException.class, () -> gestorTurnos.siguienteTurno());
     }
 }
