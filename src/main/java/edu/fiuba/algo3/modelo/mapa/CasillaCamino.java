@@ -86,12 +86,10 @@ public class CasillaCamino extends Observable implements iCasilla{
     }
 
 
-    public Coordenada getCoordenada(){
+    public Coordenada getCoordenada() {
 
         return this.coordenada;
 
+
     }
-
-
-
 }

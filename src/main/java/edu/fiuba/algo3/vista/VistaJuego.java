@@ -22,20 +22,21 @@ public class VistaJuego {
     public void mostrarJuego(Button botonJugar, Button botonTerminarTurno, GridPane grid){
 
         VBox botones = new VBox(50);
-        botones.getChildren().addAll(botonJugar, botonTerminarTurno);
-        VBox mapa = new VBox(grid);
+        botones.getChildren().addAll(grid,botonJugar, botonTerminarTurno);
+        //VBox mapa = new VBox(grid);
         HBox pantallaJuego = new HBox(500);
-        pantallaJuego.getChildren().addAll(mapa, botones);
+        pantallaJuego.getChildren().addAll(botones);
 
         pantallaJuego.setBackground(establecerFondoPantalla());
         pantallaJuego.setPadding(new Insets(20, 20, 20, 20));
-        pantallaJuego.setSpacing(55);
+        pantallaJuego.setSpacing(20);
 
         botones.setAlignment(Pos.CENTER_RIGHT);
-        mapa.setAlignment(Pos.CENTER);
+        //mapa.setAlignment(Pos.CENTER_RIGHT);
 
-        pantallaJuego.setAlignment(Pos.CENTER);
+        pantallaJuego.setAlignment(Pos.CENTER_RIGHT);
         Scene sceneInicio = new Scene(pantallaJuego, 300, 200);
+
         mainStage.setScene(sceneInicio);
         mainStage.setTitle("carrera a pompeya");
 
