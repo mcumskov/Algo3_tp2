@@ -17,7 +17,6 @@ public class Mapa implements iMapa{
     private int ancho;
 
     public Mapa(int ancho, int largo){
-
         this.largo = largo ;
         this.ancho = ancho ;
     }
