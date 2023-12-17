@@ -27,8 +27,6 @@ public class CasillaFinal extends Observable implements iCasilla{
     public void moverGladiador(int pasos, Gladiador gladiador){
         if( pasos == 0 || casillaSiguiente == null){
             this.recibir(gladiador);
-            this.setChanged();
-            this.notifyObservers();
             return;
         }
         casillaSiguiente.moverGladiador(pasos-1, gladiador);
@@ -40,6 +38,8 @@ public class CasillaFinal extends Observable implements iCasilla{
     public void recibir(Gladiador gladiador){
         gladiadoresEnLaCasilla.add(gladiador);
         gladiador.abrirCasaPompeya(gladiador);
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public void expulsar(Gladiador gladiador){

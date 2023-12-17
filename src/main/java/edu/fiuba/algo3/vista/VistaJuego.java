@@ -19,10 +19,10 @@ public class VistaJuego {
         this.mainStage = mainStage;
     }
 
-    public void mostrarJuego(Button botonJugar, Button botonTerminarTurno, GridPane grid){
+    public void mostrarJuego(Button botonJugar, Button botonTerminarTurno, GridPane mapa){
 
         VBox botones = new VBox(50);
-        botones.getChildren().addAll(grid,botonJugar, botonTerminarTurno);
+        botones.getChildren().addAll(mapa,botonJugar, botonTerminarTurno);
         //VBox mapa = new VBox(grid);
         HBox pantallaJuego = new HBox(500);
         pantallaJuego.getChildren().addAll(botones);

@@ -44,23 +44,24 @@ public class CasillaCamino extends Observable implements iCasilla{
 
         if( pasos == 0 || casillaSiguiente == null){
             this.recibir(gladiador);
-            this.setChanged();
-            this.notifyObservers();
             return;
         }
         casillaSiguiente.moverGladiador(pasos-1, gladiador);
-        this.setChanged();
-        this.notifyObservers();
+
     }
 
     public void recibir(Gladiador gladiador){
         gladiadoresEnLaCasilla.add(gladiador);
         this.premio.premiarGladiador(gladiador);
         this.obstaculo.obstaculizarGladiador(gladiador);
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public void expulsar(Gladiador gladiador){
         gladiadoresEnLaCasilla.remove(gladiador);
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public iCasilla buscadoEstaEnLaCasilla(Gladiador gladiador){
