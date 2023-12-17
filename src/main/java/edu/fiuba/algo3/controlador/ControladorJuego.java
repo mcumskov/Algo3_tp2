@@ -134,10 +134,10 @@ import java.util.Observer;
         Label seniorityGladiador = new Label(("Seniority: " + gladiadorActual.getSeniority().getRepresentacion()));
         seniorityGladiador.getStyleClass().add("labelNombre");
 
-        Label energiaGladiador = new Label("energia: " + gladiadorActual.getEnergia());
+        Label energiaGladiador = new Label("Energia: " + gladiadorActual.getEnergia());
         energiaGladiador.getStyleClass().add("labelNombre");
 
-        Label equipamientoGladiador = new Label("equipo: " + gladiadorActual.getEquipamiento().getRepresentacion());
+        Label equipamientoGladiador = new Label("Equipo: " + gladiadorActual.getEquipamiento().getRepresentacion());
         equipamientoGladiador.getStyleClass().add("labelNombre");
 
         Label infoDado = new Label("Dado: - ");
@@ -189,8 +189,8 @@ import java.util.Observer;
         Gladiador gladiadorActual = player.getGladiador();
         labels.get(1).setText("Estado: " + gladiadorActual.getEstado().getRepresentacion());
         labels.get(3).setText(("Seniority: " + gladiadorActual.getSeniority().getRepresentacion()));
-        labels.get(4).setText("energia: " + gladiadorActual.getEnergia());
-        labels.get(5).setText("equipo: " + gladiadorActual.getEquipamiento().getRepresentacion());
+        labels.get(4).setText("Energia: " + gladiadorActual.getEnergia());
+        labels.get(5).setText("Equipo: " + gladiadorActual.getEquipamiento().getRepresentacion());
     }
 
     public void mostrarResultadoDado(Dado dado, Label labelDado){
@@ -260,6 +260,8 @@ import java.util.Observer;
             casilla.agregarObserver((o, arg) -> dibujarCasilla(canvas, casilla));
 
         }
+        gridPane.getStyleClass().add("map");
+
         return gridPane;
     }
     private Node getNodo(GridPane gridPane, int col, int fila) {

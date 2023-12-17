@@ -53,3 +53,26 @@
 .invalido {
     -fx-text-fill: red;
 }
+
+.contenedorInfo {
+    -fx-background-color: #d75746;
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-border-radius: 2;
+    -fx-border-color: #802211;
+}
+
+.fondoTransparente {
+    -fx-background-color: transparent;
+}
+
+.map {
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-border-radius: 2;
+    -fx-border-color: #000000;
+}
+
+.split-pane-divider {
+    -fx-background-color: transparent;
+}

@@ -5,10 +5,11 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -24,47 +25,55 @@ public class VistaJuego {
 
     public void mostrarJuego(Button botonJugar, Button botonTerminarTurno, GridPane mapa, String[] nombres, int cantidadPlayers, GridPane datosPlayer){
 
-        VBox Botones = new VBox(50);
-        Botones.getChildren().addAll(botonJugar, botonTerminarTurno);
-        VBox infoJugadores = new VBox(50);
+        HBox botones = new HBox(10);
+        botones.getChildren().addAll(botonJugar, botonTerminarTurno);
+        botones.setAlignment(Pos.CENTER);
+
+        VBox infoJugadores = new VBox(10);
         for(int i=0; i<cantidadPlayers; i++){
             String num = String.valueOf(i+1);
             Label label = new Label("Jugador"+num+": "+nombres[i]);
-            label.getStyleClass().add("labelNombre");//esto es lo q hay q tocar para cambiar como se ve
+            label.getStyleClass().add("labelNombre");
             infoJugadores.getChildren().add(label);
+            infoJugadores.setAlignment(Pos.TOP_LEFT);
+            infoJugadores.setPadding(new Insets(10, 10, 0, 10));
         }
+        infoJugadores.getStyleClass().add("contenedorInfo");
+
+        VBox pantallaJuego = new VBox();
+
+        SplitPane parteSuperior = new SplitPane();
+        StackPane leftPane = new StackPane();
+
+        leftPane.getChildren().addAll(infoJugadores);
+        leftPane.setPadding(new Insets(10, 200, 490, 10));
+        leftPane.setAlignment(Pos.CENTER);
+
+        StackPane rightPane = new StackPane();
+        rightPane.getChildren().add(mapa);
+        rightPane.setMargin(mapa, new Insets(10));
+
+        parteSuperior.getItems().addAll(leftPane, rightPane);
+        parteSuperior.getStyleClass().add("fondoTransparente");
+        parteSuperior.setMouseTransparent(true);
+
         VBox infoJugadorActual = new VBox(datosPlayer);
+        infoJugadorActual.getStyleClass().add("contenedorInfo");
+        infoJugadorActual.setMargin(datosPlayer, new Insets(10));
 
-        GridPane pantallaJuego = new GridPane();
+        HBox parteInferior = new HBox();
 
-        ColumnConstraints col1 = new ColumnConstraints();
-        col1.setPercentWidth(35);
-        ColumnConstraints col2 = new ColumnConstraints();
-        col2.setPercentWidth(65);
-        pantallaJuego.getColumnConstraints().addAll(col1, col2);
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+        parteInferior.getChildren().addAll(infoJugadorActual,spacer,botones);
+        parteInferior.setMargin(infoJugadorActual, new Insets(10));
+        parteInferior.setMargin(botones, new Insets(10));
 
-        // Definir filas con porcentajes
-        RowConstraints row1 = new RowConstraints();
-        row1.setPercentHeight(85);
-        RowConstraints row2 = new RowConstraints();
-        row2.setPercentHeight(15);
-        pantallaJuego.getRowConstraints().addAll(row1, row2);
-
-
-
-        pantallaJuego.add(infoJugadores,0,0);
-        pantallaJuego.add(mapa,1,0);
-        pantallaJuego.add(infoJugadorActual,0,1);
-        pantallaJuego.add(Botones,1,1);
-
+        pantallaJuego.getChildren().addAll(parteSuperior,parteInferior);
 
         pantallaJuego.setBackground(establecerFondoPantalla());
-        pantallaJuego.setPadding(new Insets(50, 20, 10, 20));
+        pantallaJuego.setAlignment(Pos.TOP_CENTER);
 
-        Botones.setAlignment(Pos.CENTER_RIGHT);
-        infoJugadores.setAlignment(Pos.CENTER_LEFT);
-
-        pantallaJuego.setAlignment(Pos.CENTER_RIGHT);
         Scene sceneInicio = new Scene(pantallaJuego, 300, 200);
         String cssFile = getClass().getResource("/style.css").toExternalForm();
         sceneInicio.getStylesheets().add(cssFile);
