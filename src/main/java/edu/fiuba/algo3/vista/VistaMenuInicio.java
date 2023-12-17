@@ -157,7 +157,17 @@ public class VistaMenuInicio{
 
         HBox pantallaMapa1 = new HBox(10);
         VBox pantallaMapa2 = new VBox(pantallaMapa1);
-        VBox mainPantallaMapa = new VBox(pantallaMapa1, pantallaMapa2);
+        Label instrucciones = new Label("El objetivo del juego es llegar a la casilla final y abrir la puerta de la casa" +
+                " de pompeya.\nPara abrir la puerta se requiere una llave que podra ser encontrada en las casillas de equipamiento. A continuacion se listan los tipos" +
+                "de casilla junto a sus representaciones:\n\nF: fiera salvaje, se desata una pelea con una fiera y se pierde energia segun que equipamiento se tenga\n" +
+                "C: el gladiador se encuentra comida y recpuera energia.\nB: el gladiador entra a un bar y se toma una cantidad aleatoria de birras y pierde energia segun cuanto tomo\n" +
+                "L: el gladiador se lesiona y al sigiente turno no podra moverse\nE: recibe equipamiento nuevo\nCada jugador tiene 30 turnos para ganar o seran atrapados por una fiera suprema!");
+        instrucciones.getStyleClass().add("labelNombre");
+
+        HBox boxInstrucciones = new HBox(instrucciones);
+        boxInstrucciones.setAlignment(Pos.CENTER);
+
+        VBox mainPantallaMapa = new VBox(pantallaMapa1, pantallaMapa2, boxInstrucciones);
 
         mainPantallaMapa.setBackground(establecerFondoPantalla());
         mainPantallaMapa.setPadding(new Insets(20, 20, 20, 20));
@@ -178,6 +188,9 @@ public class VistaMenuInicio{
         sceneMapa.getStylesheets().add(cssFile);
         primaryStage.setScene(sceneMapa);
         primaryStage.setTitle("GLADIATORS");
+
+
+
     }
 
 
