@@ -42,7 +42,7 @@ public class VistaMenuInicio{
     public void mostrarPantallaInicio(Button continuarButton) {
 
         continuarButton.setDisable(true);
-        continuarButton.getStyleClass().add("botonContinuar");
+        continuarButton.getStyleClass().add("boton");
 
         VBox pantallaInicio = new VBox(10);
         pantallaInicio.setBackground(establecerFondoPantalla());
@@ -104,7 +104,7 @@ public class VistaMenuInicio{
         pantallaSiguiente.setPadding(new Insets(20, 20, 20, 20));
         pantallaSiguiente.setSpacing(50);
 
-        atrasButton.getStyleClass().add("botonAtras");
+        atrasButton.getStyleClass().add("boton");
         pantallaSiguiente.getChildren().add(atrasButton);
 
         VBox boxJugadores = new VBox();
@@ -133,11 +133,11 @@ public class VistaMenuInicio{
 
         boxJugadores.setAlignment(Pos.CENTER);
         pantallaSiguiente.getChildren().add(boxJugadores);
-        elegirMapaButton.getStyleClass().add("botonContinuar");
+        elegirMapaButton.getStyleClass().add("boton");
         pantallaSiguiente.getChildren().add(elegirMapaButton);
 
         verMapaButton.setDisable(true);
-        verMapaButton.getStyleClass().add("botonContinuar");
+        verMapaButton.getStyleClass().add("boton");
         pantallaSiguiente.getChildren().add(verMapaButton);
 
         for (TextField textField : nombresTextFields) {
@@ -163,9 +163,9 @@ public class VistaMenuInicio{
         mainPantallaMapa.setPadding(new Insets(20, 20, 20, 20));
         mainPantallaMapa.setSpacing(50);
 
-        atrasButton.getStyleClass().add("botonAtras");
+        atrasButton.getStyleClass().add("boton");
         pantallaMapa1.getChildren().add(atrasButton);
-        empezarJuego.getStyleClass().add("botonContinuar");
+        empezarJuego.getStyleClass().add("boton");
         pantallaMapa1.getChildren().add(empezarJuego);
         pantallaMapa1.setAlignment(Pos.CENTER);
 

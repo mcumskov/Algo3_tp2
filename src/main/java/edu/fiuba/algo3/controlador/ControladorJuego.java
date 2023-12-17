@@ -57,10 +57,12 @@ import java.util.Observer;
 
     public void start(){
         Button jugarButton = new Button("Tirar dado");
+        jugarButton.getStyleClass().add("boton");
         jugarButton.setOnAction(e -> tirarDado());
         this.buttons.add(jugarButton);
 
         Button pasarButton = new Button("Pasar");
+        pasarButton.getStyleClass().add("boton");
         pasarButton.setOnAction(e -> terminarTurno());
         this.buttons.add(pasarButton);
         pasarButton.setDisable(true);

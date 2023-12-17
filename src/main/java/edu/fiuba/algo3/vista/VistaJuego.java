@@ -36,7 +36,8 @@ public class VistaJuego {
 
         pantallaJuego.setAlignment(Pos.CENTER_RIGHT);
         Scene sceneInicio = new Scene(pantallaJuego, 300, 200);
-
+        String cssFile = getClass().getResource("/style.css").toExternalForm();
+        sceneInicio.getStylesheets().add(cssFile);
         mainStage.setScene(sceneInicio);
         mainStage.setTitle("carrera a pompeya");
 

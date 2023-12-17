@@ -40,13 +40,7 @@
     -fx-background-position: center;
 }
 
-.botonContinuar {
-    -fx-background-color: #d75746;
-    -fx-text-fill: white;
-    -fx-font-weight: BOLD;
-}
-
-.botonAtras {
+.boton {
     -fx-background-color: #d75746;
     -fx-text-fill: white;
     -fx-font-weight: BOLD;
