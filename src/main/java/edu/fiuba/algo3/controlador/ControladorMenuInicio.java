@@ -147,11 +147,6 @@ public class ControladorMenuInicio{
 
 
         vistaInicio.MostrarMapa(buttons.get(5), buttons.get(4),gridPane);
-        /*
-        Node nodito = getNodo(gridPane,5 ,5);
-        Rectangle rectangulito =  (Rectangle) nodito;
-        rectangulito.setFill(Color.WHITESMOKE);
-        */
 
     }
 

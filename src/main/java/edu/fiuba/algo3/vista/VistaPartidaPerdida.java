@@ -1,23 +1,24 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.modelo.jugador.iJugador;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import edu.fiuba.algo3.modelo.jugador.iJugador;
 
-public class VistaGanador {
+public class VistaPartidaPerdida {
     Stage mainStage;
-    public VistaGanador(Stage mainStage){
+    public VistaPartidaPerdida(Stage mainStage){
         this.mainStage = mainStage;
     }
-    public void mostrarGanador(iJugador ganador, Button botonSalir){
 
-        Label nombreGanador = new Label("FELICITACIONES A: " + ganador.getNombre() + "\n GANASTE!!");
-        nombreGanador.getStyleClass().add("labelNombre");
-        VBox box = new VBox(nombreGanador, botonSalir);
+    public void mostrarGameOver(Button botonSalir){
+
+        Label mensajeFinal = new Label("PERDIERON TODOS, SON MALISIMOS!!!\nGAME OVER\n");
+        mensajeFinal.getStyleClass().add("labelNombre");
+        VBox box = new VBox(mensajeFinal, botonSalir);
         box.setAlignment(Pos.CENTER);
 
         Scene sceneInicio = new Scene(box, 300, 200);
@@ -25,6 +26,7 @@ public class VistaGanador {
         sceneInicio.getStylesheets().add(cssFile);
 
         mainStage.setScene(sceneInicio);
-        mainStage.setTitle("GANADOR");
+        mainStage.setTitle("GAME OVER");
     }
+
 }

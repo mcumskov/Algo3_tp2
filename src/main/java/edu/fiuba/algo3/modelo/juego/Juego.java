@@ -21,7 +21,8 @@ public class Juego extends Observable{
     public iDado dado;
     private static Juego instancia;
     private iJugador jugadorActual;
-    iJugador ganador;
+    private iJugador ganador;
+
 
     private Juego (iMapa mapa, List<iJugador> jugadores, iDado dado) {
 
@@ -42,6 +43,7 @@ public class Juego extends Observable{
             Log.getLog().agregarABuffer("SE TERMINARON LOS TURNOS...|FIN DEL JUEGO|" );
             Log.getLog().imprimirMensaje();
             throw finalTriste;
+
         }
     }
 
@@ -67,6 +69,8 @@ public class Juego extends Observable{
         Log.getLog().imprimirMensaje();
         Log.getLog().agregarABuffer(" LA LLAVE ABRE LA CASA!! VICTORIA " );
         Log.getLog().imprimirMensaje();
+        setChanged();
+        notifyObservers();
         //hacerle una fiesta al ganador
     }
     public static void gladiadorSinLlaveLlegaAlFinal(Gladiador gladiador){
@@ -90,5 +94,8 @@ public class Juego extends Observable{
 
     public iJugador getJugadorActual(){
         return this.jugadorActual;
+    }
+    public iJugador getGanador(){
+        return this.ganador;
     }
 }

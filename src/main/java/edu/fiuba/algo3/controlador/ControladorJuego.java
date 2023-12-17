@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Eventos.Obstaculos.Obstaculo;
 import edu.fiuba.algo3.modelo.Eventos.Premios.Premio;
 import edu.fiuba.algo3.modelo.dado.Dado;
 import edu.fiuba.algo3.modelo.dado.iDado;
+import edu.fiuba.algo3.modelo.excepciones.SinGanadorException;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
@@ -85,12 +86,22 @@ import java.util.Observer;
         Juego.resetInstancia();
         this.juego = Juego.instanciarJuego(mapa, jugadores, dado);
         this.juego.siguienteTurno();
+        this.juego.addObserver((o, arg) -> chequearGanador(this.juego.getGanador()));
         GridPane datosJugadorActual = crearDatosJugador(dado);
         GridPane renderMapa = crearMapa();
 
 
         this.vistaJuego.mostrarJuego(buttons.get(0), buttons.get(1), renderMapa, this.nombres, this.cantidadPlayers, datosJugadorActual);
+
     }
+        public void chequearGanador(iJugador potencialGanador){
+            if (potencialGanador == null){
+                return;
+            }
+            ControladorPantallaFinal controladorFinal = new ControladorPantallaFinal(potencialGanador, this.mainStage);
+            controladorFinal.startGanador();
+        }
+
 
     public void tirarDado(){
     this.juego.tirarDado();
@@ -98,9 +109,14 @@ import java.util.Observer;
     buttons.get(0).setDisable(true);
     }
     public void terminarTurno(){
-        this.juego.siguienteTurno();
-        buttons.get(1).setDisable(true);
-        buttons.get(0).setDisable(false);
+        try{
+            this.juego.siguienteTurno();
+            buttons.get(1).setDisable(true);
+            buttons.get(0).setDisable(false);
+        }catch (SinGanadorException finalTriste){
+            ControladorPantallaFinal controladorFinal = new ControladorPantallaFinal(null, this.mainStage);
+            controladorFinal.startGameOVer();
+        }
     }
 
     public GridPane crearDatosJugador(Dado dado){
