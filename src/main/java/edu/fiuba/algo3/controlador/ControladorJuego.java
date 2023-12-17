@@ -8,194 +8,186 @@ import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.jugador.iJugador;
-import edu.fiuba.algo3.modelo.mapa.CasillaCamino;
 import edu.fiuba.algo3.modelo.mapa.Coordenada;
 import edu.fiuba.algo3.modelo.mapa.iCasilla;
 import edu.fiuba.algo3.vista.VistaJuego;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import edu.fiuba.algo3.modelo.mapa.iMapa;
 
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-public class ControladorJuego implements Observer{
+    public class ControladorJuego implements Observer{
 
-    Stage mainStage;
-    VistaJuego vistaJuego;
-    iMapa mapa;
-    private List<Button> buttons;
-    Juego juego;
-    GridPane grid;
-    int anchoCasilla;
-    int largoCasilla;
-    private String[] nombres;
-    private int cantidadPlayers;
+        Stage mainStage;
+        VistaJuego vistaJuego;
+        iMapa mapa;
+        private List<Button> buttons;
+        Juego juego;
+        int anchoCasilla;
+        int largoCasilla;
+        private String[] nombres;
+        private int cantidadPlayers;
 
-public ControladorJuego(Stage mainStage, iMapa mapa, int cantidadPlayers, String[] nombres){
-    this.mainStage = mainStage;
-    this.vistaJuego = new VistaJuego(mainStage);
-    this.mapa = mapa;
-    this.buttons = new ArrayList<>();
-    this.juego = null;
-    this.anchoCasilla = 65;
-    this.largoCasilla = 70;
-    this.cantidadPlayers = cantidadPlayers;
-    this.nombres = nombres;
-}
-
-public void start(){
-    Button jugarButton = new Button("Tirar dado");
-    jugarButton.setOnAction(e -> tirarDado());
-    this.buttons.add(jugarButton);
-
-    Button pasarButton = new Button("Pasar");
-    pasarButton.setOnAction(e -> terminarTurno());
-    this.buttons.add(pasarButton);
-    pasarButton.setDisable(true);
-
-    ArrayList<iJugador> jugadores = new ArrayList<>();
-    List<Gladiador> gladiadores = new ArrayList<>();
-    for(int i = 0; i<this.cantidadPlayers; i++){
-        iJugador jugador = new Jugador(this.nombres[i],i+1);
-        jugadores.add(jugador);
-        gladiadores.add(jugador.getGladiador());
+    public ControladorJuego(Stage mainStage, iMapa mapa, int cantidadPlayers, String[] nombres){
+        this.mainStage = mainStage;
+        this.vistaJuego = new VistaJuego(mainStage);
+        this.mapa = mapa;
+        this.buttons = new ArrayList<>();
+        this.juego = null;
+        this.anchoCasilla = 65;
+        this.largoCasilla = 70;
+        this.cantidadPlayers = cantidadPlayers;
+        this.nombres = nombres;
     }
 
-    mapa.ingresarGladiadores(gladiadores, this.cantidadPlayers);
+    public void start(){
+        Button jugarButton = new Button("Tirar dado");
+        jugarButton.setOnAction(e -> tirarDado());
+        this.buttons.add(jugarButton);
 
-    iDado dado = new Dado();
+        Button pasarButton = new Button("Pasar");
+        pasarButton.setOnAction(e -> terminarTurno());
+        this.buttons.add(pasarButton);
+        pasarButton.setDisable(true);
 
-    Juego.resetInstancia();
-    this.juego = Juego.instanciarJuego(mapa, jugadores, dado);
-    this.juego.siguienteTurno();
+        ArrayList<iJugador> jugadores = new ArrayList<>();
+        List<Gladiador> gladiadores = new ArrayList<>();
+        for(int i = 0; i<this.cantidadPlayers; i++){
+            iJugador jugador = new Jugador(this.nombres[i],i+1);
+            jugadores.add(jugador);
+            gladiadores.add(jugador.getGladiador());
+        }
 
-    this.grid = crearGrid();
+        mapa.ingresarGladiadores(gladiadores, this.cantidadPlayers);
+
+        iDado dado = new Dado();
+
+        Juego.resetInstancia();
+        this.juego = Juego.instanciarJuego(mapa, jugadores, dado);
+        this.juego.siguienteTurno();
+
+        GridPane renderMapa = crearMapa();
 
 
+        this.vistaJuego.mostrarJuego(buttons.get(0), buttons.get(1), renderMapa);
+    }
 
-    this.vistaJuego.mostrarJuego(buttons.get(0), buttons.get(1), this.grid);
-}
-
-public void tirarDado(){
+    public void tirarDado(){
     this.juego.tirarDado();
     buttons.get(1).setDisable(false);
     buttons.get(0).setDisable(true);
-/*
-    ControladorPrototipo caca = new ControladorPrototipo();
-    caca.caca(this.grid);*/
-}
-public void terminarTurno(){
-    this.juego.siguienteTurno();
-    buttons.get(1).setDisable(true);
-    buttons.get(0).setDisable(false);
-}
+    }
+    public void terminarTurno(){
+        this.juego.siguienteTurno();
+        buttons.get(1).setDisable(true);
+        buttons.get(0).setDisable(false);
+    }
 
-public GridPane crearGrid(){
+    public GridPane crearMapa(){
 
-    int largoMapa = this.mapa.getLargo();
-    int anchoMapa = this.mapa.getAncho();
-    List<iCasilla> casillas = this.mapa.getCasillas();
-    GridPane gridPane = new GridPane();
+        int largoMapa = this.mapa.getLargo();
+        int anchoMapa = this.mapa.getAncho();
+        List<iCasilla> casillas = this.mapa.getCasillas();
+        GridPane gridPane = new GridPane();
 
-    for (int fila = 1; fila <= anchoMapa; fila++) {
-        for (int col = 1; col <= largoMapa; col++) {
-            StackPane stackPane = new StackPane();
-            String path1 = "/image/imagenDesierto.png";
+        for (int fila = 1; fila <= anchoMapa; fila++) {
+            for (int col = 1; col <= largoMapa; col++) {
+                StackPane stackPane = new StackPane();
+                String path1 = "/image/imagenDesierto.png";
+                InputStream input = getClass().getResourceAsStream(path1);
+                Image image = new Image(input);
+                ImageView imageView = new ImageView(image);
+                imageView.setFitWidth(this.anchoCasilla); // Ancho deseado
+                imageView.setFitHeight(this.largoCasilla); // Altura deseada
+
+                stackPane.getChildren().addAll(imageView);
+
+                gridPane.add(stackPane, col, fila);
+            }
+        }
+
+        int tope = casillas.size();
+
+        for (int i=0 ; i< tope; i++){
+
+            iCasilla casilla = casillas.get(i);
+            Coordenada coordenada = casilla.getCoordenada();
+            Node nodito = getNodo(gridPane,coordenada.getX() ,coordenada.getY());
+            StackPane stack =  (StackPane) nodito;
+
+
+
+            String path1 = "/image/imagenCamino.png";
+
+
+            if(i==0){
+                path1 = "/image/imagenCasillaInicio.png";
+
+            } else if (i == tope-1){
+                path1 = "/image/imagenCasillaFinal.png";
+            }
+
             InputStream input = getClass().getResourceAsStream(path1);
             Image image = new Image(input);
+
             ImageView imageView = new ImageView(image);
             imageView.setFitWidth(this.anchoCasilla); // Ancho deseado
             imageView.setFitHeight(this.largoCasilla); // Altura deseada
 
-            stackPane.getChildren().addAll(imageView);
+            Canvas canvas = new Canvas(anchoCasilla, largoCasilla);
 
-            gridPane.add(stackPane, col, fila);
+            dibujarCasilla(canvas,casilla);
+
+
+            StackPane.setAlignment(canvas, javafx.geometry.Pos.CENTER_RIGHT);
+
+            stack.getChildren().addAll(imageView, canvas);
+
+            casilla.agregarObserver((o, arg) -> dibujarCasilla(canvas, casilla));
+
         }
+        return gridPane;
+    }
+    private Node getNodo(GridPane gridPane, int col, int fila) {
+        for (Node nodo : gridPane.getChildren()) {
+            if (GridPane.getColumnIndex(nodo) == col && GridPane.getRowIndex(nodo) == fila) {
+                return nodo;
+            }
+        }
+        return null;
     }
 
-    int tope = casillas.size();
 
-    for (int i=0 ; i< tope; i++){
+    public void dibujarCasilla(Canvas canvas, iCasilla casilla){
 
-        iCasilla casilla = casillas.get(i);
-        Coordenada coordenada = casilla.getCoordenada();
-        Node nodito = getNodo(gridPane,coordenada.getX() ,coordenada.getY());
-        StackPane stack =  (StackPane) nodito;
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.clearRect(0, 0, anchoCasilla, largoCasilla);
+        gc.setFont(javafx.scene.text.Font.font("Arial", 15));
+        GraphicsContext gc2 = canvas.getGraphicsContext2D();
+        gc2.setFont(javafx.scene.text.Font.font("Arial", 15));
 
+        dibujarPremioObstaculo(casilla, gc, gc2);
 
+        GraphicsContext gc3 = canvas.getGraphicsContext2D();
+        gc2.setFont(javafx.scene.text.Font.font("Arial", 15));
+        dibujarGladiadores(casilla,gc3);
 
-        String path1 = "/image/imagenCamino.png";
-
-
-        if(i==0){
-            path1 = "/image/imagenCasillaInicio.png";
-
-        } else if (i == tope-1){
-            path1 = "/image/imagenCasillaFinal.png";
-        }
-
-        InputStream input = getClass().getResourceAsStream(path1);
-        Image image = new Image(input);
-
-        ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(this.anchoCasilla); // Ancho deseado
-        imageView.setFitHeight(this.largoCasilla); // Altura deseada
-
-        Canvas canvas = new Canvas(anchoCasilla, largoCasilla);
-
-        dibujarCasilla(canvas,casilla);
-
-
-        StackPane.setAlignment(canvas, javafx.geometry.Pos.CENTER_RIGHT);
-
-        stack.getChildren().addAll(imageView, canvas);
-
-        casilla.agregarObserver((o, arg) -> dibujarCasilla(canvas, casilla));
     }
-    return gridPane;
-}
-private Node getNodo(GridPane gridPane, int col, int fila) {
-    for (Node nodo : gridPane.getChildren()) {
-        if (GridPane.getColumnIndex(nodo) == col && GridPane.getRowIndex(nodo) == fila) {
-            return nodo;
-        }
-    }
-    return null;
-}
-
-
-public Canvas dibujarCasilla(Canvas canvas, iCasilla casilla){
-
-    GraphicsContext gc = canvas.getGraphicsContext2D();
-    gc.clearRect(0, 0, anchoCasilla, largoCasilla);
-    gc.setFont(javafx.scene.text.Font.font("Arial", 15));
-    GraphicsContext gc2 = canvas.getGraphicsContext2D();
-    gc2.setFont(javafx.scene.text.Font.font("Arial", 15));
-
-    dibujarPremioObstaculo(casilla, gc, gc2);
-
-    GraphicsContext gc3 = canvas.getGraphicsContext2D();
-    gc2.setFont(javafx.scene.text.Font.font("Arial", 15));
-    dibujarGladiadores(casilla,gc3);
-
-
-
-    return canvas;
-}
 
     private void dibujarGladiadores(iCasilla casilla, GraphicsContext gc) {
 
@@ -220,41 +212,36 @@ public Canvas dibujarCasilla(Canvas canvas, iCasilla casilla){
     }
 
     private void dibujarPremioObstaculo(iCasilla casilla, GraphicsContext gc, GraphicsContext gc2){
-    Premio premio = casilla.getPremio();
-    char letraPremio = ' ';
-    if(premio!=null){
-        letraPremio = premio.getRepresentacion();
-        if(letraPremio != ' '){
-            dibujarCirculo(gc, 22, 56, 8, Color.GREEN);
+        Premio premio = casilla.getPremio();
+        char letraPremio = ' ';
+        if(premio!=null){
+            letraPremio = premio.getRepresentacion();
+            if(letraPremio != ' '){
+                dibujarCirculo(gc, 22, 56, 8, Color.GREEN);
+            }
         }
-    }
-    gc.setFill(javafx.scene.paint.Color.BLACK);
-    gc.fillText(""+letraPremio, 16, 62);
+        gc.setFill(javafx.scene.paint.Color.BLACK);
+        gc.fillText(""+letraPremio, 16, 62);
 
-    Obstaculo obstaculo = casilla.getObstaculo();
-    char letraObstaculo = ' ';
-    if(obstaculo != null){
-        letraObstaculo = obstaculo.getRepresentacion();
-        if(letraObstaculo != ' '){
-            dibujarCirculo(gc2, 42, 56, 8, Color.RED);
+        Obstaculo obstaculo = casilla.getObstaculo();
+        char letraObstaculo = ' ';
+        if(obstaculo != null){
+            letraObstaculo = obstaculo.getRepresentacion();
+            if(letraObstaculo != ' '){
+                dibujarCirculo(gc2, 42, 56, 8, Color.RED);
+            }
         }
+        gc2.setFill(javafx.scene.paint.Color.BLACK);
+        gc2.fillText(""+letraObstaculo, 38, 62);
+
     }
-    gc2.setFill(javafx.scene.paint.Color.BLACK);
-    gc2.fillText(""+letraObstaculo, 38, 62);
 
-}
+    private void dibujarCirculo(GraphicsContext gc, double x, double y, double radio, Color color){
+        gc.setFill(color);
+        gc.fillOval(x - radio, y - radio, 2 * radio, 2 * radio);
+    }
 
-private void dibujarCirculo(GraphicsContext gc, double x, double y, double radio, Color color){
-    gc.setFill(color);
-    gc.fillOval(x - radio, y - radio, 2 * radio, 2 * radio);
-}
+    public void update(Observable o, Object arg) {
 
-public void update(Observable o, Object arg) {
-/*
-    System.out.println("cacaaa");
-    this.grid = crearGrid();
-    this.vistaJuego.mostrarJuego(buttons.get(0), buttons.get(1), this.grid);
-*/
-}
-
+    }
 }

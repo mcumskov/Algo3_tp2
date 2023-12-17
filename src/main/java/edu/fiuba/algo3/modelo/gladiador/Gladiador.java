@@ -11,14 +11,14 @@ public class Gladiador {
     private Seniority seniority;
     private Equipamiento equipamiento;
     private int energia;
-    int numeroPlayer;
+    int numeroGladiador;
 
     public Gladiador(int numeroPlayer) {
         this.energia = 20;
         this.equipamiento = new Equipamiento();
         this.estado = new GladiadorSano();
         this.seniority = new Seniority();
-        this.numeroPlayer = numeroPlayer;
+        this.numeroGladiador = numeroPlayer;
     }
 
     public void disminuirEnergia(int energiaDisminuir) {
@@ -75,7 +75,7 @@ public class Gladiador {
     }
 
     public int getNumeroPlayer(){
-        return this.numeroPlayer;
+        return this.numeroGladiador;
     }
 
 }
