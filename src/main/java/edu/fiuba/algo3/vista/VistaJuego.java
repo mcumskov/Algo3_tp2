@@ -46,7 +46,7 @@ public class VistaJuego {
         StackPane leftPane = new StackPane();
 
         leftPane.getChildren().addAll(infoJugadores);
-        leftPane.setPadding(new Insets(10, 200, 490, 10));
+        leftPane.setPadding(new Insets(10, 200, 450, 10));
         leftPane.setAlignment(Pos.CENTER);
 
         StackPane rightPane = new StackPane();
