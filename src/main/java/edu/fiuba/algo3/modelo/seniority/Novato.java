@@ -3,7 +3,7 @@ import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 import edu.fiuba.algo3.modelo.log.Log;
 
 public class Novato extends NivelDeSeniority{
-
+    private String representacion = "Novato";
     public Novato()
     {
         this.turnosRestantesParaMejora = 8 ;
@@ -19,7 +19,8 @@ public class Novato extends NivelDeSeniority{
         }
 
         return this;
-
-
+    }
+    public String getRepresentacion(){
+        return this.representacion;
     }
 }

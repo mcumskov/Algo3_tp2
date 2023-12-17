@@ -11,8 +11,7 @@ public abstract class NivelDeSeniority{
         return this.recuperacionDeEnergiaPorTurno;
 
     }
-
-
-
-
+    public String getRepresentacion(){
+        return "nada";
+    }
 }

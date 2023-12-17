@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.log.Log;
 
 public class SemiSenior extends NivelDeSeniority{
 
+    private String representacion = "SemiSenior";
     public SemiSenior()
     {
         this.turnosRestantesParaMejora = 4 ;
@@ -21,5 +22,8 @@ public class SemiSenior extends NivelDeSeniority{
             return this;
         }
 
+    }
+    public String getRepresentacion(){
+        return this.representacion;
     }
 }

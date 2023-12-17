@@ -1,11 +1,15 @@
 package edu.fiuba.algo3.modelo.gladiador;
 
+import edu.fiuba.algo3.modelo.equipamiento.Equipable;
 import edu.fiuba.algo3.modelo.equipamiento.Equipamiento;
 import edu.fiuba.algo3.modelo.log.Log;
 import edu.fiuba.algo3.modelo.mapa.iCasilla;
+import edu.fiuba.algo3.modelo.seniority.NivelDeSeniority;
 import edu.fiuba.algo3.modelo.seniority.Seniority;
 
-public class Gladiador {
+import java.util.Observable;
+
+public class Gladiador extends Observable{
 
     private Estado estado;
     private Seniority seniority;
@@ -45,6 +49,8 @@ public class Gladiador {
 
     public void avanzar(iCasilla casilla, int pasos){
        this.estado.avanzar(this, casilla, pasos);
+        setChanged();
+        notifyObservers();
     }
 
     public void mejorarEquipamiento() {
@@ -61,10 +67,6 @@ public class Gladiador {
         equipamiento.abrirCasaPompeya(gladiador);
     }
 
-    public int getEnergia() {
-        return this.energia;
-    }
-
     @Override
     public boolean equals(Object gladiadorAComparar) {
         boolean resultado = false;
@@ -74,8 +76,21 @@ public class Gladiador {
         return resultado;
     }
 
+    public int getEnergia() {
+        return this.energia;
+    }
+
     public int getNumeroPlayer(){
         return this.numeroGladiador;
+    }
+    public Estado getEstado(){
+        return this.estado;
+    }
+    public NivelDeSeniority getSeniority(){
+        return this.seniority.getNivelDeSeniority();
+    }
+    public Equipable getEquipamiento(){
+        return this.equipamiento.getEquipable();
     }
 
 }

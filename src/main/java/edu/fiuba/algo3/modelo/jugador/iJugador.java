@@ -7,4 +7,5 @@ import edu.fiuba.algo3.modelo.mapa.iMapa;
 public interface iJugador {
     public void jugar(iDado dado, iMapa mapa);
     public Gladiador getGladiador();
+    public String getNombre();
 }

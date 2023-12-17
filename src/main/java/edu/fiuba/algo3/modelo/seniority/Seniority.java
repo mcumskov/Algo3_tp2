@@ -19,4 +19,8 @@ public class Seniority implements ISeniority{
 
         return this.nivelDeSeniority.recuperarEnergiaEnTurno();
     }
+
+    public NivelDeSeniority getNivelDeSeniority(){
+        return this.nivelDeSeniority;
+    }
 }

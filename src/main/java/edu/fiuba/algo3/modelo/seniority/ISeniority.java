@@ -5,5 +5,4 @@ public interface ISeniority {
     public int recuperarEnergia();
 
     public void actualizar();
-
 }

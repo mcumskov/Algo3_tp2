@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.dado.iDado;
 import edu.fiuba.algo3.modelo.excepciones.SinGanadorException;
 import edu.fiuba.algo3.modelo.gestorTurnos.GestorTurnos;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
+import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.iMapa;
 import edu.fiuba.algo3.modelo.jugador.iJugador;
 import edu.fiuba.algo3.modelo.log.Log;
@@ -11,8 +12,9 @@ import edu.fiuba.algo3.modelo.log.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
-public class Juego {
+public class Juego extends Observable{
 
     public iMapa mapa;
     public GestorTurnos gestorTurnos;
@@ -33,7 +35,8 @@ public class Juego {
     public void siguienteTurno(){
         try{
             this.jugadorActual = this.gestorTurnos.siguienteTurno();
-
+            setChanged();
+            notifyObservers();
         }catch (SinGanadorException finalTriste){
             Log.getLog().imprimirMensaje();
             Log.getLog().agregarABuffer("SE TERMINARON LOS TURNOS...|FIN DEL JUEGO|" );
@@ -83,5 +86,9 @@ public class Juego {
 
     public static void resetInstancia() {
         instancia = null;
+    }
+
+    public iJugador getJugadorActual(){
+        return this.jugadorActual;
     }
 }

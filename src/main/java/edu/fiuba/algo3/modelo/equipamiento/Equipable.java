@@ -18,5 +18,7 @@ public abstract class Equipable {
     public void abrirCasaPompeya(Gladiador gladiador){
         Juego.gladiadorSinLlaveLlegaAlFinal(gladiador);
     }
-
+    public String getRepresentacion(){
+        return "sin nombre";
+    }
 }

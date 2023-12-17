@@ -1,11 +1,14 @@
 package edu.fiuba.algo3.modelo.dado;
 
+import java.util.Observable;
 import java.util.Random;
 
-public class Dado implements iDado{
+public class Dado extends Observable implements iDado{
 
     private final Random random;
     private int caras;
+
+    private int numeroObtenido;
 
     public Dado(int caras) {
         this.caras = caras;
@@ -19,6 +22,12 @@ public class Dado implements iDado{
 
     public int lanzar()
     {
-        return this.random.nextInt(caras) + 1 ;
+        this.numeroObtenido = this.random.nextInt(caras) + 1;
+        setChanged();
+        notifyObservers();
+        return  this.numeroObtenido;
+    }
+    public int getNumeroObtenido(){
+        return this.numeroObtenido;
     }
 }

@@ -34,7 +34,9 @@ public class Jugador implements  iJugador{
     public Gladiador getGladiador(){
         return this.MiGladiador;
     }
-
+    public String getNombre(){
+        return this.miNombre;
+    }
     public int getNumeroPlayer(){
         return this.numeroPlayer;
     }

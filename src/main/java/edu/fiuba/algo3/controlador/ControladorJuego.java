@@ -15,10 +15,13 @@ import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -77,16 +80,16 @@ import java.util.Observer;
 
         mapa.ingresarGladiadores(gladiadores, this.cantidadPlayers);
 
-        iDado dado = new Dado();
+        Dado dado = new Dado();
 
         Juego.resetInstancia();
         this.juego = Juego.instanciarJuego(mapa, jugadores, dado);
         this.juego.siguienteTurno();
-
+        GridPane datosJugadorActual = crearDatosJugador(dado);
         GridPane renderMapa = crearMapa();
 
 
-        this.vistaJuego.mostrarJuego(buttons.get(0), buttons.get(1), renderMapa);
+        this.vistaJuego.mostrarJuego(buttons.get(0), buttons.get(1), renderMapa, this.nombres, this.cantidadPlayers, datosJugadorActual);
     }
 
     public void tirarDado(){
@@ -98,6 +101,84 @@ import java.util.Observer;
         this.juego.siguienteTurno();
         buttons.get(1).setDisable(true);
         buttons.get(0).setDisable(false);
+    }
+
+    public GridPane crearDatosJugador(Dado dado){
+
+        GridPane gridPane = new GridPane();
+        iJugador player = this.juego.getJugadorActual();
+        Gladiador gladiadorActual = player.getGladiador();
+
+        Label nombrePlayer = new Label("Jugador: " + player.getNombre());
+        nombrePlayer.getStyleClass().add("labelNombre");
+
+        Label estadoGladiador = new Label("Estado: " + gladiadorActual.getEstado().getRepresentacion());
+        estadoGladiador.getStyleClass().add("labelNombre");
+
+        Label seniorityGladiador = new Label(("Seniority: " + gladiadorActual.getSeniority().getRepresentacion()));
+        seniorityGladiador.getStyleClass().add("labelNombre");
+
+        Label energiaGladiador = new Label("energia: " + gladiadorActual.getEnergia());
+        energiaGladiador.getStyleClass().add("labelNombre");
+
+        Label equipamientoGladiador = new Label("equipo: " + gladiadorActual.getEquipamiento().getRepresentacion());
+        equipamientoGladiador.getStyleClass().add("labelNombre");
+
+        Label infoDado = new Label("Dado: - ");
+        infoDado.getStyleClass().add("labelNombre");
+
+        ColumnConstraints col1 = new ColumnConstraints();
+        col1.setPercentWidth(35);
+        ColumnConstraints col2 = new ColumnConstraints();
+        col2.setPercentWidth(35);
+        ColumnConstraints col3 = new ColumnConstraints();
+        col3.setPercentWidth(30);
+        gridPane.getColumnConstraints().addAll(col1, col2, col3);
+
+        RowConstraints row1 = new RowConstraints();
+        row1.setPercentHeight(50);
+        RowConstraints row2 = new RowConstraints();
+        row2.setPercentHeight(50);
+        gridPane.getRowConstraints().addAll(row1, row2);
+
+        gridPane.add(nombrePlayer,0,0);
+        gridPane.add(estadoGladiador,1,0);
+        gridPane.add(infoDado,2,0);
+        gridPane.add(seniorityGladiador,0,1);
+        gridPane.add(energiaGladiador,1,1);
+        gridPane.add(equipamientoGladiador,2,1);
+
+        List<Label> labels = new ArrayList<>();
+        labels.add(nombrePlayer);
+        labels.add(estadoGladiador);
+        labels.add(infoDado);
+        labels.add(seniorityGladiador);
+        labels.add(energiaGladiador);
+        labels.add(equipamientoGladiador);
+
+        gladiadorActual.addObserver((o, arg) -> mostrarDatosFinDeTurnoJugador(labels));
+        this.juego.addObserver((o, arg) -> mostrarDatosJugadorSiguiente(labels));
+        dado.addObserver((o, arg) -> mostrarResultadoDado(dado, infoDado));
+
+        return gridPane;
+    }
+    public void mostrarDatosJugadorSiguiente(List<Label> labels){
+        iJugador player = this.juego.getJugadorActual();
+        labels.get(0).setText("Jugador: " + player.getNombre());
+        labels.get(2).setText("Dado: - ");
+        mostrarDatosFinDeTurnoJugador(labels);
+    }
+    public void mostrarDatosFinDeTurnoJugador(List<Label> labels){
+        iJugador player = this.juego.getJugadorActual();
+        Gladiador gladiadorActual = player.getGladiador();
+        labels.get(1).setText("Estado: " + gladiadorActual.getEstado().getRepresentacion());
+        labels.get(3).setText(("Seniority: " + gladiadorActual.getSeniority().getRepresentacion()));
+        labels.get(4).setText("energia: " + gladiadorActual.getEnergia());
+        labels.get(5).setText("equipo: " + gladiadorActual.getEquipamiento().getRepresentacion());
+    }
+
+    public void mostrarResultadoDado(Dado dado, Label labelDado){
+        labelDado.setText("Dado: " + dado.getNumeroObtenido());
     }
 
     public GridPane crearMapa(){

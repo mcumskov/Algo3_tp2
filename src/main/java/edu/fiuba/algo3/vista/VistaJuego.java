@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -21,15 +22,19 @@ public class VistaJuego {
         this.mainStage = mainStage;
     }
 
-    public void mostrarJuego(Button botonJugar, Button botonTerminarTurno, GridPane mapa){
+    public void mostrarJuego(Button botonJugar, Button botonTerminarTurno, GridPane mapa, String[] nombres, int cantidadPlayers, GridPane datosPlayer){
 
         VBox Botones = new VBox(50);
         Botones.getChildren().addAll(botonJugar, botonTerminarTurno);
         VBox infoJugadores = new VBox(50);
-        VBox infoJugadorActual = new VBox(50);
-        //Rectangle rect = new Rectangle(100,100);
-        //rect.setFill(Color.PERU);
-        //infoJugadores.getChildren().addAll(rect);
+        for(int i=0; i<cantidadPlayers; i++){
+            String num = String.valueOf(i+1);
+            Label label = new Label("Jugador"+num+": "+nombres[i]);
+            label.getStyleClass().add("labelNombre");//esto es lo q hay q tocar para cambiar como se ve
+            infoJugadores.getChildren().add(label);
+        }
+        VBox infoJugadorActual = new VBox(datosPlayer);
+
         GridPane pantallaJuego = new GridPane();
 
         ColumnConstraints col1 = new ColumnConstraints();
@@ -40,9 +45,9 @@ public class VistaJuego {
 
         // Definir filas con porcentajes
         RowConstraints row1 = new RowConstraints();
-        row1.setPercentHeight(65);
+        row1.setPercentHeight(85);
         RowConstraints row2 = new RowConstraints();
-        row2.setPercentHeight(35);
+        row2.setPercentHeight(15);
         pantallaJuego.getRowConstraints().addAll(row1, row2);
 
 

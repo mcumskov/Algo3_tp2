@@ -23,6 +23,8 @@ public class Equipamiento implements IEquipamiento{
     public void abrirCasaPompeya(Gladiador gladiador){
         this.equipable.abrirCasaPompeya(gladiador);
     }
-
+    public Equipable getEquipable(){
+        return this.equipable;
+    }
 
 }
