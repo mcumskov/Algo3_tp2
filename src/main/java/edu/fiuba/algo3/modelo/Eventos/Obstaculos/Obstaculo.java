@@ -6,4 +6,6 @@ public interface Obstaculo {
 
     public void obstaculizarGladiador(Gladiador gladiador);
 
+    public char getRepresentacion();
+
 }

@@ -6,4 +6,6 @@ public interface Premio {
 
     public void premiarGladiador(Gladiador gladiador);
 
+    public char getRepresentacion();
+
 }

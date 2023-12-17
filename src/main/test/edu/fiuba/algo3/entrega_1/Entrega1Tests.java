@@ -25,7 +25,7 @@ public class Entrega1Tests {
     @Test
     public void test01GladiadorIniciaCon20DeEnergiaYSinEquipamiento(){
 
-        Gladiador gladiador = new Gladiador();
+        Gladiador gladiador = new Gladiador(1);
 
         assertEquals(20, gladiador.getEnergia());
 
@@ -48,7 +48,7 @@ public class Entrega1Tests {
         listaCasillas.add(ultimaCasilla);
 
         ArrayList<Gladiador> listaGladiadores = new ArrayList<Gladiador>();
-        Gladiador gladiadorcito = new Gladiador();
+        Gladiador gladiadorcito = new Gladiador(1);
 
         listaGladiadores.add(gladiadorcito);
 
@@ -68,7 +68,7 @@ public class Entrega1Tests {
         CasillaCamino segundaCasilla = new CasillaCamino(terceraCasilla,eventoFiera, premioAburrido);
         CasillaCamino primeraCasilla = new CasillaCamino(segundaCasilla, obstaculoAburrido, premioAburrido);
 
-        Gladiador gladiadorcito = new Gladiador();
+        Gladiador gladiadorcito = new Gladiador(1);
         primeraCasilla.recibir(gladiadorcito);
         gladiadorcito.avanzar(primeraCasilla,1);
         iCasilla casillaEnLaQuePierdoEnergia = segundaCasilla;
@@ -79,7 +79,7 @@ public class Entrega1Tests {
     @Test
     public void test04GladiadorIncrementaSuEnergiaEn15AlRecibirUnPremioComestible(){
 
-        Gladiador gladiador = new Gladiador();
+        Gladiador gladiador = new Gladiador(1);
 
         Premio premio = new PremioComestible();
 
@@ -92,7 +92,7 @@ public class Entrega1Tests {
     public void test05GladiadorRecibeCascoAlMejorarSuEquipamientoPorPrimeraVez()
     {
 
-        Gladiador gladiador = new Gladiador();
+        Gladiador gladiador = new Gladiador(1);
 
         Premio premio = new PremioEquipamiento();
 
@@ -109,7 +109,7 @@ public class Entrega1Tests {
      public void test06GladiadorRecibeCascoAlMejorarSuEquipamientoPorPrimeraVez()
     {
 
-        Gladiador gladiador = new Gladiador();
+        Gladiador gladiador = new Gladiador(1);
 
         Premio premio = new PremioEquipamiento();
 
@@ -128,7 +128,7 @@ public class Entrega1Tests {
     public void test07GladiadorRecibeCascoYPeleaConFieraDebeHaberPerdido15DeEnergia()
     {
 
-        Gladiador gladiador = new Gladiador();
+        Gladiador gladiador = new Gladiador(1);
 
         Premio premio = new PremioEquipamiento();
 
@@ -157,7 +157,7 @@ public class Entrega1Tests {
         CasillaCamino segundaCasilla = new CasillaCamino(tercerCasilla,obstaculoAburrido, premioAburrido);
         CasillaCamino primerCasilla = new CasillaCamino(segundaCasilla, obstaculoAburrido, premioAburrido);
 
-        Gladiador gladiadorcito = new Gladiador();
+        Gladiador gladiadorcito = new Gladiador(1);
         primerCasilla.recibir(gladiadorcito);
 
         gladiadorcito.avanzar(primerCasilla,1);
@@ -232,7 +232,7 @@ public class Entrega1Tests {
     @Test
     public void test10GladiadorRecibeLlaveYPeleaConFieraNoDebeHaberPerdidoEnergia()
     {
-        Gladiador gladiador = new Gladiador();
+        Gladiador gladiador = new Gladiador(1);
 
         Premio premio = new PremioEquipamiento();
 
@@ -251,7 +251,7 @@ public class Entrega1Tests {
     @Test
     public void test11GladiadorRecibeLlaveYLuegoRecibeOtroPremioEquipamientoPeroNoCambiaNada()
     {
-        Gladiador gladiador = new Gladiador();
+        Gladiador gladiador = new Gladiador(1);
 
         Premio premio = new PremioEquipamiento();
 
@@ -300,7 +300,7 @@ public class Entrega1Tests {
         casillas.add(novenaCasilla);
         casillas.add(ultimaCasilla);
 
-        Jugador jugador1 = new Jugador("mip");
+        Jugador jugador1 = new Jugador("mip",1);
         List<iJugador> jugadores = new ArrayList<>();
         jugadores.add(jugador1);
         List<Gladiador> gladiador = new ArrayList<>();

@@ -53,7 +53,7 @@ public class Entrega3Tests {
         casillas.add(novenaCasilla);
         casillas.add(ultimaCasilla);
 
-        Jugador jugador1 = new Jugador("mip");
+        Jugador jugador1 = new Jugador("mip", 1);
         List<iJugador> jugadores = new ArrayList<>();
         jugadores.add(jugador1);
         List<Gladiador> gladiador = new ArrayList<>();
@@ -104,7 +104,7 @@ public class Entrega3Tests {
         casillas.add(novenaCasilla);
         casillas.add(ultimaCasilla);
 
-        Jugador jugador1 = new Jugador("tip");
+        Jugador jugador1 = new Jugador("tip", 1);
         List<iJugador> jugadores = new ArrayList<>();
         jugadores.add(jugador1);
         List<Gladiador> gladiador = new ArrayList<>();

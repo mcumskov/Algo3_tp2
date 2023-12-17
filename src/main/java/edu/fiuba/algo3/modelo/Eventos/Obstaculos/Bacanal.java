@@ -7,9 +7,11 @@ import edu.fiuba.algo3.modelo.log.Log;
 public class Bacanal implements Obstaculo{
 
     protected int perdidaEnergiaMinima;
+    char representacion;
 
     public Bacanal(){
         this.perdidaEnergiaMinima = 4;
+        this.representacion = 'B';
     }
 
     public void obstaculizarGladiador(Gladiador gladiador){
@@ -19,5 +21,7 @@ public class Bacanal implements Obstaculo{
         gladiador.disminuirEnergia(miDado.lanzar()*this.perdidaEnergiaMinima);
 
     }
-
+    public char getRepresentacion(){
+        return this.representacion;
+    }
 }

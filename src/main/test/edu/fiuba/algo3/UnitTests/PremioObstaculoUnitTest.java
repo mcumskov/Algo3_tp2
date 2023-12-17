@@ -26,7 +26,7 @@ public class PremioObstaculoUnitTest{
         CasillaCamino ultimaCasilla = new CasillaCamino(null, obstaculoAburrido, eventoComida);
         CasillaCamino primerCasilla = new CasillaCamino(ultimaCasilla, obstaculoAburrido,premioAburrido);
 
-        Gladiador dummy = new Gladiador();
+        Gladiador dummy = new Gladiador(1);
 
         dummy.avanzar(primerCasilla, 1);
 
@@ -44,8 +44,8 @@ public class PremioObstaculoUnitTest{
         CasillaCamino segundaCasilla = new CasillaCamino(terceraCasilla,obstaculoAburrido,eventoEquipo);
         CasillaCamino primeraCasilla = new CasillaCamino(segundaCasilla, obstaculoAburrido, premioAburrido);
 
-        Gladiador dummyEquipado = new Gladiador();
-        Gladiador dummyDesnudo =  new Gladiador();
+        Gladiador dummyEquipado = new Gladiador(1);
+        Gladiador dummyDesnudo =  new Gladiador(2);
 
         dummyEquipado.avanzar(primeraCasilla, 1);
         dummyEquipado.avanzar(segundaCasilla, 1);
@@ -65,7 +65,7 @@ public class PremioObstaculoUnitTest{
         CasillaCamino ultimaCasilla =  new CasillaCamino(null,eventoFiera, premioAburrido);
         CasillaCamino primeraCasilla = new CasillaCamino(ultimaCasilla, obstaculoAburrido, premioAburrido);
 
-        Gladiador dummy = new Gladiador();
+        Gladiador dummy = new Gladiador(1);
 
         dummy.avanzar(primeraCasilla,1);
 
@@ -84,7 +84,7 @@ public class PremioObstaculoUnitTest{
         CasillaCamino segundaCasilla = new CasillaCamino(terceraCasilla,eventoLesion,premioAburrido);
         CasillaCamino primeraCasilla = new CasillaCamino(segundaCasilla, obstaculoAburrido, premioAburrido);
 
-        Gladiador dummy = new Gladiador();
+        Gladiador dummy = new Gladiador(1);
 
 
         dummy.avanzar(primeraCasilla,1);
@@ -113,7 +113,7 @@ public class PremioObstaculoUnitTest{
         CasillaCamino segundaCasilla = new CasillaCamino(terceraCasilla, eventoBacanal, premioAburrido);
         CasillaCamino primeraCasilla = new CasillaCamino(segundaCasilla, obstaculoAburrido, premioAburrido);
 
-        Gladiador dummy = new Gladiador();
+        Gladiador dummy = new Gladiador(1);
         int energiaPreBorrachera = dummy.getEnergia();
         dummy.avanzar(primeraCasilla,1);
         int energiaPostBorrachera = dummy.getEnergia();

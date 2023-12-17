@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.controlador.ControladorMenuInicio;
 import edu.fiuba.algo3.modelo.mapa.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -31,6 +32,7 @@ public class VistaMenuInicio{
     public VistaMenuInicio(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.mapaCargado = false;
+        nombresTextFields = new ArrayList<TextField>();
 
     }
     public void setMapaCargado(Boolean bool){
@@ -95,7 +97,7 @@ public class VistaMenuInicio{
         }
     }
 
-    public void mostrarSiguientePantalla(Button atrasButton, Button elegirMapaButton, Button verMapaButton) {
+    public void mostrarSiguientePantalla(Button atrasButton, Button elegirMapaButton, Button verMapaButton, ControladorMenuInicio controlador) {
 
         VBox pantallaSiguiente = new VBox(10);
         pantallaSiguiente.setBackground(establecerFondoPantalla());
@@ -108,13 +110,17 @@ public class VistaMenuInicio{
         VBox boxJugadores = new VBox();
         boxJugadores.setSpacing(20);
 
-        nombresTextFields = new ArrayList<TextField>();
-        for (int i = 0; i < getCantidadDeJugadores(); i++) {
+        int cantJugadores = getCantidadDeJugadores();
+
+        for (int i = 0; i < cantJugadores; i++) {
             Label label = new Label("Nombre Jugador " + (i + 1));
             label.getStyleClass().add("labelNombre");
 
             TextField nombreTextField = new TextField();
             nombreTextField.getStyleClass().add("textField");
+            int finalI = i;
+            nombreTextField.setOnKeyReleased(event -> controlador.nombreJugadores(nombreTextField.getText(), finalI, cantJugadores));
+
             nombresTextFields.add(nombreTextField);
 
             HBox hBox = new HBox();

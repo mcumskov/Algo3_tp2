@@ -11,7 +11,7 @@ public class GladiadorUnitTests {
     @Test
     public void test01GladiadorIniciaCon20DeEnergia(){
 
-        Gladiador gladiador = new Gladiador();
+        Gladiador gladiador = new Gladiador(1);
 
         assertEquals(20, gladiador.getEnergia());
     }
@@ -19,7 +19,7 @@ public class GladiadorUnitTests {
     @Test
     public void test02GladiadorIniciaCon20DeEnergiaYSinEquipamiento(){
 
-        Gladiador gladiador = new Gladiador();
+        Gladiador gladiador = new Gladiador(1);
 
         gladiador.recibirAtaque(20);
 
@@ -29,7 +29,7 @@ public class GladiadorUnitTests {
     @Test
     public void test03GladiadorMejoraEquipamientoYProteje5ElDanio(){
 
-        Gladiador gladiador = new Gladiador();
+        Gladiador gladiador = new Gladiador(1);
 
         gladiador.mejorarEquipamiento();
 
@@ -41,7 +41,7 @@ public class GladiadorUnitTests {
     @Test
     public void test04GladiadorMejoraEquipamientoDosVecesYProteje10ElDanio(){
 
-        Gladiador gladiador = new Gladiador();
+        Gladiador gladiador = new Gladiador(1);
 
         gladiador.mejorarEquipamiento();
         gladiador.mejorarEquipamiento();
@@ -54,7 +54,7 @@ public class GladiadorUnitTests {
     @Test
     public void test04GladiadorMejoraEquipamientoTresVecesYProteje18ElDanio(){
 
-        Gladiador gladiador = new Gladiador();
+        Gladiador gladiador = new Gladiador(1);
 
         gladiador.mejorarEquipamiento();
         gladiador.mejorarEquipamiento();
@@ -68,7 +68,7 @@ public class GladiadorUnitTests {
     @Test
     public void test05GladiadorMejoraEquipamientoCuatroVecesYProteje20ElDanio(){
 
-        Gladiador gladiador = new Gladiador();
+        Gladiador gladiador = new Gladiador(1);
 
         gladiador.mejorarEquipamiento();
         gladiador.mejorarEquipamiento();
@@ -83,7 +83,7 @@ public class GladiadorUnitTests {
     @Test
     public void test06GladiadorActualizaSuSeniority7VecesYPermaneceConLaEnergiaInicial(){
 
-        Gladiador gladiador = new Gladiador();
+        Gladiador gladiador = new Gladiador(1);
 
         gladiador.actualizarSeniority();
         gladiador.actualizarSeniority();
@@ -99,7 +99,7 @@ public class GladiadorUnitTests {
     @Test
     public void test07GladiadorActualizaSuSeniority8VecesYVeSuEnergiaIncrementadaEn5(){
 
-        Gladiador gladiador = new Gladiador();
+        Gladiador gladiador = new Gladiador(1);
 
         for (int i = 1; i <= 8 ; i++) {
 
@@ -113,7 +113,7 @@ public class GladiadorUnitTests {
     @Test
     public void test08GladiadorActualizaSuSeniority11VecesYVeSuEnergiaIncrementadaEn20(){
 
-        Gladiador gladiador = new Gladiador();
+        Gladiador gladiador = new Gladiador(1);
 
         for (int i = 1; i <= 11 ; i++) {
 
@@ -126,7 +126,7 @@ public class GladiadorUnitTests {
     @Test
     public void test09GladiadorActualizaSuSeniority12VecesYVeSuEnergiaIncrementadaEn30(){
 
-        Gladiador gladiador = new Gladiador();
+        Gladiador gladiador = new Gladiador(1);
 
         for (int i = 1; i <= 12 ; i++) {
 

@@ -8,6 +8,7 @@ import java.util.Observable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observer;
 
 public class CasillaCamino extends Observable implements iCasilla{
 
@@ -40,11 +41,16 @@ public class CasillaCamino extends Observable implements iCasilla{
 
     public void moverGladiador(int pasos, Gladiador gladiador){
         this.expulsar(gladiador);
+
         if( pasos == 0 || casillaSiguiente == null){
             this.recibir(gladiador);
+            this.setChanged();
+            this.notifyObservers();
             return;
         }
         casillaSiguiente.moverGladiador(pasos-1, gladiador);
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public void recibir(Gladiador gladiador){
@@ -89,7 +95,20 @@ public class CasillaCamino extends Observable implements iCasilla{
     public Coordenada getCoordenada() {
 
         return this.coordenada;
+    }
 
+    public Obstaculo getObstaculo(){
+        return this.obstaculo;
+    }
 
+    public Premio getPremio(){
+        return this.premio;
+    }
+
+    public List<Gladiador> getGladiadores(){
+        return this.gladiadoresEnLaCasilla;
+    }
+    public void agregarObserver(Observer observer){
+        this.addObserver(observer);
     }
 }

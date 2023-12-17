@@ -19,7 +19,7 @@ public class CasillaUnitTests {
 
         CasillaCamino primeraCasilla = new CasillaCamino(null,obstaculoAburrido,premioAburrido);
 
-        Gladiador dummy = new Gladiador();
+        Gladiador dummy = new Gladiador(1);
         primeraCasilla.recibir(dummy);
         iCasilla casillaObtenida = primeraCasilla.buscadoEstaEnLaCasilla(dummy);
         assertSame(casillaObtenida, primeraCasilla);
@@ -32,7 +32,7 @@ public class CasillaUnitTests {
 
         CasillaCamino primeraCasilla = new CasillaCamino(null,obstaculoAburrido,premioAburrido);
 
-        Gladiador dummy = new Gladiador();
+        Gladiador dummy = new Gladiador(1);
         primeraCasilla.recibir(dummy);
         iCasilla casillaObtenida = primeraCasilla.buscadoEstaEnLaCasilla(dummy);
         assertSame(casillaObtenida, primeraCasilla);
@@ -50,7 +50,7 @@ public class CasillaUnitTests {
         CasillaCamino segundaCasilla = new CasillaCamino(ultimaCasilla, obstaculoAburrido,premioAburrido);
         CasillaCamino primeraCasilla = new CasillaCamino(segundaCasilla,obstaculoAburrido,premioAburrido);
 
-        Gladiador dummy = new Gladiador();
+        Gladiador dummy = new Gladiador(1);
         primeraCasilla.recibir(dummy);
         primeraCasilla.moverGladiador(1,dummy);
         iCasilla casillaObtenida = segundaCasilla.buscadoEstaEnLaCasilla(dummy);
@@ -75,7 +75,7 @@ public class CasillaUnitTests {
         CasillaCamino segundaCasilla = new CasillaCamino(terceraCasilla, obstaculoAburrido,premioAburrido);
         CasillaCamino primeraCasilla = new CasillaCamino(segundaCasilla,obstaculoAburrido,premioAburrido);
 
-        Gladiador dummy = new Gladiador();
+        Gladiador dummy = new Gladiador(1);
         primeraCasilla.recibir(dummy);
         primeraCasilla.moverGladiador(10,dummy);
         iCasilla casillaObtenida = onceCasilla.buscadoEstaEnLaCasilla(dummy);
@@ -101,7 +101,7 @@ public class CasillaUnitTests {
         CasillaCamino segundaCasilla = new CasillaCamino(terceraCasilla, obstaculoAburrido,premioAburrido);
         CasillaCamino primeraCasilla = new CasillaCamino(segundaCasilla,obstaculoAburrido,premioAburrido);
 
-        Gladiador dummy = new Gladiador();
+        Gladiador dummy = new Gladiador(1);
         primeraCasilla.recibir(dummy);
         primeraCasilla.moverGladiador(100,dummy);
         iCasilla casillaObtenida = ultimaCasilla.buscadoEstaEnLaCasilla(dummy);

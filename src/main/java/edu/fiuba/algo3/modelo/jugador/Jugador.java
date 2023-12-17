@@ -14,13 +14,15 @@ public class Jugador implements  iJugador{
 
     protected Gladiador MiGladiador;
     protected String miNombre;
+    int numeroPlayer;
     public Jugador(){
-        this.MiGladiador = new Gladiador();
+        this.MiGladiador = new Gladiador(1);
         this.miNombre = "mip";
     }
-    public Jugador(String nombre){
-        this.MiGladiador = new Gladiador();
+    public Jugador(String nombre, int player){
+        this.MiGladiador = new Gladiador(player);
         this.miNombre = nombre;
+        this.numeroPlayer = player;
     }
 
     public void jugar(iDado dado, iMapa mapa){
@@ -31,5 +33,9 @@ public class Jugador implements  iJugador{
 
     public Gladiador getGladiador(){
         return this.MiGladiador;
+    }
+
+    public int getNumeroPlayer(){
+        return this.numeroPlayer;
     }
 }

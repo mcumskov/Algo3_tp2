@@ -16,6 +16,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,10 +26,21 @@ public class ControladorMenuInicio{
     private List<Button> buttons;
     private Mapa miMapa;
 
+    private String[] nombres;
+    private int cantidadPlayers;
+
     public ControladorMenuInicio(Stage mainStage){
         this.mainStage = mainStage;
         this.vistaInicio = new VistaMenuInicio(mainStage);
         this.buttons = new ArrayList<>();
+
+        this.nombres = new String[6];
+        this.nombres[0] = "-";
+        this.nombres[1] = "-";
+        this.nombres[2] = "-";
+        this.nombres[3] = "-";
+        this.nombres[4] = "-";
+        this.nombres[5] = "-";
     }
 
     public void start() {
@@ -63,7 +75,7 @@ public class ControladorMenuInicio{
     }
 
     private void MostrarPantallaNombres() {
-        vistaInicio.mostrarSiguientePantalla(buttons.get(1), buttons.get(2), buttons.get(3));
+        vistaInicio.mostrarSiguientePantalla(buttons.get(1), buttons.get(2), buttons.get(3), this);
     }
 
     private void mostrarPantallaInicio() {
@@ -88,6 +100,11 @@ public class ControladorMenuInicio{
 
             }
         }
+    }
+
+    public void nombreJugadores(String nombre, int numeroPlayer, int cantidadPlayer){
+        this.nombres[numeroPlayer] = nombre;
+        this.cantidadPlayers = cantidadPlayer;
     }
 
     private void PantallaMostrarMapa(){
@@ -148,7 +165,7 @@ public class ControladorMenuInicio{
     }
 
     public void iniciarJuego(){
-        ControladorJuego controladorJuego = new ControladorJuego(mainStage, this.miMapa);
+        ControladorJuego controladorJuego = new ControladorJuego(mainStage, this.miMapa, this.cantidadPlayers, this.nombres);
         controladorJuego.start();
     }
 
