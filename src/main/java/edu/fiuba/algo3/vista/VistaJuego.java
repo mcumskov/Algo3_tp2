@@ -16,7 +16,7 @@ import java.net.URL;
 
 public class VistaJuego {
 
-    Stage mainStage;
+    private Stage mainStage;
 
 
     public VistaJuego(Stage mainStage){

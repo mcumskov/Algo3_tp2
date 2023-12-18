@@ -1,17 +1,17 @@
 @startuml
-!include clases/clase_juego.plantuml
-!include clases/clase_gestorTurnos.plantuml
-!include clases/clase_jugador.plantuml
-!include clases/clase_mapa.plantuml
-!include clases/parser/clase_parser.plantuml
+!include clase_juego.plantuml
+!include clase_gestorTurnos.plantuml
+!include clase_jugador.plantuml
+!include clase_mapa.plantuml
+!include parser/clase_parser.plantuml
 
-!include clases/clase_gladiador.plantuml
-!include clases/clase_dado.plantuml
+!include clase_gladiador.plantuml
+!include clase_dado.plantuml
 
-!include clases/seniority/diagrama_seniority.plantuml
-!include clases/equipamiento/diagrama_equipamiento_actual.plantuml
-!include clases/estado/diagrama_estado.plantuml
-!include clases/casilla/diagrama_casilla.plantuml
+!include seniority/diagrama_seniority.plantuml
+!include equipamiento/diagrama_equipamiento_actual.plantuml
+!include estado/diagrama_estado.plantuml
+!include casilla/diagrama_casilla.plantuml
 
 class CasillaInicio {
   + CasillaInicio(Coordenada, iCasilla):

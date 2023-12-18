@@ -8,12 +8,11 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class ControladorPantallaFinal {
-    iJugador ganador;
-    Stage mainStage;
-    VistaGanador vistaWin;
-    VistaPartidaPerdida vistaLose;
-    Button salir;
-    //Button volverAJugar;
+    private iJugador ganador;
+    private Stage mainStage;
+    private VistaGanador vistaWin;
+    private VistaPartidaPerdida vistaLose;
+    private Button salir;
     public ControladorPantallaFinal(iJugador ganador, Stage mainStage){
         this.mainStage = mainStage;
         this.ganador = ganador;
@@ -24,10 +23,6 @@ public class ControladorPantallaFinal {
         salirButton.getStyleClass().add("boton");
         salirButton.setOnAction(e -> salirDelJuego());
         this.salir = salirButton;
-       /* Button JugarDenuevoButton = new Button("Volver a jugar");
-        JugarDenuevoButton.getStyleClass().add("boton");
-        JugarDenuevoButton.setOnAction(e -> reiniciarJuego());
-        this.volverAJugar = JugarDenuevoButton;*/
     }
     public void startGanador(){
         this.vistaWin.mostrarGanador(this.ganador, this.salir);

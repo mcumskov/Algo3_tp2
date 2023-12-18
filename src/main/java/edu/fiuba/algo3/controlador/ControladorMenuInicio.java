@@ -1,13 +1,10 @@
 package edu.fiuba.algo3.controlador;
 
-import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 import edu.fiuba.algo3.modelo.mapa.Coordenada;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.iCasilla;
 import edu.fiuba.algo3.modelo.parser.Parser;
 import edu.fiuba.algo3.vista.VistaMenuInicio;
-import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -15,8 +12,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser;
-
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 

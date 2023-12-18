@@ -1,0 +1,139 @@
+@startuml
+skinparam linetype ortho
+
+interface Observer << interface >> {
+  + update(Observable, Object): void
+}
+
+class ControladorJuego {
+  + ControladorJuego(Stage, iMapa, int, String[]):
+  - anchoCasilla: int
+  - vistaJuego: VistaJuego
+  - mainStage: Stage
+  - nombres: String[]
+  - cantidadPlayers: int
+  - mapa: iMapa
+  - largoCasilla: int
+  - juego: Juego
+  - buttons: List<Button>
+  - dibujarCirculo(GraphicsContext, double, double, double, Color): void
+  + dibujarCasilla(Canvas, iCasilla): void
+  + chequearGanador(iJugador): void
+  - dibujarGladiadores(iCasilla, GraphicsContext): void
+  - getNodo(GridPane, int, int)
+  + start(): void
+  + update(Observable, Object): void
+  + crearDatosJugador(Dado, List<Gladiador>): GridPane
+  + mostrarDatosJugadorSiguiente(List<Label>): void
+  + tirarDado(): void
+  + mostrarResultadoDado(Dado, Label): void
+  + mostrarDatosFinDeTurnoJugador(List<Label>): void
+  + crearMapa(): GridPane
+  + terminarTurno(): void
+  - dibujarPremioObstaculo(iCasilla, GraphicsContext, GraphicsContext): void
+}
+
+class ControladorMenuInicio {
+  + ControladorMenuInicio(Stage):
+  - cantidadPlayers: int
+  - nombres: String[]
+  - vistaInicio: VistaMenuInicio
+  - buttons: List<Button>
+  - mainStage: Stage
+  - miMapa: Mapa
+  - getNodo(GridPane, int, int)
+  - MostrarPantallaNombres(): void
+  - PantallaelegirMapa(): void
+  + nombreJugadores(String, int, int): void
+  + start(): void
+  - mostrarPantallaInicio(): void
+  + iniciarJuego(): void
+  - PantallaMostrarMapa(): void
+}
+
+
+class Application {
+  + Application():
+  - userAgentStylesheet: String
+  - hostServices: HostServices
+  + STYLESHEET_CASPIAN: String
+  + STYLESHEET_MODENA: String
+  + stop(): void
+  + launch(Class<Application>, String[]?): void
+  + init(): void
+  + getParameters(): Parameters
+  + launch(String[]?): void
+  + setUserAgentStylesheet(String?): void
+  + getHostServices(): HostServices
+  + notifyPreloader(PreloaderNotification): void
+  + getUserAgentStylesheet(): String
+  + start(Stage): void
+}
+class Main {
+  + Main():
+  + main(String[]): void
+  + start(Stage): void
+}
+
+
+class ControladorPantallaFinal {
+  + ControladorPantallaFinal(iJugador, Stage):
+  - vistaLose: VistaPartidaPerdida
+  - salir: Button
+  - mainStage: Stage
+  - vistaWin: VistaGanador
+  - ganador: iJugador
+}
+
+class VistaMenuInicio {
+  + VistaMenuInicio(Stage):
+  - primaryStage: Stage
+  - nombresTextFields: List<TextField>
+  - titulo: Label
+  - cantidadDeJugadoresTextField: TextField
+  - cantidadJugadoresLabel: Label
+  + mapaCargado: boolean
+  - validarCantidadJugadores(String, Button): void
+  - establecerFondoPantalla(): Background
+  + setMapaCargado(Boolean): void
+  - validacionDeNombresEnTiempoReal(TextField, Button): void
+  + mostrarPantallaInicio(Button): void
+  + MostrarMapa(Button, Button, GridPane): void
+  + getCantidadDeJugadores(): int
+  + actualizarBotonIniciarJuego(Button): void
+  + mostrarSiguientePantalla(Button, Button, Button, ControladorMenuInicio): void
+}
+
+class VistaJuego {
+  + VistaJuego(Stage):
+  - mainStage: Stage
+  - establecerFondoPantalla(): Background
+  + mostrarJuego(Button, Button, GridPane, String[], int, GridPane): void
+}
+
+class VistaGanador {
+  + VistaGanador(Stage):
+  - mainStage: Stage
+}
+
+class VistaPartidaPerdida {
+  + VistaPartidaPerdida(Stage):
+  - mainStage: Stage
+  + mostrarGameOver(Button): void
+  - establecerFondoPantalla(): Background
+}
+
+
+ Application <|-- Main
+ Main --> ControladorMenuInicio
+ ControladorMenuInicio --> ControladorJuego
+ ControladorMenuInicio -> Mapa
+ ControladorMenuInicio -> Parser
+ ControladorJuego --> ControladorPantallaFinal
+ ControladorJuego --> Mapa
+ ControladorMenuInicio -> VistaMenuInicio
+ ControladorJuego -> VistaJuego
+ ControladorPantallaFinal -> VistaGanador
+ ControladorPantallaFinal -> VistaPartidaPerdida
+
+@enduml

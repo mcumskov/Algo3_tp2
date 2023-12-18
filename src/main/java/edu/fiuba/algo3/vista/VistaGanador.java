@@ -12,7 +12,7 @@ import edu.fiuba.algo3.modelo.jugador.iJugador;
 import java.net.URL;
 
 public class VistaGanador {
-    Stage mainStage;
+    private Stage mainStage;
     public VistaGanador(Stage mainStage){
         this.mainStage = mainStage;
     }

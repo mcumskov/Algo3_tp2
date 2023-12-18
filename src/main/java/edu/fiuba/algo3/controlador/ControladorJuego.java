@@ -3,7 +3,6 @@ package edu.fiuba.algo3.controlador;
 import edu.fiuba.algo3.modelo.Eventos.Obstaculos.Obstaculo;
 import edu.fiuba.algo3.modelo.Eventos.Premios.Premio;
 import edu.fiuba.algo3.modelo.dado.Dado;
-import edu.fiuba.algo3.modelo.dado.iDado;
 import edu.fiuba.algo3.modelo.excepciones.SinGanadorException;
 import edu.fiuba.algo3.modelo.gestorTurnos.GestorTurnos;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
@@ -18,7 +17,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
@@ -30,21 +28,18 @@ import javafx.stage.Stage;
 import edu.fiuba.algo3.modelo.mapa.iMapa;
 
 import java.io.InputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
-    public class ControladorJuego implements Observer{
+    public class ControladorJuego{
 
-        Stage mainStage;
-        VistaJuego vistaJuego;
-        iMapa mapa;
+        private Stage mainStage;
+        private VistaJuego vistaJuego;
+        private iMapa mapa;
         private List<Button> buttons;
-        Juego juego;
-        int anchoCasilla;
-        int largoCasilla;
+        private Juego juego;
+        private int anchoCasilla;
+        private int largoCasilla;
         private String[] nombres;
         private int cantidadPlayers;
 
@@ -348,7 +343,4 @@ import java.util.Observer;
         gc.fillOval(x - radio, y - radio, 2 * radio, 2 * radio);
     }
 
-    public void update(Observable o, Object arg) {
-
-    }
 }
