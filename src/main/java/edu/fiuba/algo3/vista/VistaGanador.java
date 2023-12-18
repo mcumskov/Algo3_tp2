@@ -18,10 +18,11 @@ public class VistaGanador {
     }
     public void mostrarGanador(iJugador ganador, Button botonSalir){
 
-        Label nombreGanador = new Label("FELICITACIONES A: " + ganador.getNombre() + "\n GANASTE!!");
+        Label nombreGanador = new Label("FELICITACIONES: " + ganador.getNombre() + "\n GANASTE!!\n LA CASA POMPEYANA ES TUYA");
         nombreGanador.getStyleClass().add("labelNombre");
         VBox box = new VBox(nombreGanador, botonSalir);
         box.setAlignment(Pos.CENTER);
+        box.setSpacing(100);
         box.setBackground(establecerFondoPantalla());
         Scene sceneInicio = new Scene(box, 300, 200);
         String cssFile = getClass().getResource("/style.css").toExternalForm();

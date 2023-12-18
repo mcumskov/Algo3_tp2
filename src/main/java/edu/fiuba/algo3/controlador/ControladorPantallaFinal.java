@@ -2,7 +2,6 @@ package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.modelo.jugador.iJugador;
 import edu.fiuba.algo3.vista.VistaGanador;
-import edu.fiuba.algo3.vista.VistaJuego;
 import edu.fiuba.algo3.vista.VistaPartidaPerdida;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;

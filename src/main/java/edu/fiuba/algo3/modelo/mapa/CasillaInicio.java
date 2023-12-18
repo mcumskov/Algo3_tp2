@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.mapa;
 
 import edu.fiuba.algo3.modelo.Eventos.Obstaculos.Obstaculo;
 import edu.fiuba.algo3.modelo.Eventos.Premios.Premio;
-import edu.fiuba.algo3.modelo.excepciones.CasillaTipoLlegadaMalPosicionadaException;
 import edu.fiuba.algo3.modelo.excepciones.CasillaTipoSalidaMalPosicionadaException;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 

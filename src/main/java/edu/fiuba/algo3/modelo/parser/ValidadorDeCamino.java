@@ -4,7 +4,6 @@ import edu.fiuba.algo3.modelo.excepciones.*;
 import edu.fiuba.algo3.modelo.mapa.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ValidadorDeCamino {
 

@@ -1,10 +1,7 @@
 package edu.fiuba.algo3.modelo.gestorTurnos;
-
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-
 import edu.fiuba.algo3.modelo.dado.Dado;
 import edu.fiuba.algo3.modelo.excepciones.SinGanadorException;
 import edu.fiuba.algo3.modelo.jugador.iJugador;

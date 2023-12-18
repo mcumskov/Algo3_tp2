@@ -2,17 +2,11 @@ package edu.fiuba.algo3.modelo.juego;
 
 import edu.fiuba.algo3.modelo.dado.iDado;
 import edu.fiuba.algo3.modelo.excepciones.SinGanadorException;
-import edu.fiuba.algo3.modelo.gestorTurnos.GestorTurnos;
 import edu.fiuba.algo3.modelo.gestorTurnos.iGestorTurnos;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
-import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.iMapa;
 import edu.fiuba.algo3.modelo.jugador.iJugador;
 import edu.fiuba.algo3.modelo.log.Log;
-
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
 
 public class Juego extends Observable{
@@ -72,7 +66,6 @@ public class Juego extends Observable{
         Log.getLog().imprimirMensaje();
         setChanged();
         notifyObservers();
-        //hacerle una fiesta al ganador
     }
     public static void gladiadorSinLlaveLlegaAlFinal(Gladiador gladiador){
         if(instancia == null){

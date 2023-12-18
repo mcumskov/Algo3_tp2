@@ -3,12 +3,7 @@ package edu.fiuba.algo3.modelo.jugador;
 import edu.fiuba.algo3.modelo.dado.iDado;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 import edu.fiuba.algo3.modelo.mapa.iMapa;
-import java.util.Observable;
-import java.util.Observer;
-
-import java.util.logging.Logger;
 import edu.fiuba.algo3.modelo.log.Log;
-import edu.fiuba.algo3.modelo.log.LogFormatter;
 
 public class Jugador implements  iJugador{
 

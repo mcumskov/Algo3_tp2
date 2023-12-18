@@ -1,8 +1,4 @@
 package edu.fiuba.algo3.modelo.mapa;
-import edu.fiuba.algo3.modelo.excepciones.CaminoDiscontinuoException;
-import edu.fiuba.algo3.modelo.excepciones.CasillaTipoLlegadaMalPosicionadaException;
-import edu.fiuba.algo3.modelo.excepciones.CasillaTipoSalidaMalPosicionadaException;
-import edu.fiuba.algo3.modelo.excepciones.CasillaTipoMalPosicionadaException;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 
 import java.util.List;

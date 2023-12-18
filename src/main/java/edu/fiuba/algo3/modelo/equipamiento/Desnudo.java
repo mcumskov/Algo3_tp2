@@ -1,6 +1,4 @@
 package edu.fiuba.algo3.modelo.equipamiento;
-
-import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 import edu.fiuba.algo3.modelo.log.Log;
 
 public class Desnudo extends Equipable{

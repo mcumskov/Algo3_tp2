@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.vista;
 
-import edu.fiuba.algo3.modelo.jugador.iJugador;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -23,6 +22,7 @@ public class VistaPartidaPerdida {
         mensajeFinal.getStyleClass().add("labelNombre");
         VBox box = new VBox(mensajeFinal, botonSalir);
         box.setAlignment(Pos.CENTER_LEFT);
+        box.setSpacing(100);
         box.setBackground(establecerFondoPantalla());
         Scene sceneInicio = new Scene(box, 300, 200);
         String cssFile = getClass().getResource("/style.css").toExternalForm();
