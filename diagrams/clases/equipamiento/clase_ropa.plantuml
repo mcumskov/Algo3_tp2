@@ -1,6 +1,11 @@
 @startuml
+skinparam linetype ortho
+
 class Desnudo {
-    + Desnudo(mitigacionAcumulada:int)
-    + mejorar():Equipable
+  + Desnudo():
+  - representacion: String
+  + mejorar(): Equipable
+  + getRepresentacion(): String
 }
+
 @enduml

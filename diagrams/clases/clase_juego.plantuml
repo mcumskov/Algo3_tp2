@@ -2,10 +2,11 @@
 skinparam linetype ortho
 
 class Juego {
-  - Juego(iMapa, List<iJugador>, iDado):
+  - {static}instancia: Juego
+  - Juego(iMapa, iDado, iGestorTurno):
   - jugadorActual: iJugador
   - ganador: iJugador
-  + {static}instanciarJuego(iMapa, List<iJugador>, iDado): Juego
+  + {static}instanciarJuego(iMapa, iDado, iGestorTurno): Juego
   + tirarDado(): iJugador
   + siguienteTurno(): void
   - buscarGanador(): void
@@ -13,9 +14,11 @@ class Juego {
   + {static}gladiadorSinLlaveLlegaAlFinal(Gladiador gladiador)
   + {static} gladiadorConLlaveLlegaAlFinal()
   + {static} resetInstancia()
-   jugadorActual: iJugador
-   ganador: iJugador
+  + getJugadorActual(): iJugador
+  + getGanador(): iJugador
 }
+@enduml
+
 abstract class Observable {
   + Observable():
   + notifyObservers(Object): void
@@ -30,4 +33,3 @@ abstract class Observable {
 }
 
 Juego       --^  Observable
-@enduml

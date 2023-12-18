@@ -1,6 +1,11 @@
 @startuml
+skinparam linetype ortho
+
 class Casco {
-    + Casco(mitigacionAcumulada:int)
-    + mejorar():Equipable
+  + Casco(int):
+  - representacion: String
+  + mejorar(): Equipable
+  + getRepresentacion(): String
 }
+
 @enduml

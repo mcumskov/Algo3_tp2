@@ -1,6 +1,11 @@
 @startuml
+skinparam linetype ortho
+
 class Armadura {
-    + Armadura(mitigacionAcumulada:int)
-    + mejorar():Equipable
+  + Armadura(int):
+  - representacion: String
+  + mejorar(): Equipable
+  + getRepresentacion(): String
 }
+
 @enduml

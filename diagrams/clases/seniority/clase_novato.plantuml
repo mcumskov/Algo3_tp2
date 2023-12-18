@@ -1,5 +1,11 @@
 @startuml
+skinparam linetype ortho
+
 class Novato {
-    # ascender():Seniority
+  + Novato():
+  - representacion: String
+  + actualizar(): NivelDeSeniority
+  + getRepresentacion(): String
 }
+
 @enduml

@@ -1,5 +1,11 @@
 @startuml
-class ConEnergia {
-    + avanzar(Gladiador gladiador, Casilla casilla, int pasos);
+skinparam linetype ortho
+
+class GladiadorSano {
+  + GladiadorSano():
+  - representacion: String
+  + getRepresentacion(): String
+  + avanzar(Gladiador, iCasilla, int): void
 }
+
 @enduml

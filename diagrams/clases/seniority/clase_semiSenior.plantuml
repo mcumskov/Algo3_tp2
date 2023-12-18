@@ -1,5 +1,11 @@
 @startuml
+skinparam linetype ortho
+
 class SemiSenior {
-    # ascender():Seniority
+  + SemiSenior():
+  - representacion: String
+  + actualizar(): NivelDeSeniority
+  + getRepresentacion(): String
 }
+
 @enduml

@@ -7,10 +7,15 @@ interface ISeniority << interface >> {
   + recuperarEnergia(): int
 }
 Abstract class NivelDeSeniority {
-  + NivelDeSeniority():
-  + actualizar(): NivelDeSeniority
-  + recuperarEnergiaEnTurno(): int
-}
+   + NivelDeSeniority():
+   - turnosRestantesParaMejora: int
+   - recuperacionDeEnergiaPorTurno: int
+   + recuperarEnergiaEnTurno(): int
+   + actualizar(): NivelDeSeniority
+   + getRepresentacion(): String
+ }
+
+
 class Novato {
   + Novato():
   + actualizar(): NivelDeSeniority

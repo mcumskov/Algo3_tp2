@@ -5,8 +5,7 @@
 !include clase_sinEnergia.plantuml
 !include clase_lesionado.plantuml
 
-IEstado <|.. Estado
-Estado <|-- ConEnergia
-Estado <|-- SinEnergia
-Estado <|-- Lesionado
+Estado <|-. GladiadorSano
+Estado <|-. GladiadorSinEnergia
+Estado <|-. GladiadorLesionado
 @enduml

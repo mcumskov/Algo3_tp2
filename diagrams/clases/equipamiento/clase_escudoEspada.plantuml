@@ -1,6 +1,11 @@
 @startuml
+skinparam linetype ortho
+
 class EscudoEspada {
-    + EscudoEspada(mitigacionAcumulada:int)
-    + mejorar():Equipable
+  + EscudoEspada(int):
+  - representacion: String
+  + getRepresentacion(): String
+  + mejorar(): Equipable
 }
+
 @enduml

@@ -1,5 +1,11 @@
 @startuml
+skinparam linetype ortho
+
 class Senior {
-    # ascender():Seniority
+  + Senior():
+  - representacion: String
+  + actualizar(): NivelDeSeniority
+  + getRepresentacion(): String
 }
+
 @enduml

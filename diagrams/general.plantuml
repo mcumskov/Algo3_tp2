@@ -60,24 +60,24 @@ interface iDado {
 
 iCasilla ^-. CasillaInicio
 iCasilla ^-. CasillaFinal
-Juego o-- iMapa
+Juego o- iMapa
 iMapa <|-. Mapa
 Mapa .-> Gladiador
-Juego o-- GestorTurnos
-Juego o-- iDado
+Juego o-- iGestorTurnos
+Juego o- iDado
 iDado <|. Dado
 GestorTurnos o-- "2..6 " iJugador
 iJugador <|-. Jugador
 Jugador *-- Gladiador
 Jugador ..> iDado
-Jugador ..> Mapa
+Jugador ...> iMapa
 
 Mapa o-- "2..*"iCasilla
 iCasilla o- "0..6 " Gladiador
 
 Gladiador o-- ISeniority
 Gladiador o- IEquipamiento
-Gladiador o-- IEstado
+Gladiador o-- Estado
 
 Parser .--> iCasilla
 
@@ -85,8 +85,6 @@ Parser .--> iCasilla
 interface ISeniority <<interface>> {
 }
 
-interface IEstado <<interface>> {
-}
 
 interface IEquipamiento <<interface>> {
 

@@ -1,5 +1,12 @@
 @startuml
-class Lesionado {
-    + avanzar(Gladiador gladiador, Casilla casilla, int pasos);
+
+skinparam linetype ortho
+
+class GladiadorLesionado {
+  + GladiadorLesionado():
+  - representacion: String
+  + avanzar(Gladiador, iCasilla, int): void
+  + getRepresentacion(): String
 }
+
 @enduml

@@ -1,5 +1,0 @@
-@startuml
-interface IEstado <<interface>> {
-    {abstract} + avanzar(Gladiador gladiador, Casilla casilla, int pasos);
-}
-@enduml

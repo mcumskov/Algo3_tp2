@@ -12,6 +12,14 @@
         +finalizarSinGanador()
 
     }
+
+    interface iGestorTurnos << interface >> {
+      + determinarPrimerJugador(): void
+      + siguienteTurno(): iJugador
+    }
+
+    iGestorTurnos <|.- GestorTurnos
+
 @enduml
 @startuml(id=withErrors)
         class GestorTurnos {
