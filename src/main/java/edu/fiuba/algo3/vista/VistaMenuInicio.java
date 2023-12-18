@@ -162,6 +162,7 @@ public class VistaMenuInicio{
                 "de casilla junto a sus representaciones:\n\nF: fiera salvaje, se desata una pelea con una fiera y se pierde energia segun que equipamiento se tenga\n" +
                 "C: el gladiador se encuentra comida y recpuera energia.\nB: el gladiador entra a un bar y se toma una cantidad aleatoria de birras y pierde energia segun cuanto tomo\n" +
                 "L: el gladiador se lesiona y al sigiente turno no podra moverse\nE: recibe equipamiento nuevo\nCada jugador tiene 30 turnos para ganar o seran atrapados por una fiera suprema!");
+
         instrucciones.getStyleClass().add("labelNombre");
 
         HBox boxInstrucciones = new HBox(instrucciones);

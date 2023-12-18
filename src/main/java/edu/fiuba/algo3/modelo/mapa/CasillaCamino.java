@@ -20,20 +20,12 @@ public class CasillaCamino extends Observable implements iCasilla{
 
     protected List<Gladiador> gladiadoresEnLaCasilla;
 
-    public CasillaCamino(iCasilla siguiente, Obstaculo obstaculo, Premio premio) {
-        this.casillaSiguiente = siguiente;
-        this.obstaculo = obstaculo;
-        this.premio = premio;
-        this.gladiadoresEnLaCasilla = new ArrayList<Gladiador>();
-        this.coordenada = null; // Mock para test
-    }
-
     public CasillaCamino(Coordenada coordenada, iCasilla siguiente, Obstaculo obstaculo, Premio premio) {
         this.casillaSiguiente = siguiente;
         this.obstaculo = obstaculo;
         this.premio = premio;
         this.gladiadoresEnLaCasilla = new ArrayList<Gladiador>();
-        this.coordenada = coordenada ;
+        this.coordenada = coordenada;
     }
     public void setSiguiente(iCasilla siguiente){
         this.casillaSiguiente = siguiente;
