@@ -87,7 +87,7 @@ import java.util.Observer;
         this.juego = Juego.instanciarJuego(mapa, jugadores, dado);
         this.juego.siguienteTurno();
         this.juego.addObserver((o, arg) -> chequearGanador(this.juego.getGanador()));
-        GridPane datosJugadorActual = crearDatosJugador(dado);
+        GridPane datosJugadorActual = crearDatosJugador(dado, gladiadores);
         GridPane renderMapa = crearMapa();
 
 
@@ -119,7 +119,7 @@ import java.util.Observer;
         }
     }
 
-    public GridPane crearDatosJugador(Dado dado){
+    public GridPane crearDatosJugador(Dado dado, List<Gladiador> gladiadores){
 
         GridPane gridPane = new GridPane();
         iJugador player = this.juego.getJugadorActual();
@@ -172,7 +172,9 @@ import java.util.Observer;
         labels.add(energiaGladiador);
         labels.add(equipamientoGladiador);
 
-        gladiadorActual.addObserver((o, arg) -> mostrarDatosFinDeTurnoJugador(labels));
+        for (int i=0; i<this.cantidadPlayers; i++) {
+            gladiadores.get(i).addObserver((o, arg) -> mostrarDatosFinDeTurnoJugador(labels));
+        }
         this.juego.addObserver((o, arg) -> mostrarDatosJugadorSiguiente(labels));
         dado.addObserver((o, arg) -> mostrarResultadoDado(dado, infoDado));
 
