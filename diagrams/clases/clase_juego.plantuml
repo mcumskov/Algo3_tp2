@@ -1,17 +1,33 @@
 @startuml
-class Juego {
-    - jugadores:ArrayList<Jugador>
-    - cantJugadores:int
-    - {static}instancia: Juego
-    - Juego(Mapa mapa, List<Jugador> jugadores):Juego
-    - jugadoresValidos(jugadores:Jugador):bool
-    + instanciarJuego(Mapa mapa, List<Jugador> jugadores):Juego
-    - iniciarPartida()
-    - moverGladiadorAMitadMapa(Gladiador gladiador)
-    - buscarGanador()
-    + {static}gladiadorSinLlaveLlegaAlFinal(Gladiador gladiador)
-    + {static} gladiadorConLlaveLlegaAlFinal()
-    + {static} resetInstancia()
+skinparam linetype ortho
 
+class Juego {
+  - Juego(iMapa, List<iJugador>, iDado):
+  - jugadorActual: iJugador
+  - ganador: iJugador
+  + {static}instanciarJuego(iMapa, List<iJugador>, iDado): Juego
+  + tirarDado(): iJugador
+  + siguienteTurno(): void
+  - buscarGanador(): void
+  - moverGladiadorAMitadMapa(Gladiador): void
+  + {static}gladiadorSinLlaveLlegaAlFinal(Gladiador gladiador)
+  + {static} gladiadorConLlaveLlegaAlFinal()
+  + {static} resetInstancia()
+   jugadorActual: iJugador
+   ganador: iJugador
 }
+abstract class Observable {
+  + Observable():
+  + notifyObservers(Object): void
+  + deleteObserver(Observer): void
+  + countObservers(): int
+  + notifyObservers(): void
+  # setChanged(): void
+  + deleteObservers(): void
+  + hasChanged(): boolean
+  + addObserver(Observer): void
+  # clearChanged(): void
+}
+
+Juego       --^  Observable
 @enduml

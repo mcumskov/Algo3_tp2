@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Eventos.Obstaculos.ObstaculoNulo;
 import edu.fiuba.algo3.modelo.Eventos.Premios.*;
 import edu.fiuba.algo3.modelo.dado.Dado;
 import edu.fiuba.algo3.modelo.excepciones.SinGanadorException;
+import edu.fiuba.algo3.modelo.gestorTurnos.GestorTurnos;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
@@ -222,9 +223,9 @@ public class Entrega1Tests {
         mapa.ingresarGladiadores(gladiador, 1);
 
         Dado dado = new Dado();
-
+        GestorTurnos gestor = new GestorTurnos(30, jugadores);
         Juego.resetInstancia();
-        Juego juego = Juego.instanciarJuego(mapa,jugadores, dado);
+        Juego juego = Juego.instanciarJuego(mapa, dado, gestor);
 
         novenaCasilla.recibir(gladiadorcito);
         gladiadorcito.avanzar(novenaCasilla, 1);
@@ -317,7 +318,9 @@ public class Entrega1Tests {
         mapa.ingresarGladiadores(gladiador, 1);
         Dado dado = new Dado(1);
 
-        Juego juego = Juego.instanciarJuego(mapa,jugadores, dado);
+        GestorTurnos gestor = new GestorTurnos(30, jugadores);
+        Juego.resetInstancia();
+        Juego juego = Juego.instanciarJuego(mapa, dado, gestor);
 
         for (int i = 0; i < 30; i++) {
             juego.siguienteTurno();

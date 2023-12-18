@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Eventos.Premios.Premio;
 import edu.fiuba.algo3.modelo.dado.Dado;
 import edu.fiuba.algo3.modelo.dado.iDado;
 import edu.fiuba.algo3.modelo.excepciones.SinGanadorException;
+import edu.fiuba.algo3.modelo.gestorTurnos.GestorTurnos;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
@@ -84,7 +85,10 @@ import java.util.Observer;
         Dado dado = new Dado();
 
         Juego.resetInstancia();
-        this.juego = Juego.instanciarJuego(mapa, jugadores, dado);
+
+        GestorTurnos gestor = new GestorTurnos(30, jugadores);
+        Juego.resetInstancia();
+        this.juego = Juego.instanciarJuego(mapa, dado, gestor);
         this.juego.siguienteTurno();
         this.juego.addObserver((o, arg) -> chequearGanador(this.juego.getGanador()));
         GridPane datosJugadorActual = crearDatosJugador(dado, gladiadores);

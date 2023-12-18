@@ -1,27 +1,23 @@
 package edu.fiuba.algo3.modelo.gestorTurnos;
 
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
-import edu.fiuba.algo3.modelo.dado.iDado;
 import edu.fiuba.algo3.modelo.dado.Dado;
 import edu.fiuba.algo3.modelo.excepciones.SinGanadorException;
-import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.jugador.iJugador;
-import edu.fiuba.algo3.modelo.mapa.iMapa;
 
 
-public class GestorTurnos {
+public class GestorTurnos implements iGestorTurnos{
 
     private Queue<iJugador> colaTurnos;
     private int contador;
     private int cantidadRondas;
     protected iJugador jugadoractual;
 
-    public GestorTurnos(int rondas, ArrayList<iJugador> jugadores){
+    public GestorTurnos(int rondas, List<iJugador> jugadores){
 
         this.colaTurnos = new LinkedList<>();
         this.cantidadRondas = rondas;

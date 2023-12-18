@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.juego;
 import edu.fiuba.algo3.modelo.dado.iDado;
 import edu.fiuba.algo3.modelo.excepciones.SinGanadorException;
 import edu.fiuba.algo3.modelo.gestorTurnos.GestorTurnos;
+import edu.fiuba.algo3.modelo.gestorTurnos.iGestorTurnos;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.iMapa;
@@ -17,16 +18,16 @@ import java.util.Observable;
 public class Juego extends Observable{
 
     public iMapa mapa;
-    public GestorTurnos gestorTurnos;
+    public iGestorTurnos gestorTurnos;
     public iDado dado;
     private static Juego instancia;
     private iJugador jugadorActual;
     private iJugador ganador;
 
 
-    private Juego (iMapa mapa, List<iJugador> jugadores, iDado dado) {
+    private Juego (iMapa mapa, iDado dado, iGestorTurnos gestor) {
 
-        this.gestorTurnos = new GestorTurnos(30, (ArrayList<iJugador>) jugadores);
+        this.gestorTurnos = gestor;
         this.dado = dado;
         this.mapa = mapa;
         this.jugadorActual = null;
@@ -53,9 +54,9 @@ public class Juego extends Observable{
         return this.ganador;
     }
 
-    public static Juego instanciarJuego(iMapa mapa, List<iJugador> jugadores, iDado dado) {
+    public static Juego instanciarJuego(iMapa mapa, iDado dado, iGestorTurnos gestor) {
         if(instancia == null){
-            instancia = new Juego(mapa, jugadores, dado);
+            instancia = new Juego(mapa, dado, gestor);
         }
         return instancia;
     }
