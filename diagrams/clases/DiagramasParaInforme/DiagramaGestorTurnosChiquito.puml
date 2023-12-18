@@ -1,0 +1,53 @@
+@startuml
+skinparam linetype ortho
+
+    class GestorTurnos {
+        - jugadorActual:Jugador
+        - colaTurnos: Queue<Jugador>
+        - contador: int
+        - cantidadRondas: int
+        + GestorTurnos(Jugadores:Jugador):GestorTurnos
+        + agregarTurno(Jugador jugador)
+        + getJugadorActual():Jugador
+        + determinarPrimerJugador()
+        +siguienteTurno()
+        +finalizarSinGanador()
+    }
+
+    interface iGestorTurnos << interface >> {
+      + determinarPrimerJugador(): void
+      + siguienteTurno(): iJugador
+    }
+
+
+    interface iJugador << interface >> {
+      + jugar(iDado, iMapa): void
+      + getNombre(): String
+      + getGladiador(): Gladiador
+    }
+
+    class Jugador {
+      + Jugador(String, int):
+      + Jugador():
+      - MiGladiador: Gladiador
+      - numeroPlayer: int
+      - miNombre: String
+      + getGladiador(): Gladiador
+      + getNumeroPlayer(): int
+      + getNombre(): String
+      + jugar(iDado, iMapa): void
+    }
+
+    GestorTurnos o-- "2..6 " iJugador
+    iJugador <|-. Jugador
+
+    interface iMapa
+    interface iGestorTurnos
+    interface iDado
+
+    iMapa <. Jugador
+    iDado <. Jugador
+    iGestorTurnos <|.- GestorTurnos
+    Jugador *- Gladiador
+
+@enduml

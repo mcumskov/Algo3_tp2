@@ -40,7 +40,10 @@ class Coordenada {
   + getY(): int
   + esContigua(Coordenada): Boolean
 }
-Coordenada <- CasillaCamino
+
+
+
+Coordenada <. CasillaCamino
 iCasilla ^-. CasillaCamino
 CasillaCamino o-- Premio
 Premio ^. PremioNulo

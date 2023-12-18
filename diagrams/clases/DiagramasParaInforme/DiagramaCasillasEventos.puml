@@ -1,0 +1,94 @@
+@startuml
+skinparam linetype ortho
+
+class Coordenada {
+  + Coordenada(int, int):
+  - x: int
+  - y: int
+  + getX(): int
+  + getY(): int
+  + esContigua(Coordenada): Boolean
+}
+
+interface Obstaculo << interface >> {
+  + getRepresentacion(): char
+  + obstaculizarGladiador(Gladiador): void
+}
+
+interface Premio << interface >> {
+  + premiarGladiador(Gladiador): void
+  + getRepresentacion(): char
+}
+
+class Bacanal {
+  + Bacanal():
+  - representacion: char
+  # perdidaEnergiaMinima: int
+  + getRepresentacion(): char
+  + obstaculizarGladiador(Gladiador): void
+}
+
+class PremioEquipamiento {
+  + PremioEquipamiento():
+  - representacion: char
+  + getRepresentacion(): char
+  + premiarGladiador(Gladiador): void
+}
+
+class Lesion {
+  + Lesion():
+  - representacion: char
+  + getRepresentacion(): char
+  + obstaculizarGladiador(Gladiador): void
+}
+
+
+class PremioComestible {
+  + PremioComestible():
+  - representacion: char
+  - energiaParaEntregar: int
+  + getRepresentacion(): char
+  + premiarGladiador(Gladiador): void
+}
+
+class FieraSalvaje {
+  + FieraSalvaje():
+  - danioDeFiera: int
+  - representacion: char
+  + getRepresentacion(): char
+  + obstaculizarGladiador(Gladiador): void
+}
+
+class PremioEquipamiento {
+  + PremioEquipamiento():
+  - representacion: char
+  + getRepresentacion(): char
+  + premiarGladiador(Gladiador): void
+}
+
+class ObstaculoNulo {
+  + obstaculizar(gladiador:Gladiador)
+}
+class PremioNulo{
+  + premiar(gladiador:Gladiador)
+}
+
+Coordenada <-. CasillaCamino
+Coordenada <. CasillaInicio
+Coordenada <. CasillaFinal
+
+CasillaCamino o-- Premio
+Premio ^. PremioNulo
+ObstaculoNulo .^ Obstaculo
+CasillaCamino o-- Obstaculo
+
+Obstaculo ^.. Bacanal
+FieraSalvaje  ..^ Obstaculo
+Obstaculo ^.. Lesion
+
+PremioEquipamiento  ..^ Premio
+Premio ^.. PremioComestible
+
+
+
+@enduml

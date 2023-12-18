@@ -1,0 +1,43 @@
+@startuml
+skinparam linetype ortho
+
+class Juego {
+  - {static}instancia: Juego
+  - Juego(iMapa, iDado, iGestorTurno):
+  - jugadorActual: iJugador
+  - ganador: iJugador
+  + {static}instanciarJuego(iMapa, iDado, iGestorTurno): Juego
+  + tirarDado(): iJugador
+  + siguienteTurno(): void
+  - buscarGanador(): void
+  - moverGladiadorAMitadMapa(Gladiador): void
+  + {static}gladiadorSinLlaveLlegaAlFinal(Gladiador gladiador)
+  + {static} gladiadorConLlaveLlegaAlFinal()
+  + {static} resetInstancia()
+  + getJugadorActual(): iJugador
+  + getGanador(): iJugador
+}
+interface iMapa
+interface iGestorTurnos
+
+
+interface iDado {
+    public int lanzar();
+}
+
+
+class Dado {
+  + Dado(int):
+  + Dado():
+  - random: Random
+  - caras: int
+  - numeroObtenido: int
+}
+
+Juego o-- iMapa
+Juego o-- iGestorTurnos
+Juego o-- iDado
+iDado <|.- Dado
+
+
+@enduml

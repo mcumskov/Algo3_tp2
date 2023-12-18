@@ -110,8 +110,8 @@ Jugador *-- Gladiador
 Jugador ..> iDado
 Jugador ...> iMapa
 
-Coordenada <-- CasillaFinal
-Coordenada <- CasillaInicio
+Coordenada <.. CasillaFinal
+Coordenada <. CasillaInicio
 
 
 Mapa o-- "2..*"iCasilla
