@@ -15,7 +15,7 @@ public class Gladiador extends Observable{
     private Seniority seniority;
     private Equipamiento equipamiento;
     private int energia;
-    int numeroGladiador;
+    private int numeroGladiador;
 
     public Gladiador(int numeroPlayer) {
         this.energia = 20;

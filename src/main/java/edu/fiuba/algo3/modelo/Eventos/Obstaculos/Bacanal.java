@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.log.Log;
 public class Bacanal implements Obstaculo{
 
     protected int perdidaEnergiaMinima;
-    char representacion;
+    private char representacion;
 
     public Bacanal(){
         this.perdidaEnergiaMinima = 4;

@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 
 public class PremioNulo implements Premio {
 
-   char representacion;
+   private char representacion;
    public PremioNulo(){
       this.representacion = ' ';
    }

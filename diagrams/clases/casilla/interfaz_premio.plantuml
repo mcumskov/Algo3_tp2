@@ -1,5 +1,9 @@
 @startuml
-interface Premio <<interface>> {
-    {abstract} + premiar(gladiador:Gladiador)
+skinparam linetype ortho
+
+interface Premio << interface >> {
+  + premiarGladiador(Gladiador): void
+  + getRepresentacion(): char
 }
+
 @enduml

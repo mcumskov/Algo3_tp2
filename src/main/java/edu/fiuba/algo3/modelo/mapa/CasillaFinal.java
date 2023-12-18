@@ -12,9 +12,9 @@ import java.util.Observer;
 
 public class CasillaFinal extends Observable implements iCasilla{
 
-    protected iCasilla casillaSiguiente;
-    protected Coordenada coordenada;
-    protected List<Gladiador> gladiadoresEnLaCasilla;
+    private iCasilla casillaSiguiente;
+    private Coordenada coordenada;
+    private List<Gladiador> gladiadoresEnLaCasilla;
 
     public CasillaFinal(Coordenada coordenada ){
         this.coordenada = coordenada;

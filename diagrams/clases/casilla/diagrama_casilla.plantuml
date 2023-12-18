@@ -15,13 +15,32 @@ class ObstaculoNulo {
 class PremioNulo{
   + premiar(gladiador:Gladiador)
 }
-interface iCasilla {
-    + Casilla(premio:Premio,obstaculo:Obstaculo)
-    + recibir(gladiador:Gladiador)
-    + expulsar(gladiador:Gladiador)
-    + otorgarPremio(gladiador:Gladiador)
-    + aplicarObstaculo(gladiador:Gladiado)
+
+interface iCasilla << interface >> {
+  + validarPosicionEnCamino(int, int): void
+  + recibir(Gladiador): void
+  + getGladiadores(): List<Gladiador>
+  + esContigua(iCasilla): boolean
+  + getPremio(): Premio
+  + buscadoEstaEnLaCasilla(Gladiador): iCasilla
+  + getObstaculo(): Obstaculo
+  + esContigua(Coordenada): boolean
+  + agregarObserver(Observer): void
+  + getCoordenada(): Coordenada
+  + expulsar(Gladiador): void
+  + moverGladiador(int, Gladiador): void
+  + setSiguiente(iCasilla): void
 }
+
+class Coordenada {
+  + Coordenada(int, int):
+  - x: int
+  - y: int
+  + getX(): int
+  + getY(): int
+  + esContigua(Coordenada): Boolean
+}
+Coordenada <- CasillaCamino
 iCasilla ^-. CasillaCamino
 CasillaCamino o-- Premio
 Premio ^. PremioNulo
@@ -29,10 +48,10 @@ ObstaculoNulo .^ Obstaculo
 CasillaCamino o-- Obstaculo
 
 Obstaculo ^.. Bacanal
-Obstaculo ^.. Fiera
+Obstaculo ^.. FieraSalvaje
 Obstaculo ^.. Lesion
 
-Premio ^.. GanarEquipamiento
-Premio ^.. Comida
+Premio ^.. PremioEquipamiento
+Premio ^.. PremioComestible
 
 @enduml

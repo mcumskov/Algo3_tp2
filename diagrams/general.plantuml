@@ -14,17 +14,45 @@
 !include clases/casilla/diagrama_casilla.plantuml
 
 class CasillaInicio {
-    - iCasilla CasillaSiguiente
-    + Casilla(coordenada: Coordenada, iCasilla CasillaSiguiente)
-    + recibir(gladiador:Gladiador)
-    + expulsar(gladiador:Gladiador)
+  + CasillaInicio(Coordenada, iCasilla):
+  - gladiadoresEnLaCasilla: List<Gladiador>
+  - casillaSiguiente: iCasilla
+  - coordenada: Coordenada
+  + esContigua(iCasilla): boolean
+  + getCoordenada(): Coordenada
+  + agregarObserver(Observer): void
+  + recibir(Gladiador): void
+  + buscadoEstaEnLaCasilla(Gladiador): iCasilla
+  + setSiguiente(iCasilla): void
+  + getObstaculo(): Obstaculo
+  + getPremio(): Premio
+  + moverGladiador(int, Gladiador): void
+  + esContigua(Coordenada): boolean
+  + getGladiadores(): List<Gladiador>
+  + expulsar(Gladiador): void
+  + validarPosicionEnCamino(int, int): void
 }
+
 class CasillaFinal {
-    - iCasilla CasillaSiguiente
-    + Casilla(coordenada: Coordenada, iCasilla CasillaSiguiente)
-    + recibir(gladiador:Gladiador)
-    + expulsar(gladiador:Gladiador)
+  + CasillaFinal(Coordenada):
+  - casillaSiguiente: iCasilla
+  - coordenada: Coordenada
+  - gladiadoresEnLaCasilla: List<Gladiador>
+  + buscadoEstaEnLaCasilla(Gladiador): iCasilla
+  + esContigua(Coordenada): boolean
+  + getObstaculo(): Obstaculo
+  + recibir(Gladiador): void
+  + validarPosicionEnCamino(int, int): void
+  + expulsar(Gladiador): void
+  + getCoordenada(): Coordenada
+  + getPremio(): Premio
+  + setSiguiente(iCasilla): void
+  + moverGladiador(int, Gladiador): void
+  + getGladiadores(): List<Gladiador>
+  + esContigua(iCasilla): boolean
+  + agregarObserver(Observer): void
 }
+
 
 class Log {
   - mensajeAImprimir:String
@@ -45,13 +73,23 @@ class LogFormatter {
 Log .>  LogFormatter
 
 interface iMapa << interface >> {
+  + ingresarGladiadores(List<Gladiador>, int): void
+  + getLargo(): int
+  + getCasillas(): List<iCasilla>
   + moverGladiador(Gladiador, int): void
+  + getAncho(): int
   + enviarAMitad(Gladiador): void
 }
 
+
+
 interface iJugador << interface >> {
-  + jugar(Dado, iMapa): void
+  + jugar(iDado, iMapa): void
+  + getNombre(): String
+  + getGladiador(): Gladiador
 }
+
+
 
 interface iDado {
     public int lanzar();
@@ -71,6 +109,10 @@ iJugador <|-. Jugador
 Jugador *-- Gladiador
 Jugador ..> iDado
 Jugador ...> iMapa
+
+Coordenada <-- CasillaFinal
+Coordenada <- CasillaInicio
+
 
 Mapa o-- "2..*"iCasilla
 iCasilla o- "0..6 " Gladiador

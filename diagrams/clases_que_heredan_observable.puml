@@ -1,0 +1,33 @@
+@startuml
+skinparam linetype ortho
+
+abstract class Observable {
+  + Observable():
+  - obs: Vector<Observer>
+  - changed: boolean
+  + notifyObservers(Object): void
+  + hasChanged(): boolean
+  # clearChanged(): void
+  + notifyObservers(): void
+  + deleteObservers(): void
+  + addObserver(Observer): void
+  + countObservers(): int
+  # setChanged(): void
+  + deleteObserver(Observer): void
+}
+
+Juego -|> Observable
+Observable <|-- Gladiador
+Observable <|-- Dado
+Observable <|-- CasillaCamino
+Observable <|-- CasillaInicio
+Observable <|- CasillaFinal
+class CasillaCamino {
+
+}
+class CasillaInicio {
+}
+
+class CasillaFinal {
+}
+@enduml

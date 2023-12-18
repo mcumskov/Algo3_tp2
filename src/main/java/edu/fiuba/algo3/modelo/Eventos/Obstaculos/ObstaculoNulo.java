@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 
 public class ObstaculoNulo implements Obstaculo {
 
-    char representacion;
+    private char representacion;
     public ObstaculoNulo(){
         this.representacion = ' ';
     }

@@ -1,6 +1,12 @@
 @startuml
+skinparam linetype ortho
+
 class Bacanal {
-  + Bacanal()
-  + obstaculizar(gladiador:Gladiador)
+  + Bacanal():
+  - representacion: char
+  # perdidaEnergiaMinima: int
+  + getRepresentacion(): char
+  + obstaculizarGladiador(Gladiador): void
 }
+
 @enduml

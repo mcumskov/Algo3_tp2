@@ -1,13 +1,26 @@
 @startuml
+skinparam linetype ortho
+
 class CasillaCamino {
-    - iCasilla CasillaSiguiente
-    + CasillaCamino(coordenada: Coordenada, iCasilla CasillaSiguiente, premio:Premio,obstaculo:Obstaculo)
-    + recibir(gladiador:Gladiador)
-    + expulsar(gladiador:Gladiador)
-    + otorgarPremio(gladiador:Gladiador)
-    + aplicarObstaculo(gladiador:Gladiado)
-    + validarPosicion(posicion: int , largoCamino : int)
-    + esContigua(iCasilla casilla) : boolean
-    + esContigua(Coordenada coordenada): boolean
+  + CasillaCamino(Coordenada, iCasilla, Obstaculo, Premio):
+  - coordenada: Coordenada
+  - casillaSiguiente: iCasilla
+  - obstaculo: Obstaculo
+  - gladiadoresEnLaCasilla: List<Gladiador>
+  - premio: Premio
+  + buscadoEstaEnLaCasilla(Gladiador): iCasilla
+  + recibir(Gladiador): void
+  + getGladiadores(): List<Gladiador>
+  + expulsar(Gladiador): void
+  + getObstaculo(): Obstaculo
+  + setSiguiente(iCasilla): void
+  + getPremio(): Premio
+  + moverGladiador(int, Gladiador): void
+  + esContigua(Coordenada): boolean
+  + esContigua(iCasilla): boolean
+  + agregarObserver(Observer): void
+  + validarPosicionEnCamino(int, int): void
+  + getCoordenada(): Coordenada
 }
+
 @enduml

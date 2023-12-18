@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.Eventos.Premios.Premio;
 import edu.fiuba.algo3.modelo.gladiador.Gladiador;
 
 public class PremioEquipamiento implements Premio {
-    char representacion;
+    private char representacion;
     public PremioEquipamiento(){
         this.representacion = 'E';
     }

@@ -13,12 +13,12 @@ import java.util.Observer;
 public class CasillaCamino extends Observable implements iCasilla{
 
 
-    protected Obstaculo obstaculo;
-    protected Premio premio;
-    protected Coordenada coordenada;
-    protected iCasilla casillaSiguiente;
+    private Obstaculo obstaculo;
+    private Premio premio;
+    private Coordenada coordenada;
+    private iCasilla casillaSiguiente;
 
-    protected List<Gladiador> gladiadoresEnLaCasilla;
+    private List<Gladiador> gladiadoresEnLaCasilla;
 
     public CasillaCamino(Coordenada coordenada, iCasilla siguiente, Obstaculo obstaculo, Premio premio) {
         this.casillaSiguiente = siguiente;

@@ -1,7 +1,12 @@
 @startuml
-class Comida {
-    - incrementoDeEnergia: int
-    + Comida()
-    + premiar(gladiador:Gladiador)
+skinparam linetype ortho
+
+class PremioComestible {
+  + PremioComestible():
+  - representacion: char
+  - energiaParaEntregar: int
+  + getRepresentacion(): char
+  + premiarGladiador(Gladiador): void
 }
+
 @enduml

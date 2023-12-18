@@ -1,6 +1,11 @@
 @startuml
+skinparam linetype ortho
+
 class Lesion {
-  + Lesion()
-  + obstaculizar(gladiador:Gladiador)
+  + Lesion():
+  - representacion: char
+  + getRepresentacion(): char
+  + obstaculizarGladiador(Gladiador): void
 }
+
 @enduml

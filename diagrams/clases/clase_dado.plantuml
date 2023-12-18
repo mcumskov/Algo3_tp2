@@ -1,8 +1,12 @@
 @startuml
-    class Dado {
-        - caras:int
-        + Dado()
-        + Dado(caras:int)
-        + tirar(): int
-    }
+skinparam linetype ortho
+
+class Dado {
+  + Dado(int):
+  + Dado():
+  - random: Random
+  - caras: int
+  - numeroObtenido: int
+}
+
 @enduml

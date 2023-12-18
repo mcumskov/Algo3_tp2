@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.log.Log;
 public class FieraSalvaje implements Obstaculo{
 
     private int danioDeFiera ;
-    char representacion;
+    private char representacion;
 
     public FieraSalvaje(){
         this.danioDeFiera = 20;

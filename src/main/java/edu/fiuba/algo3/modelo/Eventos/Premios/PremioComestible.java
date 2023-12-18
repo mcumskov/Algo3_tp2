@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.log.Log;
 public class PremioComestible implements Premio {
 
     private int energiaParaEntregar ;
-    char representacion;
+    private char representacion;
 
     public PremioComestible(){
         energiaParaEntregar = 15;

@@ -1,11 +1,21 @@
 @startuml
+skinparam linetype ortho
+
 class Mapa {
-    - casillas: List<Casilla>
-    - casillaMedio: Casilla
-    - casillaUltima: Casilla
-    + Mapa(List<Gladiador> gladiadores, List<Casilla> casillas, int CantJugadores)
-    - EncontrarGladiador(gladiador:Gladiador):Casilla
-    + moverGladiador(Gladiador gladiador, int tiradaDeDado)
-    + enviarAMitad(Gladiador gladiador)
+  + Mapa(int, int):
+  - ancho: int
+  - casillaMedio: iCasilla
+  - casillaUltima: iCasilla
+  - largo: int
+  - casillas: List<iCasilla>
+  + ingresarGladiadores(List<Gladiador>, int): void
+  - EncontrarGladiador(Gladiador): iCasilla
+  + moverGladiador(Gladiador, int): void
+  + enviarAMitad(Gladiador): void
+  + agregarCamino(List<iCasilla>): void
+  + getAncho(): int
+  + getLargo(): int
+  + getCasillas(): List<iCasilla>
 }
+
 @enduml

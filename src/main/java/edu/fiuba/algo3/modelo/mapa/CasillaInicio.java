@@ -13,9 +13,9 @@ import java.util.Observer;
 
 public class CasillaInicio extends Observable implements iCasilla{
 
-    protected iCasilla casillaSiguiente;
+    private iCasilla casillaSiguiente;
 
-    protected List<Gladiador> gladiadoresEnLaCasilla;
+    private List<Gladiador> gladiadoresEnLaCasilla;
     private Coordenada coordenada;
 
     public CasillaInicio(Coordenada coordenada, iCasilla siguiente){

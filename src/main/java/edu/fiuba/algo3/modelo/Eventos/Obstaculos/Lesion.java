@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.gladiador.GladiadorLesionado;
 import edu.fiuba.algo3.modelo.log.Log;
 
 public class Lesion implements Obstaculo{
-    char representacion;
+    private char representacion;
 
     public Lesion(){
         this.representacion = 'L';

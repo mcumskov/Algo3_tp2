@@ -1,5 +1,9 @@
 @startuml
-interface Obstaculo <<interface>> {
-    {abstract} + obstaculizar(gladiador:Gladiador)
+skinparam linetype ortho
+
+interface Obstaculo << interface >> {
+  + getRepresentacion(): char
+  + obstaculizarGladiador(Gladiador): void
 }
+
 @enduml

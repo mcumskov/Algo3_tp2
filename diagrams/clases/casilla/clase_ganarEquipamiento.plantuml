@@ -1,6 +1,11 @@
 @startuml
-class GanarEquipamiento {
-  + GanarEquipamiento()
-  + premiar(gladiador:Gladiador)
+skinparam linetype ortho
+
+class PremioEquipamiento {
+  + PremioEquipamiento():
+  - representacion: char
+  + getRepresentacion(): char
+  + premiarGladiador(Gladiador): void
 }
+
 @enduml

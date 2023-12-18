@@ -1,7 +1,12 @@
 @startuml
-class Fiera {
-    - danioDeFiera: int
-    + Fiera()
-    + obstaculizar(gladiador:Gladiador)
+skinparam linetype ortho
+
+class FieraSalvaje {
+  + FieraSalvaje():
+  - danioDeFiera: int
+  - representacion: char
+  + getRepresentacion(): char
+  + obstaculizarGladiador(Gladiador): void
 }
+
 @enduml
