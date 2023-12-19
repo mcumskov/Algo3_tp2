@@ -4,24 +4,24 @@ skinparam linetype ortho
 interface iMapa << interface >> {
   + ingresarGladiadores(List<Gladiador>, int): void
   + getLargo(): int
+  + getAncho(): int
   + getCasillas(): List<iCasilla>
   + moverGladiador(Gladiador, int): void
-  + getAncho(): int
   + enviarAMitad(Gladiador): void
 }
 
 class Mapa {
-  + Mapa(int, int):
+  - largo: int
   - ancho: int
+  - casillas: List<iCasilla>
   - casillaMedio: iCasilla
   - casillaUltima: iCasilla
-  - largo: int
-  - casillas: List<iCasilla>
-  + ingresarGladiadores(List<Gladiador>, int): void
   - EncontrarGladiador(Gladiador): iCasilla
+  + Mapa(int, int):
+  + agregarCamino(List<iCasilla>): void
+  + ingresarGladiadores(List<Gladiador>, int): void
   + moverGladiador(Gladiador, int): void
   + enviarAMitad(Gladiador): void
-  + agregarCamino(List<iCasilla>): void
   + getAncho(): int
   + getLargo(): int
   + getCasillas(): List<iCasilla>
@@ -29,85 +29,19 @@ class Mapa {
 
 interface iCasilla << interface >> {
   + validarPosicionEnCamino(int, int): void
+  + getCoordenada(): Coordenada
   + recibir(Gladiador): void
+  + expulsar(Gladiador): void
   + getGladiadores(): List<Gladiador>
   + esContigua(iCasilla): boolean
+  + esContigua(Coordenada): boolean
   + getPremio(): Premio
   + buscadoEstaEnLaCasilla(Gladiador): iCasilla
   + getObstaculo(): Obstaculo
-  + esContigua(Coordenada): boolean
-  + agregarObserver(Observer): void
-  + getCoordenada(): Coordenada
-  + expulsar(Gladiador): void
   + moverGladiador(int, Gladiador): void
   + setSiguiente(iCasilla): void
-}
-
-class CasillaCamino {
-  + CasillaCamino(Coordenada, iCasilla, Obstaculo, Premio):
-  - coordenada: Coordenada
-  - casillaSiguiente: iCasilla
-  - obstaculo: Obstaculo
-  - gladiadoresEnLaCasilla: List<Gladiador>
-  - premio: Premio
-  + buscadoEstaEnLaCasilla(Gladiador): iCasilla
-  + recibir(Gladiador): void
-  + getGladiadores(): List<Gladiador>
-  + expulsar(Gladiador): void
-  + getObstaculo(): Obstaculo
-  + setSiguiente(iCasilla): void
-  + getPremio(): Premio
-  + moverGladiador(int, Gladiador): void
-  + esContigua(Coordenada): boolean
-  + esContigua(iCasilla): boolean
-  + agregarObserver(Observer): void
-  + validarPosicionEnCamino(int, int): void
-  + getCoordenada(): Coordenada
-}
-
-class CasillaInicio {
-  + CasillaInicio(Coordenada, iCasilla):
-  - gladiadoresEnLaCasilla: List<Gladiador>
-  - casillaSiguiente: iCasilla
-  - coordenada: Coordenada
-  + esContigua(iCasilla): boolean
-  + getCoordenada(): Coordenada
-  + agregarObserver(Observer): void
-  + recibir(Gladiador): void
-  + buscadoEstaEnLaCasilla(Gladiador): iCasilla
-  + setSiguiente(iCasilla): void
-  + getObstaculo(): Obstaculo
-  + getPremio(): Premio
-  + moverGladiador(int, Gladiador): void
-  + esContigua(Coordenada): boolean
-  + getGladiadores(): List<Gladiador>
-  + expulsar(Gladiador): void
-  + validarPosicionEnCamino(int, int): void
-}
-
-class CasillaFinal {
-  + CasillaFinal(Coordenada):
-  - casillaSiguiente: iCasilla
-  - coordenada: Coordenada
-  - gladiadoresEnLaCasilla: List<Gladiador>
-  + buscadoEstaEnLaCasilla(Gladiador): iCasilla
-  + esContigua(Coordenada): boolean
-  + getObstaculo(): Obstaculo
-  + recibir(Gladiador): void
-  + validarPosicionEnCamino(int, int): void
-  + expulsar(Gladiador): void
-  + getCoordenada(): Coordenada
-  + getPremio(): Premio
-  + setSiguiente(iCasilla): void
-  + moverGladiador(int, Gladiador): void
-  + getGladiadores(): List<Gladiador>
-  + esContigua(iCasilla): boolean
   + agregarObserver(Observer): void
 }
-
-iCasilla ^.- CasillaCamino
-iCasilla ^.- CasillaInicio
-iCasilla ^. CasillaFinal
 
 iMapa <|.- Mapa
 Mapa .> Gladiador

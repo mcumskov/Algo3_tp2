@@ -73,14 +73,15 @@ class PremioNulo{
   + premiar(gladiador:Gladiador)
 }
 
-Coordenada <-. CasillaCamino
-Coordenada <. CasillaInicio
-Coordenada <. CasillaFinal
+Coordenada ---* CasillaCamino
+Coordenada -* CasillaInicio
+CasillaFinal *- Coordenada
 
-CasillaCamino o-- Premio
-Premio ^. PremioNulo
+CasillaCamino o- Premio
+Obstaculo -o CasillaCamino
+
 ObstaculoNulo .^ Obstaculo
-CasillaCamino o-- Obstaculo
+
 
 Obstaculo ^.. Bacanal
 FieraSalvaje  ..^ Obstaculo
@@ -88,6 +89,7 @@ Obstaculo ^.. Lesion
 
 PremioEquipamiento  ..^ Premio
 Premio ^.. PremioComestible
+Premio ^. PremioNulo
 
 
 

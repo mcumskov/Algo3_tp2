@@ -1,0 +1,86 @@
+@startuml
+skinparam linetype ortho
+
+interface iCasilla << interface >> {
+  + validarPosicionEnCamino(int, int): void
+  + getCoordenada(): Coordenada
+  + recibir(Gladiador): void
+  + expulsar(Gladiador): void
+  + getGladiadores(): List<Gladiador>
+  + esContigua(iCasilla): boolean
+  + esContigua(Coordenada): boolean
+  + getPremio(): Premio
+  + buscadoEstaEnLaCasilla(Gladiador): iCasilla
+  + getObstaculo(): Obstaculo
+  + moverGladiador(int, Gladiador): void
+  + setSiguiente(iCasilla): void
+  + agregarObserver(Observer): void
+}
+class CasillaCamino {
+  + CasillaCamino(Coordenada, iCasilla, Obstaculo, Premio):
+  - coordenada: Coordenada
+  - casillaSiguiente: iCasilla
+  - obstaculo: Obstaculo
+  - gladiadoresEnLaCasilla: List<Gladiador>
+  - premio: Premio
+  + validarPosicionEnCamino(int, int): void
+  + getCoordenada(): Coordenada
+  + recibir(Gladiador): void
+  + expulsar(Gladiador): void
+  + getGladiadores(): List<Gladiador>
+  + esContigua(iCasilla): boolean
+  + esContigua(Coordenada): boolean
+  + getPremio(): Premio
+  + buscadoEstaEnLaCasilla(Gladiador): iCasilla
+  + getObstaculo(): Obstaculo
+  + moverGladiador(int, Gladiador): void
+  + setSiguiente(iCasilla): void
+  + agregarObserver(Observer): void
+}
+
+class CasillaInicio {
+  + CasillaInicio(Coordenada, iCasilla):
+  - gladiadoresEnLaCasilla: List<Gladiador>
+  - casillaSiguiente: iCasilla
+  - coordenada: Coordenada
+  + validarPosicionEnCamino(int, int): void
+  + getCoordenada(): Coordenada
+  + recibir(Gladiador): void
+  + expulsar(Gladiador): void
+  + getGladiadores(): List<Gladiador>
+  + esContigua(iCasilla): boolean
+  + esContigua(Coordenada): boolean
+  + getPremio(): Premio
+  + buscadoEstaEnLaCasilla(Gladiador): iCasilla
+  + getObstaculo(): Obstaculo
+  + moverGladiador(int, Gladiador): void
+  + setSiguiente(iCasilla): void
+  + agregarObserver(Observer): void
+}
+
+class CasillaFinal {
+  + CasillaFinal(Coordenada):
+  - casillaSiguiente: iCasilla
+  - coordenada: Coordenada
+  - gladiadoresEnLaCasilla: List<Gladiador>
+  + validarPosicionEnCamino(int, int): void
+  + getCoordenada(): Coordenada
+  + recibir(Gladiador): void
+  + expulsar(Gladiador): void
+  + getGladiadores(): List<Gladiador>
+  + esContigua(iCasilla): boolean
+  + esContigua(Coordenada): boolean
+  + getPremio(): Premio
+  + buscadoEstaEnLaCasilla(Gladiador): iCasilla
+  + getObstaculo(): Obstaculo
+  + moverGladiador(int, Gladiador): void
+  + setSiguiente(iCasilla): void
+  + agregarObserver(Observer): void
+}
+
+iCasilla ^.- CasillaCamino
+iCasilla ^.- CasillaInicio
+iCasilla ^. CasillaFinal
+Gladiador <-o "2..6 " iCasilla
+
+@enduml
