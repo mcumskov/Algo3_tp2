@@ -55,14 +55,18 @@ class CasillaFinal {
 
 
 class Log {
-  - mensajeAImprimir:String
-  - {static} construirLogger(): void
-  + {static} obtenerLogger(): Logger
-  + {static} getLog()
-  + imprimirMensaje(): void
+  - Log():
+  - logger: Logger
+  - mensajeAImprimir: String
+  - instancia: Log
+  + getLog(): Log
   + agregarABuffer(String): void
-   - instancia: Log
+  + imprimirMensaje(): void
+  - construirLogger(): void
+  + obtenerLogger(): Logger
 }
+
+
 
 class LogFormatter {
   + LogFormatter():

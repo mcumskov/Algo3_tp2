@@ -6,7 +6,7 @@ import java.util.logging.Formatter;
 
 public class Log {
     private static Logger logger;
-    protected String mensajeAImprimir;
+    private String mensajeAImprimir;
     private static Log instancia;
     private Log(){
         instancia = this;
