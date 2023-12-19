@@ -7,13 +7,13 @@
 !include clase_escudoEspada.plantuml
 !include clase_llave.plantuml
 
-IEquipamiento <|. Equipamiento
-Equipamiento o- Equipable
-Equipable <|-- Desnudo
+IEquipamiento <|.- Equipamiento
+Equipamiento o-- Equipable
+Desnudo -|> Equipable
 Equipable <|-- Casco
 Equipable <|-- Armadura
 Equipable <|-- EscudoEspada
-Equipable <|-- Llave
+Llave ---|> Equipable
 
 Desnudo .> Casco
 Casco .> Armadura
