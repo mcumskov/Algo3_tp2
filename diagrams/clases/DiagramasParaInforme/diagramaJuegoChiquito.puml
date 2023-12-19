@@ -35,10 +35,18 @@ class Dado {
   - numeroObtenido: int
 }
 
+
+interface iJugador << interface >> {
+  + jugar(iDado, iMapa): void
+  + getNombre(): String
+  + getGladiador(): Gladiador
+}
+
 Juego o-- iMapa
 Juego o-- iGestorTurnos
 Juego o-- iDado
 iDado <|.- Dado
+Juego "1..2" o-> iJugador
 
 
 @enduml

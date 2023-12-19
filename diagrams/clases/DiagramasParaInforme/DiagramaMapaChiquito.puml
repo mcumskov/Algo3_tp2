@@ -45,7 +45,7 @@ interface iCasilla << interface >> {
 
 iMapa <|.- Mapa
 Mapa .> Gladiador
-Mapa o-- "2..*"iCasilla
+Mapa o-- "3..*"iCasilla
 
 
 @enduml

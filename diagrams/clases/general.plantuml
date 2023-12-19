@@ -109,7 +109,7 @@ iJugador <|-. Jugador
 Jugador *-- Gladiador
 Jugador ..> iDado
 Jugador ...> iMapa
-
+Juego "1..2"  o-- iJugador
 Coordenada <.. CasillaFinal
 Coordenada <. CasillaInicio
 
