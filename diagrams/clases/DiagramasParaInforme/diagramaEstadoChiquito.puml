@@ -1,0 +1,36 @@
+@startuml
+
+skinparam linetype ortho
+
+interface Estado <<interface>> {
+    {abstract} + avanzar(Gladiador gladiador, Casilla casilla, int pasos);
+}
+class GladiadorSano {
+  + GladiadorSano():
+  - representacion: String
+  + getRepresentacion(): String
+  + avanzar(Gladiador, iCasilla, int): void
+}
+
+skinparam linetype ortho
+
+class GladiadorSinEnergia {
+  + GladiadorSinEnergia():
+  - representacion: String
+  + avanzar(Gladiador, iCasilla, int): void
+  + getRepresentacion(): String
+}
+class GladiadorLesionado {
+  + GladiadorLesionado():
+  - representacion: String
+  + avanzar(Gladiador, iCasilla, int): void
+  + getRepresentacion(): String
+}
+
+Estado <|.. GladiadorSano
+Estado <|.. GladiadorSinEnergia
+Estado <|.. GladiadorLesionado
+
+
+
+@enduml

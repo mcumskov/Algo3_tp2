@@ -1,0 +1,38 @@
+@startuml
+skinparam linetype ortho
+
+class Gladiador {
+  + Gladiador(int):
+  - estado: Estado
+  - energia: int
+  - equipamiento: Equipamiento
+  - numeroGladiador: int
+  - seniority: Seniority
+  + getEnergia(): int
+  + disminuirEnergia(int): void
+  + actualizarSeniority(): void
+  + abrirCasaPompeya(Gladiador): void
+  + getSeniority(): NivelDeSeniority
+  + recibirAtaque(int): void
+  + equals(Object): boolean
+  + getEstado(): Estado
+  + mejorarEquipamiento(): void
+  + getNumeroPlayer(): int
+  + cambiarEstado(Estado): void
+  + avanzar(iCasilla, int): void
+  + getEquipamiento(): Equipable
+  + aumentarEnergia(int): void
+}
+
+interface ISeniority
+interface IEquipamiento
+interface Estado
+
+
+
+Gladiador o-- ISeniority
+Gladiador o-- IEquipamiento
+Gladiador o-- Estado
+
+
+@enduml
