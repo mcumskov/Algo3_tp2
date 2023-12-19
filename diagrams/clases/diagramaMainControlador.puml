@@ -1,0 +1,36 @@
+@startuml
+
+skinparam linetype ortho
+
+class ControladorMenuInicio {
+}
+
+
+class Application {
+  + Application():
+  - userAgentStylesheet: String
+  - hostServices: HostServices
+  + STYLESHEET_CASPIAN: String
+  + STYLESHEET_MODENA: String
+  + stop(): void
+  + launch(Class<Application>, String[]?): void
+  + init(): void
+  + getParameters(): Parameters
+  + launch(String[]?): void
+  + setUserAgentStylesheet(String?): void
+  + getHostServices(): HostServices
+  + notifyPreloader(PreloaderNotification): void
+  + getUserAgentStylesheet(): String
+  + start(Stage): void
+}
+class Main {
+  + Main():
+  + main(String[]): void
+  + start(Stage): void
+}
+
+
+ Application <|-- Main
+ Main o-- ControladorMenuInicio
+
+@enduml

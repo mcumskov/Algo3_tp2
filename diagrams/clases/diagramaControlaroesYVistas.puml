@@ -1,9 +1,6 @@
 @startuml
 skinparam linetype ortho
 
-interface Observer << interface >> {
-  + update(Observable, Object): void
-}
 
 class ControladorJuego {
   + ControladorJuego(Stage, iMapa, int, String[]):
@@ -49,30 +46,6 @@ class ControladorMenuInicio {
   - mostrarPantallaInicio(): void
   + iniciarJuego(): void
   - PantallaMostrarMapa(): void
-}
-
-
-class Application {
-  + Application():
-  - userAgentStylesheet: String
-  - hostServices: HostServices
-  + STYLESHEET_CASPIAN: String
-  + STYLESHEET_MODENA: String
-  + stop(): void
-  + launch(Class<Application>, String[]?): void
-  + init(): void
-  + getParameters(): Parameters
-  + launch(String[]?): void
-  + setUserAgentStylesheet(String?): void
-  + getHostServices(): HostServices
-  + notifyPreloader(PreloaderNotification): void
-  + getUserAgentStylesheet(): String
-  + start(Stage): void
-}
-class Main {
-  + Main():
-  + main(String[]): void
-  + start(Stage): void
 }
 
 
@@ -123,14 +96,11 @@ class VistaPartidaPerdida {
   - establecerFondoPantalla(): Background
 }
 
-
- Application <|-- Main
- Main o-- ControladorMenuInicio
  ControladorMenuInicio *-- ControladorJuego
  ControladorJuego *-- ControladorPantallaFinal
  ControladorMenuInicio o- VistaMenuInicio
  ControladorJuego o- VistaJuego
- ControladorPantallaFinal o- VistaGanador
+ VistaGanador -o ControladorPantallaFinal
  ControladorPantallaFinal o- VistaPartidaPerdida
 
 @enduml

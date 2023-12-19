@@ -50,75 +50,22 @@ class ControladorMenuInicio {
 
 
 class Parser {
-    + parsearJSON(nombreJSON: String) : Mapa
 }
 
 class Mapa {
-  + Mapa(int, int):
-  - ancho: int
-  - casillaMedio: iCasilla
-  - casillaUltima: iCasilla
-  - largo: int
-  - casillas: List<iCasilla>
-  + ingresarGladiadores(List<Gladiador>, int): void
-  - EncontrarGladiador(Gladiador): iCasilla
-  + moverGladiador(Gladiador, int): void
-  + enviarAMitad(Gladiador): void
-  + agregarCamino(List<iCasilla>): void
-  + getAncho(): int
-  + getLargo(): int
-  + getCasillas(): List<iCasilla>
 }
 
 class Jugador {
-  + Jugador(String, int):
-  + Jugador():
-  - MiGladiador: Gladiador
-  - numeroPlayer: int
-  - miNombre: String
-  + getGladiador(): Gladiador
-  + getNumeroPlayer(): int
-  + getNombre(): String
-  + jugar(iDado, iMapa): void
 }
 class Dado {
-  + Dado(int):
-  + Dado():
-  - random: Random
-  - caras: int
-  - numeroObtenido: int
 }
 
 class GestorTurnos {
-    - jugadorActual:Jugador
-    - colaTurnos: Queue<Jugador>
-    - contador: int
-    - cantidadRondas: int
-    + GestorTurnos(Jugadores:Jugador):GestorTurnos
-    + agregarTurno(Jugador jugador)
-    + getJugadorActual():Jugador
-    + determinarPrimerJugador()
-    +siguienteTurno()
-    +finalizarSinGanador()
 
 }
 
 
 class Juego {
-  - {static}instancia: Juego
-  - Juego(iMapa, iDado, iGestorTurno):
-  - jugadorActual: iJugador
-  - ganador: iJugador
-  + {static}instanciarJuego(iMapa, iDado, iGestorTurno): Juego
-  + tirarDado(): iJugador
-  + siguienteTurno(): void
-  - buscarGanador(): void
-  - moverGladiadorAMitadMapa(Gladiador): void
-  + {static}gladiadorSinLlaveLlegaAlFinal(Gladiador gladiador)
-  + {static} gladiadorConLlaveLlegaAlFinal()
-  + {static} resetInstancia()
-  + getJugadorActual(): iJugador
-  + getGanador(): iJugador
 }
 
  ControladorMenuInicio *-- ControladorJuego
