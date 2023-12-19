@@ -1,0 +1,20 @@
+@startuml(id=withErrors)
+        class GestorTurnos {
+                - jugadorActual:Jugador
+                - colaTurnos: Queue<Jugador>
+                - contador: int
+                - cantidadRondas: int
+                + GestorTurnos(Jugadores:Jugador):GestorTurnos
+                + agregarTurno(Jugador jugador)
+                + getJugadorActual():Jugador
+                + determinarPrimerJugador()
+                +siguienteTurno()
+                +finalizarSinGanador()
+
+            }
+
+       exception SinGanadorException{
+
+           }
+           GestorTurnos .-> SinGanadorException
+@enduml

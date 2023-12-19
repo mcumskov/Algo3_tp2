@@ -2,20 +2,21 @@
 skinparam linetype ortho
 
 class Juego {
-  - {static}instancia: Juego
-  - Juego(iMapa, iDado, iGestorTurno):
-  - jugadorActual: iJugador
-  - ganador: iJugador
-  + {static}instanciarJuego(iMapa, iDado, iGestorTurno): Juego
-  + tirarDado(): iJugador
-  + siguienteTurno(): void
-  - buscarGanador(): void
-  - moverGladiadorAMitadMapa(Gladiador): void
-  + {static}gladiadorSinLlaveLlegaAlFinal(Gladiador gladiador)
-  + {static} gladiadorConLlaveLlegaAlFinal()
-  + {static} resetInstancia()
-  + getJugadorActual(): iJugador
-  + getGanador(): iJugador
+- {static}instancia: Juego
+- Juego(iMapa, iDado, iGestorTurno):
+- jugadorActual: iJugador
+- buscarGanador(): void
+- moverGladiadorAMitadMapa(Gladiador): void
+- ganador: iJugador
++ tirarDado(): iJugador
++ siguienteTurno(): void
++ getJugadorActual(): iJugador
++ getGanador(): iJugador
++ {static}instanciarJuego(iMapa, iDado, iGestorTurno): Juego
++ {static}gladiadorSinLlaveLlegaAlFinal(Gladiador gladiador)
++ {static} gladiadorConLlaveLlegaAlFinal()
++ {static} resetInstancia()
+
 }
 interface iMapa
 interface iGestorTurnos
