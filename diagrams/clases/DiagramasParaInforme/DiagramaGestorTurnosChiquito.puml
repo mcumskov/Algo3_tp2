@@ -26,12 +26,9 @@ skinparam linetype ortho
 
     class Jugador {
       + Jugador(String, int):
-      + Jugador():
       - MiGladiador: Gladiador
-      - numeroPlayer: int
       - miNombre: String
       + getGladiador(): Gladiador
-      + getNumeroPlayer(): int
       + getNombre(): String
       + jugar(iDado, iMapa): void
     }

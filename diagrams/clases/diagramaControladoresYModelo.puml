@@ -49,39 +49,6 @@ class ControladorMenuInicio {
 }
 
 
-class Application {
-  + Application():
-  - userAgentStylesheet: String
-  - hostServices: HostServices
-  + STYLESHEET_CASPIAN: String
-  + STYLESHEET_MODENA: String
-  + stop(): void
-  + launch(Class<Application>, String[]?): void
-  + init(): void
-  + getParameters(): Parameters
-  + launch(String[]?): void
-  + setUserAgentStylesheet(String?): void
-  + getHostServices(): HostServices
-  + notifyPreloader(PreloaderNotification): void
-  + getUserAgentStylesheet(): String
-  + start(Stage): void
-}
-class Main {
-  + Main():
-  + main(String[]): void
-  + start(Stage): void
-}
-
-
-class ControladorPantallaFinal {
-  + ControladorPantallaFinal(iJugador, Stage):
-  - vistaLose: VistaPartidaPerdida
-  - salir: Button
-  - mainStage: Stage
-  - vistaWin: VistaGanador
-  - ganador: iJugador
-}
-
 class Parser {
     + parsearJSON(nombreJSON: String) : Mapa
 }
@@ -154,16 +121,13 @@ class Juego {
   + getGanador(): iJugador
 }
 
- Application <|-- Main
- Main --> ControladorMenuInicio
- ControladorMenuInicio --> ControladorJuego
- ControladorMenuInicio -> Mapa
- ControladorMenuInicio -> Parser
- ControladorJuego ---> ControladorPantallaFinal
- ControladorJuego -> Mapa
- Jugador <- ControladorJuego
- Dado <- ControladorJuego
- GestorTurnos <- ControladorJuego
- Juego <- ControladorJuego
+ ControladorMenuInicio *-- ControladorJuego
+ ControladorMenuInicio o- Mapa
+ ControladorMenuInicio o- Parser
+ ControladorJuego .> Mapa
+  ControladorJuego o-- Jugador
+  Dado --o ControladorJuego
+  ControladorJuego o-- GestorTurnos
+  ControladorJuego o-- Juego
 
 @enduml

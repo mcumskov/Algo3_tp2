@@ -125,15 +125,12 @@ class VistaPartidaPerdida {
 
 
  Application <|-- Main
- Main --> ControladorMenuInicio
- ControladorMenuInicio --> ControladorJuego
- ControladorMenuInicio -> Mapa
- ControladorMenuInicio -> Parser
- ControladorJuego --> ControladorPantallaFinal
- ControladorJuego --> Mapa
- ControladorMenuInicio -> VistaMenuInicio
- ControladorJuego -> VistaJuego
- ControladorPantallaFinal -> VistaGanador
- ControladorPantallaFinal -> VistaPartidaPerdida
+ Main o-- ControladorMenuInicio
+ ControladorMenuInicio *-- ControladorJuego
+ ControladorJuego *-- ControladorPantallaFinal
+ ControladorMenuInicio o- VistaMenuInicio
+ ControladorJuego o- VistaJuego
+ ControladorPantallaFinal o- VistaGanador
+ ControladorPantallaFinal o- VistaPartidaPerdida
 
 @enduml
