@@ -116,6 +116,7 @@ Coordenada <. CasillaInicio
 
 Mapa o-- "2..*"iCasilla
 iCasilla o- "0..6 " Gladiador
+iCasilla <. Gladiador
 
 Gladiador o-- ISeniority
 Gladiador o- IEquipamiento

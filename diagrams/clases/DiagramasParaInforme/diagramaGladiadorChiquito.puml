@@ -27,9 +27,11 @@ class Gladiador {
 interface ISeniority
 interface IEquipamiento
 interface Estado
+interface iCasilla
 
+iCasilla o- "0..6 " Gladiador
 
-
+iCasilla <. Gladiador
 Gladiador o-- ISeniority
 Gladiador o-- IEquipamiento
 Gladiador o-- Estado

@@ -12,6 +12,10 @@ class GladiadorSano {
   + avanzar(Gladiador, iCasilla, int): void
 }
 
+interface iCasilla
+
+iCasilla <.- GladiadorSano
+
 skinparam linetype ortho
 
 class GladiadorSinEnergia {
