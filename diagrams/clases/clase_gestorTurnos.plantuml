@@ -1,17 +1,17 @@
 @startuml
-    class GestorTurnos {
-        - jugadorActual:Jugador
-        - colaTurnos: Queue<Jugador>
-        - contador: int
-        - cantidadRondas: int
-        + GestorTurnos(Jugadores:Jugador):GestorTurnos
-        + agregarTurno(Jugador jugador)
-        + getJugadorActual():Jugador
-        + determinarPrimerJugador()
-        +siguienteTurno()
-        +finalizarSinGanador()
 
-    }
+class GestorTurnos {
+  + GestorTurnos(int, List<iJugador>):
+  - cantidadRondas: int
+  - contador: int
+  - colaTurnos: Queue<iJugador>
+  + siguienteTurno(): iJugador
+  + agregarTurno(iJugador): void
+  + finalizarSinGanador(): void
+  + determinarPrimerJugador(): void
+}
+
+
 
     interface iGestorTurnos << interface >> {
       + determinarPrimerJugador(): void

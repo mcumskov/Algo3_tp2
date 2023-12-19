@@ -12,14 +12,12 @@ public class GestorTurnos implements iGestorTurnos{
     private Queue<iJugador> colaTurnos;
     private int contador;
     private int cantidadRondas;
-    protected iJugador jugadoractual;
 
     public GestorTurnos(int rondas, List<iJugador> jugadores){
 
         this.colaTurnos = new LinkedList<>();
         this.cantidadRondas = rondas;
         this.contador = 0;
-        this.jugadoractual = null;
 
         if(!jugadores.isEmpty()){
             for (iJugador jugador : jugadores) {
@@ -27,12 +25,6 @@ public class GestorTurnos implements iGestorTurnos{
             }
             this.determinarPrimerJugador();
         }
-    }
-
-    public GestorTurnos(int rondas){
-        this.colaTurnos = new LinkedList<>();
-        this.cantidadRondas = rondas;
-        this.contador = 0;
     }
 
     public void agregarTurno(iJugador jugador){

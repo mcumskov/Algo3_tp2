@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
@@ -109,8 +110,9 @@ public class GestorTurnosUnitTests {
         Jugador jugadorMock = mock(Jugador.class);
         Dado dadoMock = mock(Dado.class);
         Mapa mapaMock = mock(Mapa.class);
-        GestorTurnos gestorTurnos = new GestorTurnos(5);
-        gestorTurnos.agregarTurno(jugadorMock);
+        List<iJugador> jugador = new ArrayList<>();
+        jugador.add(jugadorMock);
+        GestorTurnos gestorTurnos = new GestorTurnos(5, jugador);
         gestorTurnos.determinarPrimerJugador();
         iJugador jugadorActual = gestorTurnos.siguienteTurno();
         jugadorActual.jugar(dadoMock, mapaMock);
@@ -121,7 +123,9 @@ public class GestorTurnosUnitTests {
         Jugador jugadorMock = mock(Jugador.class);
         Dado dadoMock = mock(Dado.class);
         Mapa mapaMock = mock(Mapa.class);
-        GestorTurnos gestorTurnos = new GestorTurnos(5);
+        List<iJugador> jugador = new ArrayList<>();
+        jugador.add(jugadorMock);
+        GestorTurnos gestorTurnos = new GestorTurnos(5, jugador);
         gestorTurnos.agregarTurno(jugadorMock);
         gestorTurnos.determinarPrimerJugador();
         for (int i = 0; i < 2; i++) {
