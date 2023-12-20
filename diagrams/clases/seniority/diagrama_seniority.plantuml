@@ -37,6 +37,8 @@ class Seniority {
 NivelDeSeniority ^-- Novato
 NivelDeSeniority ^-- SemiSenior
 NivelDeSeniority ^-- Senior
+Novato  .> SemiSenior
+SemiSenior .> Senior
 ISeniority  ^-.   Seniority
 Seniority o-- NivelDeSeniority
 @enduml

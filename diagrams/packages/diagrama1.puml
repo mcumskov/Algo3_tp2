@@ -1,0 +1,57 @@
+@startuml
+!define RECTANGLE class
+
+left to right direction
+skinparam linetype ortho
+
+
+package dado {}
+package equipamiento {}
+package Eventos {}
+package gestorTurnos {}
+package gladiador {}
+package juego {}
+package jugador {}
+package log {}
+package mapa {}
+package parser {}
+package seniority {}
+
+
+juego --|> jugador
+juego --|> mapa
+juego --|> dado
+juego --|> gestorTurnos
+juego --|> log
+mapa --|> gladiador
+mapa --|> Eventos
+mapa --|> log
+gestorTurnos --|> dado
+gestorTurnos --|> jugador
+jugador --|> dado
+jugador --|> log
+jugador --|> mapa
+jugador --|> gladiador
+gladiador --|> equipamiento
+gladiador --|> log
+gladiador --|> mapa
+gladiador --|> seniority
+seniority --|> log
+equipamiento --|> log
+equipamiento --|> gladiador
+parser --|> Eventos
+parser --|> mapa
+
+@enduml
+
+modelo --> dado
+modelo --> equipamiento
+modelo --> Eventos
+modelo --> excepciones
+modelo --> gestorTurnos
+modelo --> gladiador
+modelo --> juego
+modelo --> log
+modelo --> mapa
+modelo --> parser
+modelo --> seniority
