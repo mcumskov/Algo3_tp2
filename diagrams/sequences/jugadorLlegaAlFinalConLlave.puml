@@ -1,0 +1,23 @@
+@startuml
+activate CasillaFinal
+CasillaFinal -> CasillaFinal: recibir(gladiador)
+CasillaFinal -> Gladiador: abrirCasaPompeya()
+activate Gladiador
+Gladiador -> Equipamiento: abrirCasaPompeya(this)
+activate Equipamiento
+Equipamiento -> Llave: abrirCasaPompeya(this)
+activate Llave
+Llave -> Juego: gladiadorConLlaveLlegaAlFinal()
+activate Juego
+Juego -> Juego: buscarGanador()
+Juego --> Llave
+deactivate Juego
+Llave --> Equipamiento
+deactivate Llave
+Equipamiento --> Gladiador
+deactivate Equipamiento
+Gladiador --> CasillaFinal
+deactivate CasillaFinal
+
+
+@enduml

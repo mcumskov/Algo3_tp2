@@ -1,0 +1,35 @@
+@startuml
+activate CasillaFinal
+CasillaFinal -> CasillaFinal: recibir(gladiador)
+CasillaFinal -> Gladiador: abrirCasaPompeya()
+activate Gladiador
+Gladiador -> Equipamiento: abrirCasaPompeya(this)
+activate Equipamiento
+Equipamiento -> Casco: abrirCasaPompeya(this)
+activate Casco
+Casco -> Juego: gladiadorSinLlaveLlegaAlFinal()
+activate Juego
+Juego -> Juego: moverGladiadorAMitadMapa(gladiador)
+Juego -> mapa: enviarAMitad(gladiador)
+activate mapa
+
+mapa -> CasillaFinal: expulsar(gladiador);
+activate CasillaFinal
+CasillaFinal --> mapa
+deactivate CasillaFinal
+mapa -> casillaMedio: recibir(gladiador);
+activate casillaMedio
+casillaMedio --> mapa
+deactivate casillaMedio
+mapa --> Juego
+deactivate mapa
+
+Juego --> Casco
+deactivate Juego
+Casco --> Equipamiento
+deactivate Casco
+Equipamiento --> Gladiador
+deactivate Equipamiento
+Gladiador --> CasillaFinal
+deactivate CasillaFinal
+@enduml

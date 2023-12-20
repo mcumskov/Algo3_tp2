@@ -1,0 +1,38 @@
+@startuml
+
+ activate Mapa
+    Mapa -> Mapa: EncontrarGladiador(gladiador)
+    Mapa -> "gladiador: Gladiador":avanzar(CasillaDeSalida, tiradaDeDado)
+    activate "gladiador: Gladiador"
+    "gladiador: Gladiador" -> "estado: GladiadorSano": avanzar(this:Gladiador, inicioMovimiento, tiradaDeDado)
+    activate "estado: GladiadorSano"
+    "estado: GladiadorSano" -> "gladiador: Gladiador": actualizarSeniority();
+    activate "gladiador: Gladiador"
+    "gladiador: Gladiador" -> "seniority: Seniority":actualizar()
+    activate "seniority: Seniority"
+    "seniority: Seniority" -> "nivelDeSeniority: Novato":actualizar()
+    activate "nivelDeSeniority: Novato"
+    create SemiSenior
+    "nivelDeSeniority: Novato"-> SemiSenior: new SemiSenior()
+    SemiSenior --> "nivelDeSeniority: Novato": :SemiSenior
+
+    "nivelDeSeniority: Novato" --> "seniority: Seniority": :SemiSenior
+    deactivate "nivelDeSeniority: Novato"
+    "seniority: Seniority" --> "gladiador: Gladiador"
+    deactivate "seniority: Seniority"
+
+    
+    "gladiador: Gladiador" -> "seniority: Seniority":recuperarEnergia()
+     activate "seniority: Seniority"
+    "seniority: Seniority" -> SemiSenior:recuperarEnergia()
+     activate SemiSenior
+    SemiSenior --> "seniority: Seniority": recuperacion:int
+    deactivate SemiSenior
+    "seniority: Seniority" --> "gladiador: Gladiador": recuperacion:int
+    deactivate "seniority: Seniority"
+    "gladiador: Gladiador" -> "gladiador: Gladiador": aumentarEnergia(recuperacion: int)
+
+    "gladiador: Gladiador" --> "estado: GladiadorSano"
+    deactivate "gladiador: Gladiador"
+
+@enduml

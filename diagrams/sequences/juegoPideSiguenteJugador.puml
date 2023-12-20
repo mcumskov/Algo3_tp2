@@ -1,0 +1,7 @@
+@startuml
+
+Juego -> GestorTurnos: siguienteTurno()
+GestorTurnos --> Juego: iJugador
+
+
+@enduml
