@@ -1,0 +1,22 @@
+@startuml
+
+Casilla -> PremioEquipamiento: premiarGladiador(Gladiador)
+activate PremioEquipamiento
+PremioEquipamiento -> Gladiador: mejorarEquipamiento()
+activate Gladiador
+Gladiador -> Equipamiento: mejorar()
+activate Equipamiento
+Equipamiento -> Casco: mejorar()
+activate Casco
+create Armadura
+Casco -> Armadura: new Armadura(this.danioReducir)
+Armadura --> Casco: :Armadura
+Casco --> Equipamiento: :Armadura
+deactivate Casco
+Equipamiento --> Gladiador
+deactivate Equipamiento
+Gladiador --> PremioEquipamiento
+deactivate Gladiador
+PremioEquipamiento --> Casilla
+deactivate PremioEquipamiento
+@enduml

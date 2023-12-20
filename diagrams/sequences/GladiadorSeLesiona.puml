@@ -1,0 +1,15 @@
+@startuml
+Casilla -> Lesion: obstaculizarGladiador(Gladiador)
+participant GladiadorLesionado
+activate Lesion
+create GladiadorLesionado
+Lesion -> GladiadorLesionado: new GladiadorLesionado
+GladiadorLesionado --> Lesion: :GladiadorLesionado
+Lesion -> Gladiador: cambiarEstado(:GladiadorLesionado)
+activate Gladiador
+
+Gladiador --> Lesion
+deactivate Gladiador
+Lesion --> Casilla
+deactivate Lesion
+@enduml

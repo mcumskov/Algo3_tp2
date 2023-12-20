@@ -1,0 +1,20 @@
+@startuml
+
+Casilla -> PremioEquipamiento: premiarGladiador(Gladiador)
+activate PremioEquipamiento
+PremioEquipamiento -> Gladiador: mejorarEquipamiento()
+activate Gladiador
+Gladiador -> Equipamiento: mejorar()
+activate Equipamiento
+Equipamiento -> Llave: mejorar()
+activate Llave
+Llave --> Equipamiento: this
+deactivate Llave
+Equipamiento --> Gladiador
+deactivate Equipamiento
+Gladiador --> PremioEquipamiento
+deactivate Gladiador
+PremioEquipamiento --> Casilla
+deactivate PremioEquipamiento
+
+@enduml

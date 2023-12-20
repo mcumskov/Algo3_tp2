@@ -6,15 +6,12 @@ skinparam linetype ortho
 hide empty description
 
 [*] --> EmpezarJuego
-
-state queHacer <<choice>>
-EmpezarJuego -->queHacer: que hace el jugador
+EmpezarJuego -->siguienteTurno
 state TirarDado
 
 state siguienteTurno
 
-queHacer --> siguienteTurno
-siguienteTurno --> TirarDado
+siguienteTurno --> TirarDado: HayTurnos
 
 state queHacer2 <<choice>>
 state EnviarGladiadorAMitad
@@ -31,6 +28,6 @@ GladiadorLlegaFinal --> buscarGanador: tiene llave
 buscarGanador --> [*]
 
 
-siguienteTurno --> [*]: se supera los turnos
+siguienteTurno --> [*]: NoHayMasTurnos
 
 @enduml

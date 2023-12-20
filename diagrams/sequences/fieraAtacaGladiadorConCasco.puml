@@ -1,0 +1,22 @@
+@startuml
+Casilla -> FieraSalvaje: obstaculizarGladiador(Gladiador)
+activate FieraSalvaje
+FieraSalvaje -> Gladiador: recibirAtaque(this.danioDeFiera)
+activate Gladiador
+
+Gladiador -> Equipamiento: recibirAtaque(danioDeFiera)
+activate Equipamiento
+Equipamiento -> Casco: mitigarDanio(danioDeFiera)
+activate Casco
+Casco --> Equipamiento: danioMitigado: int
+deactivate Casco
+Equipamiento --> Gladiador: danioMitigado: int
+deactivate Equipamiento
+Gladiador -> Gladiador: disminuirEnergia(danioMitigado)
+
+
+Gladiador --> FieraSalvaje
+deactivate Gladiador
+FieraSalvaje --> Casilla
+deactivate FieraSalvaje
+@enduml

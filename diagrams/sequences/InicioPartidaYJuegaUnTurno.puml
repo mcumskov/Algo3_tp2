@@ -6,12 +6,9 @@ participant Dado
 participant Mapa
 participant Jugador
 
-Actor -> Juego: iniciarPartida()
+Actor -> Juego: tirarDado()
 activate Juego
-loop Until SinGanadorException
-    Juego -> GestorTurnos: siguienteTurno(dado, mapa)
-    activate GestorTurnos
-    GestorTurnos -> Jugador: jugar(dado, mapa)
+    Juego -> Jugador: jugar(dado, mapa)
     activate Jugador
     Jugador -> Dado: lanzar()
     activate Dado
@@ -19,7 +16,7 @@ loop Until SinGanadorException
 
     deactivate Dado
 
-    Jugador -> Mapa: moverGladiador(this, tiradaDeDado)
+    Jugador -> Mapa: moverGladiador(miGladiador, tiradaDeDado)
     activate Mapa
     Mapa -> Mapa: EncontrarGladiador(gladiador)
     Mapa -> "gladiador: Gladiador":avanzar(CasillaDeSalida, tiradaDeDado)
@@ -50,20 +47,24 @@ loop Until SinGanadorException
     deactivate "gladiador: Gladiador"
 
     "estado: GladiadorSano" -> "casillaInicioMovimiento :iCasilla": moverGladiador(pasos, gladiador)
+
     activate "casillaInicioMovimiento :iCasilla"
+
     note right
+
     esto no es un loop tal cual,
     es una secuencia de llamadas a objetos de la misma clase
 
     public void moverGladiador(int pasos, Gladiador gladiador){
+            this.expulsar(gladiador);
             if( pasos == 0 || casillaSiguiente == null){
                 this.recibir(gladiador);
                 return;
             }
             casillaSiguiente.moverGladiador(pasos-1, gladiador);
-            this.expulsar(gladiador);
-        }
+    }
     end note
+    "casillaInicioMovimiento :iCasilla" -> "casillaInicioMovimiento :iCasilla": expulsar(gladiador: Gladiador)
     loop Until pasos=0 | casillaSiguiente = Null
      "casillaInicioMovimiento :iCasilla" -> casillaSiguiente :moverGladiador(pasos-1, gladiador)
     activate casillaSiguiente
@@ -79,7 +80,7 @@ loop Until SinGanadorException
     deactivate "obstaculo: ObstaculoNulo"
     casillaSiguiente --> "casillaInicioMovimiento :iCasilla":
     deactivate casillaSiguiente
-    "casillaInicioMovimiento :iCasilla" -> "casillaInicioMovimiento :iCasilla": expulsar(gladiador: Gladiador)
+
     "casillaInicioMovimiento :iCasilla" --> "estado: GladiadorSano"
     deactivate "casillaInicioMovimiento :iCasilla"
     "estado: GladiadorSano" --> "gladiador: Gladiador"
@@ -89,11 +90,10 @@ loop Until SinGanadorException
 
     Mapa --> Jugador
     deactivate Mapa
-    Jugador--> GestorTurnos
+
+    Jugador--> Juego
     deactivate Jugador
-    GestorTurnos --> Juego
-    deactivate GestorTurnos
-end
-deactivate Juego
+    Juego --> Actor
+    deactivate Juego
 
 @enduml

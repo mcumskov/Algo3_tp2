@@ -1,0 +1,10 @@
+@startuml
+Actor -> Juego: siguienteTurno()
+    activate Juego
+    Juego -> GestorTurnos: siguienteTurno()
+    activate GestorTurnos
+    GestorTurnos --> Juego: iJugador
+
+    Juego --> Actor
+    deactivate Juego
+@enduml

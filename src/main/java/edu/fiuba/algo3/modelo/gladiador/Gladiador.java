@@ -30,7 +30,7 @@ public class Gladiador extends Observable{
         Log.getLog().agregarABuffer( " se pierde " + energiaDisminuir + " de energia |");
         if(this.energia <= 0){
             Log.getLog().agregarABuffer( " el gladiador se quedo sin energia |");
-            this.estado = new GladiadorSinEnergia();
+            this.cambiarEstado(new GladiadorSinEnergia());
         }
     }
 
