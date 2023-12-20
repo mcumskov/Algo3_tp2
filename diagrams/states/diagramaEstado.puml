@@ -1,0 +1,36 @@
+@startuml
+scale 1000 height
+scale 900 width
+top to bottom direction
+skinparam linetype ortho
+hide empty description
+
+[*] --> EmpezarJuego
+
+state queHacer <<choice>>
+EmpezarJuego -->queHacer: que hace el jugador
+state TirarDado
+
+state siguienteTurno
+
+queHacer --> siguienteTurno
+siguienteTurno --> TirarDado
+
+state queHacer2 <<choice>>
+state EnviarGladiadorAMitad
+state GladiadorLlegaFinal
+state buscarGanador
+
+
+TirarDado --> queHacer2
+siguienteTurno <-- queHacer2: sigue jugando
+queHacer2 --> GladiadorLlegaFinal
+GladiadorLlegaFinal --> EnviarGladiadorAMitad: no tiene llave
+siguienteTurno <-- EnviarGladiadorAMitad
+GladiadorLlegaFinal --> buscarGanador: tiene llave
+buscarGanador --> [*]
+
+
+siguienteTurno --> [*]: se supera los turnos
+
+@enduml

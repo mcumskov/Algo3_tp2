@@ -1,0 +1,17 @@
+@startuml
+skinparam linetype ortho
+
+class node6 as "package  edu.fiuba.algo3.modelo.Eventos" << package >>
+class node8 as "package  edu.fiuba.algo3.modelo.dado" << package >>
+class node1 as "package  edu.fiuba.algo3.modelo.equipamiento" << package >>
+class node9 as "package  edu.fiuba.algo3.modelo.excepciones" << package >>
+class node7 as "package  edu.fiuba.algo3.modelo.gestorTurnos" << package >>
+class node5 as "package  edu.fiuba.algo3.modelo.gladiador" << package >>
+class node3 as "package  edu.fiuba.algo3.modelo.juego" << package >>
+class node0 as "package  edu.fiuba.algo3.modelo.jugador" << package >>
+class node11 as "package  edu.fiuba.algo3.modelo.log" << package >>
+class node10 as "package  edu.fiuba.algo3.modelo.mapa" << package >>
+class node2 as "package  edu.fiuba.algo3.modelo.parser" << package >>
+class node4 as "package  edu.fiuba.algo3.modelo.seniority" << package >>
+
+@enduml
